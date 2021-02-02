@@ -1,0 +1,56 @@
+.is-overflow-swipe {
+  overflow: hidden;
+  overflow-x: auto;
+
+  scrollbar-color: currentColor transparent; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
+
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+  &::-webkit-scrollbar-track {
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: currentColor;
+  }
+}
+
+// use this when card has multiple links inside but has to look like it's wrapped in anchor
+.has-links-inside {
+  position: relative;
+
+  a {
+    position: relative;
+    z-index: 2;
+  }
+
+  .has-links-inside_main-link {
+    position: static;
+
+    &:before {
+      content: "";
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+      white-space: nowrap;
+      z-index: 1;
+    }
+  }
+}
+
+// gutters sometimes need to be removed on mobile
+.has-no-gutters\@to-small {
+  @media (max-width: 699px) {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  > * {
+    @media (max-width: 699px) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}

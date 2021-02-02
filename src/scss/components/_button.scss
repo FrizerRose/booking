@@ -1,0 +1,93 @@
+button,
+.c-button {
+  display: inline-block;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: none transparent;
+  color: inherit;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  font: inherit;
+  // line-height: normal;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.c-button.-tab {
+  width: 100%;
+  text-align: left;
+  padding: 1em;
+  color: currentColor;
+  border-radius: 4px;
+  font-weight: 900;
+  transition: background-color 0.5s;
+
+  $site-button-bg: white;
+  background-color: $site-button-bg;
+}
+
+.c-button.-outline {
+  padding: 0.5em 1em;
+  color: currentColor;
+  border: 1px solid;
+  border-radius: 4px;
+  font-weight: 900;
+  transition: border-color 0.5s;
+
+  $site-button-bg: red;
+  border-color: $site-button-bg;
+}
+.c-button.-primary {
+  padding: 1em 2em;
+  color: currentColor;
+  border-radius: 9999px;
+  font-weight: 900;
+  transition: background-color 0.5s;
+
+  $site-button-bg: darkcyan;
+  background-color: $site-button-bg;
+
+  html.t1 & {
+    $site-button-bg: lime;
+    background-color: $site-button-bg;
+  }
+
+  html.t2 & {
+    $site-button-bg: black;
+    background-color: $site-button-bg;
+  }
+
+  &:hover,
+  &:focus {
+    $site-button-hover-bg: gold;
+    background-color: $site-button-hover-bg;
+
+    html.t1 & {
+      $site-button-bg: red;
+      background-color: $site-button-hover-bg;
+    }
+
+    html.t2 & {
+      $site-button-bg: coral;
+      background-color: $site-button-hover-bg;
+    }
+  }
+}
+
+.c-button_label {
+  vertical-align: inherit;
+  display: inline-block;
+  line-height: inherit;
+  pointer-events: none;
+}

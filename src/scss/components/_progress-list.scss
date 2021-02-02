@@ -1,0 +1,15 @@
+.c-progress-list-wrap {
+  margin-left: -1rem;
+}
+
+.c-progress-list {
+  display: flex;
+  @media (min-width: 1000px) {
+    flex-wrap: wrap;
+  }
+}
+
+.c-progress-list_item {
+  min-width: 200px;
+  margin-left: 1rem;
+}
