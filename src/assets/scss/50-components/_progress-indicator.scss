@@ -1,0 +1,34 @@
+.c-progress-number {
+  margin-bottom: 0.5em;
+  @media (min-width: $from-medium) {
+  }
+}
+.c-progress-indicator {
+  padding: 1em 0;
+}
+.c-progress-indicator_line-wrap {
+  position: relative;
+  height: 0.25em;
+}
+.c-progress-indicator_line-wrap-bg {
+  background-color: currentColor;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+}
+.c-progress-indicator_line {
+  background-color: currentColor;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0.5);
+  transform-origin: left;
+  transition: $speed $easing;
+  @media (max-width: $to-medium) {
+  }
+}

@@ -1,17 +1,12 @@
-.c-progress_menu-wrap {
-  position: sticky;
-  top: 2rem;
-  z-index: 10;
-}
-.c-progress_menu {
-  position: relative;
-}
-.c-progress_menu-toggle {
+.c-steps-header_menu-toggle {
   @media (min-width: $from-medium) {
     display: none;
   }
 }
-.c-progress_menu_inner {
+.c-steps-menu {
+  position: relative;
+}
+.c-steps-menu_inner {
   @media (max-width: $to-medium) {
     position: absolute;
     top: 0;
@@ -30,17 +25,19 @@
   }
 }
 
-.c-progress-list-wrap {
+.c-steps-list-wrap {
   margin-left: -1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
-.c-progress-list {
+.c-steps-list {
   display: flex;
-  @media (max-width: 999px) {
+  @media (max-width: $to-medium) {
     flex-direction: column;
   }
 }
 
-.c-progress-list_item {
+.c-steps-list_item {
   margin-left: 1rem;
 }

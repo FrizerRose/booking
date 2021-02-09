@@ -224,8 +224,8 @@ a {
 
   &:hover,
   &:focus {
-    $site-link-hover: $theme-main;
-    color: $site-link-hover;
+    // $site-link-hover: $theme-main;
+    // color: $site-link-hover;
 
     html.t1 & {
       $site-link-hover: lightsalmon;

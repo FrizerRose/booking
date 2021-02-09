@@ -38,6 +38,7 @@
 @import "40-objects/ratio";
 // @import "40-objects/table";
 //
+@import "40-objects/link";
 @import "40-objects/list";
 @import "40-objects/flex";
 @import "40-objects/image";
@@ -51,8 +52,10 @@
 //
 @import "50-components/site-header";
 // @import "50-components/site-nav";
-@import "50-components/progress-list";
 @import "50-components/site-main";
+@import "50-components/progress";
+@import "50-components/progress-indicator";
+@import "50-components/steps";
 @import "50-components/card-service";
 @import "50-components/timeslots-list";
 
