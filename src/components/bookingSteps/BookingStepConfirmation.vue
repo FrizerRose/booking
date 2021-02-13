@@ -68,18 +68,6 @@
       <div class="c-summary_row">
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
-            <button
-              class="c-button -primary || has-links-inside_main-link"
-              @click="nextStep()"
-            >
-              <span class="c-button_label">Potvrdi</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="c-summary_row">
-        <div class="o-layout">
-          <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
               Napomena:
             </p>
@@ -88,6 +76,18 @@
             <p class="c-summary_answer">
               <em>Bez napomene</em><br>
             </p>
+          </div>
+        </div>
+      </div>
+      <div class="c-summary_row">
+        <div class="o-layout">
+          <div class="o-layout_item u-1/2">
+            <button
+              class="c-button -primary || has-links-inside_main-link"
+              @click="nextStep()"
+            >
+              <span class="c-button_label">Potvrdi</span>
+            </button>
           </div>
         </div>
       </div>

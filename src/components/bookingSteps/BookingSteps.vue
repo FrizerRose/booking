@@ -10,11 +10,10 @@
               <ul class="o-list">
                 <BookingStepServices v-if="currentStep === 1" />
                 <BookingStepStaff v-if="currentStep === 2" />
-                <BookingStepStaff v-if="currentStep === 3" />
-                <BookingStepDateTime v-if="currentStep === 4" />
-                <BookingStepPersonalDetails v-if="currentStep === 5" />
-                <BookingStepConfirmation v-if="currentStep === 6" />
-                <BookingStepSummary v-if="currentStep === 7" />
+                <BookingStepDateTime v-if="currentStep === 3" />
+                <BookingStepPersonalDetails v-if="currentStep === 4" />
+                <BookingStepConfirmation v-if="currentStep === 5" />
+                <BookingStepSummary v-if="currentStep === 6" />
               </ul>
               <!-- ends TAB PANEL -->
             </div>
