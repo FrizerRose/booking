@@ -2,12 +2,13 @@
 // eslint-disable-next-line import/no-cycle
 import { RootState } from '@/store';
 import { GetterTree } from 'vuex';
+import Service from '@/types/service';
 import { State } from './state';
 
 export type Getters = {
-  getListName(state: State): string | null;
+  getServices(state: State): Service[] | null;
 }
 
 export const getters: GetterTree<State, RootState> & Getters = {
-  getListName: (state) => state.listName,
+  getServices: (state) => state.services,
 };
