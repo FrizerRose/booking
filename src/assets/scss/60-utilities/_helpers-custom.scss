@@ -7,3 +7,9 @@
 .u-width-auto {
   width: auto;
 }
+
+.u-margin-left\@to-medium {
+  @media (max-width: $to-medium) {
+    margin-left: 1rem;
+  }
+}
