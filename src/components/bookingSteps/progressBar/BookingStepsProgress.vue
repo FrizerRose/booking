@@ -26,6 +26,7 @@
         <div class="o-layout_item u-width-auto">
           <div class="o-flex">
             <button
+              v-if="currentStep > 1"
               class="c-button -primary || is-hidden@from-medium || u-margin-left@to-medium"
               @click="goBackOneStep(currentStep - 1)"
             >
