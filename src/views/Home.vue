@@ -1,20 +1,20 @@
 <template>
-  <div class="home">
-    <img
-      alt="Vue logo"
-      src="../assets/logo.png"
-    >
-    <HelloWorld msg="Advice Generator" />
-  </div>
+  <TheHeader />
+  <BookingSteps />
+  <TheFooter />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import TheHeader from '@/components/layout/TheHeader.vue';
+import TheFooter from '@/components/layout/TheFooter.vue';
+import BookingSteps from '@/components/bookingSteps/BookingSteps.vue';
 
 export default defineComponent({
   components: {
-    HelloWorld,
+    TheHeader,
+    TheFooter,
+    BookingSteps,
   },
 });
 </script>

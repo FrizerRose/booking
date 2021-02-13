@@ -14,12 +14,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
-    path: '/booking',
-    name: 'Booking',
-    // lazy loaded route
-    component: () => import(/* webpackChunkName: "booking" */ '../views/Booking.vue'),
-  },
-  {
     path: '/404',
     name: '404',
     component: () => import(/* webpackChunkName: "404" */ '../views/404.vue'),
