@@ -31,12 +31,12 @@ const adviceService = new AdviceService();
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_ADVICE]({ commit }, id: number) {
-    const response = await adviceService.get(id);
-    if (response.data.message === undefined) {
-      const parsedResponse = JSON.parse(`${response.data}}`);
-      commit(LocalMutationTypes.CHANGE_ADVICE, parsedResponse.slip.advice);
-    } else {
-      throw new ApiError('No Advice for this ID.');
-    }
+    // const response = await adviceService.get(id);
+    // if (response.data.message === undefined) {
+    //   const parsedResponse = JSON.parse(`${response.data}}`);
+    //   commit(LocalMutationTypes.CHANGE_ADVICE, parsedResponse.slip.advice);
+    // } else {
+    //   throw new ApiError('No Advice for this ID.');
+    // }
   },
 };
