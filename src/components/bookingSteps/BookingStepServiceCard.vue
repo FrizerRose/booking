@@ -15,6 +15,7 @@
               >
             </figure>
           </div>
+
           <div class="o-layout_item u-2/3@to-medium u-3/4@from-medium">
             <div class="c-card-service_info">
               <h1 class="c-heading">
