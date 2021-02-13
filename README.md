@@ -43,5 +43,5 @@ tamo addaš, commitaš, pushaš bez briga
 kad si gotov sa featurom i pusho si sve na njega
 git checkout release-***
 git merge feature/ime-featura
-done
+git push
 ```
