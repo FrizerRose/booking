@@ -24,14 +24,19 @@
           <p>odabrani korak</p>
         </div>
         <div class="o-layout_item u-width-auto">
-          <button class="c-button -primary || c-steps-header_menu-toggle">
-            <span class="c-button_label">menu</span>
+          <button
+            class="c-button -primary || c-steps-header_menu-toggle"
+            @click="toggleMenu()"
+          >
+            <span
+              class="c-button_label"
+            >menu</span>
           </button>
         </div>
       </div>
     </div>
     <div class="c-steps-menu">
-      <div class="c-steps-menu_inner is-open">
+      <div :class="{'c-steps-menu_inner': true, 'is-open': isMenuOpen}">
         <div class="o-background-wrap has-no-gutters@to-medium">
           <div class="o-background -has-shadow" />
           <div class="o-layout">
@@ -136,7 +141,7 @@
 
 <script lang='ts'>
 import {
-  defineComponent, computed,
+  defineComponent, computed, ref,
 } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
@@ -152,10 +157,17 @@ export default defineComponent({
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
     }
 
+    const isMenuOpen = ref(false);
+    function toggleMenu() {
+      isMenuOpen.value = !isMenuOpen.value;
+    }
+
     return {
       currentStep,
       progressBarTransformScale,
       changeCurrentStep,
+      toggleMenu,
+      isMenuOpen,
     };
   },
 });
