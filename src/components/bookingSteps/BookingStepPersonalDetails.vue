@@ -58,7 +58,7 @@
           type="checkbox"
         >
         <label
-          class="c-form_checkbox-label"
+          class="c-form_checkboxLabel"
           for="id-form-checkbox"
         >Prihvaćam uvjete</label>
       </div>

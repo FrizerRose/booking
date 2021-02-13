@@ -66,9 +66,10 @@
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum velit sit aperiam quasi?
                   </p>
-                  <button class="has-links-inside_main-link">
-                    <span class="c-button_label">test focus</span>
-                  </button>
+                  <button
+                    class="has-links-inside_main-link"
+                    @click="nextStep()"
+                  />
                 </div>
               </div>
             </div>
@@ -78,7 +79,7 @@
       <li class="o-layout_item o-list_item -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
         <div class="o-background-wrap">
           <div class="o-background -has-shadow" />
-          <article class="c-card-service">
+          <article class="c-card-service has-links-inside">
             <div class="o-layout">
               <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
                 <figure class="c-card-service_image-wrap -max-width || o-ratio">
@@ -98,6 +99,10 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea at, tempore alias consequatur animi quam
                     suscipit sunt et laboriosam doloribus illo consectetur non libero!
                   </p>
+                  <button
+                    class="has-links-inside_main-link"
+                    @click="nextStep()"
+                  />
                 </div>
               </div>
             </div>
