@@ -50,6 +50,7 @@
                       role="tab"
                       aria-selected="true"
                       aria-controls="tab-usluge"
+                      @click="changeCurrentStep(1)"
                     >
                       <span class="c-button_label">Usluge</span>
                     </button>
@@ -63,6 +64,7 @@
                       aria-controls="tab-odabir-radnika"
                       tabindex="-1"
                       :disabled="currentStep < 2"
+                      @click="changeCurrentStep(2)"
                     >
                       <span class="c-button_label">Odabir radnika</span>
                     </button>
@@ -76,6 +78,7 @@
                       aria-controls="tab-odabir-termina"
                       tabindex="-1"
                       :disabled="currentStep < 3"
+                      @click="changeCurrentStep(3)"
                     >
                       <span class="c-button_label">Odabir termina</span>
                     </button>
@@ -89,6 +92,7 @@
                       aria-controls="tab-vasi-podatci"
                       tabindex="-1"
                       :disabled="currentStep < 4"
+                      @click="changeCurrentStep(4)"
                     >
                       <span class="c-button_label">Vaši podatci</span>
                     </button>
@@ -135,6 +139,7 @@ import {
   defineComponent, computed,
 } from 'vue';
 import { useStore } from '@/store';
+import MutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   setup() {
@@ -143,9 +148,14 @@ export default defineComponent({
     const scaleValue = computed(() => (currentStep.value * 0.2) - 0.2);
     const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
 
+    function changeCurrentStep(stepNumber: number) {
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
+    }
+
     return {
       currentStep,
       progressBarTransformScale,
+      changeCurrentStep,
     };
   },
 });
