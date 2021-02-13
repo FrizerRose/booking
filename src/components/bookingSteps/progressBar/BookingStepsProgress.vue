@@ -150,9 +150,9 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+
     const scaleValue = computed(() => (currentStep.value * 0.2) - 0.2);
     const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
-
     function changeCurrentStep(stepNumber: number) {
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
     }
