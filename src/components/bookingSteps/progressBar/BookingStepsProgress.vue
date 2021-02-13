@@ -5,7 +5,7 @@
       <div class="c-progress-indicator">
         <div class="c-progress-number">
           <span class="c-progress-number_label">
-            100%
+            {{ (currentStep * 20) - 20 }}%
           </span>
         </div>
         <div class="c-progress-indicator_line-wrap">
