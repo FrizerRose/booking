@@ -46,11 +46,10 @@
                   <li class="o-list_item c-steps-list_item">
                     <button
                       id="tab-id-usluge"
-                      class="c-button -tab"
+                      :class="{'c-button -tab': true, 'is-current': currentStep === 1}"
                       role="tab"
                       aria-selected="true"
                       aria-controls="tab-usluge"
-                      :disabled="currentStep !== 1"
                     >
                       <span class="c-button_label">Usluge</span>
                     </button>
@@ -58,12 +57,12 @@
                   <li class="o-list_item c-steps-list_item">
                     <button
                       id="tab-id-odabir-radnika"
-                      class="c-button -tab"
+                      :class="{'c-button -tab': true, 'is-current': currentStep === 2}"
                       role="tab"
                       aria-selected="false"
                       aria-controls="tab-odabir-radnika"
                       tabindex="-1"
-                      :disabled="currentStep !== 2"
+                      :disabled="currentStep < 2"
                     >
                       <span class="c-button_label">Odabir radnika</span>
                     </button>
@@ -71,12 +70,12 @@
                   <li class="o-list_item c-steps-list_item">
                     <button
                       id="tab-id-odabir-termina"
-                      class="c-button -tab"
+                      :class="{'c-button -tab': true, 'is-current': currentStep === 3}"
                       role="tab"
                       aria-selected="false"
                       aria-controls="tab-odabir-termina"
                       tabindex="-1"
-                      :disabled="currentStep !== 3"
+                      :disabled="currentStep < 3"
                     >
                       <span class="c-button_label">Odabir termina</span>
                     </button>
@@ -84,12 +83,12 @@
                   <li class="o-list_item c-steps-list_item">
                     <button
                       id="tab-id-vasi-podatci"
-                      class="c-button -tab"
+                      :class="{'c-button -tab': true, 'is-current': currentStep === 4}"
                       role="tab"
                       aria-selected="false"
                       aria-controls="tab-vasi-podatci"
                       tabindex="-1"
-                      :disabled="currentStep !== 4"
+                      :disabled="currentStep < 4"
                     >
                       <span class="c-button_label">Vaši podatci</span>
                     </button>
@@ -97,12 +96,12 @@
                   <li class="o-list_item c-steps-list_item">
                     <button
                       id="tab-id-provjeri-i-potvrdi"
-                      class="c-button -tab"
+                      :class="{'c-button -tab': true, 'is-current': currentStep === 5}"
                       role="tab"
                       aria-selected="false"
                       aria-controls="tab-provjeri-i-potvrdi"
                       tabindex="-1"
-                      :disabled="currentStep !== 5"
+                      :disabled="currentStep < 5"
                     >
                       <span class="c-button_label">Provjeri i potvrdi</span>
                     </button>
@@ -110,12 +109,12 @@
                   <li class="o-list_item c-steps-list_item">
                     <button
                       id="tab-id-sazetak"
-                      class="c-button -tab"
+                      :class="{'c-button -tab': true, 'is-current': currentStep === 6}"
                       role="tab"
                       aria-selected="false"
                       aria-controls="tab-sazetak"
                       tabindex="-1"
-                      :disabled="currentStep !== 6"
+                      :disabled="currentStep < 6"
                     >
                       <span class="c-button_label">Sažetak</span>
                     </button>
