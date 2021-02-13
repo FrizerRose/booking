@@ -98,3 +98,67 @@ export class AdviceService {
     return this.apiService.delete(this.resource, slug);
   }
 }
+export class ServicesService {
+  apiService: ApiService;
+
+  resource: string;
+
+  constructor() {
+    this.apiService = new ApiService();
+    this.resource = 'service';
+  }
+
+  query(params: object) {
+    return this.apiService.query(this.resource, {
+      params,
+    });
+  }
+
+  get(slug: number) {
+    return this.apiService.get(this.resource, slug);
+  }
+
+  create(params: object) {
+    return this.apiService.post(this.resource, { article: params });
+  }
+
+  update(slug: string, params: object) {
+    return this.apiService.update(this.resource, slug, { article: params });
+  }
+
+  destroy(slug: string) {
+    return this.apiService.delete(this.resource, slug);
+  }
+}
+export class CompanyService {
+  apiService: ApiService;
+
+  resource: string;
+
+  constructor() {
+    this.apiService = new ApiService();
+    this.resource = 'company';
+  }
+
+  query(params: object) {
+    return this.apiService.query(this.resource, {
+      params,
+    });
+  }
+
+  get(slug: number) {
+    return this.apiService.get(this.resource, slug);
+  }
+
+  create(params: object) {
+    return this.apiService.post(this.resource, { article: params });
+  }
+
+  update(slug: string, params: object) {
+    return this.apiService.update(this.resource, slug, { article: params });
+  }
+
+  destroy(slug: string) {
+    return this.apiService.delete(this.resource, slug);
+  }
+}
