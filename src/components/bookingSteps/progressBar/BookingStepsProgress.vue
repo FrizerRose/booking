@@ -10,7 +10,10 @@
         </div>
         <div class="c-progress-indicator_line-wrap">
           <div class="c-progress-indicator_line-wrap-bg" />
-          <div class="c-progress-indicator_line" />
+          <div
+            class="c-progress-indicator_line aaaa"
+            :style="progressBarTransformScale"
+          />
         </div>
       </div>
     </div>
@@ -129,16 +132,21 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed } from 'vue';
+import {
+  defineComponent, computed,
+} from 'vue';
 import { useStore } from '@/store';
 
 export default defineComponent({
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+    const scaleValue = computed(() => (currentStep.value * 0.2) - 0.2);
+    const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
 
     return {
       currentStep,
+      progressBarTransformScale,
     };
   },
 });
