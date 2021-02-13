@@ -1,7 +1,5 @@
 <template>
-  <li
-    class="o-layout_item o-list_item -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
-  >
+  <li class="o-layout_item o-list_item -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
     <div class="o-background-wrap">
       <div class="o-background -has-shadow" />
       <article class="c-card-service has-links-inside">
@@ -18,13 +16,14 @@
           <div class="o-layout_item u-2/3@to-medium u-3/4@from-medium">
             <div class="c-card-service_info">
               <h1 class="c-heading">
-                {{ service.name }}
+                {{ staff.name }}
               </h1>
+
               <button
                 class="c-button -primary || has-links-inside_main-link"
                 @click="nextStep()"
               >
-                <span class="c-button_label">cta</span>
+                <span class="c-button_label">Odaberi</span>
               </button>
             </div>
           </div>
@@ -38,11 +37,11 @@
 import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
-import Service from '@/types/service';
+import Staff from '@/types/staff';
 
 export default defineComponent({
   props: {
-    service: {
+    staff: {
       type: Object,
       required: true,
     },
@@ -53,10 +52,8 @@ export default defineComponent({
 
     function nextStep() {
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
-      store.commit(MutationTypes.CHANGE_STAFF, props.service.staff);
-      store.commit(MutationTypes.CHANGE_SELECTED_SERVICE, props.service as Service);
+      store.commit(MutationTypes.CHANGE_SELECTED_STAFF, props.staff as Staff);
     }
-
     return {
       nextStep,
     };

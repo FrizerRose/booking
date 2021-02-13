@@ -2,11 +2,13 @@ import { DeveloperError } from '@/types/customError';
 import SharedActionTypes from './modules/shared/action-types';
 import ServiceActionTypes from './modules/service/action-types';
 import CompanyActionTypes from './modules/company/action-types';
+import StaffActionTypes from './modules/staff/action-types';
 
 const allActionEnums = [
   SharedActionTypes,
   ServiceActionTypes,
   CompanyActionTypes,
+  StaffActionTypes,
 ];
 
 const actionTypeValues = allActionEnums.map((abc) => Object.values(abc)).flat();
@@ -26,6 +28,7 @@ const allActionTypes = {
   ...SharedActionTypes,
   ...ServiceActionTypes,
   ...CompanyActionTypes,
+  ...StaffActionTypes,
 };
 
 export default allActionTypes;
