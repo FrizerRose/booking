@@ -151,15 +151,16 @@ export default defineComponent({
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
 
+    const isMenuOpen = ref(false);
+    function toggleMenu() {
+      isMenuOpen.value = !isMenuOpen.value;
+    }
+
     const scaleValue = computed(() => (currentStep.value * 0.2) - 0.2);
     const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
     function changeCurrentStep(stepNumber: number) {
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
-    }
-
-    const isMenuOpen = ref(false);
-    function toggleMenu() {
-      isMenuOpen.value = !isMenuOpen.value;
+      toggleMenu();
     }
 
     return {
