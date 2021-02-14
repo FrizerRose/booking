@@ -5,6 +5,7 @@
     <div class="o-background-wrap">
       <div class="o-background -has-shadow" />
       <article
+        v-if="isFullMode.value = true"
         class="c-card-service has-links-inside"
       >
         <div class="o-layout">
@@ -36,6 +37,7 @@
       </article>
 
       <article
+        v-if="isCompactMode.value = true"
         class="c-card-service has-links-inside"
       >
         <div class="c-card-service_info">
