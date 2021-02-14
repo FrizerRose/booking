@@ -5,6 +5,7 @@
 // }
 .c-steps-menu {
   position: relative;
+  z-index: 10;
 }
 .c-steps-menu_inner {
   @media (max-width: $to-medium) {
