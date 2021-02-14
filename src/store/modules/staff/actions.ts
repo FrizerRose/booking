@@ -4,6 +4,7 @@ import { RootState } from '@/store';
 import { ActionContext, ActionTree } from 'vuex';
 import { StaffService } from '@/api';
 import { ApiError } from '@/types/customError';
+import Appointment from '@/types/appointment';
 import LocalActionTypes from './action-types';
 import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
@@ -42,6 +43,13 @@ export const actions: ActionTree<State, RootState> & Actions = {
     const response = await staffService.get(id);
     if (response.status === 200 && response.data !== undefined) {
       commit(SharedMutationTypes.CHANGE_SELECTED_STAFF, response.data);
+      response.data.appointments.map((appointment: Appointment) => {
+        // TODO: fix this shit. How the fuck do you mutate an array of objects?
+        // eslint-disable-next-line no-param-reassign
+        appointment.time = appointment.time.slice(0, -3);
+        return appointment;
+      });
+      commit(SharedMutationTypes.CHANGE_RESERVED_APPOINTMENTS, response.data.appointments);
     } else {
       throw new ApiError('No staff by this ID.');
     }
