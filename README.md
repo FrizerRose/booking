@@ -45,3 +45,16 @@ git checkout release-***
 git merge feature/ime-featura
 git push
 ```
+
+```sh
+Na kraju dana
+tko god zadnji radi navečer
+ode u master
+(git checkout master)
+i unutra merga današnji release
+(git merge release-xxxxx)
+git push origin master
+i kreira sutrašnji release branch
+git checkout -b release-xyxy+1
+git push origin release-xyxy+1
+```
