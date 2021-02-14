@@ -7,6 +7,10 @@
     opacity: 0.2;
     background-color: transparent !important;
   }
+  &.is-submit {
+    width: 100%;
+    font-size: 2rem;
+  }
 }
 
 .c-button_label {
@@ -20,7 +24,7 @@
 .c-button.-primary {
   padding: 0.75em 0.5em;
   color: currentColor;
-  border-radius: 0.75em;
+  border-radius: 0.5em;
   font-weight: 900;
   transition: background-color $speed $easing, color $speed $easing;
 
@@ -74,14 +78,14 @@
   }
 }
 
-.c-button.-outline {
-  padding: 0.5em 1em;
-  color: currentColor;
-  border: 1px solid;
-  border-radius: 4px;
-  font-weight: 900;
-  transition: border-color 0.5s;
+// .c-button.-outline {
+//   padding: 0.5em 1em;
+//   color: currentColor;
+//   border: 1px solid;
+//   border-radius: 4px;
+//   font-weight: 900;
+//   transition: border-color 0.5s;
 
-  $site-button-bg: red;
-  border-color: $site-button-bg;
-}
+//   $site-button-bg: red;
+//   border-color: $site-button-bg;
+// }

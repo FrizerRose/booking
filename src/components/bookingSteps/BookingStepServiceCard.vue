@@ -4,7 +4,9 @@
   >
     <div class="o-background-wrap">
       <div class="o-background -has-shadow" />
-      <article class="c-card-service has-links-inside">
+      <article
+        class="c-card-service has-links-inside"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
             <figure class="c-card-service_image-wrap -max-width || o-ratio">
@@ -25,10 +27,28 @@
                 class="c-button -primary || has-links-inside_main-link"
                 @click="nextStep()"
               >
+                <span class="has-links-inside_background" />
                 <span class="c-button_label">cta</span>
               </button>
             </div>
           </div>
+        </div>
+      </article>
+
+      <article
+        class="c-card-service has-links-inside"
+      >
+        <div class="c-card-service_info">
+          <h1 class="c-heading">
+            {{ service.name }}
+          </h1>
+          <button
+            class="c-button -primary || has-links-inside_main-link"
+            @click="nextStep()"
+          >
+            <span class="has-links-inside_background" />
+            <span class="c-button_label">cta</span>
+          </button>
         </div>
       </article>
     </div>

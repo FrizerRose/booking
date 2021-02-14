@@ -43,8 +43,31 @@
     &:focus,
     &:hover {
       &:before {
-        border: 1px solid currentColor;
+        // border: 1px solid currentColor;
       }
+      .has-links-inside_background {
+        opacity: 0.05;
+        transform: none;
+      }
+    }
+
+    .has-links-inside_background {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      box-shadow: 0 3em 1em -3em $black;
+      // border: 0.125em solid $black;
+      z-index: -1;
+      background-color: $black;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      border-radius: 1em;
+      transform: scale(0.98, 0.98);
+      transform-origin: bottom;
+      transition: transform $speed $easing, opacity $speed * 2 $easing;
     }
   }
 }

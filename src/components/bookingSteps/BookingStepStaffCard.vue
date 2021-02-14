@@ -23,6 +23,7 @@
                 class="c-button -primary || has-links-inside_main-link"
                 @click="nextStep()"
               >
+                <span class="has-links-inside_background" />
                 <span class="c-button_label">Odaberi</span>
               </button>
             </div>

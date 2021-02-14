@@ -1,6 +1,23 @@
 .o-background-wrap {
   position: relative;
   z-index: 0;
+
+  &.-is-input {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid currentColor;
+    transition: border-color $speed $easing;
+    transition-delay: $speed * 1.5;
+
+    &.-is-checkbox {
+      height: 100%;
+      border-radius: 0.25rem;
+    }
+  }
+  
+  .c-form_item.has-error & {
+    border-color: red;
+  }
 }
 
 .o-background {
@@ -29,5 +46,24 @@
 
   &.-has-shadow-v2 {
     box-shadow: 0 0.25em 0.75em -0.75em currentColor;
+  }
+
+  .c-form_item.has-error & {
+    transform: none;
+    transform-origin: top;
+  }
+
+  .-is-input & {
+    background-color: red;
+    opacity: 0.075;
+    pointer-events: none;
+    z-index: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform $speed * 2 $easing;
+  }
+
+  .-is-checkbox & {
+    opacity: 0.15;
   }
 }

@@ -29,7 +29,7 @@
         <ul class="c-timeslots-list o-layout -gutter || o-list">
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">8:00</span>
@@ -37,7 +37,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">8:15</span>
@@ -45,7 +45,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">8:30</span>
@@ -53,7 +53,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">8:45</span>
@@ -61,7 +61,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">9:00</span>
@@ -69,7 +69,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">9:15</span>
@@ -77,7 +77,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">9:30</span>
@@ -85,7 +85,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">9:45</span>
@@ -93,7 +93,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">10:00</span>
@@ -101,7 +101,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">10:15</span>
@@ -109,7 +109,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">10:30</span>
@@ -117,7 +117,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">10:45</span>
@@ -125,7 +125,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">11:00</span>
@@ -133,7 +133,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">11:15</span>
@@ -141,7 +141,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">11:30</span>
@@ -149,7 +149,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">11:45</span>
@@ -157,7 +157,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">12:00</span>
@@ -165,7 +165,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">12:15</span>
@@ -173,7 +173,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">12:30</span>
@@ -181,7 +181,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">12:45</span>
@@ -189,7 +189,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">13:00</span>
@@ -197,7 +197,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">13:15</span>
@@ -205,7 +205,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">13:30</span>
@@ -213,7 +213,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">13:45</span>
@@ -221,7 +221,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">14:00</span>
@@ -229,7 +229,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">14:15</span>
@@ -237,7 +237,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">14:30</span>
@@ -245,7 +245,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">14:45</span>
@@ -253,7 +253,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">15:00</span>
@@ -261,7 +261,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">15:15</span>
@@ -269,7 +269,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">15:30</span>
@@ -277,7 +277,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">15:45</span>
@@ -285,7 +285,7 @@
           </li>
           <li class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item">
             <button
-              class="c-button -outline"
+              class="c-button -tab"
               @click="nextStep()"
             >
               <span class="c-button_label">16:00</span>
