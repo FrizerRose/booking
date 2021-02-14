@@ -26,7 +26,7 @@
       >
         <ul class="c-timeslots-list o-layout -gutter || o-list">
           <li
-            v-for="time in possibleAppointmentTimes"
+            v-for="time in availableAppointmentTimes"
             :key="time"
             class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item"
           >
@@ -45,7 +45,9 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref } from 'vue';
+import {
+  defineComponent, computed, ref, watch, reactive,
+} from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import Datepicker from 'vue3-datepicker';
@@ -84,9 +86,18 @@ export default defineComponent({
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }
 
+    watch(selectedDate, (newValue, oldValue) => {
+      console.log(newValue);
+      // when new date is selected, find the timestamps of the day's start and end
+      // filter through staff appointments to find those within those 2 timestamps
+      // remove times from possibleAppointmentTimes that are during the duration of those appointments
+    });
+
+    const availableAppointmentTimes = reactive(possibleAppointmentTimes);
+
     return {
       nextStep,
-      possibleAppointmentTimes,
+      availableAppointmentTimes,
       selectedDate,
       today,
       monthFromNow,
