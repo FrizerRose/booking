@@ -1,5 +1,5 @@
 enum ActionTypes {
-  FETCH_STAFF = 'FETCH_STAFF',
+  FETCH_STAFF_BY_ID = 'FETCH_STAFF_BY_ID',
 }
 
 export default ActionTypes;

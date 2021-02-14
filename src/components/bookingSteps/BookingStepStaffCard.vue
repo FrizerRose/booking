@@ -37,7 +37,8 @@
 import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
-import Staff from '@/types/staff';
+import ActionTypes from '@/store/action-types';
+// import Staff from '@/types/staff';
 
 export default defineComponent({
   props: {
@@ -50,10 +51,12 @@ export default defineComponent({
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
 
-    function nextStep() {
+    async function nextStep() {
+      // store.commit(MutationTypes.CHANGE_SELECTED_STAFF, props.staff as Staff);
+      await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, props.staff.id);
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
-      store.commit(MutationTypes.CHANGE_SELECTED_STAFF, props.staff as Staff);
     }
+
     return {
       nextStep,
     };
