@@ -5,7 +5,7 @@ export interface State {
   currentStep: number;
   selectedService: Service | null;
   selectedStaff: Staff | null;
-  selectedDateTime: string | null;
+  selectedDateTime: number | null;
   personalDetails: unknown;
 }
 

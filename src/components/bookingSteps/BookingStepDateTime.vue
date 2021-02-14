@@ -12,14 +12,12 @@
         class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
       >
         <label for="start">biraj termin</label>
-        <input
-          id="start"
-          type="date"
-          name="trip-start"
-          value="2021-02-14"
-          min="2021-02-14"
-          max="2021-03-14"
-        >
+        <datepicker
+          v-model="selectedDate"
+          :lower-limit="today"
+          :upper-limit="monthFromNow"
+          input-format="dd.MM.yyyy"
+        />
       </div>
     </div>
     <div class="o-layout -gutter">
@@ -47,18 +45,16 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
+import Datepicker from 'vue3-datepicker';
 
 export default defineComponent({
+  components: { Datepicker },
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
-
-    function nextStep(time: string) {
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
-    }
 
     // TODO: fetch startTime and endTime from the api
     const startTime = 8;
@@ -71,9 +67,29 @@ export default defineComponent({
       possibleAppointmentTimes.push(`${i}:45`);
     }
 
+    const selectedDate = ref(new Date());
+    const today = new Date();
+    const bokingWindow = 30;
+    const monthFromNow = ref(new Date());
+    monthFromNow.value.setDate(monthFromNow.value.getDate() + bokingWindow);
+
+    function nextStep(time: string) {
+      // Combine selected date and selected time into a timestamp
+      const date = selectedDate.value;
+      const timeFragments = time.split(':');
+      date.setHours(parseInt(timeFragments[0], 10), parseInt(timeFragments[1], 10), 0, 0);
+      const selectedTimestamp = Math.floor(date.getTime() / 1000);
+
+      store.commit(MutationTypes.CHANGE_SELECTED_DATETIME, selectedTimestamp);
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+    }
+
     return {
       nextStep,
       possibleAppointmentTimes,
+      selectedDate,
+      today,
+      monthFromNow,
     };
   },
 });
