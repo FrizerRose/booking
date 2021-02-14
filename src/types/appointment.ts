@@ -5,7 +5,8 @@ import Staff from './staff';
 
 type Appointment = {
   id: number;
-  datetime: string;
+  date: string;
+  time: string;
   message: string;
   company: Company;
   staff: Staff;

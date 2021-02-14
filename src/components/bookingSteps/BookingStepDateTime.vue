@@ -61,39 +61,70 @@ export default defineComponent({
     // TODO: fetch startTime and endTime from the api
     const startTime = 8;
     const endTime = 16;
-    const possibleAppointmentTimes = [];
+    const possibleAppointmentTimes: string[] = [];
     for (let i = startTime; i < endTime; i += 1) {
-      possibleAppointmentTimes.push(`${i}:00`);
-      possibleAppointmentTimes.push(`${i}:15`);
-      possibleAppointmentTimes.push(`${i}:30`);
-      possibleAppointmentTimes.push(`${i}:45`);
+      const prefix = i < 10 ? '0' : '';
+      possibleAppointmentTimes.push(`${prefix + i}:00`);
+      possibleAppointmentTimes.push(`${prefix + i}:15`);
+      possibleAppointmentTimes.push(`${prefix + i}:30`);
+      possibleAppointmentTimes.push(`${prefix + i}:45`);
     }
 
+    // For the datepicker
     const selectedDate = ref(new Date());
     const today = new Date();
     const bokingWindow = 30;
     const monthFromNow = ref(new Date());
     monthFromNow.value.setDate(monthFromNow.value.getDate() + bokingWindow);
 
-    function nextStep(time: string) {
-      // Combine selected date and selected time into a timestamp
-      const date = selectedDate.value;
-      const timeFragments = time.split(':');
-      date.setHours(parseInt(timeFragments[0], 10), parseInt(timeFragments[1], 10), 0, 0);
-      const selectedTimestamp = Math.floor(date.getTime() / 1000);
+    function getDateStringFromDate(date: Date) {
+      const dd = String(date.getDate());
+      let mm = String(date.getMonth() + 1); // January is 0!
+      const yyyy = date.getFullYear();
 
-      store.commit(MutationTypes.CHANGE_SELECTED_DATETIME, selectedTimestamp);
+      if (mm.length < 2) {
+        mm = `0${mm}`;
+      }
+
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function nextStep(time: string) {
+      // Formatting date and time strings
+      const dateString = getDateStringFromDate(selectedDate.value);
+      const timeString = `${time}:00`;
+
+      store.commit(MutationTypes.CHANGE_SELECTED_DATETIME, { date: dateString, time: timeString });
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }
 
-    watch(selectedDate, (newValue, oldValue) => {
-      console.log(newValue);
-      // when new date is selected, find the timestamps of the day's start and end
-      // filter through staff appointments to find those within those 2 timestamps
-      // remove times from possibleAppointmentTimes that are during the duration of those appointments
+    const reservedAppointments = computed(() => store.state.shared.reservedAppointments);
+    const appointmentsOnNewDate = computed(() => reservedAppointments.value.filter(
+      (appointment) => appointment.date === getDateStringFromDate(selectedDate.value),
+    ));
+
+    const selectedService = computed(() => store.state.shared.selectedService);
+
+    const appointmentAvailability = computed(() => {
+      const timeArray: string[] = [...possibleAppointmentTimes];
+      appointmentsOnNewDate.value.forEach((appointment) => {
+        const futureSlotsTaken = appointment.service.duration / 15;
+        const index = timeArray.findIndex((item) => item === appointment.time);
+        for (let i = 0; i < futureSlotsTaken; i += 1) {
+          timeArray[index + i] = '';
+        }
+
+        if (selectedService?.value?.duration) {
+          const pastSlotsTaken = selectedService.value?.duration / 15;
+          for (let i = 0; i < pastSlotsTaken; i += 1) {
+            timeArray[index - i] = '';
+          }
+        }
+      });
+      return timeArray;
     });
 
-    const availableAppointmentTimes = reactive(possibleAppointmentTimes);
+    const availableAppointmentTimes = computed(() => appointmentAvailability.value.filter((item) => item !== ''));
 
     return {
       nextStep,
@@ -101,6 +132,7 @@ export default defineComponent({
       selectedDate,
       today,
       monthFromNow,
+      appointmentsOnNewDate,
     };
   },
 });
