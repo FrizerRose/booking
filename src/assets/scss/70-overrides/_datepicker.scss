@@ -45,3 +45,13 @@
 .v3dp__divider {
     border-top: 1px solid var(--divider-color) !important;
 }
+
+.v3dp__elements button {
+	padding: 0 !important;
+
+	& span {
+		line-height: 1 !important;
+		height: auto !important;
+		padding: 1em 0 !important;
+	}
+}
