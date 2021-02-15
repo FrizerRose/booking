@@ -46,7 +46,7 @@
 
 <script lang='ts'>
 import {
-  defineComponent, computed, ref, watch, reactive,
+  defineComponent, computed, ref,
 } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';

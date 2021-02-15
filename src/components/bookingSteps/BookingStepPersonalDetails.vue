@@ -190,7 +190,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
-    const company = computed(() => store.state.company.company);
+    const company = computed(() => store.state.shared.selectedCompany);
 
     const formData = reactive({
       name: { data: '', error: false },
@@ -242,6 +242,7 @@ export default defineComponent({
         } as Customer);
 
         if (response.status === 201) {
+          store.commit(MutationTypes.CHANGE_SELECTED_NOTICE, formData.message.data);
           store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
         } else {
           hasError.value = true;

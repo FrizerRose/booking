@@ -7,18 +7,18 @@ import { ApiError } from '@/types/customError';
 import LocalActionTypes from './action-types';
 import ServiceMutationTypes from '../service/mutation-types';
 import StaffMutationTypes from '../staff/mutation-types';
-import LocalMutationTypes from './mutation-types';
-import { Mutations } from './mutations';
+import SharedMutationTypes from '../shared/mutation-types';
 import { Mutations as ServiceMutations } from '../service/mutations';
 import { Mutations as StaffMutations } from '../staff/mutations';
+import { Mutations as SharedMutations } from '../shared/mutations';
 import { State } from './state';
 
 // Constraints commit to mutations from the right module
-type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
+type AugmentedSharedActionContext = {
+  commit<K extends keyof SharedMutations>(
     key: K,
-    payload: Parameters<Mutations[K]>[1],
-  ): ReturnType<Mutations[K]>;
+    payload: Parameters<SharedMutations[K]>[1],
+  ): ReturnType<SharedMutations[K]>;
 } & Omit<ActionContext<State, RootState>, 'commit'>
 
 type AugmentedServiceActionContext = {
@@ -37,7 +37,7 @@ type AugmentedStaffActionContext = {
 
 export interface Actions {
   [LocalActionTypes.FETCH_COMPANY](
-    { commit }: AugmentedActionContext & AugmentedServiceActionContext & AugmentedStaffActionContext,
+    { commit }: AugmentedSharedActionContext & AugmentedServiceActionContext & AugmentedStaffActionContext,
     id: number
   ): void;
 }
@@ -49,9 +49,8 @@ const companyService = new CompanyService();
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_COMPANY]({ commit }, id: number) {
     const response = await companyService.get(id);
-    console.log(response, response.data);
     if (response.status === 200 && response.data !== undefined) {
-      commit(LocalMutationTypes.CHANGE_COMPANY, response.data);
+      commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
       commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
       commit(StaffMutationTypes.CHANGE_STAFF, response.data.staff);
     } else {

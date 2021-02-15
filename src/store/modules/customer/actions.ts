@@ -47,7 +47,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
       commit(LocalMutationTypes.CHANGE_CUSTOMER, response.data);
       commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data);
     } else {
-      throw new ApiError('No customer by this ID.');
+      throw new ApiError('Could not create a customer.');
     }
 
     return response;
