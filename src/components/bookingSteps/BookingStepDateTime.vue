@@ -51,6 +51,7 @@ import {
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import Datepicker from 'vue3-datepicker';
+import Appointment from '@/types/appointment';
 
 export default defineComponent({
   components: { Datepicker },
@@ -100,7 +101,7 @@ export default defineComponent({
 
     const reservedAppointments = computed(() => store.state.shared.reservedAppointments);
     const appointmentsOnNewDate = computed(() => reservedAppointments.value.filter(
-      (appointment) => appointment.date === getDateStringFromDate(selectedDate.value),
+      (appointment: Appointment) => appointment.date === getDateStringFromDate(selectedDate.value),
     ));
 
     const selectedService = computed(() => store.state.shared.selectedService);

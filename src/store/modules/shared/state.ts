@@ -1,4 +1,5 @@
 import Appointment from '@/types/appointment';
+import Customer from '@/types/customer';
 import Service from '@/types/service';
 import Staff from '@/types/staff';
 
@@ -7,7 +8,7 @@ export interface State {
   selectedService: Service | null;
   selectedStaff: Staff | null;
   selectedDateTime: unknown;
-  personalDetails: unknown;
+  selectedCustomer: Customer | null;
   reservedAppointments: Appointment[];
 }
 
@@ -16,7 +17,7 @@ const state: State = {
   selectedService: null,
   selectedStaff: null,
   selectedDateTime: null,
-  personalDetails: null,
+  selectedCustomer: null,
   reservedAppointments: [],
 };
 

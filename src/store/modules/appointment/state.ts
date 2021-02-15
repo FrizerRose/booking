@@ -1,11 +1,11 @@
-import Company from '@/types/company';
+import Appointment from '@/types/appointment';
 
 export interface State {
-  company: Company | null;
+  appointment: Appointment | null;
 }
 
 const state: State = {
-  company: null,
+  appointment: null,
 };
 
 export default state;

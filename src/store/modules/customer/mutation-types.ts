@@ -1,5 +1,5 @@
 enum MutationTypes {
-  CHANGE_APPOINTMENT = 'CHANGE_APPOINTMENT',
+  CHANGE_CUSTOMER = 'CHANGE_CUSTOMER',
 }
 
 export default MutationTypes;

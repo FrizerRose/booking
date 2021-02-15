@@ -1,5 +1,5 @@
 enum ActionTypes {
-  FETCH_APPOINTMENT = 'FETCH_APPOINTMENT',
+  CREATE_CUSTOMER = 'CREATE_CUSTOMER',
 }
 
 export default ActionTypes;

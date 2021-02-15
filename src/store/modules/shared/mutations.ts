@@ -1,4 +1,5 @@
 import Appointment from '@/types/appointment';
+import Customer from '@/types/customer';
 import Service from '@/types/service';
 import Staff from '@/types/staff';
 import { MutationTree } from 'vuex';
@@ -11,7 +12,7 @@ export type Mutations<S = State> = {
   [LocalMutationTypes.CHANGE_SELECTED_SERVICE](state: S, payload: Service | null): void;
   [LocalMutationTypes.CHANGE_SELECTED_STAFF](state: S, payload: Staff | null): void;
   [LocalMutationTypes.CHANGE_SELECTED_DATETIME](state: S, payload: unknown): void;
-  [LocalMutationTypes.CHANGE_PERSONAL_DETAILS](state: S, payload: unknown): void;
+  [LocalMutationTypes.CHANGE_SELECTED_CUSTOMER](state: S, payload: Customer | null): void;
   [LocalMutationTypes.CHANGE_RESERVED_APPOINTMENTS](state: S, payload: Appointment[]): void;
 }
 
@@ -29,8 +30,8 @@ export const mutations: MutationTree<State> & Mutations = {
   [LocalMutationTypes.CHANGE_SELECTED_DATETIME](state, payload: unknown) {
     state.selectedDateTime = payload;
   },
-  [LocalMutationTypes.CHANGE_PERSONAL_DETAILS](state, payload: unknown) {
-    state.personalDetails = payload;
+  [LocalMutationTypes.CHANGE_SELECTED_CUSTOMER](state, payload: Customer | null) {
+    state.selectedCustomer = payload;
   },
   [LocalMutationTypes.CHANGE_RESERVED_APPOINTMENTS](state, payload: Appointment[]) {
     state.reservedAppointments = payload;
