@@ -16,12 +16,12 @@
 	margin-right: auto;
 	margin-left: auto;
 
-	@media (max-width: $to-small) {
-		padding-right: 1rem;
-		padding-left: 1rem;
+	@media (max-width: $to-tiny) {
+		padding-right: 2rem;
+		padding-left: 2rem;
 	}
 
-	@media (min-width: $from-small) {
+	@media (min-width: $from-tiny) {
 		padding-right: rem($padding);
 		padding-left: rem($padding);
 	}

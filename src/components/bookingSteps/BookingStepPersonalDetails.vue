@@ -153,7 +153,12 @@
           class="c-form_checkboxLabel"
           for="id-form-checkbox"
         >
-          Prihvaćam uvjete
+          <div class="o-background-wrap -is-checkbox-focus">
+            <div class="o-background-focus" />
+            <span class="c-form_checkboxLabel_inner">
+              Prihvaćam uvjete
+            </span>
+          </div>
           <span class="-before">
             <div class="o-background-wrap -is-input -is-checkbox">
               <div class="o-background" />

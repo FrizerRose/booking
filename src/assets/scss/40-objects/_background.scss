@@ -89,3 +89,20 @@
     background-color: $red;
   }
 }
+
+// .o-background-focus used only for focus on checkbox
+.o-background-focus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  .-is-checkbox-focus & {
+    border-bottom: 0.125em solid;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+}

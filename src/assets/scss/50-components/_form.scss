@@ -7,15 +7,19 @@
 
 .c-form_item {
     position: relative;
-    margin-bottom: rem(30px);
-
-    // &.has-error {
-    //     color: red;
-    // }
+    // margin-bottom: rem(30px);
+    margin-bottom: 2rem;
 }
 
 .c-form_dialog {
-    margin-bottom: rem(30px);
+    // margin-bottom: rem(30px);
+    
+    @media (max-width: $to-medium) {
+        margin-bottom: 2rem;
+    }
+    @media (min-width: $from-medium) {
+        margin-bottom: 4rem;
+    }
 
     &.has-error {
         color: $red;
@@ -165,6 +169,13 @@ $checkbox-icon-color: $input-icon-color;
             transform: none;
         }
     }
+
+    .c-form_checkbox:hover + &,
+    .c-form_checkbox:focus + & {
+        .-is-checkbox-focus .o-background-focus {
+            opacity: 1;
+        }
+    }
 }
 
 .c-form_checkbox {
@@ -211,9 +222,15 @@ $select-icon-color: $input-icon-color;
         bottom: 0;
         z-index: 2;
         width: $select-icon;
-        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2213%22%20height%3D%2211.3%22%20viewBox%3D%220%200%2013%2011.3%22%20enable-background%3D%22new%200%200%2013%2011.3%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20fill%3D%22%23#{$select-icon-color}%22%20points%3D%226.5%2011.3%203.3%205.6%200%200%206.5%200%2013%200%209.8%205.6%20%22%2F%3E%3C%2Fsvg%3E");
+        
+        // background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2213%22%20height%3D%2211.3%22%20viewBox%3D%220%200%2013%2011.3%22%20enable-background%3D%22new%200%200%2013%2011.3%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20fill%3D%22%23#{$select-icon-color}%22%20points%3D%226.5%2011.3%203.3%205.6%200%200%206.5%200%2013%200%209.8%205.6%20%22%2F%3E%3C%2Fsvg%3E");
+        // convert your svg here: https://yoksel.github.io/url-encoder/
+        // not sure if empty spaces need to be converted to %20
+
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20x='0'%20y='0'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M6.707%2012.85l-1.414%201.413L12%2020.971l6.707-6.708-1.414-1.414L13%2017.142V4h-2v13.142L6.707%2012.85z'%20fill='%23#{$select-icon-color}'/%3E%3C/svg%3E");
         background-position: center;
-        background-size: rem(8px);
+        // background-size: rem(8px);
+        background-size: 1.5rem;
         background-repeat: no-repeat;
         content: "";
         pointer-events: none;
