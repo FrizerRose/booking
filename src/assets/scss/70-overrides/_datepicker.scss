@@ -1,0 +1,47 @@
+/*
+	scss variables don't work here. use the values for reference
+
+	$black: #0f0600;
+	$theme-main: #ff974d;
+	$theme-faded: #ab8063;
+
+	$site-bg: seashell;
+	$site-color: $black;
+
+	$selection-background-color: $site-color;
+	$selection-text-color: $site-bg;
+	
+	$shadow: 0 1.5em 1em -2em currentColor;
+*/
+
+.v3dp__datepicker {
+	--vdp-bg-color: white;
+	--vdp-text-color: currentColor;
+	--vdp-box-shadow: 0 1.5em 1em -2em currentColor;
+	--vdp-border-radius: 0.25em;
+	--vdp-heading-size: 2rem;
+	--vdp-heading-weight: 700;
+	--vdp-heading-hover-color: seashell;
+	--vdp-arrow-color: currentColor;
+	--vdp-elem-color: currentColor;
+	--vdp-disabled-color: lightgray;
+	//
+	--vdp-hover-color: seashell;
+	--vdp-hover-bg-color: #ab8063;
+	//
+	--vdp-selected-color: #0f0600;
+	--vdp-selected-bg-color: #ff974d;
+	--vdp-elem-font-size: 1rem;
+	--vdp-elem-border-radius: 0.25em;
+	--vdp-divider-color: #ab8063;
+}
+
+.v3dp__popout {
+	width: 100% !important;
+	margin-top: 1rem;
+	border: 1px solid currentColor;
+}
+
+.v3dp__divider {
+    border-top: 1px solid var(--divider-color) !important;
+}

@@ -11,13 +11,23 @@
       <div
         class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
       >
-        <label for="start">biraj termin</label>
-        <datepicker
-          v-model="selectedDate"
-          :lower-limit="today"
-          :upper-limit="monthFromNow"
-          input-format="dd.MM.yyyy"
-        />
+        <div class="c-form_item">
+          <label
+            class="c-form_label"
+            for="id-datepicker-start"
+          >
+            biraj termin
+          </label>
+          <div class="o-background-wrap -is-datepicker">
+            <div class="o-background" />
+            <datepicker
+              v-model="selectedDate"
+              :lower-limit="today"
+              :upper-limit="monthFromNow"
+              input-format="dd.MM.yyyy"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div class="o-layout -gutter">

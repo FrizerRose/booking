@@ -21,22 +21,31 @@
 // ==========================================================================
 $input-icon-color: 0f0600; // No #
 
-.c-form_input {
+.c-form_input,
+.v3dp__datepicker input {
     padding: rem(10px);
     // border: 1px solid lightgray;
     background-color: white;
-
+    
     &:hover {
         border-color: darkgray;
     }
-
+    
     &:focus {
         // border-color: dimgray;
         border-color: currentColor;
     }
-
+    
     &::placeholder {
         color: gray;
+    }
+}
+.v3dp__datepicker input {
+    border-radius: 0.5rem;
+    border: 1px solid currentColor;
+    
+    &:hover {
+        border-color: currentColor;
     }
 }
 
@@ -176,7 +185,8 @@ $radio-icon-color: $input-icon-color;
 $select-icon: rem(40px);
 $select-icon-color: $input-icon-color;
 
-.c-form_select {
+.c-form_select,
+.v3dp__datepicker {
     position: relative;
     cursor: pointer;
 

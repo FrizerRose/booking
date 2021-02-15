@@ -41,7 +41,7 @@
   }
 
   &.-has-shadow {
-    box-shadow: 0 1.5em 1em -2em currentColor;
+    box-shadow: $shadow;
   }
 
   &.-has-shadow-v2 {
