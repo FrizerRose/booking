@@ -33,21 +33,29 @@
 	--vdp-selected-bg-color: #ff974d;
 	--vdp-elem-font-size: 1rem;
 	--vdp-elem-border-radius: 0.25em;
-	--vdp-divider-color: #ab8063;
+	--vdp-divider-color: #0f0600;
 }
 
 .v3dp__popout {
 	width: 100% !important;
 	margin-top: 1rem;
-	border: 1px solid currentColor;
+	// border: 0.125em solid currentColor;
 }
 
 .v3dp__divider {
-    border-top: 1px solid var(--divider-color) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-top: 0.125em solid var(--divider-color) !important;
+}
+
+.v3dp__elements {
+	padding: 0 1rem;
 }
 
 .v3dp__elements button {
 	padding: 0 !important;
+    margin: 0.25em auto !important;
+    width: calc(100% - 0.5em) !important;
 
 	& span {
 		line-height: 1 !important;

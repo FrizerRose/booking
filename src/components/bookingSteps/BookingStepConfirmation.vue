@@ -88,18 +88,13 @@
           </div>
         </div>
       </div>
-      <div class="c-summary_row">
-        <div class="o-layout">
-          <div class="o-layout_item u-1/2">
-            <button
-              class="c-button -primary || has-links-inside_main-link"
-              @click="nextStep()"
-            >
-              <span class="has-links-inside_background" />
-              <span class="c-button_label">Potvrdi</span>
-            </button>
-          </div>
-        </div>
+      <div class="c-summary_footer">
+        <button
+          class="c-button -primary || is-submit"
+          @click="nextStep()"
+        >
+          <span class="c-button_label">Potvrdi</span>
+        </button>
       </div>
     </div>
   </li>

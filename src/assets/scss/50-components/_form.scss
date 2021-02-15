@@ -35,7 +35,7 @@ $input-icon-color: 0f0600; // No #
 
 .c-form_input,
 .v3dp__datepicker input {
-    padding: rem(10px);
+    padding: 1em;
     // border: 1px solid lightgray;
     background-color: white;
     
@@ -53,11 +53,13 @@ $input-icon-color: 0f0600; // No #
     }
 }
 .v3dp__datepicker input {
-    border-radius: 0.5rem;
-    border: 1px solid currentColor;
-    
-    &:hover {
-        border-color: currentColor;
+    font-weight: 900;
+    border-radius: 0.5em;
+
+    &:hover,
+    &:focus {
+      background-color: $theme-main;
+      cursor: pointer;
     }
 }
 

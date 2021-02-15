@@ -7,15 +7,6 @@
     aria-labelledby="tab-id-vasi-podatci"
   >
     <form class="c-form">
-      <div
-        v-if="hasError"
-        class="c-form_dialog"
-      >
-        <div class="o-background-wrap -is-dialog -is-error">
-          <div class="o-background" />
-          {{ errorMsg }}
-        </div>
-      </div>
       <div :class="{'c-form_item': true, 'has-error': formData.name.error}">
         <label
           class="c-form_label"
@@ -170,6 +161,15 @@
           </span>
           <span class="-after" />
         </label>
+      </div>
+      <div
+        v-if="hasError"
+        class="c-form_dialog"
+      >
+        <div class="o-background-wrap -is-dialog -is-error">
+          <div class="o-background" />
+          {{ errorMsg }}
+        </div>
       </div>
       <button
         class="c-button -primary || is-submit"
