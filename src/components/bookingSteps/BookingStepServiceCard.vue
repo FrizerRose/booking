@@ -39,7 +39,7 @@
                         <path d="M12 6.2a1 1 0 011 1v4.182l2.647 1.324a1 1 0 11-.894 1.788l-3.2-1.6A1 1 0 0111 12V7.2a1 1 0 011-1z" />
                       </svg>
                     </span>
-                    <span class="o-tag_label">duration</span>
+                    <span class="o-tag_label">{{ service.duration }} min</span>
                   </span>
                 </div>
                 <div class="o-vertical_item o-flex -justify-end -align-center">
@@ -58,7 +58,7 @@
                         />
                       </svg>
                     </span>
-                    <span class="o-tag_label">price</span>
+                    <span class="o-tag_label">{{ service.price }} kn</span>
                   </span>
                   <button
                     class="c-button -primary || has-links-inside_main-link || u-margin-left"
@@ -97,7 +97,7 @@
                     <path d="M12 6.2a1 1 0 011 1v4.182l2.647 1.324a1 1 0 11-.894 1.788l-3.2-1.6A1 1 0 0111 12V7.2a1 1 0 011-1z" />
                   </svg>
                 </span>
-                <span class="o-tag_label">duration</span>
+                <span class="o-tag_label">{{ service.duration }} min</span>
               </span>
             </div>
             <div class="o-vertical_item o-flex -justify-end -align-center">
@@ -116,7 +116,7 @@
                     />
                   </svg>
                 </span>
-                <span class="o-tag_label">price</span>
+                <span class="o-tag_label">{{ service.price }} kn</span>
               </span>
               <button
                 class="c-button -primary || has-links-inside_main-link || u-margin-left"
