@@ -117,7 +117,7 @@
 
   @media (max-width: $to-small) {
     html.t1 & {
-      $site-header-aside-inner-bg: red;
+      $site-header-aside-inner-bg: crimson;
       @media (max-width: $to-small) {
         background-color: $site-header-aside-inner-bg;
       }

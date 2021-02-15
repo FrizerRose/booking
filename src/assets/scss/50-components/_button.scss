@@ -49,7 +49,7 @@
     color: $site-button-hover-color;
 
     html.t1 & {
-      $site-button-bg: red;
+      $site-button-bg: crimson;
       background-color: $site-button-hover-bg;
     }
 
@@ -86,6 +86,6 @@
 //   font-weight: 900;
 //   transition: border-color 0.5s;
 
-//   $site-button-bg: red;
+//   $site-button-bg: firebrick;
 //   border-color: $site-button-bg;
 // }

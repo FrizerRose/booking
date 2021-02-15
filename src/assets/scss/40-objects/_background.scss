@@ -14,9 +14,23 @@
       border-radius: 0.25rem;
     }
   }
+
+  &.-is-dialog {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    font-weight: 900;
+    color: white;
+
+    @media (max-width: $to-medium) {
+      padding: 1rem;
+    }
+    @media (min-width: $from-medium) {
+      padding: 2rem;
+    }
+  }
   
   .c-form_item.has-error & {
-    border-color: red;
+    border-color: $red;
   }
 }
 
@@ -54,7 +68,7 @@
   }
 
   .-is-input & {
-    background-color: red;
+    background-color: $red;
     opacity: 0.075;
     pointer-events: none;
     z-index: 0;
@@ -65,5 +79,13 @@
 
   .-is-checkbox & {
     opacity: 0.15;
+  }
+
+  .-is-dialog & {
+    pointer-events: none;
+  }
+
+  .-is-error & {
+    background-color: $red;
   }
 }

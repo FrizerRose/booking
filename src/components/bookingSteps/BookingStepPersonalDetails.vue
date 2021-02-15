@@ -7,12 +7,15 @@
     aria-labelledby="tab-id-vasi-podatci"
   >
     <form class="c-form">
-      <p
+      <div
         v-if="hasError"
-        style="color: red"
+        class="c-form_dialog"
       >
-        {{ errorMsg }}
-      </p>
+        <div class="o-background-wrap -is-dialog -is-error">
+          <div class="o-background" />
+          {{ errorMsg }}
+        </div>
+      </div>
       <div :class="{'c-form_item': true, 'has-error': formData.name.error}">
         <label
           class="c-form_label"
@@ -134,18 +137,7 @@
         </div>
       </div>
       <div :class="{'c-form_item': true, 'has-error': formData.terms.error}">
-        <input
-          id="id-form-checkbox"
-          v-model="formData.terms.data"
-          class="c-form_checkbox"
-          type="checkbox"
-          @change="formData.terms.error = false"
-        >
-        <label
-          class="c-form_checkboxLabel"
-          for="id-form-checkbox"
-        >
-          Prihvaćam uvjete
+        <div>
           <span
             v-if="formData.terms.error"
             class="o-icon"
@@ -158,6 +150,19 @@
               <path d="M11 5H4V3h7a5 5 0 015 5v12h-2V8a3 3 0 00-3-3z" />
             </svg>
           </span>
+        </div>
+        <input
+          id="id-form-checkbox"
+          v-model="formData.terms.data"
+          class="c-form_checkbox"
+          type="checkbox"
+          @change="formData.terms.error = false"
+        >
+        <label
+          class="c-form_checkboxLabel"
+          for="id-form-checkbox"
+        >
+          Prihvaćam uvjete
           <span class="-before">
             <div class="o-background-wrap -is-input -is-checkbox">
               <div class="o-background" />

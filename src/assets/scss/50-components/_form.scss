@@ -8,6 +8,18 @@
 .c-form_item {
     position: relative;
     margin-bottom: rem(30px);
+
+    // &.has-error {
+    //     color: red;
+    // }
+}
+
+.c-form_dialog {
+    margin-bottom: rem(30px);
+
+    &.has-error {
+        color: $red;
+    }
 }
 
 // Label
