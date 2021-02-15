@@ -7,6 +7,10 @@ import { ServiceStore, State as ServiceState, store as service } from '@/store/m
 import { CompanyStore, State as CompanyState, store as company } from '@/store/modules/company';
 // eslint-disable-next-line import/no-cycle
 import { StaffStore, State as StaffState, store as staff } from '@/store/modules/staff';
+// eslint-disable-next-line import/no-cycle
+import { AppointmentStore, State as AppointmentState, store as appointment } from '@/store/modules/appointment';
+// eslint-disable-next-line import/no-cycle
+import { CustomerStore, State as CustomerState, store as customer } from '@/store/modules/customer';
 import { createLogger, createStore } from 'vuex';
 
 export type RootState = {
@@ -14,11 +18,15 @@ export type RootState = {
   service: ServiceState;
   company: CompanyState;
   staff: StaffState;
+  appointment: AppointmentState;
+  customer: CustomerState;
 };
 
 export type Store = SharedStore<Pick<RootState, 'shared'>>
   & ServiceStore<Pick<RootState, 'service'>>
   & CompanyStore<Pick<RootState, 'company'>>
+  & AppointmentStore<Pick<RootState, 'appointment'>>
+  & CustomerStore<Pick<RootState, 'customer'>>
   & StaffStore<Pick<RootState, 'staff'>>;
 
 // Plug in logger when in development environment
@@ -32,6 +40,8 @@ export const store = createStore({
     service,
     company,
     staff,
+    appointment,
+    customer,
   },
 });
 

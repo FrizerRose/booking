@@ -2,8 +2,10 @@
 // eslint-disable-next-line import/no-cycle
 import { RootState } from '@/store';
 import { ActionContext, ActionTree } from 'vuex';
-import { AppointmentService } from '@/api';
+import { CustomerService } from '@/api';
 import { ApiError } from '@/types/customError';
+import Customer from '@/types/customer';
+import { AxiosResponse } from 'axios';
 import LocalActionTypes from './action-types';
 import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
@@ -27,36 +29,27 @@ type AugmentedSharedActionContext = {
 } & Omit<ActionContext<State, RootState>, 'commit'>
 
 export interface Actions {
-  [LocalActionTypes.FETCH_APPOINTMENT](
-    { commit }: AugmentedActionContext,
-    id: number
-  ): void;
-  [LocalActionTypes.CREATE_APPOINTMENT](
-    { commit }: AugmentedSharedActionContext,
-    payload: object
-  ): void;
+  [LocalActionTypes.CREATE_CUSTOMER](
+    { commit }: AugmentedActionContext & AugmentedSharedActionContext,
+    payload: Customer
+  ): Promise<AxiosResponse>;
 }
 
 // API access.
-const appointmentService = new AppointmentService();
+const customerService = new CustomerService();
 
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
-  async [LocalActionTypes.FETCH_APPOINTMENT]({ commit }, id: number) {
-    const response = await appointmentService.get(id);
+  async [LocalActionTypes.CREATE_CUSTOMER]({ commit }, payload: Customer): Promise<AxiosResponse> {
+    const response = await customerService.create(payload);
     console.log(response, response.data);
-    if (response.status === 200 && response.data !== undefined) {
-      commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
-    } else {
-      throw new ApiError('No appointment by this ID.');
-    }
-  },
-  async [LocalActionTypes.CREATE_APPOINTMENT]({ commit }, payload) {
-    const response = await appointmentService.create(payload);
     if (response.status === 201 && response.data !== undefined) {
-      commit(SharedMutationTypes.CHANGE_CREATED_APPOINTMENT, response.data);
+      commit(LocalMutationTypes.CHANGE_CUSTOMER, response.data);
+      commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data);
     } else {
-      throw new ApiError('Could not create an appointment.');
+      throw new ApiError('Could not create a customer.');
     }
+
+    return response;
   },
 };

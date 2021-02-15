@@ -65,39 +65,6 @@ export default class ApiService {
     });
   }
 }
-
-export class AdviceService {
-  apiService: ApiService;
-
-  resource: string;
-
-  constructor() {
-    this.apiService = new ApiService();
-    this.resource = 'advice';
-  }
-
-  query(params: object) {
-    return this.apiService.query(this.resource, {
-      params,
-    });
-  }
-
-  get(slug: number) {
-    return this.apiService.get(this.resource, slug);
-  }
-
-  create(params: object) {
-    return this.apiService.post(this.resource, { article: params });
-  }
-
-  update(slug: string, params: object) {
-    return this.apiService.update(this.resource, slug, { article: params });
-  }
-
-  destroy(slug: string) {
-    return this.apiService.delete(this.resource, slug);
-  }
-}
 export class ServicesService {
   apiService: ApiService;
 
@@ -119,11 +86,11 @@ export class ServicesService {
   }
 
   create(params: object) {
-    return this.apiService.post(this.resource, { article: params });
+    return this.apiService.post(this.resource, params);
   }
 
   update(slug: string, params: object) {
-    return this.apiService.update(this.resource, slug, { article: params });
+    return this.apiService.update(this.resource, slug, params);
   }
 
   destroy(slug: string) {
@@ -151,11 +118,11 @@ export class CompanyService {
   }
 
   create(params: object) {
-    return this.apiService.post(this.resource, { article: params });
+    return this.apiService.post(this.resource, params);
   }
 
   update(slug: string, params: object) {
-    return this.apiService.update(this.resource, slug, { article: params });
+    return this.apiService.update(this.resource, slug, params);
   }
 
   destroy(slug: string) {
@@ -183,11 +150,75 @@ export class StaffService {
   }
 
   create(params: object) {
-    return this.apiService.post(this.resource, { article: params });
+    return this.apiService.post(this.resource, params);
   }
 
   update(slug: string, params: object) {
-    return this.apiService.update(this.resource, slug, { article: params });
+    return this.apiService.update(this.resource, slug, params);
+  }
+
+  destroy(slug: string) {
+    return this.apiService.delete(this.resource, slug);
+  }
+}
+export class AppointmentService {
+  apiService: ApiService;
+
+  resource: string;
+
+  constructor() {
+    this.apiService = new ApiService();
+    this.resource = 'appointment';
+  }
+
+  query(params: object) {
+    return this.apiService.query(this.resource, {
+      params,
+    });
+  }
+
+  get(slug: number) {
+    return this.apiService.get(this.resource, slug);
+  }
+
+  create(params: object) {
+    return this.apiService.post(this.resource, params);
+  }
+
+  update(slug: string, params: object) {
+    return this.apiService.update(this.resource, slug, params);
+  }
+
+  destroy(slug: string) {
+    return this.apiService.delete(this.resource, slug);
+  }
+}
+export class CustomerService {
+  apiService: ApiService;
+
+  resource: string;
+
+  constructor() {
+    this.apiService = new ApiService();
+    this.resource = 'customer';
+  }
+
+  query(params: object) {
+    return this.apiService.query(this.resource, {
+      params,
+    });
+  }
+
+  get(slug: number) {
+    return this.apiService.get(this.resource, slug);
+  }
+
+  create(params: object) {
+    return this.apiService.post(this.resource, params);
+  }
+
+  update(slug: string, params: object) {
+    return this.apiService.update(this.resource, slug, params);
   }
 
   destroy(slug: string) {

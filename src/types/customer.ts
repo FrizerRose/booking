@@ -1,11 +1,11 @@
 import Company from './company';
 
 type Customer = {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   phone: string;
-  company: Company;
+  company: Company | unknown;
 }
 
 export default Customer;

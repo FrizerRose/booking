@@ -4,7 +4,7 @@ import Service from './service';
 import Staff from './staff';
 
 type Appointment = {
-  id: number;
+  id?: number;
   date: string;
   time: string;
   message: string;

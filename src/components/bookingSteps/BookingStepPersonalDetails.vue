@@ -7,14 +7,20 @@
     aria-labelledby="tab-id-vasi-podatci"
   >
     <form class="c-form">
-      <div class="c-form_item || has-error">
+      <p
+        v-if="hasError"
+        style="color: red"
+      >
+        {{ errorMsg }}
+      </p>
+      <div :class="{'c-form_item': true, 'has-error': formData.name.error}">
         <label
           class="c-form_label"
           for="id-form-name"
         >
           Name
           <span
-            v-if="isError"
+            v-if="formData.name.error"
             class="o-icon"
           >
             <svg
@@ -30,19 +36,21 @@
           <div class="o-background" />
           <input
             id="id-form-name"
+            v-model="formData.name.data"
             class="c-form_input"
             type="text"
+            @change="formData.name.error = false"
           >
         </div>
       </div>
-      <div class="c-form_item">
+      <div :class="{'c-form_item': true, 'has-error': formData.email.error}">
         <label
           class="c-form_label"
           for="id-form-email"
         >
           Email
           <span
-            v-if="isError"
+            v-if="formData.email.error"
             class="o-icon"
           >
             <svg
@@ -58,19 +66,21 @@
           <div class="o-background" />
           <input
             id="id-form-email"
+            v-model="formData.email.data"
             class="c-form_input"
             type="email"
+            @change="formData.email.error = false"
           >
         </div>
       </div>
-      <div class="c-form_item">
+      <div :class="{'c-form_item': true, 'has-error': formData.phone.error}">
         <label
           class="c-form_label"
           for="phone"
         >
           Phone
           <span
-            v-if="isError"
+            v-if="formData.phone.error"
             class="o-icon"
           >
             <svg
@@ -86,20 +96,22 @@
           <div class="o-background" />
           <input
             id="phone"
+            v-model="formData.phone.data"
             class="c-form_input"
             type="tel"
             name="phone"
+            @change="formData.phone.error = false"
           >
         </div>
       </div>
-      <div class="c-form_item">
+      <div :class="{'c-form_item': true, 'has-error': formData.message.error}">
         <label
           class="c-form_label"
           for="id-form-textarea"
         >
-          Textarea
+          Napomena
           <span
-            v-if="isError"
+            v-if="formData.message.error"
             class="o-icon"
           >
             <svg
@@ -115,15 +127,19 @@
           <div class="o-background" />
           <textarea
             id="if-form-textarea"
+            v-model="formData.message.data"
             class="c-form_textarea"
+            @change="formData.message.error = false"
           />
         </div>
       </div>
-      <div class="c-form_item || has-error">
+      <div :class="{'c-form_item': true, 'has-error': formData.terms.error}">
         <input
           id="id-form-checkbox"
+          v-model="formData.terms.data"
           class="c-form_checkbox"
           type="checkbox"
+          @change="formData.terms.error = false"
         >
         <label
           class="c-form_checkboxLabel"
@@ -131,7 +147,7 @@
         >
           Prihvaćam uvjete
           <span
-            v-if="isError"
+            v-if="formData.terms.error"
             class="o-icon"
           >
             <svg
@@ -153,7 +169,7 @@
       <button
         class="c-button -primary || is-submit"
         type="submit"
-        @click="nextStep()"
+        @click.prevent="nextStep()"
       >
         <span class="c-button_label">Submit</span>
       </button>
@@ -162,21 +178,84 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed } from 'vue';
+import {
+  defineComponent, computed, reactive, ref,
+} from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
+import ActionTypes from '@/store/action-types';
+import Customer from '@/types/customer';
 
 export default defineComponent({
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+    const company = computed(() => store.state.shared.selectedCompany);
 
-    function nextStep() {
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+    const formData = reactive({
+      name: { data: '', error: false },
+      email: { data: '', error: false },
+      phone: { data: '', error: false },
+      message: { data: '', error: false },
+      terms: { data: false, error: false },
+    });
+
+    const hasError = ref(false);
+    const errorMsg = ref('');
+
+    async function nextStep() {
+      hasError.value = false;
+
+      if (formData.name.data === '') {
+        formData.name.error = true;
+        hasError.value = true;
+      } else {
+        formData.name.error = false;
+      }
+      if (formData.email.data === '') {
+        formData.email.error = true;
+        hasError.value = true;
+      } else {
+        formData.email.error = false;
+      }
+      if (formData.phone.data === '') {
+        formData.phone.error = true;
+        hasError.value = true;
+      } else {
+        formData.phone.error = false;
+      }
+      if (formData.terms.data === false) {
+        formData.terms.error = true;
+        hasError.value = true;
+      } else {
+        formData.terms.error = false;
+      }
+
+      if (hasError.value) {
+        errorMsg.value = 'Molimo vas da ispunite naznačena polja i pokušate ponovo.';
+      } else {
+        const response = await store.dispatch(ActionTypes.CREATE_CUSTOMER, {
+          name: formData.name.data,
+          email: formData.email.data,
+          phone: formData.phone.data,
+          company: company.value?.id,
+        } as Customer);
+
+        if (response.status === 201) {
+          store.commit(MutationTypes.CHANGE_SELECTED_NOTICE, formData.message.data);
+          store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+        } else {
+          hasError.value = true;
+          errorMsg.value = 'Imamo problem sa serverom. Molimo pokušajte kasnije.';
+        }
+      }
     }
 
     return {
       nextStep,
+      formData,
+      hasError,
+      errorMsg,
     };
   },
 });

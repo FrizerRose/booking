@@ -16,7 +16,7 @@
           </div>
           <div class="o-layout_item u-1/2">
             <p class="c-summary_answer">
-              Šišanje
+              {{ selectedService.name }}
             </p>
           </div>
         </div>
@@ -30,7 +30,7 @@
           </div>
           <div class="o-layout_item u-1/2">
             <p class="c-summary_answer">
-              Miljenko
+              {{ selectedStaff.name }}
             </p>
           </div>
         </div>
@@ -44,7 +44,7 @@
           </div>
           <div class="o-layout_item u-1/2">
             <p class="c-summary_answer">
-              5. svibnja 2021. u 14:30
+              {{ selectedDateTime.date }} u {{ selectedDateTime.time }}
             </p>
           </div>
         </div>
@@ -58,9 +58,9 @@
           </div>
           <div class="o-layout_item u-1/2">
             <p class="c-summary_answer">
-              Ivana Ivić<br>
-              ivana.ivic@example.com<br>
-              +385 (91) 000-11-22<br>
+              {{ selectedCustomer.name }}<br>
+              {{ selectedCustomer.email }}<br>
+              {{ selectedCustomer.phone }}<br>
             </p>
           </div>
         </div>
@@ -73,7 +73,16 @@
             </p>
           </div>
           <div class="o-layout_item u-1/2">
-            <p class="c-summary_answer">
+            <p
+              v-if="selectedNotice !== ''"
+              class="c-summary_answer"
+            >
+              <em>{{ selectedNotice }}</em><br>
+            </p>
+            <p
+              v-else
+              class="c-summary_answer"
+            >
               <em>Bez napomene</em><br>
             </p>
           </div>
@@ -100,18 +109,47 @@
 import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
+import ActionTypes from '@/store/action-types';
 
 export default defineComponent({
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+    const createdAppointment = computed(() => store.state.shared.createdAppointment);
 
-    function nextStep() {
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
+    const selectedService = computed(() => store.state.shared.selectedService);
+    const selectedStaff = computed(() => store.state.shared.selectedStaff);
+    const selectedCustomer = computed(() => store.state.shared.selectedCustomer);
+    const selectedDateTime = computed(() => store.state.shared.selectedDateTime);
+    const selectedNotice = computed(() => store.state.shared.selectedNotice);
+
+    async function nextStep() {
+      await store.dispatch(ActionTypes.CREATE_APPOINTMENT, {
+        company: selectedCompany.value?.id,
+        staff: selectedStaff.value?.id,
+        service: selectedService.value?.id,
+        customer: selectedCustomer.value?.id,
+        message: selectedNotice.value,
+        date: selectedDateTime.value.date,
+        time: selectedDateTime.value.time,
+      });
+
+      if (createdAppointment.value) {
+        store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+      } else {
+        // TODO: print out an error message
+      }
     }
 
     return {
       nextStep,
+      selectedCompany,
+      selectedService,
+      selectedStaff,
+      selectedCustomer,
+      selectedDateTime,
+      selectedNotice,
     };
   },
 });
