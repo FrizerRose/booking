@@ -77,7 +77,7 @@
               v-if="selectedNotice !== ''"
               class="c-summary_answer"
             >
-              <em>{{ selectedNotice }}</em><br>
+              <pre v-html="selectedNotice" /><br>
             </p>
             <p
               v-else

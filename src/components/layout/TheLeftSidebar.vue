@@ -11,7 +11,9 @@
             >
           </figure>
           <p class="ccccccc">
-            General company notice
+            Kvalitetna usluga i povoljne cijene obilježje su naše old school brijačnice.
+            Svakim radnim danom očekuje vas time iskusnih profesionalaca.
+            Rezervirajte termin i zablistajte!
           </p>
         </article>
       </div>
