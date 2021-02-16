@@ -23,7 +23,7 @@
             <div class="c-card-service_info u-height-100">
               <div class="o-vertical u-height-100">
                 <div class="o-vertical_item">
-                  <h1 class="c-heading">
+                  <h1 class="c-card-service_heading">
                     {{ service.name }}
                   </h1>
                   <span class="o-tag">
@@ -41,8 +41,6 @@
                     </span>
                     <span class="o-tag_label">{{ service.duration }} min</span>
                   </span>
-                </div>
-                <div class="o-vertical_item o-flex -justify-end -align-center">
                   <span class="o-tag || u-margin-left">
                     <span class="o-icon">
                       <svg
@@ -60,12 +58,14 @@
                     </span>
                     <span class="o-tag_label">{{ service.price }} kn</span>
                   </span>
+                </div>
+                <div class="o-vertical_item o-flex -justify-end -align-center">
                   <button
                     class="c-button -primary || has-links-inside_main-link || u-margin-left"
                     @click="nextStep()"
                   >
                     <span class="has-links-inside_background" />
-                    <span class="c-button_label">cta</span>
+                    <span class="c-button_label">Odaberi</span>
                   </button>
                 </div>
               </div>
@@ -81,7 +81,7 @@
         <div class="c-card-service_info">
           <div class="o-vertical u-height-100">
             <div class="o-vertical_item">
-              <h1 class="c-heading">
+              <h1 class="c-card-service_heading">
                 {{ service.name }}
               </h1>
               <span class="o-tag">
@@ -99,8 +99,6 @@
                 </span>
                 <span class="o-tag_label">{{ service.duration }} min</span>
               </span>
-            </div>
-            <div class="o-vertical_item o-flex -justify-end -align-center">
               <span class="o-tag || u-margin-left">
                 <span class="o-icon">
                   <svg
@@ -118,12 +116,14 @@
                 </span>
                 <span class="o-tag_label">{{ service.price }} kn</span>
               </span>
+            </div>
+            <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
               <button
-                class="c-button -primary || has-links-inside_main-link || u-margin-left"
+                class="c-button -tab || has-links-inside_main-link || u-margin-top-3"
                 @click="nextStep()"
               >
                 <span class="has-links-inside_background" />
-                <span class="c-button_label">cta</span>
+                <span class="c-button_label">Odaberi</span>
               </button>
             </div>
           </div>
