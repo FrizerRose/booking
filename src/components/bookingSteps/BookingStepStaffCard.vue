@@ -3,7 +3,7 @@
     <div class="o-background-wrap">
       <div class="o-background -has-shadow" />
       <article class="c-card-service has-links-inside">
-        <div class="o-layout">
+        <div class="o-layout || o-flex">
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
             <figure class="c-card-service_image-wrap -max-width || o-ratio">
               <img
@@ -14,18 +14,23 @@
             </figure>
           </div>
           <div class="o-layout_item u-2/3@to-medium u-3/4@from-medium">
-            <div class="c-card-service_info">
-              <h1 class="c-heading">
-                {{ staff.name }}
-              </h1>
-
-              <button
-                class="c-button -primary || has-links-inside_main-link"
-                @click="nextStep()"
-              >
-                <span class="has-links-inside_background" />
-                <span class="c-button_label">Odaberi</span>
-              </button>
+            <div class="c-card-service_info u-margin-left u-height-100">
+              <div class="o-vertical u-height-100">
+                <div class="o-vertical_item">
+                  <h1 class="c-card-service_heading">
+                    {{ staff.name }}
+                  </h1>
+                </div>
+                <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
+                  <button
+                    class="c-button -tab || has-links-inside_main-link || u-margin-top-3"
+                    @click="nextStep()"
+                  >
+                    <span class="has-links-inside_background" />
+                    <span class="c-button_label">Odaberi</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
