@@ -3,13 +3,10 @@
     <div class="o-layout -gutters || u-bg-wheat">
       <div class="o-layout_item XXXXXXXX-gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
         <article class="o-group">
-          <h1 class="c-heading">
-            Sidebar left
-          </h1>
           <figure class="o-image-wrap -max-width || o-ratio">
             <img
               class="o-image"
-              src="https://www.mdstrat.com/wp-content/uploads/2020/07/payment_integrity_facs.svg"
+              src="https://source.unsplash.com/random"
               alt="img text"
             >
           </figure>

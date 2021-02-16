@@ -1,7 +1,7 @@
 <template>
   <div class="c-progress_inner">
     <div class="o-background-wrap has-no-gutters@to-medium">
-      <div class="o-background -has-shadow" />
+      <div class="o-background -has-bg" />
       <div class="c-progress-indicator">
         <div class="c-progress-number">
           <span class="c-progress-number_label">
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="o-background-wrap has-no-gutters@to-medium">
-      <div class="o-background -has-shadow" />
+      <div class="o-background -has-shadow -has-bg" />
       <div class="o-layout || o-flex -justify-between -align-center || c-steps-header">
         <div class="o-layout_item u-width-auto">
           <p>odabrani korak</p>
@@ -58,7 +58,7 @@
     <div class="c-steps-menu">
       <div :class="{'c-steps-menu_inner': true, 'is-open': isMenuOpen}">
         <div class="o-background-wrap has-no-gutters@to-medium">
-          <div class="o-background -has-shadow" />
+          <div class="o-background -has-shadow -has-bg" />
           <div class="o-layout">
             <div class="o-layout_item">
               <div class="c-steps-list-wrap">

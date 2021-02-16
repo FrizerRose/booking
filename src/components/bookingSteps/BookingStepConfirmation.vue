@@ -89,12 +89,63 @@
         </div>
       </div>
       <div class="c-summary_footer">
-        <button
-          class="c-button -primary || is-submit"
-          @click="nextStep()"
-        >
-          <span class="c-button_label">Potvrdi</span>
-        </button>
+        <div class="c-form">
+          <div class="c-form_legal">
+            <p>
+              Stranica je zaštićena reCAPTCHA tehnologijom i <a
+                href="#"
+                class="o-link"
+              >Googleovim pravilima privatnosti</a>.<br>
+              Pročitajte <a
+                href="#"
+                class="o-link"
+              >uvjete poslovanja</a>.
+            </p>
+          </div>
+          <div class="c-form_item">
+            <div>
+              <span
+                class="o-icon"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9.293 15.707l1.414-1.414L15 18.586l4.293-4.293 1.414 1.414L15 21.414l-5.707-5.707z" />
+                  <path d="M11 5H4V3h7a5 5 0 015 5v12h-2V8a3 3 0 00-3-3z" />
+                </svg>
+              </span>
+            </div>
+            <input
+              id="id-form-checkbox"
+              class="c-form_checkbox"
+              type="checkbox"
+            >
+            <label
+              class="c-form_checkboxLabel"
+              for="id-form-checkbox"
+            >
+              <div class="o-background-wrap -is-checkbox-focus">
+                <div class="o-background-focus" />
+                <span class="c-form_checkboxLabel_inner">
+                  Prihvaćam uvjete poslovanja
+                </span>
+              </div>
+              <span class="-before">
+                <div class="o-background-wrap -is-input -is-checkbox">
+                  <div class="o-background" />
+                </div>
+              </span>
+              <span class="-after" />
+            </label>
+          </div>
+          <button
+            class="c-button -primary || is-submit"
+            @click="nextStep()"
+          >
+            <span class="c-button_label">Potvrdi</span>
+          </button>
+        </div>
       </div>
     </div>
   </li>

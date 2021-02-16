@@ -8,6 +8,12 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
+    path: '/cancel',
+    name: 'Cancel',
+    // lazy loaded route
+    component: () => import(/* webpackChunkName: "cancel" */ '../views/Cancel.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     // lazy loaded route

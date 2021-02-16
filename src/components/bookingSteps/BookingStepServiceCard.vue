@@ -13,7 +13,7 @@
             <figure class="c-card-service_image-wrap -max-width || o-ratio">
               <img
                 class="c-card-service_image"
-                src="https://www.mdstrat.com/wp-content/uploads/2020/07/payment_integrity_facs.svg"
+                src="https://source.unsplash.com/random"
                 alt="img text"
               >
             </figure>

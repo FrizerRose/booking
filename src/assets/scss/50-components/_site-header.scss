@@ -1,5 +1,4 @@
 
-
 .c-site-header {
   position: fixed;
   width: 100%;
@@ -9,16 +8,11 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
-  $site-header-bg: #e9e9e9;
+  $site-header-bg: $element-bg;
   background-color: $site-header-bg;
 
-  html.t1 & {
-    $site-header-bg: black;
-    background-color: $site-header-bg;
-  }
-
-  html.t2 & {
-    $site-header-bg: purple;
+  html.mode-dark & {
+    $site-header-bg: $mode-dark_element-bg;
     background-color: $site-header-bg;
   }
 }
@@ -116,15 +110,8 @@
   }
 
   @media (max-width: $to-small) {
-    html.t1 & {
+    html.orchid & {
       $site-header-aside-inner-bg: crimson;
-      @media (max-width: $to-small) {
-        background-color: $site-header-aside-inner-bg;
-      }
-    }
-
-    html.t2 & {
-      $site-header-aside-inner-bg: orange;
       @media (max-width: $to-small) {
         background-color: $site-header-aside-inner-bg;
       }

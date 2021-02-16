@@ -1,15 +1,15 @@
 /*
 	scss variables don't work here. use the values for reference
 
-	$black: #0f0600;
-	$theme-main: #ff974d;
-	$theme-faded: #ab8063;
+	$white: #fcfcf9;
+	$black: #090909;
+	$theme-main: silver;
+	$theme-darken: darken($theme-main, 25%);
+	
+	$mode-dark-main: #404040; // inverted silver
 
-	$site-bg: seashell;
-	$site-color: $black;
-
-	$selection-background-color: $site-color;
-	$selection-text-color: $site-bg;
+	$selection-background-color: $black;
+	$selection-text-color: $white;
 	
 	$shadow: 0 1.5em 1em -2em currentColor;
 */
@@ -21,19 +21,33 @@
 	--vdp-border-radius: 0.25em;
 	--vdp-heading-size: 2rem;
 	--vdp-heading-weight: 700;
-	--vdp-heading-hover-color: seashell;
+	--vdp-heading-hover-color: #f1f1f1;
 	--vdp-arrow-color: currentColor;
 	--vdp-elem-color: currentColor;
 	--vdp-disabled-color: lightgray;
 	//
-	--vdp-hover-color: seashell;
-	--vdp-hover-bg-color: #ab8063;
+	--vdp-hover-color: #f1f1f1;
+	--vdp-hover-bg-color: gray; // gray === darken(silver, 25%)
 	//
-	--vdp-selected-color: #0f0600;
-	--vdp-selected-bg-color: #ff974d;
+	--vdp-selected-color: #090909;
+	--vdp-selected-bg-color: silver;
 	--vdp-elem-font-size: 1rem;
 	--vdp-elem-border-radius: 0.25em;
-	--vdp-divider-color: #0f0600;
+	--vdp-divider-color: #404040;
+
+	html.mode-dark & {
+		--vdp-bg-color: black;
+		--vdp-heading-hover-color: #1d1d1d;
+		--vdp-disabled-color: #2b2b2b;
+		--vdp-hover-color: #1d1d1d;
+		--vdp-hover-bg-color: silver;
+		--vdp-selected-bg-color: gray;
+		--vdp-divider-color: silver;
+	}
+	html.orchid & {
+		--vdp-selected-bg-color: orchid;
+		--vdp-hover-bg-color: #a12a9c;
+	}
 }
 
 .v3dp__popout {

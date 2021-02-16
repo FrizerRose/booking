@@ -1,6 +1,14 @@
 .c-button {
   &.is-current {
     box-shadow: inset 0 0 0 0.125em $theme-main;
+
+    html.mode-dark & {
+      box-shadow: inset 0 0 0 0.125em $theme-darken;
+    }
+
+    html.orchid & {
+      box-shadow: inset 0 0 0 0.125em $orchid-main;
+    }
   }
   &[disabled] {
     cursor: default;
@@ -31,30 +39,32 @@
   $site-button-bg: $theme-main;
   background-color: $site-button-bg;
 
-  html.t1 & {
-    $site-button-bg: lime;
+  html.mode-dark & {
+    $site-button-bg: $theme-darken;
     background-color: $site-button-bg;
   }
 
-  html.t2 & {
-    $site-button-bg: black;
+  html.orchid & {
+    $site-button-bg: $orchid-main;
     background-color: $site-button-bg;
   }
 
   &:hover,
   &:focus {
-    $site-button-hover-bg: $theme-faded;
-    $site-button-hover-color: $site-bg;
+    $site-button-hover-bg: $theme-darken;
     background-color: $site-button-hover-bg;
+    $site-button-hover-color: $white;
     color: $site-button-hover-color;
 
-    html.t1 & {
-      $site-button-bg: crimson;
+    html.mode-dark & {
+      $site-button-hover-bg: $theme-main;
       background-color: $site-button-hover-bg;
+      $site-button-hover-color: $black;
+      color: $site-button-hover-color;
     }
 
-    html.t2 & {
-      $site-button-bg: coral;
+    html.orchid & {
+      $site-button-hover-bg: $orchid-darken;
       background-color: $site-button-hover-bg;
     }
   }
@@ -68,20 +78,33 @@
   border-radius: 0.5em;
   font-weight: 900;
   transition: background-color $speed / 2 $easing;
-
-  $site-button-bg: white;
+  
+  $site-button-bg: $element-bg;
   background-color: $site-button-bg;
-
+  
+  html.mode-dark & {
+    $site-button-bg: $mode-dark_element-bg;
+    background-color: $site-button-bg;
+  }
+  
   &:hover,
   &:focus {
     background-color: $theme-main;
+  
+    html.mode-dark & {
+      background-color: $theme-darken;
+    }
+  
+    html.orchid & {
+      background-color: $orchid-main;
+    }
   }
 }
 
 // .c-button.-outline {
-//   padding: 0.5em 1em;
-//   color: currentColor;
-//   border: 1px solid;
+  //   padding: 0.5em 1em;
+  //   color: currentColor;
+  //   border: 1px solid;
 //   border-radius: 4px;
 //   font-weight: 900;
 //   transition: border-color 0.5s;

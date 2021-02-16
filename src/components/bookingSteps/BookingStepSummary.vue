@@ -6,11 +6,10 @@
     role="tabpanel"
     aria-labelledby="tab-id-sazetak"
   >
+    <h1>Vaš termin je zabiljažen.</h1>
     <p>
-      sažetak tab panel
+      Provjerite e-mail. Na navedenu e-mail adresu će vam stići poruka s potvrdom termina.
     </p>
-
-    <h1>Uspjeh jaaaj bravo!</h1>
     <div class="c-summary">
       <div class="c-summary_row">
         <div class="o-layout">

@@ -156,7 +156,7 @@
           <div class="o-background-wrap -is-checkbox-focus">
             <div class="o-background-focus" />
             <span class="c-form_checkboxLabel_inner">
-              Prihvaćam uvjete
+              Prihvaćam primitak e-mail poruke s potvrdom rezervacije i podsjetnikom za odabrani termin
             </span>
           </div>
           <span class="-before">

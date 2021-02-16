@@ -3,9 +3,6 @@
     <div class="o-layout -gutters || u-bg-wheat">
       <div class="o-layout_item XXXXXXXX-gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
         <article class="o-group">
-          <h1 class="c-heading">
-            Sidebar right
-          </h1>
           <address class="o-address">
             Company Name<br>
             Ulica 50<br>

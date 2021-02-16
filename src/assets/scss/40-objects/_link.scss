@@ -7,7 +7,6 @@
 
   &:before {
     content: "";
-    background-color: $theme-main;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -16,12 +15,25 @@
     transform: scaleY(0.1);
     transform-origin: bottom;
     transition: transform $speed $easing, opacity $speed $easing;
+    background-color: $theme-main;
+
+    html.mode-dark & {
+      background-color: $theme-darken;
+    }
+
+    html.orchid & {
+      background-color: $orchid-darken;
+    }
   }
 
   &:hover {
     &:before {
       opacity: 0.15;
       transform: scaleY(1);
+
+      html.mode-dark & {
+        opacity: 0.3;
+      }
     }
   }
 }

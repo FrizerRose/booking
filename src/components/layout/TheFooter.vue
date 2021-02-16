@@ -1,7 +1,7 @@
 <template>
   <footer class="c-site-footer">
     <div class="o-container">
-      footer
+      <p>&copy; Primrose {{ new Date().getFullYear() }}</p>
     </div>
   </footer>
 </template>
