@@ -10,7 +10,7 @@
                   class="c-site-brand_link"
                   href="#"
                   rel="home"
-                >Company name</a>
+                >Frizerski salon Marelica</a>
               </h1>
             </div>
           </div>
