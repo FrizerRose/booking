@@ -18,7 +18,7 @@
       </div>
       <div class="o-layout || o-flex -justify-between -align-center || c-steps-header">
         <div class="o-layout_item u-width-auto">
-          <p>odabrani korak</p>
+          <!-- <p>odabrani korak</p> -->
         </div>
         <div class="o-layout_item u-width-auto">
           <div class="o-flex">
