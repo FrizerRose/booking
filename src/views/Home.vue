@@ -1,13 +1,13 @@
 <template>
   <TheHeader />
   <BookingSteps />
-  <TheFooter />
+  <!-- <TheFooter /> -->
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TheHeader from '@/components/layout/TheHeader.vue';
-import TheFooter from '@/components/layout/TheFooter.vue';
+// import TheFooter from '@/components/layout/TheFooter.vue';
 import BookingSteps from '@/components/bookingSteps/BookingSteps.vue';
 import { useStore } from '@/store';
 import ActionTypes from '@/store/action-types';
@@ -15,7 +15,7 @@ import ActionTypes from '@/store/action-types';
 export default defineComponent({
   components: {
     TheHeader,
-    TheFooter,
+    // TheFooter,
     BookingSteps,
   },
   setup() {

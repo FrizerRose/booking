@@ -251,6 +251,7 @@ export default defineComponent({
 
         if (response.status === 201) {
           store.commit(MutationTypes.CHANGE_SELECTED_NOTICE, formData.message.data.replace(/(<([^>]+)>)/gi, ''));
+          window.scrollTo(0, 0);
           store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
         } else {
           hasError.value = true;

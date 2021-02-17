@@ -60,6 +60,7 @@ export default defineComponent({
     async function nextStep() {
       // store.commit(MutationTypes.CHANGE_SELECTED_STAFF, props.staff as Staff);
       await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, props.staff.id);
+      window.scrollTo(0, 0);
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }
 

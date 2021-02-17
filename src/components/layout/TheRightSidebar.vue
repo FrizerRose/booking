@@ -4,7 +4,7 @@
       <div class="o-layout_item XXXXXXXX-gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
         <article class="o-group">
           <address class="o-address">
-            Company Name<br>
+            Frizerski Salon Marelica<br>
             Ulica 50<br>
             10000 Grad
           </address>
@@ -25,7 +25,7 @@
                 class="o-link"
                 href="mailto:email@example.com"
               >
-                <span class="o-link_label">Send us an email</span>
+                <span class="o-link_label">Pošalji nam mail</span>
               </a>
             </li>
             <li>

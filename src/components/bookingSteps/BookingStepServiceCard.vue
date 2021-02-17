@@ -141,9 +141,10 @@ export default defineComponent({
     isCompactMode.value = true;
 
     function nextStep() {
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
       store.commit(MutationTypes.CHANGE_STAFF, props.service.staff);
       store.commit(MutationTypes.CHANGE_SELECTED_SERVICE, props.service as Service);
+      window.scrollTo(0, 0);
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }
 
     return {

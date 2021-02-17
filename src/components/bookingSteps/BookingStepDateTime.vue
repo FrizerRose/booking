@@ -106,6 +106,7 @@ export default defineComponent({
       const timeString = `${time}:00`;
 
       store.commit(MutationTypes.CHANGE_SELECTED_DATETIME, { date: dateString, time: timeString });
+      window.scrollTo(0, 0);
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }
 

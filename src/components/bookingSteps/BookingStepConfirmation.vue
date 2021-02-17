@@ -185,6 +185,7 @@ export default defineComponent({
       });
 
       if (createdAppointment.value) {
+        window.scrollTo(0, 0);
         store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
       } else {
         // TODO: print out an error message
