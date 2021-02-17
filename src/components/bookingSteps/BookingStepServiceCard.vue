@@ -79,8 +79,8 @@
         class="c-card-service has-links-inside"
       >
         <div class="c-card-service_info">
-          <div class="o-vertical u-height-100">
-            <div class="o-vertical_item">
+          <div class="o-layout o-flex -justify-between -align-end">
+            <div class="o-layout_item u-width-auto">
               <h1 class="c-card-service_heading">
                 {{ service.name }}
               </h1>
