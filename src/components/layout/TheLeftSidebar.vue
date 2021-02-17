@@ -12,7 +12,7 @@
           </figure>
           <p class="ccccccc">
             Kvalitetna usluga i povoljne cijene obilježje su naše old school brijačnice.
-            Svakim radnim danom očekuje vas time iskusnih profesionalaca.
+            Svakim radnim danom očekuje vas tim iskusnih profesionalaca.
             Rezervirajte termin i zablistajte!
           </p>
         </article>
