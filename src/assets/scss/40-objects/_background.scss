@@ -5,8 +5,8 @@
   &.-is-input {
     border-radius: 0.5rem;
     overflow: hidden;
-    // border: 0.125em solid currentColor;
-    transition: border-color $speed $easing;
+    box-shadow: inset 0 0 0 0.125em transparent;
+    transition: box-shadow $speed $easing;
     transition-delay: $speed * 1.5;
     background-color: $element-bg;
   
@@ -22,17 +22,18 @@
   }
 
   &.-is-dialog {
+    @extend .c-form_font;
+
     border-radius: 0.5rem;
     overflow: hidden;
-    font-weight: 900;
     color: $white;
 
-    @media (max-width: $to-medium) {
-      padding: 1rem;
-    }
-    @media (min-width: $from-medium) {
-      padding: 2rem;
-    }
+    // @media (max-width: $to-medium) {
+    //   padding: 1rem;
+    // }
+    // @media (min-width: $from-medium) {
+    //   padding: 2rem;
+    // }
   }
   
   .c-form_item.has-error & {
@@ -58,7 +59,13 @@
     }
   }
 
+  &.-has-gradient {
+    background-image: linear-gradient(90deg, orchid, dodgerblue);
+    background-size: 400%;
+  }
+
   &.-has-shadow {
+    // for $shadow spread radius is -2em. this means element using .-has-shadow class has to have a height of 4em or more for shadow to show up.
     box-shadow: $shadow;
   }
 
@@ -68,15 +75,13 @@
 
   .c-form_item.has-error & {
     transform: none;
-    transform-origin: top;
   }
 
   .-is-input & {
     background-color: $red;
     pointer-events: none;
-    z-index: 0;
-    transform: scaleY(0);
-    transform-origin: bottom;
+    transform: translateY(-100%) rotateZ(-5deg);
+    transform-origin: left bottom;
     transition: transform $speed * 2 $easing;
 
     opacity: 0.075;
@@ -103,19 +108,34 @@
   }
 }
 
-// .o-background-focus used only for focus on checkbox
-.o-background-focus {
-  position: absolute;
-  top: 0;
-  left: 0;
+.c-form_item.has-error {
+  @for $i from 1 through 5 {
+    .-delay-#{$i} {
+      transition-delay: 0.1s + 0.085 * $i;
+    }
+  }
+}
+
+.o-background-focus-wrap {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: auto;
+  left: auto;
   z-index: -1;
 
-  .-is-checkbox-focus & {
-    border-bottom: 0.125em solid;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 0;
+  .o-background-focus {
+    height: 100%;
+    border-radius: 9999em;
+    transform: scale(0);
+    transition: transform $speed $easing;
+
+    // background-color: $theme-main;
+    box-shadow: inset 0 0 0 0.0625em $theme-main;
+
+    html.mode-dark & {
+      // background-color: $mode-dark-main;
+      box-shadow: inset 0 0 0 0.0625em $mode-dark-main;
+    }
   }
 }

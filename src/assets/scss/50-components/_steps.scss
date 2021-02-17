@@ -5,7 +5,10 @@
 // }
 .c-steps-menu {
   position: relative;
-  z-index: 10;
+  // perspective: 2000px;
+  @media (max-width: $to-medium) {
+    z-index: -1;
+  }
 }
 .c-steps-menu_inner {
   @media (max-width: $to-medium) {
@@ -16,7 +19,9 @@
     opacity: 0;
     pointer-events: none;
     transform: scale(0.8);
-    transition: transform $speed $easing, opacity $speed $easing;
+    // transform: rotate3d(1, 0, 0, 60deg) translate3d(0, -50%, 0);
+    transform-origin: top;
+    transition: transform $speed * 2 $easing, opacity $speed $easing;
 
     &.is-open {
       opacity: 1;
@@ -27,12 +32,19 @@
 }
 
 .c-steps-list-wrap {
-  margin-left: -1rem;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
+  // margin-left: -1rem;
+  @media (max-width: $to-medium) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  @media (min-width: $from-medium) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
 
 .c-steps-list {
+  margin-left: -1rem;
   display: flex;
   @media (max-width: $to-medium) {
     flex-direction: column;

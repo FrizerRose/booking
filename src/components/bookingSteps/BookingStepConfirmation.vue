@@ -132,8 +132,11 @@
                 </span>
               </div>
               <span class="-before">
+                <div class="o-background-focus-wrap">
+                  <div class="o-background-focus" />
+                </div>
                 <div class="o-background-wrap -is-input -is-checkbox">
-                  <div class="o-background" />
+                  <div class="o-background -delay-1" />
                 </div>
               </span>
               <span class="-after" />

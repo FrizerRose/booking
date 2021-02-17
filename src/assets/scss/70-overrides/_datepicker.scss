@@ -4,7 +4,11 @@
 	$white: #fcfcf9;
 	$black: #090909;
 	$theme-main: silver;
-	$theme-darken: darken($theme-main, 25%);
+	$theme-darken: darken($theme-main, 25%); // === gray
+
+	orchid-darken: #a12a9c;
+	goldenrod-darken: #6b5110;
+	coral-darken: #d03800;
 	
 	$mode-dark-main: #404040; // inverted silver
 
@@ -47,6 +51,14 @@
 	html.orchid & {
 		--vdp-selected-bg-color: orchid;
 		--vdp-hover-bg-color: #a12a9c;
+	}
+	html.goldenrod & {
+		--vdp-selected-bg-color: goldenrod;
+		--vdp-hover-bg-color: #6b5110;
+	}
+	html.coral & {
+		--vdp-selected-bg-color: coral;
+		--vdp-hover-bg-color: #d03800;
 	}
 }
 

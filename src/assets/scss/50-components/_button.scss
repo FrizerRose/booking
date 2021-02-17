@@ -1,4 +1,10 @@
 .c-button {
+  padding: 0.5em 0.75em;
+  font-weight: 900;
+  color: currentColor;
+  border-radius: 0.5rem;
+  transition: background-color $speed $easing, color $speed $easing;
+
   &.is-current {
     box-shadow: inset 0 0 0 0.125em $theme-main;
 
@@ -8,6 +14,14 @@
 
     html.orchid & {
       box-shadow: inset 0 0 0 0.125em $orchid-main;
+    }
+
+    html.goldenrod & {
+      box-shadow: inset 0 0 0 0.125em $goldenrod-main;
+    }
+
+    html.coral & {
+      box-shadow: inset 0 0 0 0.125em $coral-main;
     }
   }
   &[disabled] {
@@ -33,12 +47,6 @@
 }
 
 .c-button.-primary {
-  padding: 0.5em 0.75em;
-  color: currentColor;
-  border-radius: 0.5rem;
-  font-weight: 900;
-  transition: background-color $speed $easing, color $speed $easing;
-
   $site-button-bg: $theme-main;
   background-color: $site-button-bg;
 
@@ -50,6 +58,22 @@
   html.orchid & {
     $site-button-bg: $orchid-main;
     background-color: $site-button-bg;
+    $site-button-hover-color: $black;
+    color: $site-button-hover-color;
+  }
+
+  html.goldenrod & {
+    $site-button-bg: $goldenrod-main;
+    background-color: $site-button-bg;
+    $site-button-hover-color: $black;
+    color: $site-button-hover-color;
+  }
+
+  html.coral & {
+    $site-button-bg: $coral-main;
+    background-color: $site-button-bg;
+    $site-button-hover-color: $black;
+    color: $site-button-hover-color;
   }
 
   &:hover,
@@ -69,17 +93,33 @@
     html.orchid & {
       $site-button-hover-bg: $orchid-darken;
       background-color: $site-button-hover-bg;
+      $site-button-hover-color: $white;
+      color: $site-button-hover-color;
+    }
+
+    html.goldenrod & {
+      $site-button-hover-bg: $goldenrod-darken;
+      background-color: $site-button-hover-bg;
+      $site-button-hover-color: $white;
+      color: $site-button-hover-color;
+    }
+
+    html.coral & {
+      $site-button-hover-bg: $coral-darken;
+      background-color: $site-button-hover-bg;
+      $site-button-hover-color: $white;
+      color: $site-button-hover-color;
     }
   }
 }
 
 .c-button.-tab {
+  @extend .c-form_font;
+
   width: 100%;
   text-align: left;
-  padding: 1em;
   color: currentColor;
   border-radius: 0.5em;
-  font-weight: 900;
   transition: background-color $speed / 2 $easing;
   
   $site-button-bg: $element-bg;
@@ -93,25 +133,83 @@
   &:hover,
   &:focus {
     background-color: $theme-main;
+
+    &:not(:disabled) {
+      $site-button-hover-color: $white;
+      color: $site-button-hover-color;
+    }
   
     html.mode-dark & {
       background-color: $theme-darken;
+      $site-button-hover-color: $black;
+      color: $site-button-hover-color;
     }
   
     html.orchid & {
       background-color: $orchid-main;
     }
+  
+    html.goldenrod & {
+      background-color: $goldenrod-main;
+    }
+  
+    html.coral & {
+      background-color: $coral-main;
+    }
   }
 }
 
-// .c-button.-outline {
-  //   padding: 0.5em 1em;
-  //   color: currentColor;
-  //   border: 1px solid;
-//   border-radius: 4px;
-//   font-weight: 900;
-//   transition: border-color 0.5s;
+.c-button.-outline {
+  box-shadow: inset 0 0 0 0.125em currentColor;
+  border-radius: 9999em;
+  transition: box-shadow $speed $easing;
 
-//   $site-button-bg: firebrick;
-//   border-color: $site-button-bg;
-// }
+  $site-button-bg: $theme-main;
+  box-shadow: inset 0 0 0 0.125em $site-button-bg;
+
+  html.mode-dark & {
+    $site-button-bg: $theme-darken;
+    box-shadow: inset 0 0 0 0.125em $site-button-bg;
+  }
+
+  html.orchid & {
+    $site-button-bg: $orchid-main;
+    box-shadow: inset 0 0 0 0.125em $site-button-bg;
+  }
+
+  html.goldenrod & {
+    $site-button-bg: $goldenrod-main;
+    box-shadow: inset 0 0 0 0.125em $site-button-bg;
+  }
+
+  html.coral & {
+    $site-button-bg: $coral-main;
+    box-shadow: inset 0 0 0 0.125em $site-button-bg;
+  }
+
+  &:hover,
+  &:focus {
+    $site-button-hover-bg: $theme-darken;
+    box-shadow: inset 0 0 0 0.125em $site-button-hover-bg;
+
+    html.mode-dark & {
+      $site-button-hover-bg: $theme-main;
+      box-shadow: inset 0 0 0 0.125em $site-button-hover-bg;
+    }
+
+    html.orchid & {
+      $site-button-hover-bg: $orchid-darken;
+      box-shadow: inset 0 0 0 0.125em $site-button-hover-bg;
+    }
+
+    html.goldenrod & {
+      $site-button-hover-bg: $goldenrod-darken;
+      box-shadow: inset 0 0 0 0.125em $site-button-hover-bg;
+    }
+
+    html.coral & {
+      $site-button-hover-bg: $coral-darken;
+      box-shadow: inset 0 0 0 0.125em $site-button-hover-bg;
+    }
+  }
+}

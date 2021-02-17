@@ -2,7 +2,18 @@
 // Form
 // ==========================================================================
 .c-form {
+    
+}
 
+.c-form_font {
+    // used in:
+    // .c-button.-tab
+    // .c-form_input
+    // .v3dp__datepicker input
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    padding: 0.75em 1.125em;
 }
 
 .c-form_item {
@@ -21,14 +32,7 @@
 }
 
 .c-form_dialog {
-    // margin-bottom: rem(30px);
-    
-    @media (max-width: $to-medium) {
-        margin-bottom: 2rem;
-    }
-    @media (min-width: $from-medium) {
-        margin-bottom: 4rem;
-    }
+    margin-bottom: 2rem;
 
     &.has-error {
         color: $red;
@@ -47,11 +51,23 @@
 $input-icon-color: 090909; // No #
 $mode-dark_input-icon-color: fcfcf9;
 
+.c-form_input {
+    @extend .c-form_font;
+
+    border-radius: 0.5rem;
+
+    &:focus {
+        .o-background-wrap.-is-input & {
+            box-shadow: inset 0 0 0 0.125em $theme-main;
+
+            html.mode-dark & {
+                box-shadow: inset 0 0 0 0.125em $mode-dark-main;
+            }
+        }
+    }
+}
 .c-form_input,
 .v3dp__datepicker input {
-    padding: 1em;
-    // border: 1px solid lightgray;
-    // background-color: $element-bg;
     
     &:hover {
         border-color: darkgray;
@@ -67,7 +83,8 @@ $mode-dark_input-icon-color: fcfcf9;
     }
 }
 .v3dp__datepicker input {
-    font-weight: 900;
+    @extend .c-form_font;
+
     border-radius: 0.5em;
     background-color: $element-bg;
 
@@ -86,6 +103,14 @@ $mode-dark_input-icon-color: fcfcf9;
 
       html.orchid & {
           background-color: $orchid-main;
+      }
+
+      html.goldenrod & {
+          background-color: $goldenrod-main;
+      }
+
+      html.coral & {
+          background-color: $coral-main;
       }
     }
 }
@@ -106,52 +131,6 @@ $mode-dark_checkbox-icon-color: $mode-dark_input-icon-color;
     padding-left: ($checkbox + rem(10px));
     cursor: pointer;
 
-/*
-    &::before, &::after {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        display: inline-block;
-        margin-top: (-$checkbox / 2);
-        padding: 0;
-        width: $checkbox;
-        height: $checkbox;
-        content: "";
-    }
-
-    &::before {
-        background-color: white;
-        border: 1px solid lightgray;
-    }
-
-    &::after {
-        border-color: transparent;
-        background-color: transparent;
-        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2213%22%20height%3D%2210.5%22%20viewBox%3D%220%200%2013%2010.5%22%20enable-background%3D%22new%200%200%2013%2010.5%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20fill%3D%22%23#{$checkbox-icon-color}%22%20d%3D%22M4.8%205.8L2.4%203.3%200%205.7l4.8%204.8L13%202.4c0%200-2.4-2.4-2.4-2.4L4.8%205.8z%22%2F%3E%3C%2Fsvg%3E");
-        background-position: center;
-        background-size: rem(12px);
-        background-repeat: no-repeat;
-        opacity: 0;
-    }
-
-    &:hover {
-        &::before {
-            border-color: darkgray;
-        }
-    }
-
-    .c-form_checkbox:focus + & {
-        &::before {
-            border-color: dimgray;
-        }
-    }
-
-    .c-form_checkbox:checked + & {
-        &::after {
-            opacity: 1;
-        }
-    }
-*/
     .-before, .-after {
         position: absolute;
         top: 50%;
@@ -191,17 +170,17 @@ $mode-dark_checkbox-icon-color: $mode-dark_input-icon-color;
         }
     }
 
+    .c-form_checkbox:hover + &,
+    .c-form_checkbox:focus + & {
+        .o-background-focus {
+            transform: scale(2);
+        }
+    }
+
     .c-form_checkbox:checked + & {
         .-after {
             opacity: 1;
             transform: none;
-        }
-    }
-
-    .c-form_checkbox:hover + &,
-    .c-form_checkbox:focus + & {
-        .-is-checkbox-focus .o-background-focus {
-            opacity: 1;
         }
     }
 }

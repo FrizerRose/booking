@@ -27,7 +27,7 @@
           </span>
         </label>
         <div class="o-background-wrap -is-input">
-          <div class="o-background" />
+          <div class="o-background -delay-1" />
           <input
             id="id-form-name"
             v-model="formData.name.data"
@@ -57,7 +57,7 @@
           </span>
         </label>
         <div class="o-background-wrap -is-input">
-          <div class="o-background" />
+          <div class="o-background -delay-2" />
           <input
             id="id-form-email"
             v-model="formData.email.data"
@@ -87,7 +87,7 @@
           </span>
         </label>
         <div class="o-background-wrap -is-input">
-          <div class="o-background" />
+          <div class="o-background -delay-3" />
           <input
             id="phone"
             v-model="formData.phone.data"
@@ -118,7 +118,7 @@
           </span>
         </label>
         <div class="o-background-wrap -is-input">
-          <div class="o-background" />
+          <div class="o-background -delay-4" />
           <textarea
             id="if-form-textarea"
             v-model="formData.message.data"
@@ -153,15 +153,13 @@
           class="c-form_checkboxLabel"
           for="id-form-checkbox"
         >
-          <div class="o-background-wrap -is-checkbox-focus">
-            <div class="o-background-focus" />
-            <span class="c-form_checkboxLabel_inner">
-              Prihvaćam primitak e-mail poruke s potvrdom rezervacije i podsjetnikom za odabrani termin
-            </span>
-          </div>
+          Prihvaćam primitak e-mail poruke s potvrdom rezervacije i podsjetnikom za odabrani termin
           <span class="-before">
+            <div class="o-background-focus-wrap">
+              <div class="o-background-focus" />
+            </div>
             <div class="o-background-wrap -is-input -is-checkbox">
-              <div class="o-background" />
+              <div class="o-background -delay-5" />
             </div>
           </span>
           <span class="-after" />

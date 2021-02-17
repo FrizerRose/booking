@@ -43,7 +43,7 @@
 @import "40-objects/list";
 @import "40-objects/flex";
 @import "40-objects/icon";
-@import "40-objects/image";
+// @import "40-objects/image";
 @import "40-objects/background";
 
 // Components
@@ -54,8 +54,9 @@
 //
 @import "50-components/site-header";
 // @import "50-components/site-nav";
-@import "50-components/site-main";
-// @import "50-components/progress";
+// @import "50-components/site-main";
+@import "50-components/section";
+@import "50-components/progress";
 @import "50-components/progress-indicator";
 @import "50-components/steps";
 @import "50-components/card-service";

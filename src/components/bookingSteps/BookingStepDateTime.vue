@@ -7,7 +7,7 @@
     aria-labelledby="tab-id-odabir-termina"
   >
     <!-- ends termin -->
-    <div class="o-layout -gutter">
+    <div class="o-layout">
       <div
         class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
       >
@@ -30,11 +30,11 @@
         </div>
       </div>
     </div>
-    <div class="o-layout -gutter">
+    <div class="o-layout">
       <div
         class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
       >
-        <ul class="c-timeslots-list o-layout -gutter || o-list">
+        <ul class="c-timeslots-list o-layout -gutter-small || o-list">
           <li
             v-for="time in availableAppointmentTimes"
             :key="time"

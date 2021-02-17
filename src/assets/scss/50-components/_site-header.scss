@@ -1,12 +1,14 @@
 
 .c-site-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
+  // position: fixed;
+  // width: 100%;
+  // top: 0;
+  // left: 0;
+  // padding-top: 0.5rem;
+  // padding-bottom: 0.5rem;
+
+  position: relative;
   z-index: 50;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 
   $site-header-bg: $element-bg;
   background-color: $site-header-bg;
@@ -40,7 +42,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // padding: 1rem 0;
+    // hacks to get the shadow to show up
+    padding-top: 4rem;
+    margin-top: -4rem;
   }
 }
 .c-site-brand-wrap {
@@ -110,11 +114,5 @@
   }
 
   @media (max-width: $to-small) {
-    html.orchid & {
-      $site-header-aside-inner-bg: crimson;
-      @media (max-width: $to-small) {
-        background-color: $site-header-aside-inner-bg;
-      }
-    }
   }
 }

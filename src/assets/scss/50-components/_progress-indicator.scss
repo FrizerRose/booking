@@ -31,4 +31,42 @@
   transition: $speed $easing;
   @media (max-width: $to-medium) {
   }
+  &.-has-theme-color {
+
+    // use only when theme-color is active
+
+    html.orchid & {
+      background-color: $orchid-main;
+    }
+
+    html.goldenrod & {
+      background-color: $goldenrod-main;
+    }
+
+    html.coral & {
+      background-color: $coral-main;
+    }
+  }
+
+  &.-has-glow {
+    filter: blur(0.125em);
+
+    // box-shadow: 0 0 1em 0 $theme-main;
+
+    // html.mode-dark & {
+    //   box-shadow: 0 0 1em 0 $mode-dark-main;
+    // }
+
+    // html.orchid & {
+    //   box-shadow: 0 0 1em 0 $orchid-main;
+    // }
+
+    // html.goldenrod & {
+    //   box-shadow: 0 0 1em 0 $goldenrod-main;
+    // }
+
+    // html.coral & {
+    //   box-shadow: 0 0 1em 0 $coral-main;
+    // }
+  }
 }

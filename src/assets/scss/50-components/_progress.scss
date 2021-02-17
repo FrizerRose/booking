@@ -1,5 +1,8 @@
-.c-progress_inner {
-  position: sticky;
-  top: 2rem;
+.c-progress {
+  position: relative;
   z-index: 10;
+}
+
+.c-progress_inner {
+  padding-bottom: 1rem;
 }

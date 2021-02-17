@@ -27,6 +27,10 @@
 	}
 
 	@media (min-width: $from-big) {
+		max-width: 75%;
+	}
+
+	@media (min-width: $from-colossal) {
 		max-width: 90%;
 	}
 }

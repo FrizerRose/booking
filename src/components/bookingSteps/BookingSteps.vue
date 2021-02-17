@@ -1,23 +1,27 @@
 <template>
   <main class="c-site-main">
+    <section class="c-section">
+      <div class="o-container">
+        <div class="c-progress">
+          <BookingStepsProgress />
+        </div>
+      </div>
+    </section>
     <section class="c-section -first">
       <div class="o-container">
         <div class="o-layout -gutter || o-flex -flex-column@to-medium">
           <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
-            <div class="c-progress">
-              <BookingStepsProgress />
-              <div class="c-configurator">
-                <!-- TAB PANEL -->
-                <ul class="o-list">
-                  <BookingStepServices v-if="currentStep === 1" />
-                  <BookingStepStaff v-if="currentStep === 2" />
-                  <BookingStepDateTime v-if="currentStep === 3" />
-                  <BookingStepPersonalDetails v-if="currentStep === 4" />
-                  <BookingStepConfirmation v-if="currentStep === 5" />
-                  <BookingStepSummary v-if="currentStep === 6" />
-                </ul>
-              <!-- ends TAB PANEL -->
-              </div>
+            <div class="c-configurator">
+              <!-- TAB PANEL -->
+              <ul class="o-list">
+                <BookingStepServices v-if="currentStep === 1" />
+                <BookingStepStaff v-if="currentStep === 2" />
+                <BookingStepDateTime v-if="currentStep === 3" />
+                <BookingStepPersonalDetails v-if="currentStep === 4" />
+                <BookingStepConfirmation v-if="currentStep === 5" />
+                <BookingStepSummary v-if="currentStep === 6" />
+              </ul>
+            <!-- ends TAB PANEL -->
             </div>
           </div>
 

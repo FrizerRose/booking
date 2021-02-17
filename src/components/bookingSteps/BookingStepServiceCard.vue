@@ -100,20 +100,7 @@
                 <span class="o-tag_label">{{ service.duration }} min</span>
               </span>
               <span class="o-tag || u-margin-left">
-                <span class="o-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M12.91 3a1 1 0 10-2 0v2.273H9.863a3.864 3.864 0 000 7.727h1.045v3.727H7a1 1 0 100 2h3.91V21a1 1 0
-                        102 0v-2.273h1.044a3.864 3.864 0 000-7.727H12.91V7.273H16a1 1 0 100-2h-3.09V3zM9.863 7.273a1.864 1.864
-                        0 100 3.727h1.045V7.273H9.864zm4.09 9.454a1.864 1.864 0 000-3.727H12.91v3.727h1.045z"
-                    />
-                  </svg>
-                </span>
+                <span class="o-icon" />
                 <span class="o-tag_label">{{ service.price }} kn</span>
               </span>
             </div>
