@@ -3,7 +3,7 @@
 import { RootState } from '@/store';
 import { ActionContext, ActionTree } from 'vuex';
 import { AppointmentService } from '@/api';
-import { ApiError } from '@/types/customError';
+import { ApiError, ValidationError } from '@/types/customError';
 import LocalActionTypes from './action-types';
 import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
@@ -44,6 +44,10 @@ export interface Actions {
     { commit }: AugmentedSharedActionContext,
     payload: object
   ): void;
+  [LocalActionTypes.CANCEL_APPOINTMENT](
+    { commit }: AugmentedSharedActionContext,
+    id: number | undefined
+  ): void;
 }
 
 // API access.
@@ -54,7 +58,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_APPOINTMENT]({ commit }, id: number) {
     const response = await appointmentService.get(id);
     console.log(response, response.data);
-    if (response.status === 200 && response.data !== undefined) {
+    if (response.status === 200 && response.data) {
       commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
       commit(SharedMutationTypes.CHANGE_SELECTED_SERVICE, response.data.service);
       commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data.customer);
@@ -74,5 +78,19 @@ export const actions: ActionTree<State, RootState> & Actions = {
     } else {
       throw new ApiError('Could not create an appointment.');
     }
+  },
+  async [LocalActionTypes.CANCEL_APPOINTMENT]({ commit }, id: number | undefined) {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise((async (resolve, reject) => {
+      if (id !== undefined) {
+        const response = await appointmentService.destroy(id.toString());
+        if (response.status === 200) {
+          resolve();
+        } else {
+          reject(new ApiError('Could not delete an appointment.'));
+        }
+      }
+      reject(new ValidationError('ID not a number'));
+    }));
   },
 };

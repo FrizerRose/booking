@@ -161,7 +161,13 @@ import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
 
 export default defineComponent({
-  setup() {
+  props: {
+    isRescheduling: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
     const createdAppointment = computed(() => store.state.shared.createdAppointment);
@@ -174,6 +180,13 @@ export default defineComponent({
     const selectedNotice = computed(() => store.state.shared.selectedNotice);
 
     async function nextStep() {
+      if (props.isRescheduling) {
+        const appointment = computed(() => store.state.appointment.appointment);
+        if (appointment.value !== null) {
+          await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment.value.id);
+        }
+      }
+
       await store.dispatch(ActionTypes.CREATE_APPOINTMENT, {
         company: selectedCompany.value?.id,
         staff: selectedStaff.value?.id,

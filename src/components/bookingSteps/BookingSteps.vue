@@ -21,7 +21,10 @@
                   :is-rescheduling="isRescheduling"
                 />
                 <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
-                <BookingStepConfirmation v-if="currentStep === 5" />
+                <BookingStepConfirmation
+                  v-if="currentStep === 5"
+                  :is-rescheduling="isRescheduling"
+                />
                 <BookingStepSummary v-if="currentStep === 6" />
               </ul>
             <!-- ends TAB PANEL -->
