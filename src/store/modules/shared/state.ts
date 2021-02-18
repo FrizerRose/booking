@@ -5,6 +5,7 @@ import Service from '@/types/service';
 import Staff from '@/types/staff';
 
 export interface State {
+  isMenuOpen: boolean;
   currentStep: number;
   selectedCompany: Company | null;
   selectedService: Service | null;
@@ -17,6 +18,7 @@ export interface State {
 }
 
 const state: State = {
+  isMenuOpen: false,
   currentStep: 1,
   selectedCompany: null,
   selectedService: null,

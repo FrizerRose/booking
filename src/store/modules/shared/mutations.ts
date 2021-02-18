@@ -9,6 +9,7 @@ import { State } from './state';
 
 // Blueprint for mutations. All of them have to be implemented.
 export type Mutations<S = State> = {
+  [LocalMutationTypes.TOGGLE_MENU](state: S, payload: boolean): void;
   [LocalMutationTypes.CHANGE_CURRENT_STEP](state: S, payload: number): void;
   [LocalMutationTypes.CHANGE_SELECTED_COMPANY](state: S, payload: Company | null): void;
   [LocalMutationTypes.CHANGE_SELECTED_SERVICE](state: S, payload: Service | null): void;
@@ -22,6 +23,9 @@ export type Mutations<S = State> = {
 
 // Mutuation implementation.
 export const mutations: MutationTree<State> & Mutations = {
+  [LocalMutationTypes.TOGGLE_MENU](state, payload: boolean) {
+    state.isMenuOpen = payload;
+  },
   [LocalMutationTypes.CHANGE_CURRENT_STEP](state, payload: number) {
     state.currentStep = payload;
   },

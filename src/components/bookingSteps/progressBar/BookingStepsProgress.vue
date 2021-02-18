@@ -164,7 +164,6 @@
 import {
   defineComponent,
   computed,
-  ref,
 } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
@@ -173,13 +172,16 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+    const isMenuOpen = computed(() => store.state.shared.isMenuOpen);
 
-    const isMenuOpen = ref(false);
     function toggleMenu() {
-      isMenuOpen.value = !isMenuOpen.value;
+      store.commit(MutationTypes.TOGGLE_MENU, !isMenuOpen.value);
     }
     function goBackOneStep(stepNumber: number) {
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
+      if (stepNumber < 2 && isMenuOpen.value) {
+        store.commit(MutationTypes.TOGGLE_MENU, !isMenuOpen.value);
+      }
     }
 
     const scaleValue = computed(() => (currentStep.value * 0.2) - 0.2);
