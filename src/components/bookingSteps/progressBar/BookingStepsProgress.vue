@@ -16,38 +16,42 @@
           />
         </div>
       </div>
-      <div class="o-layout || o-flex -justify-between -align-center || c-steps-header">
-        <div class="o-layout_item u-width-auto">
-          <!-- <p>odabrani korak</p> -->
-        </div>
-        <div class="o-layout_item u-width-auto">
-          <div class="o-flex">
-            <button
-              v-if="currentStep > 1"
-              class="c-button -primary || is-hidden@from-medium || u-margin-left@to-medium"
-              @click="goBackOneStep(currentStep - 1)"
-            >
-              <span class="o-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M5.858 12l5.293-5.293-1.414-1.414L3.03 12l6.707 6.707 1.414-1.414L5.858 12z" />
-                  <path d="M4.444 11H20v2H4.444v-2z" />
-                </svg>
-              </span>
-              <span
-                class="c-button_label"
-              >back</span>
-            </button>
-            <button
-              class="c-button -primary || c-steps-header_menu-toggle is-hidden@from-medium || u-margin-left@to-medium"
-              @click="toggleMenu()"
-            >
-              <span
-                class="c-button_label"
-              >menu</span>
-            </button>
+      <div
+        v-if="currentStep > 1"
+        class="c-progress-nav"
+      >
+        <div class="o-layout || o-flex -justify-between -align-center || c-steps-header">
+          <div class="o-layout_item u-width-auto">
+            <!-- <p>odabrani korak</p> -->
+          </div>
+          <div class="o-layout_item u-width-auto">
+            <div class="o-flex">
+              <button
+                class="c-button -primary || is-hidden@from-medium || u-margin-left@to-medium"
+                @click="goBackOneStep(currentStep - 1)"
+              >
+                <span class="o-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M5.858 12l5.293-5.293-1.414-1.414L3.03 12l6.707 6.707 1.414-1.414L5.858 12z" />
+                    <path d="M4.444 11H20v2H4.444v-2z" />
+                  </svg>
+                </span>
+                <span
+                  class="c-button_label"
+                >back</span>
+              </button>
+              <button
+                class="c-button -primary || c-steps-header_menu-toggle is-hidden@from-medium || u-margin-left@to-medium"
+                @click="toggleMenu()"
+              >
+                <span
+                  class="c-button_label"
+                >menu</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
