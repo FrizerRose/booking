@@ -66,7 +66,13 @@ import Staff from '@/types/staff';
 
 export default defineComponent({
   components: { Datepicker },
-  setup() {
+  props: {
+    isRescheduling: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
     const allStaff = computed(() => store.state.staff.staff);
@@ -191,7 +197,13 @@ export default defineComponent({
       store.commit(MutationTypes.CHANGE_SELECTED_DATETIME, { date: dateString, time: timeString });
 
       window.scrollTo(0, 0);
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+
+      if (props.isRescheduling) {
+        // Skip personal details
+        store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 2);
+      } else {
+        store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+      }
     }
 
     return {

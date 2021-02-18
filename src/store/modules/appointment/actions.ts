@@ -7,8 +7,10 @@ import { ApiError } from '@/types/customError';
 import LocalActionTypes from './action-types';
 import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
+import StaffMutationTypes from '../staff/mutation-types';
 import { Mutations } from './mutations';
 import { Mutations as SharedMutations } from '../shared/mutations';
+import { Mutations as StaffMutations } from '../staff/mutations';
 import { State } from './state';
 
 // Constraints commit to mutations from the right module
@@ -26,9 +28,16 @@ type AugmentedSharedActionContext = {
   ): ReturnType<SharedMutations[K]>;
 } & Omit<ActionContext<State, RootState>, 'commit'>
 
+type AugmentedStaffActionContext = {
+  commit<K extends keyof StaffMutations>(
+    key: K,
+    payload: Parameters<StaffMutations[K]>[1],
+  ): ReturnType<StaffMutations[K]>;
+} & Omit<ActionContext<State, RootState>, 'commit'>
+
 export interface Actions {
   [LocalActionTypes.FETCH_APPOINTMENT](
-    { commit }: AugmentedActionContext,
+    { commit }: AugmentedActionContext & AugmentedSharedActionContext & AugmentedStaffActionContext,
     id: number
   ): void;
   [LocalActionTypes.CREATE_APPOINTMENT](
@@ -47,6 +56,13 @@ export const actions: ActionTree<State, RootState> & Actions = {
     console.log(response, response.data);
     if (response.status === 200 && response.data !== undefined) {
       commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
+      commit(SharedMutationTypes.CHANGE_SELECTED_SERVICE, response.data.service);
+      commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data.customer);
+      if (response.data.service.staff[0] === undefined) {
+        commit(StaffMutationTypes.CHANGE_STAFF, [response.data.service.staff]);
+      } else {
+        commit(StaffMutationTypes.CHANGE_STAFF, response.data.service.staff);
+      }
     } else {
       throw new ApiError('No appointment by this ID.');
     }

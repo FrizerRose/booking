@@ -175,7 +175,6 @@ export default defineComponent({
       isMenuOpen.value = !isMenuOpen.value;
     }
     function goBackOneStep(stepNumber: number) {
-      console.log(currentStep.value);
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
     }
 

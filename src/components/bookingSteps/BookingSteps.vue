@@ -14,10 +14,13 @@
             <div class="c-configurator">
               <!-- TAB PANEL -->
               <ul class="o-list">
-                <BookingStepServices v-if="currentStep === 1" />
+                <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
                 <BookingStepStaff v-if="currentStep === 2" />
-                <BookingStepDateTime v-if="currentStep === 3" />
-                <BookingStepPersonalDetails v-if="currentStep === 4" />
+                <BookingStepDateTime
+                  v-if="currentStep === 3"
+                  :is-rescheduling="isRescheduling"
+                />
+                <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
                 <BookingStepConfirmation v-if="currentStep === 5" />
                 <BookingStepSummary v-if="currentStep === 6" />
               </ul>
@@ -46,6 +49,7 @@ import BookingStepConfirmation from '@/components/bookingSteps/BookingStepConfir
 import BookingStepSummary from '@/components/bookingSteps/BookingStepSummary.vue';
 import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
+import MutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   components: {
@@ -59,9 +63,19 @@ export default defineComponent({
     BookingStepConfirmation,
     BookingStepSummary,
   },
-  setup() {
+  props: {
+    isRescheduling: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+
+    if (props.isRescheduling) {
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, 2);
+    }
 
     return {
       currentStep,

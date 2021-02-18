@@ -8,6 +8,12 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
+    path: '/reschedule/:appointmentID',
+    name: 'Reschedule',
+    // lazy loaded route
+    component: () => import(/* webpackChunkName: "cancel" */ '../views/Reschedule.vue'),
+  },
+  {
     path: '/cancel',
     name: 'Cancel',
     // lazy loaded route

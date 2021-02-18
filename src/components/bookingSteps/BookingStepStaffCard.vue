@@ -60,6 +60,7 @@ import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
+import Staff from '@/types/staff';
 
 export default defineComponent({
   props: {
@@ -82,13 +83,13 @@ export default defineComponent({
 
       if (props.isIDontCare) {
         const staff = computed(() => store.state.staff.staff);
-        // const randomInt = Math.floor(Math.random() * (staff.value.length - 1));
-        // chosenStaffID = staff.value[randomInt].id;
         chosenStaffID.push(...staff.value.map((worker) => worker.id));
       } else {
         chosenStaffID.push(props.staff.id);
+        store.commit(MutationTypes.CHANGE_STAFF, [props.staff as Staff]);
       }
       await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, chosenStaffID);
+
       window.scrollTo(0, 0);
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }

@@ -6,7 +6,7 @@ import { StaffService } from '@/api';
 import { ApiError } from '@/types/customError';
 import Appointment from '@/types/appointment';
 import LocalActionTypes from './action-types';
-import LocalMutationTypes from './mutation-types';
+// import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
 import { Mutations } from './mutations';
 import { Mutations as SharedMutations } from '../shared/mutations';
