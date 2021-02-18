@@ -5,12 +5,12 @@ import { State } from './state';
 
 // Blueprint for mutations. All of them have to be implemented.
 export type Mutations<S = State> = {
-  [LocalMutationTypes.CHANGE_STAFF](state: S, payload: Staff): void;
+  [LocalMutationTypes.CHANGE_STAFF](state: S, payload: Staff[]): void;
 }
 
 // Mutuation implementation.
 export const mutations: MutationTree<State> & Mutations = {
-  [LocalMutationTypes.CHANGE_STAFF](state, payload: Staff) {
+  [LocalMutationTypes.CHANGE_STAFF](state, payload: Staff[]) {
     state.staff = payload;
   },
 };

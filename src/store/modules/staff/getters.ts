@@ -6,7 +6,7 @@ import Staff from '@/types/staff';
 import { State } from './state';
 
 export type Getters = {
-  getStaff(state: State): Staff | null;
+  getStaff(state: State): Staff[];
 }
 
 export const getters: GetterTree<State, RootState> & Getters = {

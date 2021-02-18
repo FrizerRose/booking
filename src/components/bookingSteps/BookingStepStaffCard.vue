@@ -7,6 +7,13 @@
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
             <figure class="c-card-service_image-wrap -max-width || o-ratio">
               <img
+                v-if="isIDontCare"
+                class="c-card-service_image"
+                src="https://i.postimg.cc/3xvBQ32k/ios-10-shrug-emoji-0.png"
+                alt="img text"
+              >
+              <img
+                v-else
                 class="c-card-service_image"
                 src="https://source.unsplash.com/random"
                 alt="img text"
@@ -17,7 +24,16 @@
             <div class="c-card-service_info u-margin-left u-height-100">
               <div class="o-vertical u-height-100">
                 <div class="o-vertical_item">
-                  <h1 class="c-card-service_heading">
+                  <h1
+                    v-if="isIDontCare"
+                    class="c-card-service_heading"
+                  >
+                    Svejedno mi je
+                  </h1>
+                  <h1
+                    v-else
+                    class="c-card-service_heading"
+                  >
                     {{ staff.name }}
                   </h1>
                 </div>
@@ -44,13 +60,17 @@ import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
-// import Staff from '@/types/staff';
 
 export default defineComponent({
   props: {
     staff: {
       type: Object,
-      required: true,
+      required: false,
+      default: (() => ({ id: 1, name: '' })),
+    },
+    isIDontCare: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
@@ -58,8 +78,17 @@ export default defineComponent({
     const currentStep = computed(() => store.state.shared.currentStep);
 
     async function nextStep() {
-      // store.commit(MutationTypes.CHANGE_SELECTED_STAFF, props.staff as Staff);
-      await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, props.staff.id);
+      const chosenStaffID = [];
+
+      if (props.isIDontCare) {
+        const staff = computed(() => store.state.staff.staff);
+        // const randomInt = Math.floor(Math.random() * (staff.value.length - 1));
+        // chosenStaffID = staff.value[randomInt].id;
+        chosenStaffID.push(...staff.value.map((worker) => worker.id));
+      } else {
+        chosenStaffID.push(props.staff.id);
+      }
+      await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, chosenStaffID);
       window.scrollTo(0, 0);
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
     }

@@ -8,6 +8,7 @@
   >
     <!-- odaberi radnika -->
     <ul class="o-layout o-list -gutter">
+      <BookingStepStaffCard :is-i-dont-care="true" />
       <BookingStepStaffCard
         v-for="worker in staff"
         :key="worker.id"
