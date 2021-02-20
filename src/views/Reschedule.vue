@@ -9,13 +9,10 @@
   >
     <section class="c-section">
       <div class="o-container">
-        <div class="o-background-wrap">
-          <div class="o-background -has-shadow" />
-          <div class="o-orphan">
-            <h1 class="c-heading">
-              Rezervacija ne postoji. Ako ste joj već zamjenili termin trebali ste dobiti mail sa novim linkom za promjenu rezervacije.
-            </h1>
-          </div>
+        <div class="o-orphan">
+          <h1 class="c-heading">
+            Rezervacija ne postoji. Ako ste joj već zamjenili termin trebali ste dobiti mail sa novim linkom za promjenu rezervacije.
+          </h1>
         </div>
       </div>
     </section>
