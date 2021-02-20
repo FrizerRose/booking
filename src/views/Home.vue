@@ -1,5 +1,5 @@
 <template>
-  <BookingSteps v-if="!selectedCompany" />
+  <BookingSteps v-if="selectedCompany" />
 
   <main
     v-else
