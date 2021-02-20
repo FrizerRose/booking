@@ -1,11 +1,20 @@
 <template>
   <BookingSteps v-if="selectedCompany" />
-  <main class="c-site-main">
-    <section>
+
+  <main
+    v-else
+    class="c-site-main"
+  >
+    <section class="c-section">
       <div class="o-container">
-        <h1 class="c-heading">
-          Obrt nije pronađen.
-        </h1>
+        <div class="o-background-wrap">
+          <div class="o-background -has-shadow" />
+          <div class="o-orphan">
+            <h1 class="c-heading">
+              Obrt nije pronađen.
+            </h1>
+          </div>
+        </div>
       </div>
     </section>
   </main>
