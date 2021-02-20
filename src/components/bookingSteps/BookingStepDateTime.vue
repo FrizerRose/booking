@@ -41,7 +41,7 @@
             class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item"
           >
             <button
-              class="c-button -tab"
+              class="c-button -primary -step"
               @click="nextStep(time)"
             >
               <span class="c-button_label">{{ time.time }}</span>

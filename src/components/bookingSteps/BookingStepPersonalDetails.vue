@@ -175,7 +175,7 @@
         </div>
       </div>
       <button
-        class="c-button -primary || is-submit"
+        class="c-button -secondary -submit"
         type="submit"
         @click.prevent="nextStep()"
       >
