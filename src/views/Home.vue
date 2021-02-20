@@ -1,8 +1,14 @@
 <template>
   <BookingSteps v-if="selectedCompany" />
-  <div v-else>
-    <h1>Obrt nije pronađen.</h1>
-  </div>
+  <main class="c-site-main">
+    <section>
+      <div class="o-container">
+        <h1 class="c-heading">
+          Obrt nije pronađen.
+        </h1>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script lang="ts">

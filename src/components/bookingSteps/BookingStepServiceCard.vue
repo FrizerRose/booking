@@ -37,7 +37,7 @@
             </div>
             <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
               <button
-                class="c-button -tab || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
+                class="c-button -primary || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
                 @click="selectService()"
               >
                 <span class="has-links-inside_background" />
