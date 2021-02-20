@@ -35,19 +35,11 @@
 import TheLeftSidebar from '@/components/layout/TheLeftSidebar.vue';
 import TheRightSidebar from '@/components/layout/TheRightSidebar.vue';
 import { defineComponent } from 'vue';
-import { useStore } from '@/store';
-import ActionTypes from '@/store/action-types';
 
 export default defineComponent({
   components: {
     TheLeftSidebar,
     TheRightSidebar,
-  },
-  setup() {
-    const store = useStore();
-
-    // TODO: fetch using slug from URL
-    store.dispatch(ActionTypes.FETCH_COMPANY, 1);
   },
 });
 </script>

@@ -118,9 +118,10 @@
               >uvjete poslovanja</a>.
             </p>
           </div>
-          <div class="c-form_item">
+          <div :class="{'c-form_item': true, 'has-error': termsError}">
             <div>
               <span
+                v-if="termsError"
                 class="o-icon"
               >
                 <svg
@@ -134,8 +135,10 @@
             </div>
             <input
               id="id-form-checkbox"
+              v-model="termsChecked"
               class="c-form_checkbox"
               type="checkbox"
+              @change="termsError = false"
             >
             <label
               class="c-form_checkboxLabel"
@@ -194,8 +197,16 @@ export default defineComponent({
     const selectedNotice = computed(() => store.state.shared.selectedNotice);
 
     const hasError = ref(false);
+    const termsChecked = ref(false);
+    const termsError = ref(false);
 
     async function confirm() {
+      if (!termsChecked.value) {
+        termsError.value = true;
+        return;
+      }
+      termsError.value = false;
+
       // Cancel the original appointment if this is a rescheduling
       if (props.isRescheduling) {
         const appointment = computed(() => store.state.appointment.appointment);
@@ -230,6 +241,8 @@ export default defineComponent({
       selectedDateTime,
       selectedNotice,
       hasError,
+      termsChecked,
+      termsError,
     };
   },
 });
