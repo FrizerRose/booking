@@ -192,7 +192,7 @@ export default defineComponent({
         // Pick the worker with least amount of appointments on the day, if two are equal, pick randomly
         staffAppointmentsToday.sort((workerA, workerB) => workerA.count - workerB.count);
         if (staffAppointmentsToday[0].count === staffAppointmentsToday[1].count) {
-          const randomInt = Math.floor(Math.random());
+          const randomInt = Math.floor(Math.random() * 2);
           chosenStaff = staffAppointmentsToday[randomInt].worker;
         } else {
           chosenStaff = staffAppointmentsToday[0].worker;
