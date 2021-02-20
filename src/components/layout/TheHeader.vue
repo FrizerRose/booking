@@ -32,7 +32,3 @@ export default defineComponent({
   // },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

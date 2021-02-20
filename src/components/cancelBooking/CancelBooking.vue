@@ -5,16 +5,15 @@
         <div class="o-layout -gutter || o-flex -flex-column@to-medium">
           <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
             <div class="c-progress">
-              <!-- <BookingStepsProgress /> -->
               <div class="c-configurator">
                 <!-- if nemoguće poništiti ili je već poništeno -->
                 <h1
-                  v-if="requestSent && !isSuccess"
+                  v-if="(requestSent && !isSuccess) || (!requestSent && !appointment)"
                   class="c-heading"
                 >
                   Greška
                 </h1>
-                <p v-if="requestSent && !isSuccess">
+                <p v-if="(requestSent && !isSuccess) || (!requestSent && !appointment)">
                   Termin nije moguće poništiti. Vjerojatno ste ga ranije poništili. Vratite se na <a
                     href="/"
                     class="o-link"
@@ -146,6 +145,7 @@ export default defineComponent({
     const requestSent = ref(false);
     const isSuccess = ref(false);
 
+    // Parse the appointment id from the route
     let appointmentID: number;
     if (typeof route.params.appointmentID === 'string') {
       appointmentID = parseInt(route.params.appointmentID, 10);
@@ -158,15 +158,13 @@ export default defineComponent({
     const appointment = computed(() => store.state.appointment.appointment);
 
     async function cancel() {
-      if (appointment.value !== null) {
-        try {
-          await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment.value.id);
-          requestSent.value = true;
-          isSuccess.value = true;
-        } catch (error) {
-          requestSent.value = true;
-          isSuccess.value = false;
-        }
+      try {
+        await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment?.value?.id);
+        requestSent.value = true;
+        isSuccess.value = true;
+      } catch (error) {
+        requestSent.value = true;
+        isSuccess.value = false;
       }
     }
 

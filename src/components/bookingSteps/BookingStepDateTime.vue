@@ -6,7 +6,6 @@
     role="tabpanel"
     aria-labelledby="tab-id-odabir-termina"
   >
-    <!-- ends termin -->
     <div class="o-layout">
       <div
         class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
@@ -34,7 +33,10 @@
       <div
         class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
       >
-        <ul class="c-timeslots-list o-layout -gutter-small || o-list">
+        <ul
+          v-if="availableAppointmentTimes.length"
+          class="c-timeslots-list o-layout -gutter-small || o-list"
+        >
           <li
             v-for="time in availableAppointmentTimes"
             :key="time"
@@ -42,15 +44,17 @@
           >
             <button
               class="c-button -tab"
-              @click="nextStep(time)"
+              @click="selectDateTime(time)"
             >
               <span class="c-button_label">{{ time.time }}</span>
             </button>
           </li>
         </ul>
+        <div v-else>
+          Nema slobodnih termina za odabrani dan.
+        </div>
       </div>
     </div>
-    <!-- ends termin -->
   </li>
 </template>
 
@@ -63,6 +67,10 @@ import MutationTypes from '@/store/mutation-types';
 import Datepicker from 'vue3-datepicker';
 import Appointment from '@/types/appointment';
 import Staff from '@/types/staff';
+import { nextStep } from '@/utils/helpers';
+import { dateIsToday, getDateStringFromDate } from '@/utils/time';
+
+type StaffWithAvailability = Staff & { available: boolean };
 
 export default defineComponent({
   components: { Datepicker },
@@ -74,15 +82,21 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const currentStep = computed(() => store.state.shared.currentStep);
-    const allStaff = computed(() => store.state.staff.staff);
-    const staffArray: (Staff & { available: boolean })[] = [];
-    // eslint-disable-next-line no-return-assign
-    allStaff.value.forEach((staff) => staffArray[staff.id] = { ...staff, available: true });
+    const selectedService = computed(() => store.state.shared.selectedService);
+    const selectedStaff = computed(() => store.state.shared.selectedStaff);
+
+    // Data for the datepicker
+    const today = new Date();
+    const selectedDate = ref(new Date());
+    const monthFromNow = ref(new Date());
+    const bokingWindow = 30;
+    monthFromNow.value.setDate(monthFromNow.value.getDate() + bokingWindow);
 
     // TODO: fetch startTime and endTime from the api
     const startTime = 8;
     const endTime = 16;
+    // TODO: use staff-specific working hours
+    // Create an array with formatted times of day with 15 minute increments
     const possibleAppointmentTimes: string[] = [];
     for (let i = startTime; i < endTime; i += 1) {
       const prefix = i < 10 ? '0' : '';
@@ -92,40 +106,27 @@ export default defineComponent({
       possibleAppointmentTimes.push(`${prefix + i}:45`);
     }
 
-    // For the datepicker
-    const selectedDate = ref(new Date());
-    const today = new Date();
-    const bokingWindow = 30;
-    const monthFromNow = ref(new Date());
-    monthFromNow.value.setDate(monthFromNow.value.getDate() + bokingWindow);
-
-    function getDateStringFromDate(date: Date) {
-      const dd = String(date.getDate());
-      let mm = String(date.getMonth() + 1); // January is 0!
-      const yyyy = date.getFullYear();
-
-      if (mm.length < 2) {
-        mm = `0${mm}`;
-      }
-
-      return `${yyyy}-${mm}-${dd}`;
-    }
-
     const reservedAppointments = computed(() => store.state.shared.reservedAppointments);
     const appointmentsOnNewDate = computed(() => reservedAppointments.value.filter(
       (appointment: Appointment) => appointment.date === getDateStringFromDate(selectedDate.value),
     ));
 
-    const selectedService = computed(() => store.state.shared.selectedService);
-
-    function dateIsToday(date: Date) {
-      return date.getDate() === today.getDate()
-        && date.getMonth() === today.getMonth()
-        && date.getFullYear() === today.getFullYear();
+    // Array of Staff to be considered
+    const availableStaff: StaffWithAvailability[] = [];
+    if (selectedStaff.value) {
+      // If there was staff selected in the previous step, only add it
+      availableStaff[selectedStaff.value.id] = { ...selectedStaff.value, available: true };
+    } else {
+      // Otherwise, add all staff
+      const allStaff = computed(() => store.state.staff.allStaff);
+      allStaff.value.forEach((staff) => {
+        availableStaff[staff.id] = { ...staff, available: true };
+      });
     }
 
     const appointmentAvailability = computed(() => {
-      let timeArray = possibleAppointmentTimes.map((time) => ({ time, staff: JSON.parse(JSON.stringify(staffArray)) }));
+      // Create an array of objects containing Time and Available Staff
+      let timeArray = possibleAppointmentTimes.map((time) => ({ time, staff: JSON.parse(JSON.stringify(availableStaff)) }));
 
       // if the selectedDay is today, filter out appointments that have passed
       if (dateIsToday(selectedDate.value)) {
@@ -136,78 +137,87 @@ export default defineComponent({
           return today < timeOfAppointment;
         });
       }
-      appointmentsOnNewDate.value.forEach((appointment) => {
-        const futureSlotsTaken = appointment.service.duration / 15;
-        const index = timeArray.findIndex((item) => item.time === appointment.time);
+
+      appointmentsOnNewDate.value.forEach((reservedAppointment) => {
+        // Find time slot that corresponds with the start of the already reserved appointment
+        const index = timeArray.findIndex((item) => item.time === reservedAppointment.time);
+
+        // Remove slots that are during the Service duration
+        const futureSlotsTaken = reservedAppointment.service.duration / 15;
         for (let i = 0; i < futureSlotsTaken; i += 1) {
           if (timeArray[index + i] !== undefined) {
-            timeArray[index + i].staff[appointment.staff.id].available = false;
+            timeArray[index + i].staff[reservedAppointment.staff.id].available = false;
           }
         }
 
+        // Remove slots that leave too little time to finish the Service before the already reserved appointment
         if (selectedService?.value?.duration) {
           const pastSlotsTaken = selectedService.value?.duration / 15;
           for (let i = 0; i < pastSlotsTaken; i += 1) {
             if (timeArray[index - i] !== undefined) {
-              timeArray[index - i].staff[appointment.staff.id].available = false;
+              timeArray[index - i].staff[reservedAppointment.staff.id].available = false;
             }
           }
         }
       });
 
-      return timeArray.map(((time) => {
-        if (!time.staff.some((staff: Staff & {available: boolean}) => staff?.available)) {
-          // eslint-disable-next-line no-param-reassign
-          time.time = '';
+      return timeArray.map(((timeSlot) => {
+        const hasAvailableStaff = timeSlot.staff.some((staff: StaffWithAvailability) => staff?.available);
+        // If all staff is unavailable during the time slot, mark it empty
+        if (!hasAvailableStaff) {
+          return { ...timeSlot, time: '' };
         }
-        return time;
+        return timeSlot;
       }));
     });
 
+    // Filter out time slots marked as empty (no available staff)
     const availableAppointmentTimes = computed(() => appointmentAvailability.value.filter((item) => item.time !== ''));
 
-    function nextStep(time: {time: string; staff: (Staff & { available: boolean })[]}) {
-      // Formatting date and time strings
-      const dateString = getDateStringFromDate(selectedDate.value);
-      const timeString = `${time.time}:00`;
+    function selectDateTime(time: {time: string; staff: StaffWithAvailability[]}) {
+      const staffAvailableOnDay = time.staff.filter((worker) => worker?.available);
 
-      const availableStaff = time.staff.filter((worker) => worker?.available);
+      let chosenStaff: Staff;
+      // More than 1 Staff available for the appointment
+      if (staffAvailableOnDay.length > 1) {
+        // Create array of objects containing staff and how many appointments they have on the selected day
+        const staffAppointmentsToday: { worker: StaffWithAvailability; count: number }[] = [];
+        staffAvailableOnDay.forEach((worker) => {
+          staffAppointmentsToday[worker.id] = { worker, count: 0 };
+        });
+        appointmentsOnNewDate.value.forEach((appointment) => {
+          staffAppointmentsToday[appointment.staff.id].count += 1;
+        });
 
-      let selectedStaff: Staff;
-
-      if (availableStaff.length > 1) {
-        const staffAppointmentsToday: { worker: (Staff & { available: boolean }); count: number }[] = [];
-        // eslint-disable-next-line no-return-assign
-        availableStaff.forEach((worker) => staffAppointmentsToday[worker.id] = { worker, count: 0 });
-        // eslint-disable-next-line no-return-assign
-        appointmentsOnNewDate.value.forEach((appointment) => staffAppointmentsToday[appointment.staff.id].count += 1);
-
+        // Pick the worker with least amount of appointments on the day, if two are equal, pick randomly
         staffAppointmentsToday.sort((workerA, workerB) => workerA.count - workerB.count);
         if (staffAppointmentsToday[0].count === staffAppointmentsToday[1].count) {
           const randomInt = Math.floor(Math.random());
-          selectedStaff = staffAppointmentsToday[randomInt].worker;
+          chosenStaff = staffAppointmentsToday[randomInt].worker;
         } else {
-          selectedStaff = staffAppointmentsToday[0].worker;
+          chosenStaff = staffAppointmentsToday[0].worker;
         }
       } else {
-        [selectedStaff] = availableStaff;
+        // Only one staff available
+        [chosenStaff] = staffAvailableOnDay;
       }
+      store.commit(MutationTypes.CHANGE_SELECTED_STAFF, chosenStaff);
 
-      store.commit(MutationTypes.CHANGE_SELECTED_STAFF, selectedStaff as Staff);
+      // Formatting date and time strings
+      const dateString = getDateStringFromDate(selectedDate.value);
+      const timeString = `${time.time}:00`;
       store.commit(MutationTypes.CHANGE_SELECTED_DATETIME, { date: dateString, time: timeString });
 
-      window.scrollTo(0, 0);
-
       if (props.isRescheduling) {
-        // Skip personal details
-        store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 2);
+        // Skip personal details when rescheduling because we already have them saved
+        nextStep(2);
       } else {
-        store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+        nextStep();
       }
     }
 
     return {
-      nextStep,
+      selectDateTime,
       availableAppointmentTimes,
       selectedDate,
       today,
@@ -217,7 +227,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

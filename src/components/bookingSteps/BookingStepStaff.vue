@@ -6,7 +6,6 @@
     role="tabpanel"
     aria-labelledby="tab-id-odabir-radnika"
   >
-    <!-- odaberi radnika -->
     <ul class="o-layout o-list -gutter">
       <BookingStepStaffCard :is-i-dont-care="true" />
       <BookingStepStaffCard
@@ -15,7 +14,6 @@
         :staff="worker"
       />
     </ul>
-    <!-- ends odaberi radnika -->
   </li>
 </template>
 
@@ -30,8 +28,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-
-    const staff = computed(() => store.state.staff.staff);
+    const staff = computed(() => store.state.staff.allStaff);
 
     return {
       staff,
@@ -39,7 +36,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

@@ -40,7 +40,7 @@ const companyService = new CompanyService();
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_COMPANY]({ commit }, id: number) {
     const response = await companyService.get(id);
-    if (response.status === 200 && response.data !== undefined) {
+    if (response.status === 200 && response.data) {
       commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
       commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
     } else {

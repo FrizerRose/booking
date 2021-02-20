@@ -4,6 +4,7 @@ import { RootState } from '@/store';
 import { ActionContext, ActionTree } from 'vuex';
 import { AppointmentService } from '@/api';
 import { ApiError, ValidationError } from '@/types/customError';
+import { AxiosResponse } from 'axios';
 import LocalActionTypes from './action-types';
 import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
@@ -39,15 +40,15 @@ export interface Actions {
   [LocalActionTypes.FETCH_APPOINTMENT](
     { commit }: AugmentedActionContext & AugmentedSharedActionContext & AugmentedStaffActionContext,
     id: number
-  ): void;
+  ): Promise<AxiosResponse>;
   [LocalActionTypes.CREATE_APPOINTMENT](
     { commit }: AugmentedSharedActionContext,
     payload: object
-  ): void;
+  ): Promise<unknown>;
   [LocalActionTypes.CANCEL_APPOINTMENT](
     { commit }: AugmentedSharedActionContext,
     id: number | undefined
-  ): void;
+  ): Promise<unknown>;
 }
 
 // API access.
@@ -55,9 +56,8 @@ const appointmentService = new AppointmentService();
 
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
-  async [LocalActionTypes.FETCH_APPOINTMENT]({ commit }, id: number) {
+  async [LocalActionTypes.FETCH_APPOINTMENT]({ commit }, id: number): Promise<AxiosResponse> {
     const response = await appointmentService.get(id);
-    console.log(response, response.data);
     if (response.status === 200 && response.data) {
       commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
       commit(SharedMutationTypes.CHANGE_SELECTED_SERVICE, response.data.service);
@@ -70,27 +70,33 @@ export const actions: ActionTree<State, RootState> & Actions = {
     } else {
       throw new ApiError('No appointment by this ID.');
     }
+
+    return response;
   },
-  async [LocalActionTypes.CREATE_APPOINTMENT]({ commit }, payload) {
-    const response = await appointmentService.create(payload);
-    if (response.status === 201 && response.data !== undefined) {
-      commit(SharedMutationTypes.CHANGE_CREATED_APPOINTMENT, response.data);
-    } else {
-      throw new ApiError('Could not create an appointment.');
-    }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async [LocalActionTypes.CREATE_APPOINTMENT]({ commit }, payload): Promise<unknown> {
+    return new Promise((resolve, reject) => (async () => {
+      const response = await appointmentService.create(payload);
+      if (response.status === 201) {
+        resolve(true);
+      } else {
+        reject(new ApiError('Could not create an appointment.'));
+      }
+    })());
   },
-  async [LocalActionTypes.CANCEL_APPOINTMENT]({ commit }, id: number | undefined) {
-    // eslint-disable-next-line no-async-promise-executor
-    return new Promise((async (resolve, reject) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async [LocalActionTypes.CANCEL_APPOINTMENT]({ commit }, id: number | undefined): Promise<unknown> {
+    return new Promise((resolve, reject) => (async () => {
       if (id !== undefined) {
         const response = await appointmentService.destroy(id.toString());
         if (response.status === 200) {
-          resolve();
+          resolve(true);
         } else {
           reject(new ApiError('Could not delete an appointment.'));
         }
+      } else {
+        reject(new ValidationError('ID not a number'));
       }
-      reject(new ValidationError('ID not a number'));
-    }));
+    })());
   },
 };

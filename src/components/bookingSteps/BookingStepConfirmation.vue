@@ -6,8 +6,17 @@
     role="tabpanel"
     aria-labelledby="tab-id-provjeri-i-potvrdi"
   >
-    <div class="c-summary">
-      <div class="c-summary_row">
+    <div v-if="hasError">
+      <h1>Imamo problem sa serverom. Molimo pokušajte kasnije.</h1>
+    </div>
+    <div
+      v-else
+      class="c-summary"
+    >
+      <div
+        v-if="selectedService"
+        class="c-summary_row"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
@@ -21,7 +30,10 @@
           </div>
         </div>
       </div>
-      <div class="c-summary_row">
+      <div
+        v-if="selectedStaff"
+        class="c-summary_row"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
@@ -49,7 +61,10 @@
           </div>
         </div>
       </div>
-      <div class="c-summary_row">
+      <div
+        v-if="selectedCustomer"
+        class="c-summary_row"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
@@ -77,6 +92,7 @@
               v-if="selectedNotice !== ''"
               class="c-summary_answer"
             >
+              <!-- eslint-disable-next-line vue/no-v-html -->
               <pre v-html="selectedNotice" /><br>
             </p>
             <p
@@ -144,7 +160,7 @@
           </div>
           <button
             class="c-button -primary || is-submit"
-            @click="nextStep()"
+            @click="confirm()"
           >
             <span class="c-button_label">Potvrdi</span>
           </button>
@@ -155,10 +171,10 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/store';
-import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
+import { nextStep } from '@/utils/helpers';
 
 export default defineComponent({
   props: {
@@ -169,8 +185,6 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const currentStep = computed(() => store.state.shared.currentStep);
-    const createdAppointment = computed(() => store.state.shared.createdAppointment);
 
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
     const selectedService = computed(() => store.state.shared.selectedService);
@@ -179,45 +193,44 @@ export default defineComponent({
     const selectedDateTime = computed(() => store.state.shared.selectedDateTime);
     const selectedNotice = computed(() => store.state.shared.selectedNotice);
 
-    async function nextStep() {
+    const hasError = ref(false);
+
+    async function confirm() {
+      // Cancel the original appointment if this is a rescheduling
       if (props.isRescheduling) {
         const appointment = computed(() => store.state.appointment.appointment);
-        if (appointment.value !== null) {
+        if (appointment.value) {
           await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment.value.id);
         }
       }
 
-      await store.dispatch(ActionTypes.CREATE_APPOINTMENT, {
-        company: selectedCompany.value?.id,
-        staff: selectedStaff.value?.id,
-        service: selectedService.value?.id,
-        customer: selectedCustomer.value?.id,
-        message: selectedNotice.value,
-        date: selectedDateTime.value.date,
-        time: selectedDateTime.value.time,
-      });
+      try {
+        await store.dispatch(ActionTypes.CREATE_APPOINTMENT, {
+          company: selectedCompany.value?.id,
+          staff: selectedStaff.value?.id,
+          service: selectedService.value?.id,
+          customer: selectedCustomer.value?.id,
+          message: selectedNotice.value,
+          date: selectedDateTime.value.date,
+          time: selectedDateTime.value.time,
+        });
 
-      if (createdAppointment.value) {
-        window.scrollTo(0, 0);
-        store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
-      } else {
-        // TODO: print out an error message
+        nextStep();
+      } catch {
+        hasError.value = true;
       }
     }
 
     return {
-      nextStep,
+      confirm,
       selectedCompany,
       selectedService,
       selectedStaff,
       selectedCustomer,
       selectedDateTime,
       selectedNotice,
+      hasError,
     };
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

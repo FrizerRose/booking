@@ -9,7 +9,7 @@ import { State } from './state';
 
 // Blueprint for mutations. All of them have to be implemented.
 export type Mutations<S = State> = {
-  [LocalMutationTypes.TOGGLE_MENU](state: S, payload: boolean): void;
+  [LocalMutationTypes.CHANGE_MENU_OPEN](state: S, payload: boolean): void;
   [LocalMutationTypes.CHANGE_CURRENT_STEP](state: S, payload: number): void;
   [LocalMutationTypes.CHANGE_SELECTED_COMPANY](state: S, payload: Company | null): void;
   [LocalMutationTypes.CHANGE_SELECTED_SERVICE](state: S, payload: Service | null): void;
@@ -18,12 +18,11 @@ export type Mutations<S = State> = {
   [LocalMutationTypes.CHANGE_SELECTED_CUSTOMER](state: S, payload: Customer | null): void;
   [LocalMutationTypes.CHANGE_SELECTED_NOTICE](state: S, payload: string): void;
   [LocalMutationTypes.ADD_RESERVED_APPOINTMENTS](state: S, payload: Appointment[]): void;
-  [LocalMutationTypes.CHANGE_CREATED_APPOINTMENT](state: S, payload: Appointment | null): void;
 }
 
 // Mutuation implementation.
 export const mutations: MutationTree<State> & Mutations = {
-  [LocalMutationTypes.TOGGLE_MENU](state, payload: boolean) {
+  [LocalMutationTypes.CHANGE_MENU_OPEN](state, payload: boolean) {
     state.isMenuOpen = payload;
   },
   [LocalMutationTypes.CHANGE_CURRENT_STEP](state, payload: number) {
@@ -49,8 +48,5 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [LocalMutationTypes.ADD_RESERVED_APPOINTMENTS](state, payload: Appointment[]) {
     state.reservedAppointments.push(...payload);
-  },
-  [LocalMutationTypes.CHANGE_CREATED_APPOINTMENT](state, payload: Appointment | null) {
-    state.createdAppointment = payload;
   },
 };

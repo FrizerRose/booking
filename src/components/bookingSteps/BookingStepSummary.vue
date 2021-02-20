@@ -11,7 +11,10 @@
       Provjerite e-mail. Na navedenu e-mail adresu će vam stići poruka s potvrdom termina.
     </p>
     <div class="c-summary">
-      <div class="c-summary_row">
+      <div
+        v-if="selectedService"
+        class="c-summary_row"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
@@ -25,7 +28,10 @@
           </div>
         </div>
       </div>
-      <div class="c-summary_row">
+      <div
+        v-if="selectedStaff"
+        class="c-summary_row"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
@@ -53,7 +59,10 @@
           </div>
         </div>
       </div>
-      <div class="c-summary_row">
+      <div
+        v-if="selectedCustomer"
+        class="c-summary_row"
+      >
         <div class="o-layout">
           <div class="o-layout_item u-1/2">
             <p class="c-summary_question">
@@ -81,6 +90,7 @@
               v-if="selectedNotice !== ''"
               class="c-summary_answer"
             >
+              <!-- eslint-disable-next-line vue/no-v-html -->
               <pre v-html="selectedNotice" /><br>
             </p>
             <p
@@ -104,7 +114,6 @@ import { useStore } from '@/store';
 export default defineComponent({
   setup() {
     const store = useStore();
-    const createdAppointment = computed(() => store.state.shared.createdAppointment);
 
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
     const selectedService = computed(() => store.state.shared.selectedService);
@@ -114,7 +123,6 @@ export default defineComponent({
     const selectedNotice = computed(() => store.state.shared.selectedNotice);
 
     return {
-      createdAppointment,
       selectedCompany,
       selectedService,
       selectedStaff,
@@ -125,7 +133,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

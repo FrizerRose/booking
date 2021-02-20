@@ -1,6 +1,12 @@
 <template>
   <li class="o-layout_item o-list_item -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
-    <div class="o-background-wrap">
+    <div v-if="hasError">
+      <h1>Greška. Molimo pokušajte kasnije.</h1>
+    </div>
+    <div
+      v-else
+      class="o-background-wrap"
+    >
       <div class="o-background -has-shadow" />
       <article class="c-card-service has-links-inside">
         <div class="o-layout || o-flex">
@@ -40,7 +46,7 @@
                 <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
                   <button
                     class="c-button -tab || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
-                    @click="nextStep()"
+                    @click="selectStaff()"
                   >
                     <span class="has-links-inside_background" />
                     <span class="c-button_label">Odaberi</span>
@@ -56,11 +62,12 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
 import Staff from '@/types/staff';
+import { nextStep } from '@/utils/helpers';
 
 export default defineComponent({
   props: {
@@ -76,31 +83,36 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const currentStep = computed(() => store.state.shared.currentStep);
 
-    async function nextStep() {
+    const hasError = ref(false);
+
+    async function selectStaff() {
       const chosenStaffID = [];
 
+      // Create a list of selected Staff
       if (props.isIDontCare) {
-        const staff = computed(() => store.state.staff.staff);
-        chosenStaffID.push(...staff.value.map((worker) => worker.id));
+        // Add all Staff
+        const allStaff = computed(() => store.state.staff.allStaff);
+        chosenStaffID.push(...allStaff.value.map((worker) => worker.id));
       } else {
+        // Add selected Staff
         chosenStaffID.push(props.staff.id);
-        store.commit(MutationTypes.CHANGE_STAFF, [props.staff as Staff]);
+        store.commit(MutationTypes.CHANGE_SELECTED_STAFF, props.staff as Staff);
       }
-      await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, chosenStaffID);
 
-      window.scrollTo(0, 0);
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+      // Get details about the chosen Staff (reserved appointments)
+      try {
+        await store.dispatch(ActionTypes.FETCH_STAFF_BY_ID, chosenStaffID);
+        nextStep();
+      } catch {
+        hasError.value = true;
+      }
     }
 
     return {
-      nextStep,
+      selectStaff,
+      hasError,
     };
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

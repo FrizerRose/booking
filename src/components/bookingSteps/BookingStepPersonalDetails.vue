@@ -177,7 +177,7 @@
       <button
         class="c-button -primary || is-submit"
         type="submit"
-        @click.prevent="nextStep()"
+        @click.prevent="submitForm()"
       >
         <span class="c-button_label">Submit</span>
       </button>
@@ -193,11 +193,11 @@ import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
 import Customer from '@/types/customer';
+import { nextStep, isEmail } from '@/utils/helpers';
 
 export default defineComponent({
   setup() {
     const store = useStore();
-    const currentStep = computed(() => store.state.shared.currentStep);
     const company = computed(() => store.state.shared.selectedCompany);
 
     const formData = reactive({
@@ -211,7 +211,8 @@ export default defineComponent({
     const hasError = ref(false);
     const errorMsg = ref('');
 
-    async function nextStep() {
+    async function submitForm() {
+      // Reset error value on every submit
       hasError.value = false;
 
       if (formData.name.data === '') {
@@ -220,7 +221,8 @@ export default defineComponent({
       } else {
         formData.name.error = false;
       }
-      if (formData.email.data === '') {
+      if (formData.email.data === ''
+      || !isEmail(formData.email.data)) {
         formData.email.error = true;
         hasError.value = true;
       } else {
@@ -239,21 +241,21 @@ export default defineComponent({
         formData.terms.error = false;
       }
 
+      // Some fields missing, display error msg
       if (hasError.value) {
         errorMsg.value = 'Molimo vas da ispunite naznačena polja i pokušate ponovo.';
       } else {
-        const response = await store.dispatch(ActionTypes.CREATE_CUSTOMER, {
-          name: formData.name.data,
-          email: formData.email.data,
-          phone: formData.phone.data,
-          company: company.value?.id,
-        } as Customer);
+        try {
+          await store.dispatch(ActionTypes.CREATE_CUSTOMER, {
+            name: formData.name.data,
+            email: formData.email.data,
+            phone: formData.phone.data,
+            company: company.value?.id,
+          } as Customer);
 
-        if (response.status === 201) {
           store.commit(MutationTypes.CHANGE_SELECTED_NOTICE, formData.message.data.replace(/(<([^>]+)>)/gi, ''));
-          window.scrollTo(0, 0);
-          store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
-        } else {
+          nextStep();
+        } catch {
           hasError.value = true;
           errorMsg.value = 'Imamo problem sa serverom. Molimo pokušajte kasnije.';
         }
@@ -261,7 +263,7 @@ export default defineComponent({
     }
 
     return {
-      nextStep,
+      submitForm,
       formData,
       hasError,
       errorMsg,
@@ -269,7 +271,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

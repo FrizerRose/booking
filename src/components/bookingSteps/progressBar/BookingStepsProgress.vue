@@ -27,8 +27,9 @@
           <div class="o-layout_item u-width-auto">
             <div class="o-flex">
               <button
+                v-if="currentStep > 1"
                 class="c-button -primary || is-hidden@from-medium || u-margin-left@to-medium"
-                @click="goBackOneStep(currentStep - 1)"
+                @click="goBackOneStep()"
               >
                 <span class="o-icon">
                   <svg
@@ -175,34 +176,37 @@ export default defineComponent({
     const isMenuOpen = computed(() => store.state.shared.isMenuOpen);
 
     function toggleMenu() {
-      store.commit(MutationTypes.TOGGLE_MENU, !isMenuOpen.value);
+      store.commit(MutationTypes.CHANGE_MENU_OPEN, !isMenuOpen.value);
     }
-    function goBackOneStep(stepNumber: number) {
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
-      if (stepNumber < 2 && isMenuOpen.value) {
-        store.commit(MutationTypes.TOGGLE_MENU, !isMenuOpen.value);
+
+    function goBackOneStep() {
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value - 1);
+      if (isMenuOpen.value) {
+        toggleMenu();
       }
     }
 
-    const scaleValue = computed(() => (currentStep.value * 0.2) - 0.2);
-    const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
     function changeCurrentStep(stepNumber: number) {
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, stepNumber);
-      toggleMenu();
+      if (isMenuOpen.value) {
+        toggleMenu();
+      }
     }
 
+    // Calculate % value for the progress bar and create css string
+    const stepCount = 5;
+    const singleStepValue = 1 / stepCount;
+    const scaleValue = computed(() => (currentStep.value * singleStepValue) - singleStepValue);
+    const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
+
     return {
-      goBackOneStep,
       currentStep,
-      progressBarTransformScale,
       changeCurrentStep,
-      toggleMenu,
+      goBackOneStep,
       isMenuOpen,
+      toggleMenu,
+      progressBarTransformScale,
     };
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

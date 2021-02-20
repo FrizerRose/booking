@@ -11,6 +11,6 @@ export type Mutations<S = State> = {
 // Mutuation implementation.
 export const mutations: MutationTree<State> & Mutations = {
   [LocalMutationTypes.CHANGE_STAFF](state, payload: Staff[]) {
-    state.staff = payload;
+    state.allStaff = payload;
   },
 };

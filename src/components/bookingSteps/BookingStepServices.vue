@@ -6,15 +6,19 @@
     role="tabpanel"
     aria-labelledby="tab-id-usluge"
   >
-    <!-- usluge -->
-    <ul class="o-layout o-list XXXXXXXX-gutter">
+    <ul
+      v-if="services.length"
+      class="o-layout o-list XXXXXXXX-gutter"
+    >
       <BookingStepServiceCard
         v-for="service in services"
         :key="service.id"
         :service="service"
       />
     </ul>
-    <!-- ends usluge -->
+    <div v-else>
+      <h1>Trenutno nema ponuđenih usluga.</h1>
+    </div>
   </li>
 </template>
 
@@ -38,7 +42,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

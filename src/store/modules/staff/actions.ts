@@ -31,7 +31,7 @@ export interface Actions {
   [LocalActionTypes.FETCH_STAFF_BY_ID](
     { commit }: AugmentedSharedActionContext,
     IDs: number[]
-  ): void;
+  ): Promise<unknown>;
 }
 
 // API access.
@@ -39,24 +39,29 @@ const staffService = new StaffService();
 
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
-  async [LocalActionTypes.FETCH_STAFF_BY_ID]({ commit }, IDs: number[]) {
-    IDs.forEach(async (id) => {
-      const response = await staffService.get(id);
-      if (response.status === 200 && response.data !== undefined) {
-        commit(SharedMutationTypes.CHANGE_SELECTED_STAFF, response.data);
-        response.data.appointments.map((appointment: Appointment) => {
-          // removing ':00' from the time attribute
-          // TODO: fix this shit. How the fuck do you mutate an array of objects?
-          // eslint-disable-next-line no-param-reassign
-          appointment.time = appointment.time.slice(0, -3);
-          // eslint-disable-next-line no-param-reassign
-          appointment.staff = response.data;
-          return appointment;
-        });
-        commit(SharedMutationTypes.ADD_RESERVED_APPOINTMENTS, response.data.appointments);
-      } else {
-        throw new ApiError('No staff by this ID.');
-      }
+  async [LocalActionTypes.FETCH_STAFF_BY_ID]({ commit }, IDs: number[]): Promise<unknown> {
+    return new Promise((resolve, reject) => {
+      IDs.forEach(async (id) => {
+        const response = await staffService.get(id);
+
+        if (response.status === 200 && response.data) {
+          const formattedAppointments = response.data.appointments.map((appointment: Appointment) => {
+            const newAppointment = { ...appointment };
+            // Removing ':00' from the time attribute
+            newAppointment.time = appointment.time.slice(0, -3);
+            // Add the Staff who is responsible for the appointment
+            newAppointment.staff = response.data;
+
+            return newAppointment;
+          });
+
+          commit(SharedMutationTypes.ADD_RESERVED_APPOINTMENTS, formattedAppointments);
+        } else {
+          reject(new ApiError('No staff by this ID.'));
+        }
+      });
+
+      resolve(true);
     });
   },
 };

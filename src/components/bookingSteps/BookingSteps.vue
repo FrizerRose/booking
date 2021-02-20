@@ -1,6 +1,9 @@
 <template>
   <main class="c-site-main">
-    <section class="c-section">
+    <section
+      v-if="currentStep < 6"
+      class="c-section"
+    >
       <div class="o-container">
         <div class="c-progress">
           <BookingStepsProgress />
@@ -12,7 +15,6 @@
         <div class="o-layout -gutter || o-flex -flex-column@to-medium">
           <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
             <div class="c-configurator">
-              <!-- TAB PANEL -->
               <ul class="o-list">
                 <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
                 <BookingStepStaff v-if="currentStep === 2" />
@@ -27,7 +29,6 @@
                 />
                 <BookingStepSummary v-if="currentStep === 6" />
               </ul>
-            <!-- ends TAB PANEL -->
             </div>
           </div>
 
@@ -77,6 +78,7 @@ export default defineComponent({
     const currentStep = computed(() => store.state.shared.currentStep);
 
     if (props.isRescheduling) {
+      // Skip service step if this is a reschedulling flow
       store.commit(MutationTypes.CHANGE_CURRENT_STEP, 2);
     }
 
@@ -86,7 +88,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>

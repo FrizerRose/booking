@@ -1,11 +1,11 @@
 import Staff from '@/types/staff';
 
 export interface State {
-  staff: Staff[];
+  allStaff: Staff[];
 }
 
 const state: State = {
-  staff: [],
+  allStaff: [],
 };
 
 export default state;

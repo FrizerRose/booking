@@ -5,7 +5,6 @@ import { ActionContext, ActionTree } from 'vuex';
 import { CustomerService } from '@/api';
 import { ApiError } from '@/types/customError';
 import Customer from '@/types/customer';
-import { AxiosResponse } from 'axios';
 import LocalActionTypes from './action-types';
 import LocalMutationTypes from './mutation-types';
 import SharedMutationTypes from '../shared/mutation-types';
@@ -32,7 +31,7 @@ export interface Actions {
   [LocalActionTypes.CREATE_CUSTOMER](
     { commit }: AugmentedActionContext & AugmentedSharedActionContext,
     payload: Customer
-  ): Promise<AxiosResponse>;
+  ): Promise<unknown>;
 }
 
 // API access.
@@ -40,16 +39,16 @@ const customerService = new CustomerService();
 
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
-  async [LocalActionTypes.CREATE_CUSTOMER]({ commit }, payload: Customer): Promise<AxiosResponse> {
-    const response = await customerService.create(payload);
-    console.log(response, response.data);
-    if (response.status === 201 && response.data !== undefined) {
-      commit(LocalMutationTypes.CHANGE_CUSTOMER, response.data);
-      commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data);
-    } else {
-      throw new ApiError('Could not create a customer.');
-    }
-
-    return response;
+  async [LocalActionTypes.CREATE_CUSTOMER]({ commit }, payload: Customer): Promise<unknown> {
+    return new Promise((resolve, reject) => (async () => {
+      const response = await customerService.create(payload);
+      if (response.status === 201 && response.data) {
+        commit(LocalMutationTypes.CHANGE_CUSTOMER, response.data);
+        commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data);
+        resolve(true);
+      } else {
+        reject(new ApiError('Could not create an appointment.'));
+      }
+    })());
   },
 };

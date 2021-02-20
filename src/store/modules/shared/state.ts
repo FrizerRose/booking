@@ -14,7 +14,6 @@ export interface State {
   selectedCustomer: Customer | null;
   selectedNotice: string;
   reservedAppointments: Appointment[];
-  createdAppointment: Appointment | null;
 }
 
 const state: State = {
@@ -27,7 +26,6 @@ const state: State = {
   selectedCustomer: null,
   selectedNotice: '',
   reservedAppointments: [],
-  createdAppointment: null,
 };
 
 export default state;

@@ -40,7 +40,6 @@ const servicesService = new ServicesService();
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_SERVICES]({ commit }, id: number) {
     const response = await servicesService.get(id);
-    console.log(response, response.data);
     if (response.data.message === undefined) {
       commit(LocalMutationTypes.CHANGE_SERVICES, response.data);
     } else {

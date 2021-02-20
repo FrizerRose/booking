@@ -4,8 +4,52 @@
   >
     <div class="o-background-wrap">
       <div class="o-background -has-shadow" />
+
       <article
-        v-if="!isCompactMode"
+        v-if="isCompactMode"
+        class="c-card-service has-links-inside"
+      >
+        <div class="c-card-service_info">
+          <div class="o-layout o-flex -justify-between -align-end">
+            <div class="o-layout_item u-width-auto">
+              <h1 class="c-card-service_heading">
+                {{ service.name }}
+              </h1>
+              <span class="o-tag">
+                <span class="o-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 5a7.002 7.002 0 00-6.382 4.12 1 1 0 01-1.822-.825 9 9 0 11-.409 6.324l-1.001 1.43a1 1 0
+                        11-1.639-1.147l2.434-3.476a1 1 0 011.393-.245l3.475 2.433a1 1 0 11-1.147 1.639l-1.563-1.095A7 7 0 1012 5z"
+                    />
+                    <path d="M12 6.2a1 1 0 011 1v4.182l2.647 1.324a1 1 0 11-.894 1.788l-3.2-1.6A1 1 0 0111 12V7.2a1 1 0 011-1z" />
+                  </svg>
+                </span>
+                <span class="o-tag_label">{{ service.duration }} min</span>
+              </span>
+              <span class="o-tag || u-margin-left">
+                <span class="o-icon" />
+                <span class="o-tag_label">{{ service.price }} kn</span>
+              </span>
+            </div>
+            <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
+              <button
+                class="c-button -tab || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
+                @click="selectService()"
+              >
+                <span class="has-links-inside_background" />
+                <span class="c-button_label">Odaberi</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article
+        v-else
         class="c-card-service has-links-inside"
       >
         <div class="o-layout || o-flex">
@@ -62,7 +106,7 @@
                 <div class="o-vertical_item o-flex -justify-end -align-center">
                   <button
                     class="c-button -primary || has-links-inside_main-link || u-margin-left"
-                    @click="nextStep()"
+                    @click="selectService()"
                   >
                     <span class="has-links-inside_background" />
                     <span class="c-button_label">Odaberi</span>
@@ -73,58 +117,16 @@
           </div>
         </div>
       </article>
-
-      <article
-        v-if="isCompactMode"
-        class="c-card-service has-links-inside"
-      >
-        <div class="c-card-service_info">
-          <div class="o-layout o-flex -justify-between -align-end">
-            <div class="o-layout_item u-width-auto">
-              <h1 class="c-card-service_heading">
-                {{ service.name }}
-              </h1>
-              <span class="o-tag">
-                <span class="o-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 5a7.002 7.002 0 00-6.382 4.12 1 1 0 01-1.822-.825 9 9 0 11-.409 6.324l-1.001 1.43a1 1 0
-                        11-1.639-1.147l2.434-3.476a1 1 0 011.393-.245l3.475 2.433a1 1 0 11-1.147 1.639l-1.563-1.095A7 7 0 1012 5z"
-                    />
-                    <path d="M12 6.2a1 1 0 011 1v4.182l2.647 1.324a1 1 0 11-.894 1.788l-3.2-1.6A1 1 0 0111 12V7.2a1 1 0 011-1z" />
-                  </svg>
-                </span>
-                <span class="o-tag_label">{{ service.duration }} min</span>
-              </span>
-              <span class="o-tag || u-margin-left">
-                <span class="o-icon" />
-                <span class="o-tag_label">{{ service.price }} kn</span>
-              </span>
-            </div>
-            <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
-              <button
-                class="c-button -tab || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
-                @click="nextStep()"
-              >
-                <span class="has-links-inside_background" />
-                <span class="c-button_label">Odaberi</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </article>
     </div>
   </li>
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import Service from '@/types/service';
+import { nextStep } from '@/utils/helpers';
 
 export default defineComponent({
   props: {
@@ -135,26 +137,18 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const currentStep = computed(() => store.state.shared.currentStep);
+    const isCompactMode = ref(true);
 
-    const isCompactMode = ref(false);
-    isCompactMode.value = true;
-
-    function nextStep() {
+    function selectService() {
       store.commit(MutationTypes.CHANGE_STAFF, props.service.staff);
       store.commit(MutationTypes.CHANGE_SELECTED_SERVICE, props.service as Service);
-      window.scrollTo(0, 0);
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value + 1);
+      nextStep();
     }
 
     return {
-      nextStep,
+      selectService,
       isCompactMode,
     };
   },
 });
 </script>
-
-<style scoped lang='scss'>
-
-</style>
