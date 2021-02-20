@@ -105,7 +105,7 @@
                   </div>
                   <div class="c-summary_footer">
                     <button
-                      class="c-button -primary || is-submit"
+                      class="c-button -secondary -submit"
                       @click="cancel()"
                     >
                       <span class="c-button_label">Poništi</span>

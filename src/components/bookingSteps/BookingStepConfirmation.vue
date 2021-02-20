@@ -159,7 +159,7 @@
             </label>
           </div>
           <button
-            class="c-button -primary || is-submit"
+            class="c-button -secondary || is-submit"
             @click="confirm()"
           >
             <span class="c-button_label">Potvrdi</span>

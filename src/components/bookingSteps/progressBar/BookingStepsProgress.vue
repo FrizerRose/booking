@@ -28,7 +28,7 @@
             <div class="o-flex">
               <button
                 v-if="currentStep > 1"
-                class="c-button -primary || is-hidden@from-medium || u-margin-left@to-medium"
+                class="c-button -secondary || is-hidden@from-medium || u-margin-left@to-medium"
                 @click="goBackOneStep()"
               >
                 <span class="o-icon">
@@ -45,7 +45,7 @@
                 >back</span>
               </button>
               <button
-                class="c-button -primary || c-steps-header_menu-toggle is-hidden@from-medium || u-margin-left@to-medium"
+                class="c-button -secondary || c-steps-header_menu-toggle is-hidden@from-medium || u-margin-left@to-medium"
                 @click="toggleMenu()"
               >
                 <span
@@ -74,7 +74,7 @@
                 <li class="o-list_item c-steps-list_item">
                   <button
                     id="tab-id-usluge"
-                    :class="{'c-button -tab': true, 'is-current': currentStep === 1}"
+                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 1}"
                     role="tab"
                     aria-selected="true"
                     aria-controls="tab-usluge"
@@ -86,7 +86,7 @@
                 <li class="o-list_item c-steps-list_item">
                   <button
                     id="tab-id-odabir-radnika"
-                    :class="{'c-button -tab': true, 'is-current': currentStep === 2}"
+                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 2}"
                     role="tab"
                     aria-selected="false"
                     aria-controls="tab-odabir-radnika"
@@ -100,7 +100,7 @@
                 <li class="o-list_item c-steps-list_item">
                   <button
                     id="tab-id-odabir-termina"
-                    :class="{'c-button -tab': true, 'is-current': currentStep === 3}"
+                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 3}"
                     role="tab"
                     aria-selected="false"
                     aria-controls="tab-odabir-termina"
@@ -114,7 +114,7 @@
                 <li class="o-list_item c-steps-list_item">
                   <button
                     id="tab-id-vasi-podatci"
-                    :class="{'c-button -tab': true, 'is-current': currentStep === 4}"
+                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 4}"
                     role="tab"
                     aria-selected="false"
                     aria-controls="tab-vasi-podatci"
@@ -128,7 +128,7 @@
                 <li class="o-list_item c-steps-list_item">
                   <button
                     id="tab-id-provjeri-i-potvrdi"
-                    :class="{'c-button -tab': true, 'is-current': currentStep === 5}"
+                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 5}"
                     role="tab"
                     aria-selected="false"
                     aria-controls="tab-provjeri-i-potvrdi"
@@ -141,7 +141,7 @@
                 <li class="o-list_item c-steps-list_item">
                   <button
                     id="tab-id-sazetak"
-                    :class="{'c-button -tab': true, 'is-current': currentStep === 6}"
+                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 6}"
                     role="tab"
                     aria-selected="false"
                     aria-controls="tab-sazetak"
