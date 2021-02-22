@@ -89,8 +89,8 @@ export default defineComponent({
     const today = new Date();
     const selectedDate = ref(new Date());
     const monthFromNow = ref(new Date());
-    const bokingWindow = 30;
-    monthFromNow.value.setDate(monthFromNow.value.getDate() + bokingWindow);
+    const bookingWindow = 30;
+    monthFromNow.value.setDate(monthFromNow.value.getDate() + bookingWindow);
 
     // TODO: fetch startTime and endTime from the api
     const startTime = 8;
