@@ -142,7 +142,14 @@ export default defineComponent({
     function selectService() {
       store.commit(MutationTypes.CHANGE_STAFF, props.service.staff);
       store.commit(MutationTypes.CHANGE_SELECTED_SERVICE, props.service as Service);
-      nextStep();
+
+      // TODO: fetch from API
+      const skipStaffSelection = false;
+      if (skipStaffSelection) {
+        nextStep(2);
+      } else {
+        nextStep();
+      }
     }
 
     return {

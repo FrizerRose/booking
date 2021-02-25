@@ -68,7 +68,9 @@ import Datepicker from 'vue3-datepicker';
 import Appointment from '@/types/appointment';
 import Staff from '@/types/staff';
 import { nextStep } from '@/utils/helpers';
-import { dateIsToday, getDateStringFromDate } from '@/utils/time';
+import {
+  dateIsToday, getDateStringFromDate, getDayName, timeStringToNumber,
+} from '@/utils/time';
 
 type StaffWithAvailability = Staff & { available: boolean };
 
@@ -89,22 +91,9 @@ export default defineComponent({
     const today = new Date();
     const selectedDate = ref(new Date());
     const monthFromNow = ref(new Date());
+    // TODO: fetch form api
     const bookingWindow = 30;
     monthFromNow.value.setDate(monthFromNow.value.getDate() + bookingWindow);
-
-    // TODO: fetch startTime and endTime from the api
-    const startTime = 8;
-    const endTime = 16;
-    // TODO: use staff-specific working hours
-    // Create an array with formatted times of day with 15 minute increments
-    const possibleAppointmentTimes: string[] = [];
-    for (let i = startTime; i < endTime; i += 1) {
-      const prefix = i < 10 ? '0' : '';
-      possibleAppointmentTimes.push(`${prefix + i}:00`);
-      possibleAppointmentTimes.push(`${prefix + i}:15`);
-      possibleAppointmentTimes.push(`${prefix + i}:30`);
-      possibleAppointmentTimes.push(`${prefix + i}:45`);
-    }
 
     const reservedAppointments = computed(() => store.state.shared.reservedAppointments);
     const appointmentsOnNewDate = computed(() => reservedAppointments.value.filter(
@@ -112,29 +101,109 @@ export default defineComponent({
     ));
 
     // Array of Staff to be considered
-    const availableStaff: StaffWithAvailability[] = [];
-    if (selectedStaff.value) {
-      // If there was staff selected in the previous step, only add it
-      availableStaff[selectedStaff.value.id] = { ...selectedStaff.value, available: true };
-    } else {
-      // Otherwise, add all staff
-      const allStaff = computed(() => store.state.staff.allStaff);
-      allStaff.value.forEach((staff) => {
-        availableStaff[staff.id] = { ...staff, available: true };
+    const availableStaff = computed(() => {
+      const staffArray: StaffWithAvailability[] = [];
+      if (selectedStaff.value) {
+        // If there was staff selected in the previous step, only add it
+        staffArray[selectedStaff.value.id] = { ...selectedStaff.value, available: true };
+      } else {
+        // Otherwise, add all staff that performs this service
+        const allStaff = computed(() => store.state.staff.allStaff);
+        allStaff.value.forEach((staff) => {
+          staffArray[staff.id] = { ...staff, available: true };
+        });
+      }
+
+      return staffArray;
+    });
+
+    // Create an array with formatted times of day with 15 minute increments
+    const possibleAppointmentTimes = computed(() => {
+      const timeSlots: string[] = [];
+      const timeSlotsWithStaff: { time: string; staff: number[] }[] = [];
+
+      // Array of start,end,staffId pairs that are used to generate time slots
+      const formattedShifts: {start: number; end: number; staffId: number}[] = [];
+      const individualSchedules = availableStaff.value.map((staff) => ({
+        id: staff.id,
+        schedule: staff.hours[getDayName(selectedDate.value)],
+      }));
+      individualSchedules.forEach((schedule) => {
+        schedule.schedule.forEach((shift) => formattedShifts.push({
+          start: timeStringToNumber(shift.start),
+          end: timeStringToNumber(shift.end),
+          staffId: schedule.id,
+        }));
       });
-    }
+
+      formattedShifts.forEach((shift) => {
+        if (selectedService?.value?.duration) {
+          const slotsNeeded = selectedService.value.duration / 15;
+          const totalShiftSlots = (shift.end - shift.start) * 4;
+          const availableSlotsCount = totalShiftSlots - slotsNeeded + 1;
+          let slotsAssigned = 0;
+
+          for (let i = shift.start; i < shift.end; i += 1) {
+            const prefix = i < 10 ? '0' : '';
+            const suffixes = [':00', ':15', ':30', ':45'];
+
+            // eslint-disable-next-line no-loop-func
+            suffixes.forEach((suffix) => {
+              if (slotsAssigned < availableSlotsCount) {
+                if (timeSlots.includes(`${prefix + i}${suffix}`)) {
+                  // Add this worker to a previously assigned time slot
+                  const previouslyAssignedSlot = timeSlotsWithStaff.find((slot) => slot.time === `${prefix + i}${suffix}`);
+                  if (previouslyAssignedSlot) {
+                    previouslyAssignedSlot.staff.push(shift.staffId);
+                  }
+                } else {
+                  // Add new time slot
+                  const hour = Math.floor(i);
+                  const timeString = `${prefix}${hour}${suffix}`;
+
+                  timeSlots.push(timeString);
+                  timeSlotsWithStaff.push({ time: timeString, staff: [shift.staffId] });
+                }
+                slotsAssigned += 1;
+              }
+            });
+          }
+        }
+      });
+
+      return timeSlotsWithStaff;
+    });
 
     const appointmentAvailability = computed(() => {
       // Create an array of objects containing Time and Available Staff
-      let timeArray = possibleAppointmentTimes.map((time) => ({ time, staff: JSON.parse(JSON.stringify(availableStaff)) }));
+      let timeArray = possibleAppointmentTimes.value.map((slot) => {
+        const chosenStaff: StaffWithAvailability[] = [];
+        slot.staff.forEach((staffId) => {
+          const matchedStaff = availableStaff.value.find((staff) => staff?.id === staffId);
+          if (matchedStaff) {
+            chosenStaff.push(matchedStaff);
+          }
+        });
 
-      // if the selectedDay is today, filter out appointments that have passed
+        return {
+          time: slot.time,
+          staff: chosenStaff,
+        };
+      });
+
+      // if the selectedDay is today, filter out appointments that have passed (or are within lead time window)
       if (dateIsToday(selectedDate.value)) {
+        // TODO: fetch from api
+        const leadTimeWindow = 2;
+        const firstAvailalbeTime = new Date();
+        firstAvailalbeTime.setHours(firstAvailalbeTime.getHours() + leadTimeWindow);
+
         timeArray = timeArray.filter((time) => {
           const timeFragments = time.time.split(':');
           const timeOfAppointment = new Date();
+
           timeOfAppointment.setHours(parseInt(timeFragments[0], 10), parseInt(timeFragments[1], 10));
-          return today < timeOfAppointment;
+          return firstAvailalbeTime < timeOfAppointment;
         });
       }
 

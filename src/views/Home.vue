@@ -32,7 +32,7 @@ export default defineComponent({
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     // TODO: fetch company using slug from URL
-    store.dispatch(ActionTypes.FETCH_COMPANY, 1);
+    store.dispatch(ActionTypes.FETCH_COMPANY, 6);
 
     return { selectedCompany };
   },
