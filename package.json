@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "serve-juraj": "vue-cli-service serve --host frizerrose.juraj.lan",
+    "serve-juraj": "vue-cli-service serve --host primrose.frizerrose.juraj.lan",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",

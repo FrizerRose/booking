@@ -42,8 +42,13 @@ export default defineComponent({
       appointmentID = parseInt(route.params.appointmentID[0], 10);
     }
 
-    // TODO: fetch using slug from URL
-    store.dispatch(ActionTypes.FETCH_COMPANY, 1);
+    let companyID: string | number = 6;
+    if (process.env.NODE_ENV === 'production') {
+      const urlFragments = window.location.hostname.split('.');
+      [companyID] = urlFragments;
+    }
+
+    store.dispatch(ActionTypes.FETCH_COMPANY, companyID);
     store.dispatch(ActionTypes.FETCH_APPOINTMENT, appointmentID);
 
     const appointment = computed(() => store.state.appointment.appointment);

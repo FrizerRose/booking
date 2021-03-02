@@ -145,6 +145,14 @@ export default defineComponent({
     const requestSent = ref(false);
     const isSuccess = ref(false);
 
+    let companyID: string | number = 6;
+    if (process.env.NODE_ENV === 'production') {
+      const urlFragments = window.location.hostname.split('.');
+      [companyID] = urlFragments;
+    }
+    store.dispatch(ActionTypes.FETCH_COMPANY, companyID);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
+
     // Parse the appointment id from the route
     let appointmentID: number;
     if (typeof route.params.appointmentID === 'string') {
@@ -152,19 +160,19 @@ export default defineComponent({
     } else {
       appointmentID = parseInt(route.params.appointmentID[0], 10);
     }
-
     store.dispatch(ActionTypes.FETCH_APPOINTMENT, appointmentID);
-
     const appointment = computed(() => store.state.appointment.appointment);
 
     async function cancel() {
-      try {
-        await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment?.value?.id);
-        requestSent.value = true;
-        isSuccess.value = true;
-      } catch (error) {
-        requestSent.value = true;
-        isSuccess.value = false;
+      if (appointment.value?.company.id === selectedCompany.value?.id) {
+        try {
+          await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment?.value?.id);
+          requestSent.value = true;
+          isSuccess.value = true;
+        } catch (error) {
+          requestSent.value = true;
+          isSuccess.value = false;
+        }
       }
     }
 
