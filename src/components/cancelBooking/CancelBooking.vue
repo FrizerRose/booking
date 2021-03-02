@@ -145,12 +145,6 @@ export default defineComponent({
     const requestSent = ref(false);
     const isSuccess = ref(false);
 
-    let companyID: string | number = 6;
-    if (process.env.NODE_ENV === 'production') {
-      const urlFragments = window.location.hostname.split('.');
-      [companyID] = urlFragments;
-    }
-    store.dispatch(ActionTypes.FETCH_COMPANY, companyID);
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     // Parse the appointment id from the route

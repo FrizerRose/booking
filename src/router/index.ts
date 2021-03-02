@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { fetchCompanyFromURL } from '@/utils/helpers';
 import Home from '../views/Home.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -45,6 +46,11 @@ const router = createRouter({
     }
     return { top: 0, left: 0 };
   },
+});
+
+router.beforeEach((to, from, next) => {
+  fetchCompanyFromURL();
+  next();
 });
 
 export default router;
