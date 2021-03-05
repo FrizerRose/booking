@@ -129,11 +129,13 @@ export default defineComponent({
         schedule: staff.hours[getDayName(selectedDate.value)],
       }));
       individualSchedules.forEach((schedule) => {
-        schedule.schedule.forEach((shift) => formattedShifts.push({
-          start: timeStringToNumber(shift.start),
-          end: timeStringToNumber(shift.end),
-          staffId: schedule.id,
-        }));
+        if (schedule.schedule.active) {
+          schedule.schedule.shifts.forEach((shift) => formattedShifts.push({
+            start: timeStringToNumber(shift.start),
+            end: timeStringToNumber(shift.end),
+            staffId: schedule.id,
+          }));
+        }
       });
 
       formattedShifts.forEach((shift) => {
