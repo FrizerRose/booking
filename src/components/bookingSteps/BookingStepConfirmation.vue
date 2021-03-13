@@ -160,6 +160,18 @@
               </span>
               <span class="-after" />
             </label>
+            <input
+              id="id-form-checkbox-sakriveno"
+              v-model="honeypotChecked"
+              style="visibility: hidden"
+              type="checkbox"
+            >
+            <label
+              class="c-form_checkboxLabel"
+              for="id-form-checkbox-sakriveno"
+              style="visibility: hidden"
+            >Sakriveno anti-spam polje. Nemojte ga označiti.
+            </label>
           </div>
           <button
             class="c-button -secondary || is-submit"
@@ -198,37 +210,40 @@ export default defineComponent({
 
     const hasError = ref(false);
     const termsChecked = ref(false);
+    const honeypotChecked = ref(false);
     const termsError = ref(false);
 
     async function confirm() {
-      if (!termsChecked.value) {
-        termsError.value = true;
-        return;
-      }
-      termsError.value = false;
-
-      // Cancel the original appointment if this is a rescheduling
-      if (props.isRescheduling) {
-        const appointment = computed(() => store.state.appointment.appointment);
-        if (appointment.value) {
-          await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment.value.id);
+      if (!honeypotChecked.value) {
+        if (!termsChecked.value) {
+          termsError.value = true;
+          return;
         }
-      }
+        termsError.value = false;
 
-      try {
-        await store.dispatch(ActionTypes.CREATE_APPOINTMENT, {
-          company: selectedCompany.value?.id,
-          staff: selectedStaff.value?.id,
-          service: selectedService.value?.id,
-          customer: selectedCustomer.value?.id,
-          message: selectedNotice.value,
-          date: selectedDateTime.value.date,
-          time: selectedDateTime.value.time,
-        });
+        // Cancel the original appointment if this is a rescheduling
+        if (props.isRescheduling) {
+          const appointment = computed(() => store.state.appointment.appointment);
+          if (appointment.value) {
+            await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment.value.id);
+          }
+        }
 
-        nextStep();
-      } catch {
-        hasError.value = true;
+        try {
+          await store.dispatch(ActionTypes.CREATE_APPOINTMENT, {
+            company: selectedCompany.value?.id,
+            staff: selectedStaff.value?.id,
+            service: selectedService.value?.id,
+            customer: selectedCustomer.value?.id,
+            message: selectedNotice.value,
+            date: selectedDateTime.value.date,
+            time: selectedDateTime.value.time,
+          });
+
+          nextStep();
+        } catch {
+          hasError.value = true;
+        }
       }
     }
 
@@ -241,6 +256,7 @@ export default defineComponent({
       selectedDateTime,
       selectedNotice,
       hasError,
+      honeypotChecked,
       termsChecked,
       termsError,
     };
