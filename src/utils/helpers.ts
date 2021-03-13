@@ -18,6 +18,7 @@ export function isEmail(email: string) {
 
 export function fetchCompanyFromURL() {
   const store = useStore();
+
   let companyID: string | number = 6;
   console.log('🚀 ~ file: helpers.ts ~ line 23 ~ fetchCompanyFromURL ~ process.env.NODE_ENV', process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'production') {

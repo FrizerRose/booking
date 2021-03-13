@@ -32,3 +32,9 @@ export function timeStringToNumber(timeString: string): number {
   }
   return parseInt(timeString, 10);
 }
+
+export function dateDiffInHours(a: Date, b: Date) {
+  const msPerHour = 1000 * 60 * 60;
+
+  return (a.getTime() - b.getTime()) / msPerHour;
+}

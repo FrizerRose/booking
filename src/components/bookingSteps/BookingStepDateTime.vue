@@ -86,13 +86,15 @@ export default defineComponent({
     const store = useStore();
     const selectedService = computed(() => store.state.shared.selectedService);
     const selectedStaff = computed(() => store.state.shared.selectedStaff);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     // Data for the datepicker
     const today = new Date();
     const selectedDate = ref(new Date());
     const monthFromNow = ref(new Date());
-    // TODO: fetch form api
-    const bookingWindow = 30;
+
+    const bookingWindow = selectedCompany.value?.preferences.schedulingWindow || 30;
+    console.log('🚀 ~ file: BookingStepDateTime.vue ~ line 97 ~ setup ~ bookingWindow', bookingWindow);
     monthFromNow.value.setDate(monthFromNow.value.getDate() + bookingWindow);
 
     const reservedAppointments = computed(() => store.state.shared.reservedAppointments);
@@ -195,8 +197,8 @@ export default defineComponent({
 
       // if the selectedDay is today, filter out appointments that have passed (or are within lead time window)
       if (dateIsToday(selectedDate.value)) {
-        // TODO: fetch from api
-        const leadTimeWindow = 2;
+        const leadTimeWindow = selectedCompany.value?.preferences.leadTimeWindow || 2;
+        console.log('🚀 ~ file: BookingStepDateTime.vue ~ line 202 ~ appointmentAvailability ~ leadTimeWindow', leadTimeWindow);
         const firstAvailalbeTime = new Date();
         firstAvailalbeTime.setHours(firstAvailalbeTime.getHours() + leadTimeWindow);
 

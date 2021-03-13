@@ -122,7 +122,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import Service from '@/types/service';
@@ -137,18 +137,18 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
+
     const isCompactMode = ref(true);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     function selectService() {
       store.commit(MutationTypes.CHANGE_STAFF, props.service.staff);
       store.commit(MutationTypes.CHANGE_SELECTED_SERVICE, props.service as Service);
 
-      // TODO: fetch from API
-      const skipStaffSelection = false;
-      if (skipStaffSelection) {
-        nextStep(2);
-      } else {
+      if (selectedCompany.value?.preferences.hasStaffPick) {
         nextStep();
+      } else {
+        nextStep(2);
       }
     }
 

@@ -3,7 +3,10 @@
     <section class="c-section -first">
       <div class="o-container">
         <div class="o-layout -gutter || o-flex -flex-column@to-medium">
-          <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
+          <div
+            v-if="canCancel"
+            class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10"
+          >
             <div class="c-progress">
               <div class="c-configurator">
                 <!-- if nemoguće poništiti ili je već poništeno -->
@@ -116,6 +119,19 @@
             </div>
           </div>
 
+          <div
+            v-if="selectedCompany && !canCancel"
+            class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10"
+          >
+            <h1>Termin nije moguće otkazati.</h1>
+            <h2 v-if="selectedCompany.preferences.canCancel">
+              {{ selectedCompany.name }} ne prima otkazivanja ovako blizu početku termina.
+            </h2>
+            <h2 v-else>
+              {{ selectedCompany.name }} ne prihvača otkazivanja.
+            </h2>
+          </div>
+
           <TheLeftSidebar />
 
           <TheRightSidebar />
@@ -132,6 +148,7 @@ import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/store';
 import { useRoute } from 'vue-router';
 import ActionTypes from '@/store/action-types';
+import { dateDiffInHours } from '@/utils/time';
 
 export default defineComponent({
   components: {
@@ -157,6 +174,15 @@ export default defineComponent({
     store.dispatch(ActionTypes.FETCH_APPOINTMENT, appointmentID);
     const appointment = computed(() => store.state.appointment.appointment);
 
+    const canCancel = computed(() => {
+      const appointmentDate = new Date(`${appointment.value?.date}T${appointment.value?.time}`);
+      const dateDifference = dateDiffInHours(appointmentDate, new Date());
+
+      const hasCancellationWindowPassed = dateDifference < (selectedCompany.value?.preferences.cancellationWindow || 2);
+
+      return selectedCompany.value?.preferences.canCancel && !hasCancellationWindowPassed;
+    });
+
     async function cancel() {
       if (appointment.value?.company.id === selectedCompany.value?.id) {
         try {
@@ -171,10 +197,12 @@ export default defineComponent({
     }
 
     return {
+      selectedCompany,
       cancel,
       requestSent,
       isSuccess,
       appointment,
+      canCancel,
     };
   },
 });

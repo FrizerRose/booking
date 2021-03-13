@@ -6,7 +6,7 @@
     >
       <div class="o-container">
         <div class="c-progress">
-          <BookingStepsProgress />
+          <BookingStepsProgress :is-rescheduling="isRescheduling" />
         </div>
       </div>
     </section>

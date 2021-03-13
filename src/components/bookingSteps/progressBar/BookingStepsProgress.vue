@@ -71,7 +71,10 @@
                 role="tablist"
                 aria-label="Koraci rezervacije"
               >
-                <li class="o-list_item c-steps-list_item">
+                <li
+                  v-if="!isRescheduling"
+                  class="o-list_item c-steps-list_item"
+                >
                   <button
                     id="tab-id-usluge"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 1}"
@@ -170,6 +173,12 @@ import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
+  props: {
+    isRescheduling: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
