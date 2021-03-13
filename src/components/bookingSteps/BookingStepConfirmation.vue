@@ -108,14 +108,17 @@
         <div class="c-form">
           <div class="c-form_legal">
             <p>
-              Stranica je zaštićena reCAPTCHA tehnologijom i <a
+              Pročitajte uvjete poslovanja <a
                 href="#"
                 class="o-link"
-              >Googleovim pravilima privatnosti</a>.<br>
-              Pročitajte <a
-                href="#"
+                target="_blank"
+              >ovdje</a>
+              <a
+                v-if="selectedCompany.preferences.termsLink"
+                :href="selectedCompany.preferences.termsLink"
                 class="o-link"
-              >uvjete poslovanja</a>.
+                target="_blank"
+              > i ovdje.</a>
             </p>
           </div>
           <div :class="{'c-form_item': true, 'has-error': termsError}">
