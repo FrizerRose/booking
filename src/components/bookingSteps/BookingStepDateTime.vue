@@ -22,7 +22,7 @@
             <datepicker
               v-model="selectedDate"
               :lower-limit="today"
-              :upper-limit="monthFromNow"
+              :upper-limit="upperLimitDate"
               input-format="dd.MM.yyyy"
             />
           </div>
@@ -69,7 +69,7 @@ import Appointment from '@/types/appointment';
 import Staff from '@/types/staff';
 import { nextStep } from '@/utils/helpers';
 import {
-  dateIsToday, getDateStringFromDate, getDayName, timeStringToNumber,
+  dateIsToday, getDateStringFromDate, getDayName, timeStringToNumber, hasBreakOnDay,
 } from '@/utils/time';
 
 type StaffWithAvailability = Staff & { available: boolean };
@@ -91,11 +91,10 @@ export default defineComponent({
     // Data for the datepicker
     const today = new Date();
     const selectedDate = ref(new Date());
-    const monthFromNow = ref(new Date());
+    const upperLimitDate = ref(new Date());
 
     const bookingWindow = selectedCompany.value?.preferences.schedulingWindow || 30;
-    console.log('🚀 ~ file: BookingStepDateTime.vue ~ line 97 ~ setup ~ bookingWindow', bookingWindow);
-    monthFromNow.value.setDate(monthFromNow.value.getDate() + bookingWindow);
+    upperLimitDate.value.setDate(upperLimitDate.value.getDate() + bookingWindow);
 
     const reservedAppointments = computed(() => store.state.shared.reservedAppointments);
     const appointmentsOnNewDate = computed(() => reservedAppointments.value.filter(
@@ -105,14 +104,19 @@ export default defineComponent({
     // Array of Staff to be considered
     const availableStaff = computed(() => {
       const staffArray: StaffWithAvailability[] = [];
+
       if (selectedStaff.value) {
-        // If there was staff selected in the previous step, only add it
-        staffArray[selectedStaff.value.id] = { ...selectedStaff.value, available: true };
+        if (!hasBreakOnDay(selectedStaff.value, selectedDate.value)) {
+          // If there was staff selected in the previous step, only add it
+          staffArray[selectedStaff.value.id] = { ...selectedStaff.value, available: true };
+        }
       } else {
         // Otherwise, add all staff that performs this service
         const allStaff = computed(() => store.state.staff.allStaff);
         allStaff.value.forEach((staff) => {
-          staffArray[staff.id] = { ...staff, available: true };
+          if (!hasBreakOnDay(staff, selectedDate.value)) {
+            staffArray[staff.id] = { ...staff, available: true };
+          }
         });
       }
 
@@ -185,7 +189,7 @@ export default defineComponent({
         slot.staff.forEach((staffId) => {
           const matchedStaff = availableStaff.value.find((staff) => staff?.id === staffId);
           if (matchedStaff) {
-            chosenStaff.push(matchedStaff);
+            chosenStaff[matchedStaff.id] = JSON.parse(JSON.stringify(matchedStaff));
           }
         });
 
@@ -198,7 +202,6 @@ export default defineComponent({
       // if the selectedDay is today, filter out appointments that have passed (or are within lead time window)
       if (dateIsToday(selectedDate.value)) {
         const leadTimeWindow = selectedCompany.value?.preferences.leadTimeWindow || 2;
-        console.log('🚀 ~ file: BookingStepDateTime.vue ~ line 202 ~ appointmentAvailability ~ leadTimeWindow', leadTimeWindow);
         const firstAvailalbeTime = new Date();
         firstAvailalbeTime.setHours(firstAvailalbeTime.getHours() + leadTimeWindow);
 
@@ -214,21 +217,22 @@ export default defineComponent({
       appointmentsOnNewDate.value.forEach((reservedAppointment) => {
         // Find time slot that corresponds with the start of the already reserved appointment
         const index = timeArray.findIndex((item) => item.time === reservedAppointment.time);
-
+        if (index > -1) {
         // Remove slots that are during the Service duration
-        const futureSlotsTaken = reservedAppointment.service.duration / 15;
-        for (let i = 0; i < futureSlotsTaken; i += 1) {
-          if (timeArray[index + i] !== undefined) {
-            timeArray[index + i].staff[reservedAppointment.staff.id].available = false;
+          const futureSlotsTaken = reservedAppointment.service.duration / 15;
+          for (let i = 0; i < futureSlotsTaken; i += 1) {
+            if (timeArray[index + i] !== undefined) {
+              timeArray[index + i].staff[reservedAppointment.staff.id].available = false;
+            }
           }
-        }
 
-        // Remove slots that leave too little time to finish the Service before the already reserved appointment
-        if (selectedService?.value?.duration) {
-          const pastSlotsTaken = selectedService.value?.duration / 15;
-          for (let i = 0; i < pastSlotsTaken; i += 1) {
-            if (timeArray[index - i] !== undefined) {
-              timeArray[index - i].staff[reservedAppointment.staff.id].available = false;
+          // Remove slots that leave too little time to finish the Service before the already reserved appointment
+          if (selectedService?.value?.duration) {
+            const pastSlotsTaken = selectedService.value?.duration / 15;
+            for (let i = 0; i < pastSlotsTaken; i += 1) {
+              if (timeArray[index - i] !== undefined) {
+                timeArray[index - i].staff[reservedAppointment.staff.id].available = false;
+              }
             }
           }
         }
@@ -294,7 +298,7 @@ export default defineComponent({
       availableAppointmentTimes,
       selectedDate,
       today,
-      monthFromNow,
+      upperLimitDate,
       appointmentsOnNewDate,
     };
   },

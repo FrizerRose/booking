@@ -1,3 +1,5 @@
+import Staff from '@/types/staff';
+
 export function getDateStringFromDate(date: Date): string {
   const dd = String(date.getDate());
   let mm = String(date.getMonth() + 1); // January is 0!
@@ -37,4 +39,19 @@ export function dateDiffInHours(a: Date, b: Date) {
   const msPerHour = 1000 * 60 * 60;
 
   return (a.getTime() - b.getTime()) / msPerHour;
+}
+
+export function hasBreakOnDay(worker: Staff, date: Date): boolean {
+  if (worker.breaks) {
+    return worker.breaks.some((breakObject) => {
+      const dayStart = new Date(breakObject.start);
+      const dayEnd = new Date(breakObject.end);
+      dayStart.setHours(0, 0, 0, 0);
+      dayEnd.setHours(0, 0, 0, 0);
+      date.setHours(0, 0, 0, 0);
+
+      return date >= dayStart && date <= dayEnd;
+    });
+  }
+  return false;
 }
