@@ -164,6 +164,7 @@
               id="id-form-checkbox-sakriveno"
               v-model="honeypotChecked"
               style="visibility: hidden"
+              name="adlksjdlaksjdlakjsdaljk"
               type="checkbox"
             >
             <label
