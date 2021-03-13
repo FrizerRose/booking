@@ -199,6 +199,8 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const company = computed(() => store.state.shared.selectedCompany);
+    const selectedCustomer = computed(() => store.state.shared.selectedCustomer);
+    const selectedNotice = computed(() => store.state.shared.selectedNotice);
 
     const formData = reactive({
       name: { data: '', error: false },
@@ -207,6 +209,18 @@ export default defineComponent({
       message: { data: '', error: false },
       terms: { data: false, error: false },
     });
+
+    // Pre-fil data if user has previously submitted it
+    if (selectedCustomer.value) {
+      formData.name.data = selectedCustomer.value.name;
+      formData.email.data = selectedCustomer.value.email;
+      formData.phone.data = selectedCustomer.value.name;
+      formData.terms.data = true;
+    }
+
+    if (selectedNotice.value) {
+      formData.message.data = selectedNotice.value;
+    }
 
     const hasError = ref(false);
     const errorMsg = ref('');
