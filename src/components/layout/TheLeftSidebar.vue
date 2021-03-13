@@ -5,15 +5,14 @@
         <article class="o-group">
           <figure class="o-image-wrap -max-width || o-ratio">
             <img
+              v-if="selectedCompany.image.link"
               class="o-image"
-              src="https://source.unsplash.com/random"
+              :src="selectedCompany.image.link"
               alt="img text"
             >
           </figure>
           <p class="ccccccc">
-            Kvalitetna usluga i povoljne cijene obilježje su naše old school brijačnice.
-            Svakim radnim danom očekuje vas tim iskusnih profesionalaca.
-            Rezervirajte termin i zablistajte!
+            {{ selectedCompany.about }}
           </p>
         </article>
       </div>
@@ -22,11 +21,17 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from '@/store';
 
 export default defineComponent({
-  // setup() {
+  setup() {
+    const store = useStore();
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
-  // },
+    return {
+      selectedCompany,
+    };
+  },
 });
 </script>

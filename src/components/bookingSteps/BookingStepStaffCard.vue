@@ -19,9 +19,9 @@
                 alt="img text"
               >
               <img
-                v-else
+                v-if="!isIDontCare && staff.image.link"
                 class="c-card-service_image"
-                src="https://source.unsplash.com/random"
+                :src="staff.image.link"
                 alt="img text"
               >
             </figure>
