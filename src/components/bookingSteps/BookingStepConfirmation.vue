@@ -166,6 +166,7 @@
               style="visibility: hidden"
               name="adlksjdlaksjdlakjsdaljk"
               type="checkbox"
+              autocomplete="off"
             >
             <label
               class="c-form_checkboxLabel"
