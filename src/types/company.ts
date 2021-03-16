@@ -9,6 +9,8 @@ type Company = {
   services: Service[];
   staff: Staff[];
   preferences: CompanyPreferences;
+  image: { link: string };
+  about: string;
 }
 
 export default Company;

@@ -1,11 +1,14 @@
 <template>
-  <div class="o-layout_item u-1/5@from-medium XXXXXXXX-gutters-px-10 || -flex-order-minus-1@from-medium">
+  <div
+    v-if="selectedCompany"
+    class="o-layout_item u-1/5@from-medium XXXXXXXX-gutters-px-10 || -flex-order-minus-1@from-medium"
+  >
     <div class="o-layout -gutters || u-bg-wheat">
       <div class="o-layout_item XXXXXXXX-gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
         <article class="o-group">
           <figure class="o-image-wrap -max-width || o-ratio">
             <img
-              v-if="selectedCompany.image.link"
+              v-if="selectedCompany.image && selectedCompany.image.link"
               class="o-image"
               :src="selectedCompany.image.link"
               alt="img text"
@@ -13,6 +16,10 @@
           </figure>
           <p class="ccccccc">
             {{ selectedCompany.about }}
+          </p>
+          <p v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules">
+            Pravila:
+            {{ selectedCompany.preferences.rules }}
           </p>
         </article>
       </div>

@@ -19,7 +19,7 @@
                 alt="img text"
               >
               <img
-                v-if="!isIDontCare && staff.image.link"
+                v-if="!isIDontCare && staff.image && staff.image.link"
                 class="c-card-service_image"
                 :src="staff.image.link"
                 alt="img text"
