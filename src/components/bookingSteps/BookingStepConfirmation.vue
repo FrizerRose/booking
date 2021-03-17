@@ -230,7 +230,7 @@ export default defineComponent({
         if (props.isRescheduling) {
           const appointment = computed(() => store.state.appointment.appointment);
           if (appointment.value) {
-            await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment.value.id);
+            await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, { id: appointment.value.id, isReschedule: true });
           }
         }
 

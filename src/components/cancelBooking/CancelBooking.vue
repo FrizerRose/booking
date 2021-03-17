@@ -186,7 +186,7 @@ export default defineComponent({
     async function cancel() {
       if (appointment.value?.company.id === selectedCompany.value?.id) {
         try {
-          await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, appointment?.value?.id);
+          await store.dispatch(ActionTypes.CANCEL_APPOINTMENT, { id: appointment?.value?.id, isReschedule: false });
           requestSent.value = true;
           isSuccess.value = true;
         } catch (error) {

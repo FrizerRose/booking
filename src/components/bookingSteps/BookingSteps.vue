@@ -6,6 +6,9 @@
     >
       <div class="o-container">
         <div class="c-progress">
+          <h1 v-if="isRescheduling">
+            Promjena termina
+          </h1>
           <BookingStepsProgress :is-rescheduling="isRescheduling" />
         </div>
       </div>
