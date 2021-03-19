@@ -14,11 +14,19 @@
               alt="img text"
             >
           </figure>
-          <p class="ccccccc">
+          <p v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules">
+            <strong>COVID-19 upozorenje</strong>
+            <br>
+            {{ selectedCompany.preferences.coronaRules }}
+          </p>
+          <p>
+            <strong>O nama:</strong>
+            <br>
             {{ selectedCompany.about }}
           </p>
           <p v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules">
-            Pravila:
+            <strong>Pravila ponašanja</strong>
+            <br>
             {{ selectedCompany.preferences.rules }}
           </p>
         </article>
