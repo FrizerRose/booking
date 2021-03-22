@@ -86,14 +86,17 @@ export default defineComponent({
 
     const hasError = ref(false);
 
+    const selectedService = computed(() => store.state.shared.selectedService);
+
     async function selectStaff() {
       const chosenStaffID = [];
 
       // Create a list of selected Staff
       if (props.isIDontCare) {
         // Add all Staff
-        const allStaff = computed(() => store.state.staff.allStaff);
-        chosenStaffID.push(...allStaff.value.map((worker) => worker.id));
+        if (selectedService.value?.staff) {
+          chosenStaffID.push(...selectedService.value.staff.map((worker) => worker.id));
+        }
       } else {
         // Add selected Staff
         chosenStaffID.push(props.staff.id);

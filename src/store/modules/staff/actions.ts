@@ -41,6 +41,7 @@ const staffService = new StaffService();
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_STAFF_BY_ID]({ commit }, IDs: number[]): Promise<unknown> {
     return new Promise((resolve, reject) => {
+      commit(SharedMutationTypes.CHANGE_RESERVED_APPOINTMENTS, []);
       IDs.forEach(async (id) => {
         const response = await staffService.get(id);
 

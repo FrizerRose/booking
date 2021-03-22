@@ -222,6 +222,8 @@ export default defineComponent({
           const futureSlotsTaken = reservedAppointment.service.duration / 15;
           for (let i = 0; i < futureSlotsTaken; i += 1) {
             if (timeArray[index + i] !== undefined) {
+              console.log('🚀 ~ file: BookingStepDateTime.vue ~ x + i]', timeArray[index + i]);
+              console.log('🚀 ~ file: BookingStepDasOnNewDate.value.forEach ~ reservedAppointment.staff.id', reservedAppointment.staff.id);
               timeArray[index + i].staff[reservedAppointment.staff.id].available = false;
             }
           }
