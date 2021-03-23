@@ -25,6 +25,9 @@ export function fetchCompanyFromURL() {
     const urlFragments = window.location.hostname.split('.');
     [companyID] = urlFragments;
     console.log('🚀 ~ file: helpers.ts ~ line 25 ~ fetchCompanyFromURL ~ companyID', companyID);
+    if (companyID === 'dolazim') {
+      window.location.href = 'https://landing.dolazim.com';
+    }
   }
 
   store.dispatch(ActionTypes.FETCH_COMPANY, companyID);
