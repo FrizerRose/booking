@@ -4,8 +4,23 @@
     <div class="c-progress_inner">
       <div class="c-progress-indicator">
         <div class="c-progress-number">
-          <span class="c-progress-number_label">
+          <span
+            v-if="selectedCompany?.preferences.hasStaffPick"
+            class="c-progress-number_label"
+          >
             {{ (currentStep * 20) - 20 }}%
+          </span>
+          <span
+            v-else-if="currentStep > 1"
+            class="c-progress-number_label"
+          >
+            {{ ((currentStep -1) * 25) - 25 }}%
+          </span>
+          <span
+            v-else
+            class="c-progress-number_label"
+          >
+            {{ (currentStep * 25) - 25 }}%
           </span>
         </div>
         <div class="c-progress-indicator_line-wrap">
@@ -86,7 +101,10 @@
                     <span class="c-button_label">Usluge</span>
                   </button>
                 </li>
-                <li class="o-list_item c-steps-list_item">
+                <li
+                  v-if="selectedCompany?.preferences.hasStaffPick"
+                  class="o-list_item c-steps-list_item"
+                >
                   <button
                     id="tab-id-odabir-radnika"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 2}"
@@ -183,6 +201,7 @@ export default defineComponent({
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
     const isMenuOpen = computed(() => store.state.shared.isMenuOpen);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     function toggleMenu() {
       store.commit(MutationTypes.CHANGE_MENU_OPEN, !isMenuOpen.value);
@@ -203,12 +222,15 @@ export default defineComponent({
     }
 
     // Calculate % value for the progress bar and create css string
-    const stepCount = 5;
-    const singleStepValue = 1 / stepCount;
-    const scaleValue = computed(() => (currentStep.value * singleStepValue) - singleStepValue);
+    const stepCount = computed(() => (selectedCompany.value?.preferences.hasStaffPick ? 5 : 4));
+    const singleStepValue = computed(() => 1 / stepCount.value);
+    const realStepValue = computed(() => (!selectedCompany.value?.preferences.hasStaffPick && currentStep.value > 1
+      ? currentStep.value - 1 : currentStep.value));
+    const scaleValue = computed(() => (realStepValue.value * singleStepValue.value) - singleStepValue.value);
     const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
 
     return {
+      selectedCompany,
       currentStep,
       changeCurrentStep,
       goBackOneStep,
