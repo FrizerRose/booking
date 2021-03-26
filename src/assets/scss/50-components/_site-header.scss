@@ -10,13 +10,13 @@
   position: relative;
   z-index: 50;
 
-  $site-header-bg: $element-bg;
-  background-color: $site-header-bg;
+  // $site-header-bg: $element-bg;
+  // background-color: $site-header-bg;
 
-  html.mode-dark & {
-    $site-header-bg: $mode-dark_element-bg;
-    background-color: $site-header-bg;
-  }
+  // html.mode-dark & {
+  //   $site-header-bg: $mode-dark_element-bg;
+  //   background-color: $site-header-bg;
+  // }
 }
 
 .c-site-header_inner {
@@ -27,26 +27,37 @@
   }
 }
 .c-site-header_main {
-  flex-shrink: 0;
+  padding: 1em 0;
+  flex-grow: 1;
 
   @media (max-width: $to-small) {
     position: relative;
     z-index: 5;
+    flex-shrink: 0;
 
     // $site-header-mobile-bg: deepskyblue;
     // background-color: $site-header-mobile-bg;
   }
 }
 .c-site-header_main_inner {
-  @media (max-width: $to-small) {
+  // @media (max-width: $to-small) {
     display: flex;
     align-items: center;
     justify-content: space-between;
     // hacks to get the shadow to show up
     padding-top: 4rem;
     margin-top: -4rem;
+  // }
+}
+.c-site-header_main_inner_item {
+  flex-shrink: 0;
+  max-width: 50%;
+
+  @media (min-width: $from-small) {
+    flex-grow: 1;
   }
 }
+
 .c-site-brand-wrap {
   overflow: hidden;
 }

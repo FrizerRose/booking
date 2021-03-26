@@ -1,11 +1,5 @@
 <template>
-  <li
-    id="tab-sazetak"
-    class="o-list_item"
-    tabindex="0"
-    role="tabpanel"
-    aria-labelledby="tab-id-sazetak"
-  >
+  <li class="o-list_item">
     <h1>Vaš termin je zabilježen.</h1>
     <p>
       Provjerite e-mail. Na navedenu e-mail adresu će vam stići poruka s potvrdom termina.

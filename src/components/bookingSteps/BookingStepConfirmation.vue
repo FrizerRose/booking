@@ -1,13 +1,9 @@
 <template>
-  <li
-    id="tab-provjeri-i-potvrdi"
-    class="o-list_item"
-    tabindex="0"
-    role="tabpanel"
-    aria-labelledby="tab-id-provjeri-i-potvrdi"
-  >
+  <li class="o-list_item">
     <div v-if="hasError">
-      <h1>Imamo problem sa serverom. Molimo pokušajte kasnije.</h1>
+      <p>
+        Imamo problem sa serverom. Molimo pokušajte kasnije.
+      </p>
     </div>
     <div
       v-else
@@ -179,7 +175,7 @@
             </label>
           </div>
           <button
-            class="c-button -secondary || is-submit"
+            class="c-button -secondary -submit"
             @click="confirm()"
           >
             <span class="c-button_label">Potvrdi</span>

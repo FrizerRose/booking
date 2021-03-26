@@ -1,11 +1,5 @@
 <template>
-  <li
-    id="tab-usluge"
-    class="o-list_item"
-    tabindex="0"
-    role="tabpanel"
-    aria-labelledby="tab-id-usluge"
-  >
+  <li class="o-list_item">
     <ul
       v-if="services.length"
       class="o-layout o-list XXXXXXXX-gutter"

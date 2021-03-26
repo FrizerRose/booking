@@ -1,9 +1,24 @@
+.c-heading-wrap {
+    display: block;
+    overflow: hidden;
+}
+.c-heading-wrap.is-anim {
+    .c-heading {
+        display: inline-block;
+        transition: transform $speed * 4 $easing;
+        transform: translate3d(0,100%,0);
+        .is-loaded & {
+            transform: none;
+            transition-delay: 1s;
+        }
+    }
+}
+
 .c-heading {
     // line-height: $line-height-h;
     line-height: 1.15;
     // margin-bottom: rem(30px);
-    margin-bottom: 2rem;
-
+    // margin-bottom: 2rem;
 
     &.-h1 {
         font-size: rem($font-size-h1);

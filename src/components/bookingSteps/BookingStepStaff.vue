@@ -1,11 +1,5 @@
 <template>
-  <li
-    id="tab-odabir-radnika"
-    class="o-list_item"
-    tabindex="0"
-    role="tabpanel"
-    aria-labelledby="tab-id-odabir-radnika"
-  >
+  <li class="o-list_item">
     <ul class="o-layout o-list -gutter">
       <BookingStepStaffCard :is-i-dont-care="true" />
       <BookingStepStaffCard

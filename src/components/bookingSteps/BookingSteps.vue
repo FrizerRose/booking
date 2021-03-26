@@ -1,50 +1,54 @@
 <template>
-  <main class="c-site-main">
-    <section
-      v-if="currentStep < 6"
-      class="c-section"
-    >
-      <div class="o-container">
-        <div class="c-progress">
-          <h1 v-if="isRescheduling">
-            Promjena termina
-          </h1>
-          <BookingStepsProgress :is-rescheduling="isRescheduling" />
-        </div>
-      </div>
-    </section>
-    <section class="c-section -first">
-      <div class="o-container">
-        <div class="o-layout -gutter || o-flex -flex-column@to-medium">
-          <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
-            <div class="c-configurator">
-              <ul class="o-list">
-                <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
-                <BookingStepStaff v-if="currentStep === 2" />
-                <BookingStepDateTime
-                  v-if="currentStep === 3"
-                  :is-rescheduling="isRescheduling"
-                />
-                <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
-                <BookingStepConfirmation
-                  v-if="currentStep === 5"
-                  :is-rescheduling="isRescheduling"
-                />
-                <BookingStepSummary v-if="currentStep === 6" />
-              </ul>
-            </div>
+  <div>
+    <TheHeader class="c-site-main" />
+    <main class="c-site-main">
+      <section
+        v-if="currentStep < 6"
+        class="c-section"
+      >
+        <div class="o-container">
+          <div class="c-progress">
+            <h1 v-if="isRescheduling">
+              Promjena termina
+            </h1>
+            <BookingStepsProgress :is-rescheduling="isRescheduling" />
           </div>
-
-          <TheLeftSidebar />
-
-          <TheRightSidebar />
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+      <section class="c-section -first">
+        <div class="o-container">
+          <div class="o-layout -gutter-small || o-flex -flex-column@to-medium">
+            <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
+              <div class="c-configurator">
+                <ul class="o-list">
+                  <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
+                  <BookingStepStaff v-if="currentStep === 2" />
+                  <BookingStepDateTime
+                    v-if="currentStep === 3"
+                    :is-rescheduling="isRescheduling"
+                  />
+                  <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
+                  <BookingStepConfirmation
+                    v-if="currentStep === 5"
+                    :is-rescheduling="isRescheduling"
+                  />
+                  <BookingStepSummary v-if="currentStep === 6" />
+                </ul>
+              </div>
+            </div>
+
+            <TheLeftSidebar />
+
+            <TheRightSidebar />
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </template>
 
 <script lang='ts'>
+import TheHeader from '@/components/layout/TheHeader.vue';
 import TheLeftSidebar from '@/components/layout/TheLeftSidebar.vue';
 import TheRightSidebar from '@/components/layout/TheRightSidebar.vue';
 import BookingStepsProgress from '@/components/bookingSteps/progressBar/BookingStepsProgress.vue';
@@ -60,6 +64,7 @@ import MutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   components: {
+    TheHeader,
     TheLeftSidebar,
     TheRightSidebar,
     BookingStepsProgress,

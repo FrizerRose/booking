@@ -1,11 +1,5 @@
 <template>
-  <li
-    id="tab-vasi-podatci"
-    class="o-list_item"
-    tabindex="0"
-    role="tabpanel"
-    aria-labelledby="tab-id-vasi-podatci"
-  >
+  <li class="o-list_item">
     <form class="c-form">
       <div :class="{'c-form_item': true, 'has-error': formData.name.error}">
         <label
@@ -171,16 +165,18 @@
       >
         <div class="o-background-wrap -is-dialog -is-error">
           <div class="o-background" />
-          {{ errorMsg }}
+          <p>{{ errorMsg }}</p>
         </div>
       </div>
-      <button
-        class="c-button -secondary -submit"
-        type="submit"
-        @click.prevent="submitForm()"
-      >
-        <span class="c-button_label">Submit</span>
-      </button>
+      <div class="c-form_submit">
+        <button
+          class="c-button -secondary -submit"
+          type="submit"
+          @click.prevent="submitForm()"
+        >
+          <span class="c-button_label">Submit</span>
+        </button>
+      </div>
     </form>
   </li>
 </template>

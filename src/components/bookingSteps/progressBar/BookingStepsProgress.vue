@@ -81,21 +81,13 @@
           <div class="o-layout_item">
             <div class="c-steps-list-wrap">
               <!-- <div class="is-overflow-swipe"> -->
-              <ul
-                class="o-list c-steps-list"
-                role="tablist"
-                aria-label="Koraci rezervacije"
-              >
+              <ul class="o-list c-steps-list">
                 <li
                   v-if="!isRescheduling"
                   class="o-list_item c-steps-list_item"
                 >
                   <button
-                    id="tab-id-usluge"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 1}"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="tab-usluge"
                     @click="changeCurrentStep(1)"
                   >
                     <span class="c-button_label">Usluge</span>
@@ -106,12 +98,7 @@
                   class="o-list_item c-steps-list_item"
                 >
                   <button
-                    id="tab-id-odabir-radnika"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 2}"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="tab-odabir-radnika"
-                    tabindex="-1"
                     :disabled="currentStep < 2"
                     @click="changeCurrentStep(2)"
                   >
@@ -120,12 +107,7 @@
                 </li>
                 <li class="o-list_item c-steps-list_item">
                   <button
-                    id="tab-id-odabir-termina"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 3}"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="tab-odabir-termina"
-                    tabindex="-1"
                     :disabled="currentStep < 3"
                     @click="changeCurrentStep(3)"
                   >
@@ -134,12 +116,7 @@
                 </li>
                 <li class="o-list_item c-steps-list_item">
                   <button
-                    id="tab-id-vasi-podatci"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 4}"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="tab-vasi-podatci"
-                    tabindex="-1"
                     :disabled="currentStep < 4"
                     @click="changeCurrentStep(4)"
                   >
@@ -148,12 +125,7 @@
                 </li>
                 <li class="o-list_item c-steps-list_item">
                   <button
-                    id="tab-id-provjeri-i-potvrdi"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 5}"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="tab-provjeri-i-potvrdi"
-                    tabindex="-1"
                     :disabled="currentStep < 5"
                   >
                     <span class="c-button_label">Provjeri i potvrdi</span>
@@ -161,12 +133,7 @@
                 </li>
                 <li class="o-list_item c-steps-list_item">
                   <button
-                    id="tab-id-sazetak"
                     :class="{'c-button -primary -step': true, 'is-current': currentStep === 6}"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="tab-sazetak"
-                    tabindex="-1"
                     :disabled="currentStep < 6"
                   >
                     <span class="c-button_label">Sažetak</span>

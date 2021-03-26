@@ -1,7 +1,23 @@
 <template>
-  <router-view />
+  <router-view
+    :class="{'is-loaded': isMounted}"
+  />
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap');
-</style>
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const isMounted = ref(false);
+
+    onMounted(() => {
+      isMounted.value = true;
+    });
+
+    return {
+      isMounted,
+    };
+  },
+});
+</script>

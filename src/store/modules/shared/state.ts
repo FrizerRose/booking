@@ -5,6 +5,7 @@ import Service from '@/types/service';
 import Staff from '@/types/staff';
 
 export interface State {
+  isSiteInfoOpen: boolean;
   isMenuOpen: boolean;
   currentStep: number;
   selectedCompany: Company | null;
@@ -17,6 +18,7 @@ export interface State {
 }
 
 const state: State = {
+  isSiteInfoOpen: false,
   isMenuOpen: false,
   currentStep: 1,
   selectedCompany: null,

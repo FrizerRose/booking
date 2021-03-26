@@ -1,8 +1,8 @@
 .c-button {
   padding: 0.5em 0.75em;
-  font-weight: 900;
+  font-weight: 700;
   color: currentColor;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
   transition: background-color $speed $easing, color $speed $easing;
 
   &.is-current {
@@ -29,6 +29,17 @@
     opacity: 0.2;
     background-color: transparent !important;
   }
+  &.-info {
+    line-height: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 1rem;
+
+    border: 0.0625em solid currentColor;
+    border-radius: 9999px;
+    padding: 0.125em 0.5em;
+  }
   &.-larger {
     font-size: 150%;
   }
@@ -43,7 +54,9 @@
   display: inline-block;
   line-height: inherit;
   pointer-events: none;
-  margin-bottom: 0.125em;
+  &.-margin-bottom {
+    margin-bottom: 0.125em;
+  }
 }
 
 .c-button.-primary {

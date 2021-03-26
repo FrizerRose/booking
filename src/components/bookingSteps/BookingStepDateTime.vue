@@ -1,22 +1,8 @@
 <template>
-  <li
-    id="tab-odabir-termina"
-    class="o-list_item"
-    tabindex="0"
-    role="tabpanel"
-    aria-labelledby="tab-id-odabir-termina"
-  >
+  <li class="o-list_item">
     <div class="o-layout">
-      <div
-        class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
-      >
+      <div class="o-layout_item u-1/2@from-medium">
         <div class="c-form_item">
-          <label
-            class="c-form_label"
-            for="id-datepicker-start"
-          >
-            biraj termin
-          </label>
           <div class="o-background-wrap -is-datepicker">
             <div class="o-background" />
             <datepicker
@@ -30,9 +16,7 @@
       </div>
     </div>
     <div class="o-layout">
-      <div
-        class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
-      >
+      <div class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
         <ul
           v-if="availableAppointmentTimes.length"
           class="c-timeslots-list o-layout -gutter-small || o-list"
@@ -50,9 +34,9 @@
             </button>
           </li>
         </ul>
-        <div v-else>
+        <p v-else>
           Nema slobodnih termina za odabrani dan.
-        </div>
+        </p>
       </div>
     </div>
   </li>

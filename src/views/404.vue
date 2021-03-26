@@ -2,7 +2,7 @@
   <main class="c-site-main">
     <section class="c-section -first">
       <div class="o-container">
-        <div class="o-layout -gutter || o-flex -flex-column@to-medium">
+        <div class="o-layout -gutter-small || o-flex -flex-column@to-medium">
           <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
             <div class="c-progress">
               <!-- <BookingStepsProgress /> -->

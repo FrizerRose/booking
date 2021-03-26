@@ -6,14 +6,246 @@
         <div class="c-site-header_inner">
           <div class="c-site-header_main || has-no-gutters@to-small">
             <div class="c-site-header_main_inner">
-              <div role="banner">
+              <div
+                class="c-site-header_main_inner_item"
+                role="banner"
+              >
                 <h1 class="c-site-brand">
                   <a
                     class="c-site-brand_link"
                     href="#"
                     rel="home"
-                  >Frizerski salon Marelica</a>
+                  >{{ selectedCompany.name }}</a>
                 </h1>
+              </div>
+              <div class="c-site-header_main_inner_item">
+                <div class="o-layout -right">
+                  <button
+                    class="c-button -info"
+                    @click="toggleSiteInfo()"
+                  >
+                    <span
+                      class="c-button_label -margin-bottom"
+                      :class="{'is-hidden': isSiteInfoOpen}"
+                    >pročitajte info</span>
+                    <span
+                      class="c-button_label -margin-bottom"
+                      :class="{'is-hidden': !isSiteInfoOpen}"
+                    >zatvori</span>
+                    <span class="o-icon u-margin-left-1/2">
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 4a8 8 0 100 16 8 8 0 000-16zM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 7.4a1 1 0 011 1V12a1 1 0 11-2 0V8.4a1 1 0 011-1zM11 15.6a1 1 0 011-1h.01a1 1 0 110 2H12a1 1 0 01-1-1z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+                <div class="c-card-warning-desktop-wrap">
+                  <div
+                    class="c-card-warning-desktop"
+                    :class="{'is-open': isSiteInfoOpen}"
+                  >
+                    <div class="o-background-wrap has-no-gutters@to-medium">
+                      <div class="o-background -has-shadow -has-bg" />
+                      <div class="o-layout">
+                        <div class="o-layout_item">
+                          <div class="o-background-wrap -is-warning is-hidden@to-medium">
+                            <div class="o-background" />
+                            <div
+                              v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
+                              class="c-card-warning"
+                            >
+                              <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
+                                <svg
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
+                                      4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
+                                      4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
+                                      4.44l-.002-.003A.914.914 0 0012 4z"
+                                  />
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
+                                      2H12a1 1 0 01-1-1z"
+                                  />
+                                </svg>
+                              </span>
+                              <span class="c-card-warning_item">
+                                <strong>COVID-19 upozorenje</strong>
+                                <br>
+                                {{ selectedCompany.preferences.coronaRules }}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="c-card-company is-hidden@from-medium">
+        <div
+          class="c-card-company_inner"
+          :class="{'is-open': isSiteInfoOpen}"
+        >
+          <div class="o-background-wrap has-no-gutters@to-medium">
+            <div class="o-background -has-shadow -has-bg" />
+            <div class="o-layout">
+              <div class="o-layout_item">
+                <div class="o-background-wrap -is-warning">
+                  <div class="o-background" />
+                  <div
+                    v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
+                    class="c-card-warning"
+                  >
+                    <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
+                          4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
+                          4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
+                          4.44l-.002-.003A.914.914 0 0012 4z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
+                          2H12a1 1 0 01-1-1z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="c-card-warning_item">
+                      <strong>COVID-19 upozorenje</strong>
+                      <br>
+                      {{ selectedCompany.preferences.coronaRules }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="o-layout_item">
+                <div class="o-layout -gutter-small">
+                  <div class="o-layout_item u-2/5@to-medium">
+                    <figure class="c-card-company-image o-image-wrap -max-width || o-ratio">
+                      <img
+                        v-if="selectedCompany.image && selectedCompany.image.link"
+                        class="o-image"
+                        :src="selectedCompany.image.link"
+                        alt="img text"
+                      >
+                    </figure>
+                  </div>
+                  <div class="o-layout_item u-3/5@to-medium">
+                    <p>
+                      <strong>O nama</strong>
+                      <br>
+                      {{ selectedCompany.about }}
+                    </p>
+                  </div>
+                  <div class="o-layout_item">
+                    <div class="o-layout -gutter-small">
+                      <div class="o-layout_item u-2/5@to-medium">
+                        <p>
+                          <strong>Adresa</strong>
+                          <br>
+                        </p>
+                        <address class="c-card-company-address">
+                          {{ selectedCompany.name }}<br>
+                          {{ selectedCompany.streetName }}<br>
+                          {{ selectedCompany.city }}
+                        </address>
+                      </div>
+                      <div class="o-layout_item u-3/5@to-medium">
+                        <ul class="c-card-company-contact_list">
+                          <li
+                            v-if="selectedCompany.phone"
+                            class="c-card-company-contact_list-item"
+                          >
+                            <a
+                              class="c-card-company-contact_link o-link"
+                              type="tel"
+                              :href="selectedCompany.phone"
+                              target="_blank"
+                            >
+                              <span class="o-link_label">{{ selectedCompany.phone }}</span>
+                            </a>
+                          </li>
+                          <li class="c-card-company-contact_list-item">
+                            <a
+                              class="c-card-company-contact_link o-link"
+                              :href="'mailto:' + selectedCompany.contactEmail"
+                              target="_blank"
+                            >
+                              <span class="o-link_label">E-mail</span>
+                            </a>
+                          </li>
+                          <li v-if="selectedCompany.preferences.facebookLink">
+                            <a
+                              class="o-link"
+                              :href="selectedCompany.preferences.facebookLink"
+                              target="_blank"
+                            >
+                              <span class="o-link_label">Facebook</span>
+                            </a>
+                          </li>
+                          <li v-if="selectedCompany.preferences.instagramLink">
+                            <a
+                              class="o-link"
+                              :href="selectedCompany.preferences.instagramLink"
+                              target="_blank"
+                            >
+                              <span class="o-link_label">Instagram</span>
+                            </a>
+                          </li>
+                          <li v-if="selectedCompany.preferences.websiteLink">
+                            <a
+                              class="o-link"
+                              :href="selectedCompany.preferences.websiteLink"
+                              target="_blank"
+                            >
+                              <span class="o-link_label">Web</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="o-layout_item">
+                    <p
+                      v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
+                      class="c-card-company-contact_rules"
+                    >
+                      <strong>Pravila ponašanja</strong>
+                      <br>
+                      {{ selectedCompany.preferences.rules }}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -24,11 +256,24 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
+import { useStore } from '@/store';
 
 export default defineComponent({
-  // setup() {
+  setup() {
+    const store = useStore();
+    const isSiteInfoOpen = ref(false);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
-  // },
+    function toggleSiteInfo() {
+      isSiteInfoOpen.value = !isSiteInfoOpen.value;
+    }
+
+    return {
+      toggleSiteInfo,
+      isSiteInfoOpen,
+      selectedCompany,
+    };
+  },
 });
 </script>
