@@ -1,5 +1,8 @@
 <template>
-  <div class="o-layout_item u-1/5@from-medium is-hidden@to-medium">
+  <div
+    v-if="selectedCompany"
+    class="o-layout_item u-1/5@from-medium is-hidden@to-medium"
+  >
     <p v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules">
       <strong>Pravila ponašanja</strong>
       <br>
