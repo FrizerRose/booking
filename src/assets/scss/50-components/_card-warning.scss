@@ -30,6 +30,11 @@
     margin-bottom: 1rem;
   }
 }
+.c-card-info {
+  @media (min-width: $to-medium) {
+    padding: 0.25em 0.5em;
+  }
+}
 
 .c-card-warning_item {
   &.-shrink-0 {
@@ -66,7 +71,10 @@
 }
 
 .c-card-company-contact {
-  margin-top: 1rem;
+	@media (max-width: $to-medium) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+	}
 }
 .c-card-company-image {
   margin-bottom: 1rem;
@@ -81,7 +89,6 @@
 
 .c-card-company-address {
 	@media (max-width: $to-medium) {
-    margin-bottom: 1rem;
 	}
 	@media (min-width: $from-medium) {
     margin-bottom: 1rem;

@@ -18,7 +18,12 @@
                   >{{ selectedCompany.name }}</a>
                 </h1>
               </div>
-              <div class="c-site-header_main_inner_item">
+              <div
+                :class="{
+                  'is-hidden@from-medium': !selectedCompany.preferences.showRules && !selectedCompany.preferences.showCoronaRules,
+                }"
+                class="c-site-header_main_inner_item"
+              >
                 <div class="o-layout -right">
                   <button
                     class="c-button -info"
@@ -57,10 +62,10 @@
                     :class="{'is-open': isSiteInfoOpen}"
                   >
                     <div class="o-background-wrap has-no-gutters@to-medium">
-                      <div class="o-background -has-shadow -has-bg" />
-                      <div class="o-layout">
+                      <div class="o-background -has-shadow-v2 -has-bg" />
+                      <div class="o-layout is-hidden@to-medium">
                         <div class="o-layout_item">
-                          <div class="o-background-wrap -is-warning is-hidden@to-medium">
+                          <div class="o-background-wrap -is-warning">
                             <div class="o-background" />
                             <div
                               v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
@@ -93,6 +98,15 @@
                                 {{ selectedCompany.preferences.coronaRules }}
                               </span>
                             </div>
+                          </div>
+                        </div>
+                        <div class="o-layout_item">
+                          <div class="c-card-info">
+                            <p v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules">
+                              <strong>Pravila ponašanja</strong>
+                              <br>
+                              {{ selectedCompany.preferences.rules }}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -168,7 +182,7 @@
                     </p>
                   </div>
                   <div class="o-layout_item">
-                    <div class="o-layout -gutter-small">
+                    <div class="o-layout -gutter-small c-card-company-contact">
                       <div class="o-layout_item u-2/5@to-medium">
                         <p>
                           <strong>Adresa</strong>
@@ -204,27 +218,36 @@
                               <span class="o-link_label">E-mail</span>
                             </a>
                           </li>
-                          <li v-if="selectedCompany.preferences.facebookLink">
+                          <li
+                            v-if="selectedCompany.preferences.facebookLink"
+                            class="c-card-company-contact_list-item"
+                          >
                             <a
-                              class="o-link"
+                              class="c-card-company-contact_link o-link"
                               :href="selectedCompany.preferences.facebookLink"
                               target="_blank"
                             >
                               <span class="o-link_label">Facebook</span>
                             </a>
                           </li>
-                          <li v-if="selectedCompany.preferences.instagramLink">
+                          <li
+                            v-if="selectedCompany.preferences.instagramLink"
+                            class="c-card-company-contact_list-item"
+                          >
                             <a
-                              class="o-link"
+                              class="c-card-company-contact_link o-link"
                               :href="selectedCompany.preferences.instagramLink"
                               target="_blank"
                             >
                               <span class="o-link_label">Instagram</span>
                             </a>
                           </li>
-                          <li v-if="selectedCompany.preferences.websiteLink">
+                          <li
+                            v-if="selectedCompany.preferences.websiteLink"
+                            class="c-card-company-contact_list-item"
+                          >
                             <a
-                              class="o-link"
+                              class="c-card-company-contact_link o-link"
                               :href="selectedCompany.preferences.websiteLink"
                               target="_blank"
                             >

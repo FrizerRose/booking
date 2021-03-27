@@ -3,11 +3,76 @@
     v-if="selectedCompany"
     class="o-layout_item u-1/5@from-medium is-hidden@to-medium"
   >
-    <p v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules">
-      <strong>Pravila ponašanja</strong>
+    <p>
+      <strong>Adresa</strong>
       <br>
-      {{ selectedCompany.preferences.rules }}
     </p>
+    <address class="c-card-company-address">
+      {{ selectedCompany.name }}<br>
+      {{ selectedCompany.streetName }}<br>
+      {{ selectedCompany.city }}
+    </address>
+
+    <ul class="c-card-company-contact_list">
+      <li
+        v-if="selectedCompany.phone"
+        class="c-card-company-contact_list-item"
+      >
+        <a
+          class="c-card-company-contact_link o-link"
+          type="tel"
+          :href="selectedCompany.phone"
+          target="_blank"
+        >
+          <span class="o-link_label">{{ selectedCompany.phone }}</span>
+        </a>
+      </li>
+      <li class="c-card-company-contact_list-item">
+        <a
+          class="c-card-company-contact_link o-link"
+          :href="'mailto:' + selectedCompany.contactEmail"
+          target="_blank"
+        >
+          <span class="o-link_label">E-mail</span>
+        </a>
+      </li>
+      <li
+        v-if="selectedCompany.preferences.facebookLink"
+        class="c-card-company-contact_list-item"
+      >
+        <a
+          class="c-card-company-contact_link o-link"
+          :href="selectedCompany.preferences.facebookLink"
+          target="_blank"
+        >
+          <span class="o-link_label">Facebook</span>
+        </a>
+      </li>
+      <li
+        v-if="selectedCompany.preferences.instagramLink"
+        class="c-card-company-contact_list-item"
+      >
+        <a
+          class="c-card-company-contact_link o-link"
+          :href="selectedCompany.preferences.instagramLink"
+          target="_blank"
+        >
+          <span class="o-link_label">Instagram</span>
+        </a>
+      </li>
+      <li
+        v-if="selectedCompany.preferences.websiteLink"
+        class="c-card-company-contact_list-item"
+      >
+        <a
+          class="c-card-company-contact_link o-link"
+          :href="selectedCompany.preferences.websiteLink"
+          target="_blank"
+        >
+          <span class="o-link_label">Web</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
