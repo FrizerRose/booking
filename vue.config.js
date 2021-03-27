@@ -2,11 +2,12 @@
 module.exports = {
   // restart dev server to apply changes
   pwa: {
-    name: 'booking app',
+    name: 'Dolazim.hr',
     themeColor: '#fcfcf9',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
+    manifestPath: './img/icons/site.webmanifest',
 
     // // configure the workbox plugin
     // workboxPluginMode: 'InjectManifest',
