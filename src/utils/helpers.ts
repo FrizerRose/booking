@@ -20,14 +20,14 @@ export function fetchCompanyFromURL() {
   const store = useStore();
 
   let companyID: string | number = 1;
-  console.log('🚀 ~ file: helpers.ts ~ line 23 ~ fetchCompanyFromURL ~ process.env.NODE_ENV', process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'production') {
     const urlFragments = window.location.hostname.split('.');
     [companyID] = urlFragments;
-    console.log('🚀 ~ file: helpers.ts ~ line 25 ~ fetchCompanyFromURL ~ companyID', companyID);
     if (companyID === 'dolazim') {
       window.location.href = 'https://landing.dolazim.com';
     }
+  } else if (process.env.VUE_APP_COMPANY_ID) {
+    companyID = parseInt(process.env.VUE_APP_COMPANY_ID, 10);
   }
 
   store.dispatch(ActionTypes.FETCH_COMPANY, companyID);

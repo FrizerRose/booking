@@ -114,7 +114,7 @@ export class CompanyService {
   }
 
   get(slug: number) {
-    return this.apiService.get(this.resource, 6);
+    return this.apiService.get(this.resource, slug);
   }
 
   getBySlug(slug: string) {
