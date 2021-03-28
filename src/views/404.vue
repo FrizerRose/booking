@@ -3,7 +3,7 @@
     <section class="c-section">
       <div class="o-container">
         <div class="o-orphan">
-          <div class="c-heading-wrap x-is-anim">
+          <div class="c-heading-wrap is-anim">
             <h1 class="c-heading">
               404
             </h1>

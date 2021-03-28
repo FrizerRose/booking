@@ -1,7 +1,7 @@
 <template>
   <router-view
     v-if="isCompanyFetched"
-    :class="{'is-loaded': isMounted}"
+    :class="{'is-loaded': isMounted && isCompanyFetched}"
   />
 
   <div v-else>
