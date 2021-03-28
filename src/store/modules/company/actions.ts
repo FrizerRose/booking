@@ -39,21 +39,26 @@ const companyService = new CompanyService();
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_COMPANY]({ commit }, id: number | string) {
-    let response;
-    if (typeof id === 'number') {
-      response = await companyService.get(id);
-    } else {
-      response = await companyService.getBySlug(id);
-    }
-    if (response.status === 200 && response.data) {
-      commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
-      commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
-
-      document.documentElement.className = response.data.preferences.colorVariant;
-    } else {
+    try {
+      let response;
+      if (typeof id === 'number') {
+        response = await companyService.get(id);
+      } else {
+        response = await companyService.getBySlug(id);
+      }
+      if (response.status === 200 && response.data) {
+        commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
+        commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
+        commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
+        commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
+        document.documentElement.className = response.data.preferences.colorVariant;
+      } else {
+        commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
+        throw new ApiError('No company by this ID.');
+      }
+    } catch {
+      commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
       throw new ApiError('No company by this ID.');
     }
-
-    commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
   },
 };
