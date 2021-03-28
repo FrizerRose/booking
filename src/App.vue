@@ -1,7 +1,6 @@
 <template>
   <router-view
     v-if="isCompanyFetched"
-    :class="{'is-loaded': isMounted && isCompanyFetched}"
   />
 
   <div v-else>
@@ -11,7 +10,7 @@
 
 <script lang="ts">
 import {
-  defineComponent, onMounted, ref, computed,
+  defineComponent, computed,
 } from 'vue';
 import { useStore } from '@/store';
 
@@ -20,14 +19,7 @@ export default defineComponent({
     const store = useStore();
     const isCompanyFetched = computed(() => store.state.shared.isCompanyFetched);
 
-    const isMounted = ref(false);
-
-    onMounted(() => {
-      isMounted.value = true;
-    });
-
     return {
-      isMounted,
       isCompanyFetched,
     };
   },

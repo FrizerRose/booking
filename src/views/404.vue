@@ -1,5 +1,5 @@
 <template>
-  <main class="c-site-main">
+  <main :class="{'is-loaded': isMounted, 'c-site-main': true}">
     <section class="c-section">
       <div class="o-container">
         <div class="o-orphan">
@@ -23,8 +23,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({
+  setup() {
+    const isMounted = ref(false);
+
+    onMounted(() => {
+      isMounted.value = true;
+    });
+
+    return {
+      isMounted,
+    };
+  },
 });
 </script>

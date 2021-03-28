@@ -58,7 +58,9 @@ import BookingStepDateTime from '@/components/bookingSteps/BookingStepDateTime.v
 import BookingStepPersonalDetails from '@/components/bookingSteps/BookingStepPersonalDetails.vue';
 import BookingStepConfirmation from '@/components/bookingSteps/BookingStepConfirmation.vue';
 import BookingStepSummary from '@/components/bookingSteps/BookingStepSummary.vue';
-import { defineComponent, computed } from 'vue';
+import {
+  defineComponent, computed,
+} from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 

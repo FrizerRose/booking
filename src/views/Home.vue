@@ -3,7 +3,7 @@
 
   <main
     v-else
-    class="c-site-main"
+    :class="{'is-loaded': isMounted, 'c-site-main': true}"
   >
     <section class="c-section">
       <div class="o-container">
@@ -20,7 +20,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import {
+  defineComponent, computed, ref, onMounted,
+} from 'vue';
 import BookingSteps from '@/components/bookingSteps/BookingSteps.vue';
 import MutationTypes from '@/store/mutation-types';
 import { useStore } from '@/store';
@@ -39,8 +41,15 @@ export default defineComponent({
     });
     store.commit(MutationTypes.CHANGE_IS_MOBILE, window.innerWidth <= 999);
 
+    const isMounted = ref(false);
+
+    onMounted(() => {
+      isMounted.value = true;
+    });
+
     return {
       selectedCompany,
+      isMounted,
     };
   },
 });
