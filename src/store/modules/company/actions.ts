@@ -46,14 +46,14 @@ export const actions: ActionTree<State, RootState> & Actions = {
       } else {
         response = await companyService.getBySlug(id);
       }
+
+      commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
+
       if (response.status === 200 && response.data) {
         commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
         commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
-        commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
-        commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
         document.documentElement.className = response.data.preferences.colorVariant;
       } else {
-        commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
         throw new ApiError('No company by this ID.');
       }
     } catch {
