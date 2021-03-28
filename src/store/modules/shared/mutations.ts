@@ -20,6 +20,8 @@ export type Mutations<S = State> = {
   [LocalMutationTypes.CHANGE_SELECTED_NOTICE](state: S, payload: string): void;
   [LocalMutationTypes.ADD_RESERVED_APPOINTMENTS](state: S, payload: Appointment[]): void;
   [LocalMutationTypes.CHANGE_RESERVED_APPOINTMENTS](state: S, payload: Appointment[]): void;
+  [LocalMutationTypes.CHANGE_IS_COMPANY_FETCHED](state: S, payload: boolean): void;
+
 }
 
 // Mutuation implementation.
@@ -56,5 +58,8 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [LocalMutationTypes.CHANGE_RESERVED_APPOINTMENTS](state, payload: Appointment[]) {
     state.reservedAppointments = payload;
+  },
+  [LocalMutationTypes.CHANGE_IS_COMPANY_FETCHED](state, payload: boolean) {
+    state.isCompanyFetched = payload;
   },
 };

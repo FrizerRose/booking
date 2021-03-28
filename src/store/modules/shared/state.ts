@@ -15,6 +15,8 @@ export interface State {
   selectedCustomer: Customer | null;
   selectedNotice: string;
   reservedAppointments: Appointment[];
+  isCompanyFetched: boolean;
+
 }
 
 const state: State = {
@@ -28,6 +30,7 @@ const state: State = {
   selectedCustomer: null,
   selectedNotice: '',
   reservedAppointments: [],
+  isCompanyFetched: false,
 };
 
 export default state;

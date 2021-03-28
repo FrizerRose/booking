@@ -53,5 +53,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     } else {
       throw new ApiError('No company by this ID.');
     }
+
+    commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
   },
 };
