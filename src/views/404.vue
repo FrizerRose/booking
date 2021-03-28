@@ -23,14 +23,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import {
+  defineComponent, ref, onMounted,
+} from 'vue';
 
 export default defineComponent({
   setup() {
     const isMounted = ref(false);
 
-    onMounted(() => {
-      isMounted.value = true;
+    onMounted(async () => {
+      setTimeout(() => {
+        isMounted.value = true;
+      }, 0);
     });
 
     return {

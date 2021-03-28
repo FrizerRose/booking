@@ -43,8 +43,10 @@ export default defineComponent({
 
     const isMounted = ref(false);
 
-    onMounted(() => {
-      isMounted.value = true;
+    onMounted(async () => {
+      setTimeout(() => {
+        isMounted.value = true;
+      }, 0);
     });
 
     return {
