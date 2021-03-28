@@ -20,7 +20,10 @@
               </div>
               <div
                 :class="{
-                  'is-hidden@from-medium': !selectedCompany.preferences.showRules && !selectedCompany.preferences.showCoronaRules,
+                  'is-hidden@from-medium': (!selectedCompany.preferences.showRules &&
+                    !selectedCompany.preferences.showCoronaRules) ||
+                    (selectedCompany.preferences.rules === '' &&
+                      selectedCompany.preferences.coronaRules === ''),
                 }"
                 class="c-site-header_main_inner_item"
               >
