@@ -20,20 +20,18 @@
           <div class="o-layout -gutter-small || o-flex -flex-column@to-medium">
             <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
               <div class="c-configurator">
-                <ul class="o-list">
-                  <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
-                  <BookingStepStaff v-if="currentStep === 2" />
-                  <BookingStepDateTime
-                    v-if="currentStep === 3"
-                    :is-rescheduling="isRescheduling"
-                  />
-                  <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
-                  <BookingStepConfirmation
-                    v-if="currentStep === 5"
-                    :is-rescheduling="isRescheduling"
-                  />
-                  <BookingStepSummary v-if="currentStep === 6" />
-                </ul>
+                <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
+                <BookingStepStaff v-if="currentStep === 2" />
+                <BookingStepDateTime
+                  v-if="currentStep === 3"
+                  :is-rescheduling="isRescheduling"
+                />
+                <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
+                <BookingStepConfirmation
+                  v-if="currentStep === 5"
+                  :is-rescheduling="isRescheduling"
+                />
+                <BookingStepSummary v-if="currentStep === 6" />
               </div>
             </div>
 

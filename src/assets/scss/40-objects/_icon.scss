@@ -27,3 +27,14 @@
         height: 100%;
     }
 }
+
+.o-loader {
+	width: 8rem;
+    height: 8rem;
+	animation: rotateLoader 2s linear infinite;
+}
+@keyframes rotateLoader {
+	to {
+		transform: rotate(1turn)
+	}
+}

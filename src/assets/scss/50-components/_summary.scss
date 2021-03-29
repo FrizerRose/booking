@@ -17,6 +17,22 @@
 	}
 }
 
+.c-summary_question {
+    text-transform: uppercase;
+    font-weight: $bold;
+    letter-spacing: -0.5px;
+}
+
+.c-summary_answer {
+	word-break: break-all;
+	&.-italic {
+		font-style: italic;
+	}
+	&.-min-height {
+		min-height: 6em;
+	}
+}
+
 .c-summary_footer {
 	margin-top: 4rem;
 }

@@ -1,5 +1,5 @@
 <template>
-  <li class="o-list_item">
+  <div>
     <div class="o-layout">
       <div class="o-layout_item u-1/2@from-medium">
         <div class="c-form_item">
@@ -39,7 +39,7 @@
         </p>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang='ts'>

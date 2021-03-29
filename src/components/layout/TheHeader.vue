@@ -64,52 +64,60 @@
                     class="c-card-warning-desktop"
                     :class="{'is-open': isSiteInfoOpen}"
                   >
-                    <div class="o-background-wrap has-no-gutters@to-medium">
-                      <div class="o-background -has-shadow-v2 -has-bg" />
-                      <div class="o-layout is-hidden@to-medium">
-                        <div class="o-layout_item">
-                          <div class="o-background-wrap -is-warning">
-                            <div class="o-background" />
-                            <div
-                              v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
-                              class="c-card-warning"
-                            >
-                              <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
-                                <svg
-                                  viewBox="0 0 24 24"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
-                                      4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
-                                      4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
-                                      4.44l-.002-.003A.914.914 0 0012 4z"
-                                  />
-                                  <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
-                                      2H12a1 1 0 01-1-1z"
-                                  />
-                                </svg>
-                              </span>
-                              <span class="c-card-warning_item">
-                                <strong>COVID-19 upozorenje</strong>
-                                <br>
-                                {{ selectedCompany.preferences.coronaRules }}
-                              </span>
+                    <div class="o-background-wrap">
+                      <div class="o-background -has-shadow-v2 -has-bg -overflow" />
+                      <div class="-overflow">
+                        <div class="o-layout is-hidden@to-medium">
+                          <div class="o-layout_item">
+                            <div class="o-background-wrap -is-warning">
+                              <div class="o-background" />
+                              <div
+                                v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
+                                class="c-card-warning"
+                              >
+                                <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
+                                  <svg
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
+                                        4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
+                                        4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
+                                        4.44l-.002-.003A.914.914 0 0012 4z"
+                                    />
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
+                                        2H12a1 1 0 01-1-1z"
+                                    />
+                                  </svg>
+                                </span>
+                                <span class="c-card-warning_item">
+                                  <strong>COVID-19 upozorenje</strong>
+                                  <br>
+                                  {{ selectedCompany.preferences.coronaRules }}
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="o-layout_item">
-                          <div class="c-card-info">
-                            <p v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules">
-                              <strong>Pravila ponašanja</strong>
-                              <br>
-                              {{ selectedCompany.preferences.rules }}
-                            </p>
+                          <div class="o-layout_item">
+                            <div class="c-card-info">
+                              <div
+                                v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
+                                class="c-card-company-contact_rules"
+                              >
+                                <p class="u-margin-bottom-1/2">
+                                  <strong>Pravila ponašanja</strong>
+                                </p>
+                                <p>
+                                  {{ selectedCompany.preferences.rules }}
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -126,150 +134,180 @@
           class="c-card-company_inner"
           :class="{'is-open': isSiteInfoOpen}"
         >
-          <div class="o-background-wrap has-no-gutters@to-medium">
-            <div class="o-background -has-shadow -has-bg" />
-            <div class="o-layout">
-              <div class="o-layout_item">
-                <div class="o-background-wrap -is-warning">
-                  <div class="o-background" />
-                  <div
-                    v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
-                    class="c-card-warning"
-                  >
-                    <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
-                      <svg
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
-                          4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
-                          4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
-                          4.44l-.002-.003A.914.914 0 0012 4z"
-                        />
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
-                          2H12a1 1 0 01-1-1z"
-                        />
-                      </svg>
-                    </span>
-                    <span class="c-card-warning_item">
-                      <strong>COVID-19 upozorenje</strong>
-                      <br>
-                      {{ selectedCompany.preferences.coronaRules }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="o-layout_item">
-                <div class="o-layout -gutter-small">
-                  <div class="o-layout_item u-2/5@to-medium">
-                    <figure class="c-card-company-image o-image-wrap -max-width || o-ratio">
-                      <img
-                        v-if="selectedCompany.image && selectedCompany.image.link"
-                        class="o-image"
-                        :src="selectedCompany.image.link"
-                        alt="img text"
-                      >
-                    </figure>
-                  </div>
-                  <div class="o-layout_item u-3/5@to-medium">
-                    <p>
-                      <strong>O nama</strong>
-                      <br>
-                      {{ selectedCompany.about }}
-                    </p>
-                  </div>
-                  <div class="o-layout_item">
-                    <div class="o-layout -gutter-small c-card-company-contact">
-                      <div class="o-layout_item u-2/5@to-medium">
-                        <p>
-                          <strong>Adresa</strong>
-                          <br>
-                        </p>
-                        <address class="c-card-company-address">
-                          {{ selectedCompany.name }}<br>
-                          {{ selectedCompany.streetName }}<br>
-                          {{ selectedCompany.city }}
-                        </address>
-                      </div>
-                      <div class="o-layout_item u-3/5@to-medium">
-                        <ul class="c-card-company-contact_list">
-                          <li
-                            v-if="selectedCompany.phone"
-                            class="c-card-company-contact_list-item"
-                          >
-                            <a
-                              class="c-card-company-contact_link o-link"
-                              type="tel"
-                              :href="selectedCompany.phone"
-                              target="_blank"
-                            >
-                              <span class="o-link_label">{{ selectedCompany.phone }}</span>
-                            </a>
-                          </li>
-                          <li class="c-card-company-contact_list-item">
-                            <a
-                              class="c-card-company-contact_link o-link"
-                              :href="'mailto:' + selectedCompany.contactEmail"
-                              target="_blank"
-                            >
-                              <span class="o-link_label">E-mail</span>
-                            </a>
-                          </li>
-                          <li
-                            v-if="selectedCompany.preferences.facebookLink"
-                            class="c-card-company-contact_list-item"
-                          >
-                            <a
-                              class="c-card-company-contact_link o-link"
-                              :href="selectedCompany.preferences.facebookLink"
-                              target="_blank"
-                            >
-                              <span class="o-link_label">Facebook</span>
-                            </a>
-                          </li>
-                          <li
-                            v-if="selectedCompany.preferences.instagramLink"
-                            class="c-card-company-contact_list-item"
-                          >
-                            <a
-                              class="c-card-company-contact_link o-link"
-                              :href="selectedCompany.preferences.instagramLink"
-                              target="_blank"
-                            >
-                              <span class="o-link_label">Instagram</span>
-                            </a>
-                          </li>
-                          <li
-                            v-if="selectedCompany.preferences.websiteLink"
-                            class="c-card-company-contact_list-item"
-                          >
-                            <a
-                              class="c-card-company-contact_link o-link"
-                              :href="selectedCompany.preferences.websiteLink"
-                              target="_blank"
-                            >
-                              <span class="o-link_label">Web</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+          <div class="o-background-wrap x-has-no-gutters@to-medium">
+            <div class="o-background -has-shadow-v2 -has-bg -overflow" />
+            <div class=" -overflow">
+              <div class="o-layout">
+                <div class="o-layout_item">
+                  <div class="o-background-wrap -is-warning">
+                    <div class="o-background" />
+                    <div
+                      v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
+                      class="c-card-warning"
+                    >
+                      <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
+                        <svg
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
+                            4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
+                            4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
+                            4.44l-.002-.003A.914.914 0 0012 4z"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
+                            2H12a1 1 0 01-1-1z"
+                          />
+                        </svg>
+                      </span>
+                      <span class="c-card-warning_item">
+                        <strong>COVID-19 upozorenje</strong>
+                        <br>
+                        {{ selectedCompany.preferences.coronaRules }}
+                      </span>
                     </div>
                   </div>
-                  <div class="o-layout_item">
-                    <p
-                      v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
-                      class="c-card-company-contact_rules"
-                    >
-                      <strong>Pravila ponašanja</strong>
-                      <br>
-                      {{ selectedCompany.preferences.rules }}
-                    </p>
+                </div>
+                <div class="o-layout_item">
+                  <div class="c-card-info">
+                    <div class="o-layout -gutter-small">
+                      <div class="o-layout_item u-2/5@to-medium">
+                        <figure
+                          v-if="selectedCompany.image && selectedCompany.image.link"
+                          class="c-card-company-image o-image-wrap -max-width || o-ratio"
+                        >
+                          <div class="o-ratio_content">
+                            <img
+                              class="o-image u-objfit"
+                              :src="selectedCompany.image.link"
+                              alt="img text"
+                            >
+                          </div>
+                        </figure>
+                        <span
+                          v-else
+                          class="o-ratio"
+                        >
+                          <svg
+                            class="c-card-company-image-fallback o-ratio_content"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0H0v24h12zm0-6a6 6 0 100-12 6 6 0 000 12z"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="o-layout_item u-3/5@to-medium">
+                        <p>
+                          <strong>O nama</strong>
+                          <br>
+                          {{ selectedCompany.about }}
+                        </p>
+                      </div>
+                      <div class="o-layout_item">
+                        <div class="o-layout -gutter-small c-card-company-contact">
+                          <div class="o-layout_item u-2/5@to-medium">
+                            <p>
+                              <strong>Adresa</strong>
+                              <br>
+                            </p>
+                            <address class="c-card-company-address">
+                              {{ selectedCompany.name }}<br>
+                              {{ selectedCompany.streetName }}<br>
+                              {{ selectedCompany.city }}
+                            </address>
+                          </div>
+                          <div class="o-layout_item u-3/5@to-medium">
+                            <ul class="c-card-company-contact_list">
+                              <li
+                                v-if="selectedCompany.phone"
+                                class="c-card-company-contact_list-item"
+                              >
+                                <a
+                                  class="c-card-company-contact_link o-link -padding"
+                                  type="tel"
+                                  :href="selectedCompany.phone"
+                                  target="_blank"
+                                >
+                                  <span class="o-link_label">{{ selectedCompany.phone }}</span>
+                                </a>
+                              </li>
+                              <li class="c-card-company-contact_list-item">
+                                <a
+                                  class="c-card-company-contact_link o-link -padding"
+                                  :href="'mailto:' + selectedCompany.contactEmail"
+                                  target="_blank"
+                                >
+                                  <span class="o-link_label">E-mail</span>
+                                </a>
+                              </li>
+                              <li
+                                v-if="selectedCompany.preferences.facebookLink"
+                                class="c-card-company-contact_list-item"
+                              >
+                                <a
+                                  class="c-card-company-contact_link o-link -padding"
+                                  :href="selectedCompany.preferences.facebookLink"
+                                  target="_blank"
+                                >
+                                  <span class="o-link_label">Facebook</span>
+                                </a>
+                              </li>
+                              <li
+                                v-if="selectedCompany.preferences.instagramLink"
+                                class="c-card-company-contact_list-item"
+                              >
+                                <a
+                                  class="c-card-company-contact_link o-link -padding"
+                                  :href="selectedCompany.preferences.instagramLink"
+                                  target="_blank"
+                                >
+                                  <span class="o-link_label">Instagram</span>
+                                </a>
+                              </li>
+                              <li
+                                v-if="selectedCompany.preferences.websiteLink"
+                                class="c-card-company-contact_list-item"
+                              >
+                                <a
+                                  class="c-card-company-contact_link o-link -padding"
+                                  :href="selectedCompany.preferences.websiteLink"
+                                  target="_blank"
+                                >
+                                  <span class="o-link_label">Web</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="o-layout_item">
+                        <div
+                          v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
+                          class="c-card-company-contact_rules"
+                        >
+                          <p class="u-margin-bottom-1/2">
+                            <strong>Pravila ponašanja</strong>
+                          </p>
+                          <p>
+                            {{ selectedCompany.preferences.rules }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

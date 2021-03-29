@@ -1,5 +1,5 @@
 <template>
-  <li class="o-list_item">
+  <div>
     <div v-if="hasError">
       <p>
         Imamo problem sa serverom. Molimo pokušajte kasnije.
@@ -84,19 +84,16 @@
             </p>
           </div>
           <div class="o-layout_item u-1/2">
-            <p
-              v-if="selectedNotice !== ''"
-              class="c-summary_answer"
-            >
-              <!-- eslint-disable-next-line vue/no-v-html -->
-              <pre v-html="selectedNotice" /><br>
-            </p>
-            <p
-              v-else
-              class="c-summary_answer"
-            >
-              <em>Bez napomene</em><br>
-            </p>
+            <div v-if="selectedNotice !== ''">
+              <p class="c-summary_answer -min-height">
+                {{ selectedNotice }}
+              </p>
+            </div>
+            <div v-else>
+              <p class="c-summary_answer -min-height -italic">
+                Bez napomene
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -108,13 +105,16 @@
                 href="#"
                 class="o-link"
                 target="_blank"
+                rel="noopener noreferrer"
               >ovdje</a>
+              i
               <a
                 v-if="selectedCompany.preferences.termsLink"
                 :href="selectedCompany.preferences.termsLink"
                 class="o-link"
                 target="_blank"
-              > i ovdje.</a>
+                rel="noopener noreferrer"
+              >ovdje.</a>
             </p>
           </div>
           <div :class="{'c-form_item': true, 'has-error': termsError}">
@@ -168,7 +168,7 @@
               autocomplete="off"
             >
             <label
-              class="c-form_checkboxLabel"
+              class="c-form_checkboxLabel u-screen-reader-text"
               for="id-form-checkbox-sakriveno"
               style="visibility: hidden"
             >Sakriveno anti-spam polje. Nemojte ga označiti.
@@ -183,7 +183,7 @@
         </div>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang='ts'>

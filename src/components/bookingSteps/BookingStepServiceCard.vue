@@ -1,7 +1,5 @@
 <template>
-  <li
-    class="o-layout_item o-list_item -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center"
-  >
+  <div class="o-layout_item o-list_item">
     <div class="o-background-wrap">
       <div class="o-background -has-shadow" />
 
@@ -10,11 +8,11 @@
         class="c-card-service has-links-inside"
       >
         <div class="c-card-service_info">
+          <h1 class="c-card-service_heading">
+            {{ service.name }}
+          </h1>
           <div class="o-layout o-flex -justify-between -align-end">
             <div class="o-layout_item u-width-auto">
-              <h1 class="c-card-service_heading">
-                {{ service.name }}
-              </h1>
               <span class="o-tag">
                 <span class="o-icon">
                   <svg
@@ -54,12 +52,14 @@
       >
         <div class="o-layout || o-flex">
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
-            <figure class="c-card-service_image-wrap -max-width || o-ratio">
-              <img
-                class="c-card-service_image"
-                src="https://source.unsplash.com/random"
-                alt="img text"
-              >
+            <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded">
+              <div class="o-ratio_content">
+                <img
+                  class="c-card-service_image u-objfit"
+                  src="https://source.unsplash.com/random"
+                  alt="img text"
+                >
+              </div>
             </figure>
           </div>
 
@@ -118,7 +118,7 @@
         </div>
       </article>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang='ts'>

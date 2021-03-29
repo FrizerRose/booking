@@ -19,7 +19,7 @@
         class="c-card-company-contact_list-item"
       >
         <a
-          class="c-card-company-contact_link o-link"
+          class="c-card-company-contact_link o-link -padding"
           type="tel"
           :href="selectedCompany.phone"
           target="_blank"
@@ -29,7 +29,7 @@
       </li>
       <li class="c-card-company-contact_list-item">
         <a
-          class="c-card-company-contact_link o-link"
+          class="c-card-company-contact_link o-link -padding"
           :href="'mailto:' + selectedCompany.contactEmail"
           target="_blank"
         >
@@ -41,7 +41,7 @@
         class="c-card-company-contact_list-item"
       >
         <a
-          class="c-card-company-contact_link o-link"
+          class="c-card-company-contact_link o-link -padding"
           :href="selectedCompany.preferences.facebookLink"
           target="_blank"
         >
@@ -53,7 +53,7 @@
         class="c-card-company-contact_list-item"
       >
         <a
-          class="c-card-company-contact_link o-link"
+          class="c-card-company-contact_link o-link -padding"
           :href="selectedCompany.preferences.instagramLink"
           target="_blank"
         >
@@ -65,7 +65,7 @@
         class="c-card-company-contact_list-item"
       >
         <a
-          class="c-card-company-contact_link o-link"
+          class="c-card-company-contact_link o-link -padding"
           :href="selectedCompany.preferences.websiteLink"
           target="_blank"
         >

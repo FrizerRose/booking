@@ -11,7 +11,7 @@
     // .c-form_input
     // .v3dp__datepicker input
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: $bold;
     letter-spacing: 0.025em;
     padding: 0.75em 1.125em;
 }
@@ -44,12 +44,17 @@
 .c-form_label {
     display: block;
     margin-bottom: rem(10px);
+  
+    .c-form_item.has-error & {
+      color: $red;
+    }
 }
 
 // Input
 // ==========================================================================
 $input-icon-color: 090909; // No #
-$mode-dark_input-icon-color: fcfcf9;
+// $mode-dark_input-icon-color: fcfcf9;
+$mode-dark_input-icon-color: ffffff;
 
 .c-form_input {
     @extend .c-form_font;

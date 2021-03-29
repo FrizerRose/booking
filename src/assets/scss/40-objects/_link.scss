@@ -1,9 +1,13 @@
 .o-link {
-  font-weight: 700;
+  font-weight: $bold;
   letter-spacing: 0.025em;
-  line-height: 2;
   display: inline-block;
   position: relative;
+
+  &.-padding {
+    line-height: 2;
+    padding: 0em 0.5em;
+  }
 
   &:before {
     content: "";
@@ -13,34 +17,41 @@
     width: 100%;
     height: 100%;
     transform: scaleY(0.1);
+    z-index: -1;
     transform-origin: bottom;
     transition: transform $speed $easing, opacity $speed $easing;
     background-color: $theme-main;
 
     html.mode-dark & {
-      background-color: $theme-darken;
+      // background-color: $theme-darken;
+      background-color: $theme-main;
     }
 
     html.orchid & {
-      background-color: $orchid-darken;
+      // background-color: $orchid-darken;
+      background-color: $orchid-main;
     }
 
     html.goldenrod & {
-      background-color: $goldenrod-darken;
+      // background-color: $goldenrod-darken;
+      background-color: $goldenrod-main;
     }
 
     html.coral & {
-      background-color: $coral-darken;
+      // background-color: $coral-darken;
+      background-color: $coral-main;
     }
   }
 
   &:hover {
     &:before {
-      opacity: 0.15;
+      // opacity: 0.15;
+      color: $white;
       transform: scaleY(1);
 
       html.mode-dark & {
-        opacity: 0.3;
+        // opacity: 0.3;
+        color: $black;
       }
     }
   }

@@ -1,14 +1,12 @@
 <template>
-  <li class="o-list_item">
-    <ul class="o-layout o-list -gutter">
-      <BookingStepStaffCard :is-i-dont-care="true" />
-      <BookingStepStaffCard
-        v-for="worker in staff"
-        :key="worker.id"
-        :staff="worker"
-      />
-    </ul>
-  </li>
+  <div class="o-layout o-list -gutter">
+    <BookingStepStaffCard :is-i-dont-care="true" />
+    <BookingStepStaffCard
+      v-for="worker in staff"
+      :key="worker.id"
+      :staff="worker"
+    />
+  </div>
 </template>
 
 <script lang='ts'>

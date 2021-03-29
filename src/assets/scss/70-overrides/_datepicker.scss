@@ -2,6 +2,7 @@
 	scss variables don't work here. use the values for reference
 
 	$white: #fcfcf9;
+	$white: white;
 	$black: #090909;
 	$theme-main: silver;
 	$theme-darken: darken($theme-main, 25%); // === gray
@@ -24,7 +25,7 @@
 	--vdp-box-shadow: 0 1.5em 1em -2em currentColor;
 	--vdp-border-radius: 0.25em;
 	--vdp-heading-size: 2rem;
-	--vdp-heading-weight: 700;
+	--vdp-heading-weight: 600;
 	--vdp-heading-hover-color: #f1f1f1;
 	--vdp-arrow-color: currentColor;
 	--vdp-elem-color: currentColor;

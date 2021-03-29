@@ -1,6 +1,6 @@
 .c-button {
   padding: 0.5em 0.75em;
-  font-weight: 700;
+  font-weight: $bold;
   color: currentColor;
   border-radius: 0.5em;
   transition: background-color $speed $easing, color $speed $easing;

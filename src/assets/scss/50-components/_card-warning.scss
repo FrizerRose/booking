@@ -24,16 +24,23 @@
 
 .c-card-warning {
   display: flex;
-  padding: 0.25em 0.5em;
+  padding: 1.5em 2.5em;
 
   @media (max-width: $to-medium) {
-    margin-bottom: 1rem;
   }
 }
 .c-card-info {
-  @media (min-width: $to-medium) {
-    padding: 0.25em 0.5em;
+  @media (max-width: $to-medium) {
+    padding: 1.25em 1.75em;
   }
+  @media (min-width: $to-medium) {
+    padding: 1.5em 2.5em;
+  }
+}
+
+.-overflow {
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .c-card-warning_item {
@@ -79,6 +86,11 @@
 .c-card-company-image {
   margin-bottom: 1rem;
   border-radius: 9999px;
+}
+.c-card-company-image-fallback {
+  margin-bottom: 1rem;
+  padding: 25%;
+  opacity: .1;
 }
 
 .c-card-company-contact_link {

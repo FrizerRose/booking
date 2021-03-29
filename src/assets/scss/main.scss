@@ -46,6 +46,7 @@
 @import "40-objects/icon";
 // @import "40-objects/image";
 @import "40-objects/background";
+@import "40-objects/tag";
 
 // Components
 // ==========================================================================
@@ -71,7 +72,7 @@
 // Utilities
 // ==========================================================================
 // @import "60-utilities/align";
-// @import "60-utilities/helpers";
+@import "60-utilities/helpers";
 // @import "60-utilities/print";
 @import "60-utilities/ratio";
 // @import "60-utilities/spacing";

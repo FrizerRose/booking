@@ -1,8 +1,13 @@
 <template>
-  <li class="o-list_item">
-    <h1>Vaš termin je zabilježen.</h1>
+  <div>
+    <h1 class="c-heading -h1 u-margin-bottom-3/2">
+      Vaš termin je zabilježen.
+    </h1>
+    <p class="c-heading -h3 u-margin-bottom">
+      Provjerite e-mail.
+    </p>
     <p>
-      Provjerite e-mail. Na navedenu e-mail adresu će vam stići poruka s potvrdom termina.
+      Na navedenu e-mail adresu će vam stići poruka s potvrdom termina.
     </p>
     <div class="c-summary">
       <div
@@ -80,24 +85,21 @@
             </p>
           </div>
           <div class="o-layout_item u-1/2">
-            <p
-              v-if="selectedNotice !== ''"
-              class="c-summary_answer"
-            >
-              <!-- eslint-disable-next-line vue/no-v-html -->
-              <pre v-html="selectedNotice" /><br>
-            </p>
-            <p
-              v-else
-              class="c-summary_answer"
-            >
-              <em>Bez napomene</em><br>
-            </p>
+            <div v-if="selectedNotice !== ''">
+              <p class="c-summary_answer -min-height">
+                {{ selectedNotice }}
+              </p>
+            </div>
+            <div v-else>
+              <p class="c-summary_answer -min-height -italic">
+                Bez napomene
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang='ts'>

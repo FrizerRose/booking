@@ -1,4 +1,4 @@
-# vue_starter
+# Dolazim.hr
 
 ## Project setup
 ```

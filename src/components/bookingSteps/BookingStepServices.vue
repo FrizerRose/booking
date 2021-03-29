@@ -1,19 +1,17 @@
 <template>
-  <li class="o-list_item">
-    <ul
-      v-if="services.length"
-      class="o-layout o-list XXXXXXXX-gutter"
-    >
-      <BookingStepServiceCard
-        v-for="service in services"
-        :key="service.id"
-        :service="service"
-      />
-    </ul>
-    <div v-else>
-      <h1>Trenutno nema ponuđenih usluga.</h1>
-    </div>
-  </li>
+  <div
+    v-if="services.length"
+    class="o-layout o-list XXXXXXXX-gutter"
+  >
+    <BookingStepServiceCard
+      v-for="service in services"
+      :key="service.id"
+      :service="service"
+    />
+  </div>
+  <div v-else>
+    <h1>Trenutno nema ponuđenih usluga.</h1>
+  </div>
 </template>
 
 <script lang='ts'>
