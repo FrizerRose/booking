@@ -3,7 +3,7 @@ module.exports = {
   // restart dev server to apply changes
   pwa: {
     name: 'Dolazim.hr',
-    themeColor: '#fcfcf9',
+    themeColor: '#ffffff',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
