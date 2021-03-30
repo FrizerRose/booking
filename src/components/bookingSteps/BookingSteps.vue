@@ -8,36 +8,46 @@
       >
         <div class="o-container">
           <div class="c-progress">
-            <h1 v-if="isRescheduling">
-              Promjena termina
-            </h1>
-            <BookingStepsProgress :is-rescheduling="isRescheduling" />
+            <div class="o-background-wrap has-1/2-gutters@from-medium">
+              <div class="o-background -has-shadow@from-medium -overflow" />
+              <div class="o-background -has-bg@from-medium -overflow" />
+              <div class="c-progress">
+                <h1 v-if="isRescheduling">
+                  Promjena termina
+                </h1>
+                <BookingStepsProgress :is-rescheduling="isRescheduling" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
       <section class="c-section -first">
         <div class="o-container">
-          <div class="o-layout -gutter-small || o-flex -flex-column@to-medium">
-            <div class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10">
-              <div class="c-configurator">
-                <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
-                <BookingStepStaff v-if="currentStep === 2" />
-                <BookingStepDateTime
-                  v-if="currentStep === 3"
-                  :is-rescheduling="isRescheduling"
-                />
-                <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
-                <BookingStepConfirmation
-                  v-if="currentStep === 5"
-                  :is-rescheduling="isRescheduling"
-                />
-                <BookingStepSummary v-if="currentStep === 6" />
+          <div class="o-background-wrap x-has-1/2-gutters@from-medium">
+            <div class="o-background x-has-shadow@from-medium x-overflow" />
+            <div class="o-background x-has-bg@from-medium x-overflow" />
+            <div class="o-layout -gutter-2 || o-flex -flex-column@to-medium">
+              <div class="o-layout_item u-3/5@from-medium">
+                <div class="c-configurator">
+                  <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
+                  <BookingStepStaff v-if="currentStep === 2" />
+                  <BookingStepDateTime
+                    v-if="currentStep === 3"
+                    :is-rescheduling="isRescheduling"
+                  />
+                  <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
+                  <BookingStepConfirmation
+                    v-if="currentStep === 5"
+                    :is-rescheduling="isRescheduling"
+                  />
+                  <BookingStepSummary v-if="currentStep === 6" />
+                </div>
               </div>
+
+              <TheLeftSidebar />
+
+              <TheRightSidebar />
             </div>
-
-            <TheLeftSidebar />
-
-            <TheRightSidebar />
           </div>
         </div>
       </section>

@@ -27,7 +27,7 @@
   }
 }
 .c-site-header_main {
-  padding: 1em 0;
+  padding: 0.5em 0;
   flex-grow: 1;
 
   @media (max-width: $to-small) {
@@ -62,7 +62,7 @@
   overflow: hidden;
 }
 .c-site-brand {
-  line-height: 1;
+  // line-height: 1;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

@@ -10,9 +10,10 @@
     // .c-button.-tab
     // .c-form_input
     // .v3dp__datepicker input
-    font-size: 1.125rem;
+
+    // font-size: 1.125rem;
     font-weight: $bold;
-    letter-spacing: 0.025em;
+    // letter-spacing: 0.025em;
     padding: 0.75em 1.125em;
 }
 
@@ -138,10 +139,11 @@ $mode-dark_checkbox-icon-color: $mode-dark_input-icon-color;
 
     .-before, .-after {
         position: absolute;
-        top: 50%;
+        // top: 50%;
+        top: 0;
         left: 0;
         display: inline-block;
-        margin-top: (-$checkbox / 2);
+        // margin-top: (-$checkbox / 2);
         padding: 0;
         width: $checkbox;
         height: $checkbox;
@@ -273,5 +275,5 @@ $mode-dark_select-icon-color: $mode-dark_input-icon-color;
 .c-form_textarea {
     @extend .c-form_input;
 
-    min-height: rem(200px);
+    min-height: rem(120px);
 }

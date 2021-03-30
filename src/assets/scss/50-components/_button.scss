@@ -5,7 +5,7 @@
   border-radius: 0.5em;
   transition: background-color $speed $easing, color $speed $easing;
 
-  &.is-current {
+  .is-current & {
     box-shadow: inset 0 0 0 0.125em $theme-main;
 
     html.mode-dark & {
@@ -46,6 +46,12 @@
   &.-step {
     width: 100%;
     text-align: left;
+    
+    white-space: nowrap;
+    // border: 1px solid;
+    // display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -57,15 +63,36 @@
   &.-margin-bottom {
     margin-bottom: 0.125em;
   }
+  &.-has-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.c-button_label-overflow {
+  overflow: hidden;
+  line-height: 1.5;
+  // white-space: nowrap;
+  // border: 1px solid;
+  // text-overflow: ellipsis;
+  // width: 100%;
+  // display: inline-block;
+  // padding: 0.75em 1.125em;
 }
 
 .c-button.-primary {
   @extend .c-form_font;
 
+  font-size: 1rem;
   color: currentColor;
   border-radius: 0.5em;
   transition: background-color $speed / 2 $easing;
-  
+
+  &.-step {
+    transition: background-color $speed / 2 $easing, box-shadow $speed * 2 $easing;
+  }
+
   $site-button-bg: $element-bg;
   background-color: $site-button-bg;
   
@@ -81,12 +108,15 @@
     &:not(:disabled) {
       $site-button-hover-color: $white;
       color: $site-button-hover-color;
+  
+      html.mode-dark & {
+        $site-button-hover-color: $black;
+        color: $site-button-hover-color;
+      }
     }
   
     html.mode-dark & {
       background-color: $theme-darken;
-      $site-button-hover-color: $black;
-      color: $site-button-hover-color;
     }
   
     html.orchid & {

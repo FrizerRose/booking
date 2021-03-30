@@ -24,7 +24,7 @@
   &.-is-dialog {
     @extend .c-form_font;
 
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     overflow: hidden;
     color: $white;
 
@@ -50,7 +50,7 @@
   z-index: -1;
 
   &.-has-bg {
-    $theme-element-bg: $white;
+    $theme-element-bg: white;
     background-color: $theme-element-bg;
 
     html.mode-dark & {
@@ -59,18 +59,85 @@
     }
   }
 
-  &.-has-gradient {
-    background-image: linear-gradient(90deg, orchid, dodgerblue);
-    background-size: 400%;
+  &.-has-bg\@to-medium {
+    @media (max-width: $to-medium) {
+      $theme-element-bg: white;
+      background-color: $theme-element-bg;
+  
+      html.mode-dark & {
+        $theme-element-bg: $black;
+        background-color: $theme-element-bg;
+      }
+    }
   }
+
+  &.-has-bg\@from-medium {
+    @media (min-width: $from-medium) {
+      $theme-element-bg: white;
+      background-color: $theme-element-bg;
+  
+      html.mode-dark & {
+        $theme-element-bg: $black;
+        background-color: $theme-element-bg;
+      }
+    }
+  }
+
+  // &.-has-gradient {
+  //   background-image: linear-gradient(90deg, orchid, dodgerblue);
+  //   background-size: 400%;
+  // }
 
   &.-has-shadow {
     // for $shadow spread radius is -2em. this means element using .-has-shadow class has to have a height of 4em or more for shadow to show up.
     box-shadow: $shadow;
+
+    html.mode-dark & {
+      // if needed, you can change the box-shadow color here
+      $currentColor: $mode-dark-main;
+      color: $currentColor;
+    }
+  }
+
+  &.-has-shadow\@to-medium {
+    @media (max-width: $to-medium) {
+      box-shadow: $shadow;
+
+      html.mode-dark & {
+        $currentColor: $mode-dark-main;
+        color: $currentColor;
+      }
+    }
+  }
+
+  &.-has-shadow\@from-medium {
+    @media (min-width: $from-medium) {
+      box-shadow: $shadow;
+
+      html.mode-dark & {
+        $currentColor: $mode-dark-main;
+        color: $currentColor;
+      }
+    }
   }
 
   &.-has-shadow-v2 {
-    box-shadow: 0 0.25em 1.25em -0.75em currentColor;
+    box-shadow: $shadow-v2;
+
+    html.mode-dark & {
+      $currentColor: $mode-dark-main;
+      color: $currentColor;
+    }
+  }
+
+  &.-zigzag {
+    background-image: linear-gradient(135deg, darken($white, 5%) 25%, transparent 25%),
+    linear-gradient(225deg, darken($white, 5%) 25%, transparent 25%),
+    linear-gradient(45deg, darken($white, 5%) 25%, transparent 25%),
+    linear-gradient(315deg, darken($white, 5%) 25%, $white 25%);
+    background-position: 2rem 0, 2rem 0, 0 0, 0 0;
+    background-size: 4rem 4rem;
+    background-repeat: repeat;
   }
 
   .c-form_item.has-error & {

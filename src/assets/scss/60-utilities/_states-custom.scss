@@ -66,6 +66,22 @@
       transform: scale(0.98, 0.98);
       transform-origin: bottom;
       transition: transform $speed $easing, opacity $speed * 2 $easing;
+  
+      html.mode-dark & {
+        background-color: $theme-darken;
+      }
+    
+      html.orchid & {
+        background-color: $orchid-main;
+      }
+    
+      html.goldenrod & {
+        background-color: $goldenrod-main;
+      }
+    
+      html.coral & {
+        background-color: $coral-main;
+      }
     }
   }
 }
@@ -96,3 +112,41 @@
   }
 }
 
+.has-1\/2-gutters\@to-medium {
+  @media (max-width: $to-medium) {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  > * {
+    @media (max-width: $to-medium) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+.has-1\/2-gutters\@from-medium {
+  @media (min-width: $from-medium) {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  > * {
+    @media (min-width: $from-medium) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+// .has-2-gutters\@from-medium {
+//   @media (min-width: $from-medium) {
+//     margin-left: -2rem;
+//     margin-right: -2rem;
+//   }
+//   > * {
+//     @media (min-width: $from-medium) {
+//       padding-left: 2rem;
+//       padding-right: 2rem;
+//     }
+//   }
+// }

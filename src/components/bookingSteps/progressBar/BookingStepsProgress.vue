@@ -1,6 +1,7 @@
 <template>
-  <div class="o-background-wrap has-no-gutters@to-medium">
-    <div class="o-background -has-shadow -has-bg" />
+  <div class="o-background-wrap has-1/2-gutters@to-medium">
+    <div class="o-background -has-shadow@to-medium -overflow" />
+    <div class="o-background -has-bg@to-medium -overflow" />
     <div class="c-progress_inner">
       <div class="c-progress-indicator">
         <div class="c-progress-number">
@@ -42,7 +43,7 @@
           <div class="o-layout_item u-width-auto">
             <div class="o-flex">
               <button
-                v-if="currentStep > 1"
+                v-if="currentStep > 1 && !isMenuOpen"
                 class="c-button -secondary || is-hidden@from-medium || u-margin-left@to-medium"
                 @click="goBackOneStep()"
               >
@@ -57,7 +58,7 @@
                 </span>
                 <span
                   class="c-button_label"
-                >back</span>
+                >nazad</span>
               </button>
               <button
                 class="c-button -secondary || c-steps-header_menu-toggle is-hidden@from-medium || u-margin-left@to-medium"
@@ -65,7 +66,12 @@
               >
                 <span
                   class="c-button_label"
-                >menu</span>
+                  :class="{'is-hidden': isMenuOpen}"
+                >koraci</span>
+                <span
+                  class="c-button_label"
+                  :class="{'is-hidden': !isMenuOpen}"
+                >zatvori</span>
               </button>
             </div>
           </div>
@@ -75,8 +81,9 @@
   </div>
   <div class="c-steps-menu">
     <div :class="{'c-steps-menu_inner': true, 'is-open': isMenuOpen}">
-      <div class="o-background-wrap has-no-gutters@to-medium">
-        <div class="o-background -has-shadow -has-bg" />
+      <div class="o-background-wrap has-1/2-gutters@to-medium">
+        <div class="o-background -has-shadow@to-medium -overflow" />
+        <div class="o-background -has-bg@to-medium -overflow" />
         <div class="o-layout">
           <div class="o-layout_item">
             <div class="c-steps-list-wrap">
@@ -85,58 +92,84 @@
                 <li
                   v-if="!isRescheduling"
                   class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 1}"
                 >
                   <button
-                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 1}"
+                    class="c-button -primary -step"
                     @click="changeCurrentStep(1)"
                   >
-                    <span class="c-button_label">Usluge</span>
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Usluge</span>
+                    </span>
                   </button>
                 </li>
                 <li
                   v-if="selectedCompany?.preferences.hasStaffPick"
                   class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 2}"
                 >
                   <button
-                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 2}"
+                    class="c-button -primary -step"
                     :disabled="currentStep < 2"
                     @click="changeCurrentStep(2)"
                   >
-                    <span class="c-button_label">Odabir radnika</span>
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Odabir radnika</span>
+                    </span>
                   </button>
                 </li>
-                <li class="o-list_item c-steps-list_item">
+                <li
+                  class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 3}"
+                >
                   <button
-                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 3}"
+                    class="c-button -primary -step"
                     :disabled="currentStep < 3"
                     @click="changeCurrentStep(3)"
                   >
-                    <span class="c-button_label">Odabir termina</span>
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Odabir termina</span>
+                    </span>
                   </button>
                 </li>
-                <li class="o-list_item c-steps-list_item">
+                <li
+                  class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 4}"
+                >
                   <button
-                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 4}"
+                    class="c-button -primary -step"
                     :disabled="currentStep < 4"
                     @click="changeCurrentStep(4)"
                   >
-                    <span class="c-button_label">Vaši podatci</span>
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Vaši podatci</span>
+                    </span>
                   </button>
                 </li>
-                <li class="o-list_item c-steps-list_item">
+                <li
+                  class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 5}"
+                >
                   <button
-                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 5}"
+                    class="c-button -primary -step"
                     :disabled="currentStep < 5"
                   >
-                    <span class="c-button_label">Provjeri i potvrdi</span>
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Provjeri i potvrdi</span>
+                    </span>
                   </button>
                 </li>
-                <li class="o-list_item c-steps-list_item">
+                <li
+                  class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 6}"
+                >
                   <button
-                    :class="{'c-button -primary -step': true, 'is-current': currentStep === 6}"
+                    class="c-button -primary -step"
                     :disabled="currentStep < 6"
                   >
-                    <span class="c-button_label">Sažetak</span>
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Sažetak</span>
+                    </span>
                   </button>
                 </li>
               </ul>

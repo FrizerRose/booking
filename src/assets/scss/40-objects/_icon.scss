@@ -10,6 +10,12 @@
         height: 2rem;
     }
 
+    &.-rotate-cw-90\@to-medium {
+        @media (max-width: $to-medium) {
+            transform: rotateZ(90deg);
+        }
+    }
+
     // &.-large-icon {
     //     @media (max-width: $to-medium) {
     //         width: rem(64px);

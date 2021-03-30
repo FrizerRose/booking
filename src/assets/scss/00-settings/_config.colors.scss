@@ -197,16 +197,37 @@ $coral-darken: darken($coral-main, 25%);
 
 $red: #e60000;
 
+$bg-color: $white;
+
 $selection-background-color: $black;
 $selection-text-color: $white;
 
 html {
   background-color: $white;
   color: $black;
+
+  &.pattern-zigzag {
+    $bg-color: $white;
+    background-image: linear-gradient(135deg, darken($bg-color, 5%) 25%, transparent 25%),
+    linear-gradient(225deg, darken($bg-color, 5%) 25%, transparent 25%),
+    linear-gradient(45deg, darken($bg-color, 5%) 25%, transparent 25%),
+    linear-gradient(315deg, darken($bg-color, 5%) 25%, transparent 25%);
+    background-position: 2rem 0, 2rem 0, 0 0, 0 0;
+    background-size: 4rem 4rem;
+    background-repeat: repeat;
+  }
   
   &.mode-dark {
     background-color: $black;
     color: $white;
+
+    &.pattern-zigzag {
+      $bg-color: $black;
+      background-image: linear-gradient(135deg, darken($bg-color, 5%) 25%, transparent 25%),
+      linear-gradient(225deg, darken($bg-color, 5%) 25%, transparent 25%),
+      linear-gradient(45deg, darken($bg-color, 5%) 25%, transparent 25%),
+      linear-gradient(315deg, darken($bg-color, 5%) 25%, transparent 25%);
+    }
   }
 }
 

@@ -70,3 +70,29 @@
     // }
   }
 }
+.c-progress-indicator_ball {
+  transform: translateY(-50%) rotateZ(0deg);
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  border-radius: 9999px;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  &.-has-theme-color {
+
+    // use only when theme-color is active
+
+    html.orchid & {
+      background-color: $orchid-main;
+    }
+
+    html.goldenrod & {
+      background-color: $goldenrod-main;
+    }
+
+    html.coral & {
+      background-color: $coral-main;
+    }
+  }
+}

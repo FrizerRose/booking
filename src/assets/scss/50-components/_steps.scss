@@ -12,13 +12,14 @@
 }
 .c-steps-menu_inner {
   @media (max-width: $to-medium) {
+    margin-top: 1rem;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     opacity: 0;
     pointer-events: none;
-    transform: scale(0.8);
+    transform: scale(0.8) translateY(-$unit);
     // transform: rotate3d(1, 0, 0, 60deg) translate3d(0, -50%, 0);
     transform-origin: top;
     transition: transform $speed * 2 $easing, opacity $speed $easing;
@@ -54,4 +55,24 @@
 .c-steps-list_item {
   margin-left: 1rem;
   flex-grow: 1;
+  // flex-basis: 0; // uncomment to have buttons be the same size. regardless of content inside
+  overflow: hidden;
+
+  // flex-grow: 1;
+  // flex-shrink: 1;
+  display: flex;
+  
+  @media (max-width: $to-medium) {
+    flex-direction: column;
+  }
+
+  @media (min-width: $from-medium) {
+    align-items: center;
+    transition: flex-shrink $speed $easing;
+
+    &.is-current,
+    &:hover {
+      flex-shrink: 0;
+    }
+  }
 }

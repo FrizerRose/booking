@@ -1,7 +1,8 @@
 <template>
   <div class="o-layout_item o-list_item">
     <div class="o-background-wrap">
-      <div class="o-background -has-shadow" />
+      <div class="o-background -has-shadow -overflow" />
+      <div class="o-background -has-bg -overflow" />
 
       <article
         v-if="isCompactMode"
@@ -64,7 +65,7 @@
           </div>
 
           <div class="o-layout_item u-2/3@to-medium u-3/4@from-medium">
-            <div class="c-card-service_info u-height-100">
+            <div class="c-card-service_info u-margin-left u-height-100">
               <div class="o-vertical u-height-100">
                 <div class="o-vertical_item">
                   <h1 class="c-card-service_heading">

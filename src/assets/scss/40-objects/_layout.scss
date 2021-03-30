@@ -46,6 +46,10 @@
         margin-left: rem(-$unit);
     }
 
+    &.-gutter-2 {
+        margin-left: -2rem;
+    }
+
     &.-gutter-small {
         margin-left: -1.5rem;
     }
@@ -91,6 +95,10 @@
     // Gutter modifiers
     .o-layout.-gutter > & {
         padding-left: rem($unit);
+    }
+
+    .o-layout.-gutter-2 > & {
+        padding-left: 2rem;
     }
 
     .o-layout.-gutter-small > & {

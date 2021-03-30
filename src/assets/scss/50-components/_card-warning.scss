@@ -2,8 +2,12 @@
   position: relative;
 }
 .c-card-warning-desktop {
-  @media (min-width: $to-medium) {
-    margin-top: 1rem;
+  @media (min-width: $from-medium) {
+    // margin-top: 1rem;
+    margin-top: -2rem;
+    margin-right: -0.5rem;
+    z-index: -1;
+    padding-bottom: 3rem;
     position: absolute;
     top: 0;
     right: 0;
@@ -33,7 +37,7 @@
   @media (max-width: $to-medium) {
     padding: 1.25em 1.75em;
   }
-  @media (min-width: $to-medium) {
+  @media (min-width: $from-medium) {
     padding: 1.5em 2.5em;
   }
 }
