@@ -114,7 +114,8 @@
                                   <strong>Pravila ponašanja</strong>
                                 </p>
                                 <p>
-                                  {{ selectedCompany.preferences.rules }}
+                                  <!-- eslint-disable-next-line vue/no-v-html -->
+                                  <pre v-html="selectedCompany.preferences.rules" /><br>
                                 </p>
                               </div>
                             </div>
@@ -169,7 +170,8 @@
                       <span class="c-card-warning_item">
                         <strong>COVID-19 upozorenje</strong>
                         <br>
-                        {{ selectedCompany.preferences.coronaRules }}
+                        <!-- eslint-disable-next-line vue/no-v-html -->
+                        <pre v-html="selectedCompany.preferences.coronaRules" /><br>
                       </span>
                     </div>
                   </div>
