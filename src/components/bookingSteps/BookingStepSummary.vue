@@ -87,7 +87,8 @@
           <div class="o-layout_item u-1/2">
             <div v-if="selectedNotice !== ''">
               <p class="c-summary_answer -min-height">
-                {{ selectedNotice }}
+                <!-- eslint-disable-next-line vue/no-v-html -->
+                <pre v-html="selectedNotice" /><br>
               </p>
             </div>
             <div v-else>
