@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="selectedCompany">
     <div v-if="hasError">
       <p>
         Imamo problem sa serverom. Molimo pokušajte kasnije.
@@ -107,7 +107,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >ovdje</a>
-              i
+              <span v-if="selectedCompany.preferences.termsLink">i</span>
               <a
                 v-if="selectedCompany.preferences.termsLink"
                 :href="selectedCompany.preferences.termsLink"
