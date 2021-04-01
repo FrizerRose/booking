@@ -94,10 +94,15 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     if (props.isRescheduling) {
       // Skip service step if this is a reschedulling flow
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, 2);
+      if (selectedCompany.value?.preferences.hasStaffPick) {
+        store.commit(MutationTypes.CHANGE_CURRENT_STEP, 2);
+      } else {
+        store.commit(MutationTypes.CHANGE_CURRENT_STEP, 3);
+      }
     }
 
     return {

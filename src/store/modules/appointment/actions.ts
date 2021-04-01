@@ -62,6 +62,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
       commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
       commit(SharedMutationTypes.CHANGE_SELECTED_SERVICE, response.data.service);
       commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data.customer);
+      commit(SharedMutationTypes.CHANGE_SELECTED_NOTICE, response.data.message);
       if (response.data.service.staff[0] === undefined) {
         commit(StaffMutationTypes.CHANGE_STAFF, [response.data.service.staff]);
       } else {

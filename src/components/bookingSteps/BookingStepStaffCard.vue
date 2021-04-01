@@ -64,12 +64,12 @@
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
             <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded">
               <div class="o-ratio_content">
-                <img
+                <!-- <img
                   v-if="isIDontCareOld"
                   class="c-card-service_image u-objfit"
                   src="https://i.postimg.cc/3xvBQ32k/ios-10-shrug-emoji-0.png"
                   alt="img text"
-                >
+                > -->
                 <span
                   v-if="isIDontCare"
                   class="o-icon c-card-service_image u-objfit"
