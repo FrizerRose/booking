@@ -11,6 +11,8 @@ type Company = {
   preferences: CompanyPreferences;
   image: { link: string };
   about: string;
+  city: string;
+  streetName: string;
 }
 
 export default Company;

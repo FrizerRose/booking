@@ -13,8 +13,15 @@
         </p>
         <address class="c-card-company-address">
           {{ selectedCompany.name }}<br>
-          {{ selectedCompany.streetName }}<br>
-          {{ selectedCompany.city }}
+          <span v-if="selectedCompany.streetName">{{ selectedCompany.streetName }}</span><br>
+          <span v-if="selectedCompany.city">{{ selectedCompany.city }}</span><br>
+          <a
+            v-if="selectedCompany.city && selectedCompany.streetName"
+            :href="'https://www.google.com/maps/search/?api=1&parameters=' + selectedCompany.streetName + ',' + selectedCompany.city"
+            target="_blank"
+          >
+            Otvori na Google Kartama
+          </a>
         </address>
 
         <ul class="c-card-company-contact_list">
