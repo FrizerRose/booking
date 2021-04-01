@@ -5,7 +5,7 @@
 
   <main
     v-else
-    :class="{'is-loaded': isMounted, 'c-site-main': true}"
+    class="c-site-main"
   >
     <section class="c-section">
       <div class="o-container">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader class="c-site-main" />
+    <TheHeader />
     <main class="c-site-main">
       <section
         v-if="currentStep < 6"
