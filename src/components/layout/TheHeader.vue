@@ -235,7 +235,7 @@
                               <span v-if="selectedCompany.city">{{ selectedCompany.city }}</span><br>
                               <a
                                 v-if="selectedCompany.city && selectedCompany.streetName"
-                                :href="'https://www.google.com/maps/search/?api=1&parameters=' +
+                                :href="'https://www.google.com/maps/search/?api=1&query=' +
                                   selectedCompany.streetName + ',' + selectedCompany.city"
                                 target="_blank"
                               >
