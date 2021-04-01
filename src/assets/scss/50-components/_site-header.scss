@@ -29,6 +29,7 @@
 .c-site-header_main {
   padding: 0.5em 0;
   flex-grow: 1;
+  width: 100%;
 
   @media (max-width: $to-small) {
     position: relative;

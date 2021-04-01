@@ -1,7 +1,7 @@
 <template>
   <header
     v-if="selectedCompany"
-    class="c-site-header"
+    class="c-site-header c-site-main"
   >
     <div class="o-container">
       <div class="o-background-wrap has-no-gutters@to-medium">
@@ -101,8 +101,9 @@
                                 </span>
                                 <span class="c-card-warning_item">
                                   <strong>COVID-19 upozorenje</strong>
-                                  <br>
-                                  {{ selectedCompany.preferences.coronaRules }}
+                                  <pre class="o-pre">
+                                    {{ selectedCompany.preferences.coronaRules }}
+                                  </pre>
                                 </span>
                               </div>
                             </div>
@@ -216,19 +217,23 @@
                         </span>
                       </div>
                       <div class="o-layout_item u-3/5@to-medium">
-                        <p>
+                        <div v-if="selectedCompany.about.length">
                           <strong>O nama</strong>
-                          <br>
-                          {{ selectedCompany.about }}
-                        </p>
+                          <pre class="o-pre">
+                            {{ selectedCompany.about }}
+                          </pre>
+                        </div>
+                        <div v-else>
+                          <strong>O nama</strong>
+                          <pre class="o-pre">
+                            Nedostaje tekst "O nama". Napišite par riječi o djelatnostima koje obavljate.
+                          </pre>
+                        </div>
                       </div>
                       <div class="o-layout_item">
                         <div class="o-layout -gutter-small c-card-company-contact">
                           <div class="o-layout_item u-2/5@to-medium">
-                            <p>
-                              <strong>Adresa</strong>
-                              <br>
-                            </p>
+                            <strong>Adresa</strong>
                             <address class="c-card-company-address">
                               {{ selectedCompany.name }}<br>
                               <span v-if="selectedCompany.streetName">{{ selectedCompany.streetName }}</span><br>
@@ -238,6 +243,7 @@
                                 :href="'https://www.google.com/maps/search/?api=1&query=' +
                                   selectedCompany.streetName + ',' + selectedCompany.city"
                                 target="_blank"
+                                rel="noopener noreferrer"
                               >
                                 Otvori na Google Kartama
                               </a>
@@ -275,6 +281,7 @@
                                   class="c-card-company-contact_link o-link -padding"
                                   :href="selectedCompany.preferences.facebookLink"
                                   target="_blank"
+                                  rel="noopener noreferrer"
                                 >
                                   <span class="o-link_label">Facebook</span>
                                 </a>
@@ -287,6 +294,7 @@
                                   class="c-card-company-contact_link o-link -padding"
                                   :href="selectedCompany.preferences.instagramLink"
                                   target="_blank"
+                                  rel="noopener noreferrer"
                                 >
                                   <span class="o-link_label">Instagram</span>
                                 </a>
@@ -299,6 +307,7 @@
                                   class="c-card-company-contact_link o-link -padding"
                                   :href="selectedCompany.preferences.websiteLink"
                                   target="_blank"
+                                  rel="noopener noreferrer"
                                 >
                                   <span class="o-link_label">Web</span>
                                 </a>

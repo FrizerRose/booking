@@ -42,11 +42,18 @@
             </span>
           </div>
           <div class="o-layout_item u-3/5@to-medium">
-            <p>
+            <div v-if="selectedCompany.about.length">
               <strong>O nama</strong>
-              <br>
-              {{ selectedCompany.about }}
-            </p>
+              <pre class="o-pre">
+                {{ selectedCompany.about }}
+              </pre>
+            </div>
+            <div v-else>
+              <strong>O nama</strong>
+              <pre class="o-pre">
+                Nedostaje tekst "O nama". Napišite par riječi o djelatnostima koje obavljate.
+              </pre>
+            </div>
           </div>
         </div>
       </div>

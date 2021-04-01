@@ -69,11 +69,11 @@
             </p>
           </div>
           <div class="o-layout_item u-1/2">
-            <p class="c-summary_answer">
+            <pre class="o-pre c-summary_answer">
               {{ selectedCustomer.name }}<br>
               {{ selectedCustomer.email }}<br>
               {{ selectedCustomer.phone }}<br>
-            </p>
+            </pre>
           </div>
         </div>
       </div>

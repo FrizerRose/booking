@@ -34,9 +34,15 @@
             </button>
           </li>
         </ul>
-        <p v-else>
-          Nema slobodnih termina za odabrani dan.
-        </p>
+        <div v-else>
+          <div class="o-background-wrap">
+            <div class="o-background -has-shadow -overflow" />
+            <div class="o-background -has-bg -overflow" />
+            <p>
+              Nema slobodnih termina za odabrani dan.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

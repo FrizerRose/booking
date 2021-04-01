@@ -22,10 +22,14 @@ html {
   }
 
   @media (min-width: $from-gigantic) and (max-width: $to-colossal) {
-    font-size: 21px;
+    font-size: 18px;
   }
 
   @media (min-width: $from-colossal) {
+    font-size: 20px;
+  }
+
+  @media (min-width: $from-2800) {
     font-size: 24px;
   }
 }

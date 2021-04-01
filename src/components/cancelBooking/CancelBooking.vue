@@ -77,11 +77,11 @@
                         </p>
                       </div>
                       <div class="o-layout_item u-1/2">
-                        <p class="c-summary_answer">
+                        <pre class="o-pre c-summary_answer">
                           {{ appointment.customer.name }}<br>
                           {{ appointment.customer.email }}<br>
                           {{ appointment.customer.phone }}<br>
-                        </p>
+                        </pre>
                       </div>
                     </div>
                   </div>
@@ -93,16 +93,18 @@
                         </p>
                       </div>
                       <div class="o-layout_item u-1/2">
-                        <p
-                          class="c-summary_answer"
+                        <pre
+                          v-if="appointment.message.length"
+                          class="o-pre c-summary_answer"
                         >
                           <em>{{ appointment.message }}</em><br>
-                        </p>
-                        <p
-                          class="c-summary_answer"
+                        </pre>
+                        <pre
+                          v-else
+                          class="o-pre c-summary_answer"
                         >
                           <em>Bez napomene</em><br>
-                        </p>
+                        </pre>
                       </div>
                     </div>
                   </div>

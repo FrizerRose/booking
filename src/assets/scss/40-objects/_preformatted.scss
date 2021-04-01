@@ -1,0 +1,7 @@
+.o-pre {
+	font-size: inherit;
+	font-family: inherit;   // unstyle browser-default monospace font
+	margin: 0;              // remove browser-default margins
+	white-space: pre-line;  // remove whitespace but preserve new line
+	word-break: break-word; // break long words
+}

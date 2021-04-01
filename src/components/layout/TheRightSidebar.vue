@@ -7,10 +7,7 @@
       <div class="o-background -has-shadow@from-medium -overflow" />
       <div class="o-background -has-bg@from-medium -overflow" />
       <div class="o-group u-padding-top u-padding-bottom">
-        <p>
-          <strong>Adresa</strong>
-          <br>
-        </p>
+        <strong>Adresa</strong>
         <address class="c-card-company-address">
           {{ selectedCompany.name }}<br>
           <span v-if="selectedCompany.streetName">{{ selectedCompany.streetName }}</span><br>
@@ -19,6 +16,7 @@
             v-if="selectedCompany.city && selectedCompany.streetName"
             :href="'https://www.google.com/maps/search/?api=1&query=' + selectedCompany.streetName + ',' + selectedCompany.city"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Otvori na Google Kartama
           </a>
@@ -55,6 +53,7 @@
               class="c-card-company-contact_link o-link -padding"
               :href="selectedCompany.preferences.facebookLink"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <span class="o-link_label">Facebook</span>
             </a>
@@ -67,6 +66,7 @@
               class="c-card-company-contact_link o-link -padding"
               :href="selectedCompany.preferences.instagramLink"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <span class="o-link_label">Instagram</span>
             </a>
@@ -79,6 +79,7 @@
               class="c-card-company-contact_link o-link -padding"
               :href="selectedCompany.preferences.websiteLink"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <span class="o-link_label">Web</span>
             </a>

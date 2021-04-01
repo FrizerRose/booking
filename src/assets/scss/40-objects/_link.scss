@@ -3,10 +3,16 @@
   letter-spacing: 0.025em;
   display: inline-block;
   position: relative;
+  white-space: nowrap;
 
   &.-padding {
     line-height: 2;
     padding: 0em 0.5em;
+
+    // background-image: linear-gradient(transparent calc(100% - 0.4em), currentColor 0.4em);
+    // background-repeat: no-repeat;
+    // background-size: 0% 100%;
+    // transition: background-size $speed * 1.5 $easing;
   }
 
   &:before {
@@ -44,6 +50,7 @@
   }
 
   &:hover {
+    // background-size: 100% 100%;
     &:before {
       // opacity: 0.15;
       color: $white;
