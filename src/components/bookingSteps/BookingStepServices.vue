@@ -49,7 +49,7 @@
                     </div>
                     <div class="o-vertical_item o-flex -justify-end -align-center">
                       <a
-                        href="https://tresnja.admin.dolazim.hr/usluge"
+                        :href="'https://' + selectedCompany?.bookingPageSlug + '.admin.dolazim.hr/usluge'"
                         class="c-button -primary || has-links-inside_main-link || u-margin-left"
                       >
                         <span class="has-links-inside_background" />
@@ -79,10 +79,12 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
     const services = computed(() => store.state.service.services);
 
     return {
       services,
+      selectedCompany,
     };
   },
 });
