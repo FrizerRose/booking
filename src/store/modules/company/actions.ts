@@ -50,6 +50,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
       commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
 
       if (response.status === 200 && response.data) {
+        commit(SharedMutationTypes.CHANGE_IS_COMPANY_PUBLIC, response.data.isPublic);
         commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
         commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
         document.documentElement.className = response.data.preferences.colorVariant;

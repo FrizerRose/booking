@@ -4,6 +4,7 @@ import Staff from './staff';
 
 type Company = {
   id: number;
+  isPublic: boolean;
   name: string;
   bookingPageSlug: string;
   services: Service[];
