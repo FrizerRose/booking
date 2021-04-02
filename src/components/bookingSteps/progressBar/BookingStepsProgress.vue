@@ -90,7 +90,7 @@
               <!-- <div class="is-overflow-swipe"> -->
               <ul class="o-list c-steps-list">
                 <li
-                  v-if="!isRescheduling"
+                  v-if="selectedCompany?.preferences.hasSexPick"
                   class="o-list_item c-steps-list_item"
                   :class="{'is-current': currentStep === 1}"
                 >
@@ -99,12 +99,12 @@
                     @click="changeCurrentStep(1)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Usluge</span>
+                      <span class="c-button_label-overflow">Odabir radnika</span>
                     </span>
                   </button>
                 </li>
                 <li
-                  v-if="selectedCompany?.preferences.hasStaffPick"
+                  v-if="!isRescheduling"
                   class="o-list_item c-steps-list_item"
                   :class="{'is-current': currentStep === 2}"
                 >
@@ -114,11 +114,12 @@
                     @click="changeCurrentStep(2)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Odabir radnika</span>
+                      <span class="c-button_label-overflow">Usluge</span>
                     </span>
                   </button>
                 </li>
                 <li
+                  v-if="selectedCompany?.preferences.hasStaffPick"
                   class="o-list_item c-steps-list_item"
                   :class="{'is-current': currentStep === 3}"
                 >
@@ -128,21 +129,7 @@
                     @click="changeCurrentStep(3)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Odabir termina</span>
-                    </span>
-                  </button>
-                </li>
-                <li
-                  class="o-list_item c-steps-list_item"
-                  :class="{'is-current': currentStep === 4}"
-                >
-                  <button
-                    class="c-button -primary -step"
-                    :disabled="currentStep < 4"
-                    @click="changeCurrentStep(4)"
-                  >
-                    <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Vaši podatci</span>
+                      <span class="c-button_label-overflow">Odabir radnika</span>
                     </span>
                   </button>
                 </li>
@@ -153,9 +140,10 @@
                   <button
                     class="c-button -primary -step"
                     :disabled="currentStep < 5"
+                    @click="changeCurrentStep(5)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Provjeri i potvrdi</span>
+                      <span class="c-button_label-overflow">Odabir termina</span>
                     </span>
                   </button>
                 </li>
@@ -166,9 +154,23 @@
                   <button
                     class="c-button -primary -step"
                     :disabled="currentStep < 6"
+                    @click="changeCurrentStep(6)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Sažetak</span>
+                      <span class="c-button_label-overflow">Vaši podatci</span>
+                    </span>
+                  </button>
+                </li>
+                <li
+                  class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 7}"
+                >
+                  <button
+                    class="c-button -primary -step"
+                    :disabled="currentStep < 7"
+                  >
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Provjeri i potvrdi</span>
                     </span>
                   </button>
                 </li>
@@ -219,6 +221,14 @@ export default defineComponent({
       if (isMenuOpen.value) {
         toggleMenu();
       }
+    }
+
+    let stepSubtractor = 0;
+    if (selectedCompany.value?.preferences.hasStaffPick) {
+      stepSubtractor += 1;
+    }
+    if (selectedCompany.value?.preferences.hasSexPick) {
+      stepSubtractor += 1;
     }
 
     // Calculate % value for the progress bar and create css string
