@@ -173,7 +173,7 @@
         type="submit"
         @click.prevent="submitForm()"
       >
-        <span class="c-button_label">Submit</span>
+        <span class="c-button_label">Potvrdi</span>
       </button>
     </div>
   </form>
