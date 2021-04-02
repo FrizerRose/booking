@@ -16,7 +16,7 @@
                 <h1 class="c-site-brand">
                   <a
                     class="c-site-brand_link"
-                    href="#"
+                    href="/"
                     rel="home"
                   >{{ selectedCompany.name }}</a>
                 </h1>

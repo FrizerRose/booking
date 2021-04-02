@@ -46,8 +46,16 @@
         margin-left: rem(-$unit);
     }
 
+    &.-gutter-1 {
+        margin-left: -1rem;
+    }
+
     &.-gutter-2 {
         margin-left: -2rem;
+    }
+
+    &.-gutter-3 {
+        margin-left: -3rem;
     }
 
     &.-gutter-small {
@@ -97,8 +105,16 @@
         padding-left: rem($unit);
     }
 
+    .o-layout.-gutter-1 > & {
+        padding-left: 1rem;
+    }
+
     .o-layout.-gutter-2 > & {
         padding-left: 2rem;
+    }
+
+    .o-layout.-gutter-3 > & {
+        padding-left: 3rem;
     }
 
     .o-layout.-gutter-small > & {

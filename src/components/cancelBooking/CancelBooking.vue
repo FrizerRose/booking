@@ -2,10 +2,10 @@
   <main class="c-site-main">
     <section class="c-section -first">
       <div class="o-container">
-        <div class="o-layout -gutter-small || o-flex -flex-column@to-medium">
+        <div class="o-layout -gutter-2 || o-flex -flex-column@to-medium">
           <div
             v-if="canCancel"
-            class="o-layout_item u-3/5@from-medium XXXXXXXX-gutters-px-10"
+            class="o-layout_item u-3/5@from-medium"
           >
             <div class="c-progress">
               <div class="c-configurator">
@@ -78,10 +78,10 @@
                       </div>
                       <div class="o-layout_item u-1/2">
                         <pre class="o-pre c-summary_answer">
-                          {{ appointment.customer.name }}<br>
-                          {{ appointment.customer.email }}<br>
-                          {{ appointment.customer.phone }}<br>
-                        </pre>
+                        {{ appointment.customer.name }}<br>
+                        {{ appointment.customer.email }}<br>
+                        {{ appointment.customer.phone }}<br>
+                      </pre>
                       </div>
                     </div>
                   </div>
@@ -97,14 +97,14 @@
                           v-if="appointment.message.length"
                           class="o-pre c-summary_answer"
                         >
-                          <em>{{ appointment.message }}</em><br>
-                        </pre>
+                        <em>{{ appointment.message }}</em><br>
+                      </pre>
                         <pre
                           v-else
                           class="o-pre c-summary_answer"
                         >
-                          <em>Bez napomene</em><br>
-                        </pre>
+                        <em>Bez napomene</em><br>
+                      </pre>
                       </div>
                     </div>
                   </div>

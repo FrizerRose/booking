@@ -46,8 +46,6 @@
   &.-step {
     width: 100%;
     text-align: left;
-    padding: 0.5em 1.125em !important; // needs to be smaller than on .-primary to compensate for overflow: hidden which forces us to use line-height: 1.5
-    
     white-space: nowrap;
     // border: 1px solid;
     // display: flex;
@@ -86,6 +84,7 @@
   @extend .c-form_font;
 
   font-size: 1rem;
+  line-height: inherit;
   color: currentColor;
   border-radius: 0.5em;
   transition: background-color $speed / 2 $easing;

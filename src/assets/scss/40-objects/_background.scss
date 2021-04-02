@@ -131,10 +131,11 @@
   }
 
   &.-zigzag {
-    background-image: linear-gradient(135deg, darken($white, 5%) 25%, transparent 25%),
-    linear-gradient(225deg, darken($white, 5%) 25%, transparent 25%),
-    linear-gradient(45deg, darken($white, 5%) 25%, transparent 25%),
-    linear-gradient(315deg, darken($white, 5%) 25%, $white 25%);
+    $bg-color: rgba(0, 0, 0, 0.04);
+    background-image: linear-gradient(135deg, $bg-color 25%, transparent 25%),
+    linear-gradient(225deg, $bg-color 25%, transparent 25%),
+    linear-gradient(45deg, $bg-color 25%, transparent 25%),
+    linear-gradient(315deg, $bg-color 25%, transparent 25%);
     background-position: 2rem 0, 2rem 0, 0 0, 0 0;
     background-size: 4rem 4rem;
     background-repeat: repeat;

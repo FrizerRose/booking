@@ -1,46 +1,46 @@
 <template>
-  <div>
-    <div class="o-layout">
-      <div class="o-layout_item u-1/2@from-medium">
-        <div class="c-form_item">
-          <div class="o-background-wrap -is-datepicker">
-            <div class="o-background" />
-            <datepicker
-              v-model="selectedDate"
-              :lower-limit="today"
-              :upper-limit="upperLimitDate"
-              input-format="dd.MM.yyyy"
-            />
+  <div class="o-layout">
+    <div class="o-layout_item">
+      <div class="o-background-wrap">
+        <div class="o-background -has-shadow -overflow" />
+        <div class="o-background -has-bg -overflow" />
+        <div class="u-padding">
+          <div class="c-form_item">
+            <div class="o-background-wrap -is-datepicker">
+              <div class="o-background" />
+              <datepicker
+                v-model="selectedDate"
+                :lower-limit="today"
+                :upper-limit="upperLimitDate"
+                input-format="dd.MM.yyyy"
+              />
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="o-layout">
-      <div class="o-layout_item u-1/2@from-medium -gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
-        <ul
-          v-if="availableAppointmentTimes.length"
-          class="c-timeslots-list o-layout -gutter-small || o-list"
-        >
-          <li
-            v-for="time in availableAppointmentTimes"
-            :key="time"
-            class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item"
-          >
-            <button
-              class="c-button -primary -step"
-              @click="selectDateTime(time)"
-            >
-              <span class="c-button_label">{{ time.time }}</span>
-            </button>
-          </li>
-        </ul>
-        <div v-else>
-          <div class="o-background-wrap">
-            <div class="o-background -has-shadow -overflow" />
-            <div class="o-background -has-bg -overflow" />
-            <p>
-              Nema slobodnih termina za odabrani dan.
-            </p>
+
+          <div v-if="availableAppointmentTimes.length">
+            <ul class="c-timeslots-list o-layout -gutter-2 || o-list">
+              <li
+                v-for="time in availableAppointmentTimes"
+                :key="time"
+                class="c-timeslots-list_item o-layout_item u-1/2 || o-list_item"
+              >
+                <button
+                  class="c-button -primary -step"
+                  @click="selectDateTime(time)"
+                >
+                  <span class="c-button_label">{{ time.time }}</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div v-else>
+            <div class="o-background-wrap">
+              <div class="o-background -has-shadow -overflow" />
+              <div class="o-background -has-bg -overflow" />
+              <p>
+                Nema slobodnih termina za odabrani dan.
+              </p>
+            </div>
           </div>
         </div>
       </div>
