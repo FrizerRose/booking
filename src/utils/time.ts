@@ -1,12 +1,15 @@
 import Staff from '@/types/staff';
 
 export function getDateStringFromDate(date: Date): string {
-  const dd = String(date.getDate());
+  let dd = String(date.getDate());
   let mm = String(date.getMonth() + 1); // January is 0!
   const yyyy = date.getFullYear();
 
   if (mm.length < 2) {
     mm = `0${mm}`;
+  }
+  if (dd.length < 2) {
+    dd = `0${dd}`;
   }
 
   return `${yyyy}-${mm}-${dd}`;
