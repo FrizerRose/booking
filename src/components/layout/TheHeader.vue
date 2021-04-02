@@ -99,12 +99,12 @@
                                     />
                                   </svg>
                                 </span>
-                                <span class="c-card-warning_item">
+                                <div class="c-card-warning_item">
                                   <strong>COVID-19 upozorenje</strong>
                                   <pre class="o-pre">
                                     {{ selectedCompany.preferences.coronaRules }}
                                   </pre>
-                                </span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -114,13 +114,12 @@
                                 v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
                                 class="c-card-company-contact_rules"
                               >
-                                <p class="u-margin-bottom-1/2">
+                                <div class="u-margin-bottom-1/4">
                                   <strong>Pravila ponašanja</strong>
-                                </p>
-                                <p>
-                                  <!-- eslint-disable-next-line vue/no-v-html -->
-                                  <pre v-html="selectedCompany.preferences.rules" /><br>
-                                </p>
+                                </div>
+                                <pre class="o-pre">
+                                  {{ selectedCompany.preferences.rules }}
+                                </pre>
                               </div>
                             </div>
                           </div>
@@ -173,9 +172,9 @@
                       </span>
                       <span class="c-card-warning_item">
                         <strong>COVID-19 upozorenje</strong>
-                        <br>
-                        <!-- eslint-disable-next-line vue/no-v-html -->
-                        <pre v-html="selectedCompany.preferences.coronaRules" /><br>
+                        <pre class="o-pre">
+                          {{ selectedCompany.preferences.coronaRules }}
+                        </pre>
                       </span>
                     </div>
                   </div>
@@ -218,13 +217,17 @@
                       </div>
                       <div class="o-layout_item u-3/5@to-medium">
                         <div v-if="selectedCompany.about.length">
-                          <strong>O nama</strong>
+                          <div class="u-margin-bottom-1/4">
+                            <strong>O nama</strong>
+                          </div>
                           <pre class="o-pre">
                             {{ selectedCompany.about }}
                           </pre>
                         </div>
                         <div v-else>
-                          <strong>O nama</strong>
+                          <div class="u-margin-bottom-1/4">
+                            <strong>O nama</strong>
+                          </div>
                           <pre class="o-pre">
                             Nedostaje tekst "O nama". Napišite par riječi o djelatnostima koje obavljate.
                           </pre>
@@ -233,82 +236,101 @@
                       <div class="o-layout_item">
                         <div class="o-layout -gutter-small c-card-company-contact">
                           <div class="o-layout_item u-2/5@to-medium">
-                            <strong>Adresa</strong>
+                            <div class="u-margin-bottom-1/4">
+                              <strong>Adresa</strong>
+                            </div>
                             <address class="c-card-company-address">
                               {{ selectedCompany.name }}<br>
-                              <span v-if="selectedCompany.streetName">{{ selectedCompany.streetName }}</span><br>
-                              <span v-if="selectedCompany.city">{{ selectedCompany.city }}</span><br>
-                              <a
-                                v-if="selectedCompany.city && selectedCompany.streetName"
-                                :href="'https://www.google.com/maps/search/?api=1&query=' +
-                                  selectedCompany.streetName + ',' + selectedCompany.city"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                Otvori na Google Kartama
-                              </a>
+                              <span v-if="selectedCompany.streetName">{{ selectedCompany.streetName }}</span>
+                              <br>
+                              <span v-if="selectedCompany.city">{{ selectedCompany.city }}</span>
+                              <br>
                             </address>
                           </div>
                           <div class="o-layout_item u-3/5@to-medium">
-                            <ul class="c-card-company-contact_list">
+                            <div class="u-margin-bottom-1/4">
+                              <strong>Na webu</strong>
+                            </div>
+                            <ul class="c-card-company-contact_list o-list -margin-1/2">
                               <li
-                                v-if="selectedCompany.phone"
-                                class="c-card-company-contact_list-item"
+                                v-if="selectedCompany.city && selectedCompany.streetName"
+                                class="c-card-company-contact_list-item o-list_item"
                               >
                                 <a
-                                  class="c-card-company-contact_link o-link -padding"
+                                  v-if="selectedCompany.city && selectedCompany.streetName"
+                                  :href="'https://www.google.com/maps/search/?api=1&query=' +
+                                    selectedCompany.streetName + ',' + selectedCompany.city"
+                                  class="c-card-company-contact_link o-link -lonely"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <span class="o-link_background" />
+                                  <span class="o-link_label">Otvori na Google Kartama</span>
+                                </a>
+                              </li>
+                              <li
+                                v-if="selectedCompany.phone"
+                                class="c-card-company-contact_list-item o-list_item"
+                              >
+                                <a
+                                  class="c-card-company-contact_link o-link -lonely"
                                   type="tel"
                                   :href="selectedCompany.phone"
                                   target="_blank"
                                 >
+                                  <span class="o-link_background" />
                                   <span class="o-link_label">{{ selectedCompany.phone }}</span>
                                 </a>
                               </li>
-                              <li class="c-card-company-contact_list-item">
+                              <li class="c-card-company-contact_list-item o-list_item">
                                 <a
-                                  class="c-card-company-contact_link o-link -padding"
+                                  class="c-card-company-contact_link o-link -lonely"
                                   :href="'mailto:' + selectedCompany.contactEmail"
                                   target="_blank"
                                 >
+                                  <span class="o-link_background" />
                                   <span class="o-link_label">E-mail</span>
                                 </a>
                               </li>
                               <li
                                 v-if="selectedCompany.preferences.facebookLink"
-                                class="c-card-company-contact_list-item"
+                                class="c-card-company-contact_list-item o-list_item"
                               >
                                 <a
-                                  class="c-card-company-contact_link o-link -padding"
+                                  class="c-card-company-contact_link o-link -lonely"
                                   :href="selectedCompany.preferences.facebookLink"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
+                                  <span class="o-link_background" />
                                   <span class="o-link_label">Facebook</span>
                                 </a>
                               </li>
                               <li
                                 v-if="selectedCompany.preferences.instagramLink"
-                                class="c-card-company-contact_list-item"
+                                class="c-card-company-contact_list-item o-list_item"
                               >
                                 <a
-                                  class="c-card-company-contact_link o-link -padding"
+                                  class="c-card-company-contact_link o-link -lonely"
                                   :href="selectedCompany.preferences.instagramLink"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
+                                  <span class="o-link_background" />
                                   <span class="o-link_label">Instagram</span>
                                 </a>
                               </li>
                               <li
                                 v-if="selectedCompany.preferences.websiteLink"
-                                class="c-card-company-contact_list-item"
+                                class="c-card-company-contact_list-item o-list_item"
                               >
                                 <a
-                                  class="c-card-company-contact_link o-link -padding"
+                                  class="c-card-company-contact_link o-link -lonely"
                                   :href="selectedCompany.preferences.websiteLink"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
+                                  <span class="o-link_background" />
                                   <span class="o-link_label">Web</span>
                                 </a>
                               </li>
@@ -321,12 +343,12 @@
                           v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
                           class="c-card-company-contact_rules"
                         >
-                          <p class="u-margin-bottom-1/2">
+                          <div class="u-margin-bottom-1/4">
                             <strong>Pravila ponašanja</strong>
-                          </p>
-                          <p>
+                          </div>
+                          <pre class="o-pre">
                             {{ selectedCompany.preferences.rules }}
-                          </p>
+                          </pre>
                         </div>
                       </div>
                     </div>

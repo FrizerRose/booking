@@ -86,10 +86,11 @@
           </div>
           <div class="o-layout_item u-1/2">
             <div v-if="selectedNotice !== ''">
-              <p class="c-summary_answer -min-height">
-                <!-- eslint-disable-next-line vue/no-v-html -->
-                <pre v-html="selectedNotice" /><br>
-              </p>
+              <div class="c-summary_answer -min-height">
+                <pre class="o-pre">
+                  {{ selectedNotice }}
+                </pre>
+              </div>
             </div>
             <div v-else>
               <p class="c-summary_answer -min-height -italic">

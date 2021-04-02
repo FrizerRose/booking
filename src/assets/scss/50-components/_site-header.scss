@@ -20,16 +20,16 @@
 }
 
 .c-site-header_inner {
-  @media (min-width: $from-small) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  // @media (min-width: $from-small) {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  // }
 }
 .c-site-header_main {
   padding: 0.5em 0;
   flex-grow: 1;
-  width: 100%;
+  // width: 100%;
 
   @media (max-width: $to-small) {
     position: relative;

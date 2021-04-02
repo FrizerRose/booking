@@ -1,65 +1,101 @@
 .o-link {
-  font-weight: $bold;
-  letter-spacing: 0.025em;
+  // font-weight: $bold;
+  // letter-spacing: 0.025em;
   display: inline-block;
   position: relative;
   white-space: nowrap;
+  // text-decoration: underline;
+  font-weight: 600;
+  color: $theme-main;
+  transition: color $speed $easing;
+  margin: 0 -0.25em;
+  padding: 0 0.25em;
 
-  &.-padding {
-    line-height: 2;
-    padding: 0em 0.5em;
-
-    // background-image: linear-gradient(transparent calc(100% - 0.4em), currentColor 0.4em);
-    // background-repeat: no-repeat;
-    // background-size: 0% 100%;
-    // transition: background-size $speed * 1.5 $easing;
+  html.mode-dark & {
+    color: $mode-dark-main;
   }
 
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scaleY(0.1);
-    z-index: -1;
-    transform-origin: bottom;
-    transition: transform $speed $easing, opacity $speed $easing;
-    background-color: $theme-main;
+  html.orchid & {
+    color: $orchid-main;
+  }
 
+  html.goldenrod & {
+    color: $goldenrod-main;
+  }
+
+  html.coral & {
+    color: $coral-main;
+  }
+
+  &.-lonely {
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.5em;
+    box-shadow: inset 0 0 0 2px $theme-main;
+  
     html.mode-dark & {
-      // background-color: $theme-darken;
-      background-color: $theme-main;
+      box-shadow: inset 0 0 0 2px $mode-dark-main;
     }
-
+  
     html.orchid & {
-      // background-color: $orchid-darken;
+      box-shadow: inset 0 0 0 2px $orchid-main;
+    }
+  
+    html.goldenrod & {
+      box-shadow: inset 0 0 0 2px $goldenrod-main;
+    }
+  
+    html.coral & {
+      box-shadow: inset 0 0 0 2px $coral-main;
+    }
+  }
+
+  .o-link_background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    background-color: $theme-main;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: 0.5em;
+    transform: scale(0.9, 0.8);
+    transform-origin: bottom;
+    transition: transform $speed / 2 $easing, opacity $speed $easing;
+  
+    html.mode-dark & {
+      background-color: $mode-dark-main;
+    }
+  
+    html.orchid & {
       background-color: $orchid-main;
     }
-
+  
     html.goldenrod & {
-      // background-color: $goldenrod-darken;
       background-color: $goldenrod-main;
     }
-
+  
     html.coral & {
-      // background-color: $coral-darken;
       background-color: $coral-main;
     }
   }
 
-  &:hover {
-    // background-size: 100% 100%;
-    &:before {
-      // opacity: 0.15;
+  &:hover,
+  &:focus {
+    color: $white;
+    html.orchid &,
+    html.goldenrod &,
+    html.coral & {
       color: $white;
-      transform: scaleY(1);
-
-      html.mode-dark & {
-        // opacity: 0.3;
-        color: $black;
-      }
+    }
+    html.mode-dark & {
+      color: $black;
+    }
+    .o-link_background {
+      opacity: 1;
+      transform: none;
     }
   }
 }

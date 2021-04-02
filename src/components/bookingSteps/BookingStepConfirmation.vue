@@ -85,10 +85,11 @@
           </div>
           <div class="o-layout_item u-1/2">
             <div v-if="selectedNotice !== ''">
-              <p class="c-summary_answer -min-height">
-                <!-- eslint-disable-next-line vue/no-v-html -->
-                <pre v-html="selectedNotice" /><br>
-              </p>
+              <div class="c-summary_answer -min-height">
+                <pre class="o-pre">
+                  {{ selectedNotice }}
+                </pre>
+              </div>
             </div>
             <div v-else>
               <p class="c-summary_answer -min-height -italic">
@@ -107,7 +108,10 @@
                 class="o-link"
                 target="_blank"
                 rel="noopener noreferrer"
-              >ovdje</a>
+              >
+                <span class="o-link_background" />
+                <span class="o-link_label">ovdje</span>
+              </a>
               <span v-if="selectedCompany.preferences.termsLink">i</span>
               <a
                 v-if="selectedCompany.preferences.termsLink"
@@ -115,7 +119,10 @@
                 class="o-link"
                 target="_blank"
                 rel="noopener noreferrer"
-              >ovdje.</a>
+              >
+                <span class="o-link_background" />
+                <span class="o-link_label">ovdje.</span>
+              </a>
             </p>
           </div>
           <div :class="{'c-form_item': true, 'has-error': termsError}">

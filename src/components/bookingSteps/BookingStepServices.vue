@@ -46,7 +46,6 @@
                       <h1 class="c-card-service_heading">
                         Nema usluga u ponudi
                       </h1>
-                      <p>Kliknite ovdje da dodate vašu prvu uslugu</p>
                     </div>
                     <div class="o-vertical_item o-flex -justify-end -align-center">
                       <a

@@ -43,13 +43,17 @@
           </div>
           <div class="o-layout_item u-3/5@to-medium">
             <div v-if="selectedCompany.about.length">
-              <strong>O nama</strong>
+              <div class="u-margin-bottom-1/4">
+                <strong>O nama</strong>
+              </div>
               <pre class="o-pre">
                 {{ selectedCompany.about }}
               </pre>
             </div>
             <div v-else>
-              <strong>O nama</strong>
+              <div class="u-margin-bottom-1/4">
+                <strong>O nama</strong>
+              </div>
               <pre class="o-pre">
                 Nedostaje tekst "O nama". Napišite par riječi o djelatnostima koje obavljate.
               </pre>
