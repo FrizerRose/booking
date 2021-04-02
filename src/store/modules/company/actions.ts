@@ -53,6 +53,13 @@ export const actions: ActionTree<State, RootState> & Actions = {
         commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
         commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
         document.documentElement.className = response.data.preferences.colorVariant;
+        if (response.data.preferences.hasDarkMode) {
+          document.documentElement.className = `${document.documentElement.className} mode-dark`;
+        }
+
+        if (response.data.preferences.hasPattern) {
+          document.documentElement.className = `${document.documentElement.className} pattern-zigzag`;
+        }
       } else {
         throw new ApiError('No company by this ID.');
       }
