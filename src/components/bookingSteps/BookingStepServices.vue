@@ -1,10 +1,10 @@
 <template>
   <div
-    v-if="services.length"
+    v-if="servicesForSelectedSex.length"
     class="o-layout o-list XXXXXXXX-gutter"
   >
     <BookingStepServiceCard
-      v-for="service in services"
+      v-for="service in servicesForSelectedSex"
       :key="service.id"
       :service="service"
     />
@@ -13,7 +13,10 @@
     <div class="o-layout">
       <div class="o-layout_item">
         <div class="o-background-wrap">
-          <div class="o-background -has-shadow -overflow" />
+          <div class="o-background -has-shadow -overflow" />servicesForSex
+          servicesForSex
+          servicesForSex
+          servicesForSex
           <div class="o-background -has-bg -overflow" />
           <article class="c-card-service has-links-inside">
             <div class="o-layout || o-flex">
@@ -80,10 +83,19 @@ export default defineComponent({
     const store = useStore();
 
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
+    const selectedSex = computed(() => store.state.shared.selectedSex);
     const services = computed(() => store.state.service.services);
 
+    const servicesForSelectedSex = services.value.filter((service) => {
+      if (selectedSex.value === 'both') {
+        return true;
+      }
+
+      return service.sex === selectedSex.value || service.sex === 'both';
+    });
+
     return {
-      services,
+      servicesForSelectedSex,
       selectedCompany,
     };
   },

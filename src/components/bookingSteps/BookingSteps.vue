@@ -29,18 +29,19 @@
             <div class="o-layout -gutter-2 || o-flex -flex-column@to-medium">
               <div class="o-layout_item u-3/5@from-medium">
                 <div class="c-configurator">
-                  <BookingStepServices v-if="currentStep === 1 && !isRescheduling" />
-                  <BookingStepStaff v-if="currentStep === 2" />
+                  <BookingStepSex v-if="currentStep === 1 && !isRescheduling && hasSexPick" />
+                  <BookingStepServices v-if="currentStep === 2 && !isRescheduling" />
+                  <BookingStepStaff v-if="currentStep === 3" />
                   <BookingStepDateTime
-                    v-if="currentStep === 3"
+                    v-if="currentStep === 4"
                     :is-rescheduling="isRescheduling"
                   />
-                  <BookingStepPersonalDetails v-if="currentStep === 4 && !isRescheduling" />
+                  <BookingStepPersonalDetails v-if="currentStep === 5 && !isRescheduling" />
                   <BookingStepConfirmation
-                    v-if="currentStep === 5"
+                    v-if="currentStep === 6"
                     :is-rescheduling="isRescheduling"
                   />
-                  <BookingStepSummary v-if="currentStep === 6" />
+                  <BookingStepSummary v-if="currentStep === 7" />
                 </div>
               </div>
 
@@ -62,6 +63,7 @@ import TheRightSidebar from '@/components/layout/TheRightSidebar.vue';
 import BookingStepsProgress from '@/components/bookingSteps/progressBar/BookingStepsProgress.vue';
 import BookingStepServices from '@/components/bookingSteps/BookingStepServices.vue';
 import BookingStepStaff from '@/components/bookingSteps/BookingStepStaff.vue';
+import BookingStepSex from '@/components/bookingSteps/BookingStepSex.vue';
 import BookingStepDateTime from '@/components/bookingSteps/BookingStepDateTime.vue';
 import BookingStepPersonalDetails from '@/components/bookingSteps/BookingStepPersonalDetails.vue';
 import BookingStepConfirmation from '@/components/bookingSteps/BookingStepConfirmation.vue';
@@ -79,6 +81,7 @@ export default defineComponent({
     TheRightSidebar,
     BookingStepsProgress,
     BookingStepServices,
+    BookingStepSex,
     BookingStepStaff,
     BookingStepDateTime,
     BookingStepPersonalDetails,
@@ -95,18 +98,22 @@ export default defineComponent({
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
+    const hasSexPick = computed(() => selectedCompany.value?.preferences.hasSexPick);
 
     if (props.isRescheduling) {
       // Skip service step if this is a reschedulling flow
       if (selectedCompany.value?.preferences.hasStaffPick) {
-        store.commit(MutationTypes.CHANGE_CURRENT_STEP, 2);
-      } else {
         store.commit(MutationTypes.CHANGE_CURRENT_STEP, 3);
+      } else {
+        store.commit(MutationTypes.CHANGE_CURRENT_STEP, 4);
       }
+    } else if (!hasSexPick.value) {
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, 2);
     }
 
     return {
       currentStep,
+      hasSexPick,
     };
   },
 });
