@@ -236,12 +236,6 @@ export default defineComponent({
       } else {
         formData.email.error = false;
       }
-      if (formData.phone.data === '') {
-        formData.phone.error = true;
-        hasError.value = true;
-      } else {
-        formData.phone.error = false;
-      }
       if (formData.terms.data === false) {
         formData.terms.error = true;
         hasError.value = true;
