@@ -6,22 +6,9 @@
       <div class="c-progress-indicator">
         <div class="c-progress-number">
           <span
-            v-if="selectedCompany?.preferences.hasStaffPick"
             class="c-progress-number_label"
           >
-            {{ (currentStep * 20) - 20 }}%
-          </span>
-          <span
-            v-else-if="currentStep > 1"
-            class="c-progress-number_label"
-          >
-            {{ ((currentStep -1) * 25) - 25 }}%
-          </span>
-          <span
-            v-else
-            class="c-progress-number_label"
-          >
-            {{ (currentStep * 25) - 25 }}%
+            {{ percentageDone }}%
           </span>
         </div>
         <div class="c-progress-indicator_line-wrap">
@@ -99,7 +86,7 @@
                     @click="changeCurrentStep(1)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Odabir radnika</span>
+                      <span class="c-button_label-overflow">Vrsta usluge</span>
                     </span>
                   </button>
                 </li>
@@ -135,6 +122,20 @@
                 </li>
                 <li
                   class="o-list_item c-steps-list_item"
+                  :class="{'is-current': currentStep === 4}"
+                >
+                  <button
+                    class="c-button -primary -step"
+                    :disabled="currentStep < 4"
+                    @click="changeCurrentStep(4)"
+                  >
+                    <span class="c-button_label -has-overflow">
+                      <span class="c-button_label-overflow">Odabir termina</span>
+                    </span>
+                  </button>
+                </li>
+                <li
+                  class="o-list_item c-steps-list_item"
                   :class="{'is-current': currentStep === 5}"
                 >
                   <button
@@ -143,7 +144,7 @@
                     @click="changeCurrentStep(5)"
                   >
                     <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Odabir termina</span>
+                      <span class="c-button_label-overflow">Vaši podatci</span>
                     </span>
                   </button>
                 </li>
@@ -154,20 +155,6 @@
                   <button
                     class="c-button -primary -step"
                     :disabled="currentStep < 6"
-                    @click="changeCurrentStep(6)"
-                  >
-                    <span class="c-button_label -has-overflow">
-                      <span class="c-button_label-overflow">Vaši podatci</span>
-                    </span>
-                  </button>
-                </li>
-                <li
-                  class="o-list_item c-steps-list_item"
-                  :class="{'is-current': currentStep === 7}"
-                >
-                  <button
-                    class="c-button -primary -step"
-                    :disabled="currentStep < 7"
                   >
                     <span class="c-button_label -has-overflow">
                       <span class="c-button_label-overflow">Provjeri i potvrdi</span>
@@ -223,21 +210,34 @@ export default defineComponent({
       }
     }
 
-    let stepSubtractor = 0;
-    if (selectedCompany.value?.preferences.hasStaffPick) {
-      stepSubtractor += 1;
-    }
-    if (selectedCompany.value?.preferences.hasSexPick) {
-      stepSubtractor += 1;
+    // Calculate the % of steps done.
+    let percentageDone = computed(() => 0);
+    let realStepValue = computed(() => 0);
+    if (selectedCompany.value?.preferences.hasStaffPick && selectedCompany.value?.preferences.hasSexPick) {
+      percentageDone = computed(() => Math.floor(((currentStep.value - 1) / (6)) * 100));
+    } else if (selectedCompany.value?.preferences.hasStaffPick) {
+      realStepValue = computed(() => currentStep.value - 2);
+      percentageDone = computed(() => Math.floor((realStepValue.value / 5) * 100));
+    } else if (selectedCompany.value?.preferences.hasSexPick) {
+      // 1,2,4,5,6
+      realStepValue = computed(() => {
+        if (currentStep.value <= 2) {
+          return currentStep.value - 1;
+        }
+        return currentStep.value - 2;
+      });
+      percentageDone = computed(() => Math.floor((realStepValue.value / 5) * 100));
+    } else {
+      realStepValue = computed(() => {
+        if (currentStep.value === 2) {
+          return 0;
+        }
+        return currentStep.value - 3;
+      });
+      percentageDone = computed(() => Math.floor((realStepValue.value / 4) * 100));
     }
 
-    // Calculate % value for the progress bar and create css string
-    const stepCount = computed(() => (selectedCompany.value?.preferences.hasStaffPick ? 5 : 4));
-    const singleStepValue = computed(() => 1 / stepCount.value);
-    const realStepValue = computed(() => (!selectedCompany.value?.preferences.hasStaffPick && currentStep.value > 1
-      ? currentStep.value - 1 : currentStep.value));
-    const scaleValue = computed(() => (realStepValue.value * singleStepValue.value) - singleStepValue.value);
-    const progressBarTransformScale = computed(() => `transform: scaleX(${scaleValue.value});`);
+    const progressBarTransformScale = computed(() => `transform: scaleX(${percentageDone.value / 100});`);
 
     return {
       selectedCompany,
@@ -247,6 +247,7 @@ export default defineComponent({
       isMenuOpen,
       toggleMenu,
       progressBarTransformScale,
+      percentageDone,
     };
   },
 });

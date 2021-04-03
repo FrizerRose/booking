@@ -3,7 +3,7 @@
     <TheHeader />
     <main class="c-site-main">
       <section
-        v-if="currentStep < 6"
+        v-if="currentStep < 7"
         class="c-section"
       >
         <div class="o-container">
