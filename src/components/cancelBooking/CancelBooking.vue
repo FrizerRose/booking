@@ -12,120 +12,133 @@
           >
             <div class="c-progress">
               <div class="c-configurator">
-                <!-- if nemoguće poništiti ili je već poništeno -->
-                <h1
-                  v-if="(requestSent && !isSuccess) || (!requestSent && !appointment)"
-                  class="c-heading"
-                >
-                  Greška
-                </h1>
-                <p v-if="(requestSent && !isSuccess) || (!requestSent && !appointment)">
-                  Termin nije moguće poništiti. Vjerojatno ste ga ranije poništili.
-                  Vratite se na <a
-                    href="/"
-                    class="o-link"
-                  >
-                    <span class="o-link_background" />
-                    <span class="o-link_label">naslovnicu</span>
-                  </a>.
-                </p>
-                <!-- else if uspješno poništeno -->
-                <h1
-                  v-if="requestSent && isSuccess"
-                  class="c-heading"
-                >
-                  Poništeno
-                </h1>
-                <p v-if="requestSent && isSuccess">
-                  Termin je poništen.
-                  Vratite se na <a
-                    href="/"
-                    class="o-link"
-                  >
-                    <span class="o-link_background" />
-                    <span class="o-link_label">naslovnicu</span>
-                  </a>.
-                </p>
-                <!-- else -->
-                <div
-                  v-if="!requestSent && appointment"
-                  class="c-summary"
-                >
-                  <div class="c-summary_row">
-                    <div class="o-layout">
-                      <div class="o-layout_item u-1/2">
-                        <p class="c-summary_question">
-                          Vrsta usluge:
-                        </p>
-                      </div>
-                      <div class="o-layout_item u-1/2">
-                        <p class="c-summary_answer">
-                          {{ appointment.service.name }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <div class="o-layout">
+                  <div class="o-layout_item">
+                    <div class="o-background-wrap">
+                      <div class="o-background -has-shadow -overflow" />
+                      <div class="o-background -has-bg -overflow" />
+                      <div class="o-background -has-border -overflow -theme-color" />
+                      <div class="u-padding">
+                        <div v-if="(requestSent && !isSuccess) || (!requestSent && !appointment)">
+                          <!-- if nemoguće poništiti ili je već poništeno -->
+                          <div class="c-summary -is-missing">
+                            <h1 class="c-heading u-margin-bottom">
+                              Greška
+                            </h1>
+                            <p>
+                              Termin nije moguće poništiti. Vjerojatno ste ga ranije poništili.
+                              Vratite se na <a
+                                href="/"
+                                class="o-link"
+                              >
+                                <span class="o-link_background" />
+                                <span class="o-link_label">naslovnicu</span>
+                              </a>.
+                            </p>
+                          </div>
+                        </div>
 
-                  <div class="c-summary_row">
-                    <div class="o-layout">
-                      <div class="o-layout_item u-1/2">
-                        <p class="c-summary_question">
-                          Datum i vrijeme:
-                        </p>
-                      </div>
-                      <div class="o-layout_item u-1/2">
-                        <p class="c-summary_answer">
-                          {{ getHumanReadableDateTime(appointment.date, appointment.time) }}
-                        </p>
+                        <div v-if="requestSent && isSuccess">
+                          <!-- else if uspješno poništeno -->
+                          <div class="c-summary -is-missing">
+                            <h1 class="c-heading u-margin-bottom">
+                              Poništeno
+                            </h1>
+                            <p>
+                              Termin je poništen.
+                              Vratite se na <a
+                                href="/"
+                                class="o-link"
+                              >
+                                <span class="o-link_background" />
+                                <span class="o-link_label">naslovnicu</span>
+                              </a>.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div v-if="!requestSent && appointment">
+                          <!-- else -->
+                          <div class="c-summary">
+                            <div class="c-summary_row">
+                              <div class="o-layout">
+                                <div class="o-layout_item u-1/2">
+                                  <p class="c-summary_question">
+                                    Vrsta usluge:
+                                  </p>
+                                </div>
+                                <div class="o-layout_item u-1/2">
+                                  <p class="c-summary_answer">
+                                    {{ appointment.service.name }}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="c-summary_row">
+                              <div class="o-layout">
+                                <div class="o-layout_item u-1/2">
+                                  <p class="c-summary_question">
+                                    Datum i vrijeme:
+                                  </p>
+                                </div>
+                                <div class="o-layout_item u-1/2">
+                                  <p class="c-summary_answer">
+                                    {{ getHumanReadableDateTime(appointment.date, appointment.time) }}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="c-summary_row">
+                              <div class="o-layout">
+                                <div class="o-layout_item u-1/2">
+                                  <p class="c-summary_question">
+                                    Vaši podatci:
+                                  </p>
+                                </div>
+                                <div class="o-layout_item u-1/2">
+                                  <pre class="o-pre c-summary_answer">
+                                    {{ appointment.customer.name }}<br>
+                                    {{ appointment.customer.email }}<br>
+                                    {{ appointment.customer.phone }}<br>
+                                  </pre>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="c-summary_row">
+                              <div class="o-layout">
+                                <div class="o-layout_item u-1/2">
+                                  <p class="c-summary_question">
+                                    Napomena:
+                                  </p>
+                                </div>
+                                <div class="o-layout_item u-1/2">
+                                  <pre
+                                    v-if="appointment.message.length"
+                                    class="o-pre c-summary_answer"
+                                  >
+                                    <em>{{ appointment.message }}</em><br>
+                                  </pre>
+                                  <pre
+                                    v-else
+                                    class="o-pre c-summary_answer"
+                                  >
+                                    <em>Bez napomene</em><br>
+                                  </pre>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="c-summary_footer">
+                              <button
+                                class="c-button -secondary -submit"
+                                @click="cancel()"
+                              >
+                                <span class="c-button_label">Poništi</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="c-summary_row">
-                    <div class="o-layout">
-                      <div class="o-layout_item u-1/2">
-                        <p class="c-summary_question">
-                          Vaši podatci:
-                        </p>
-                      </div>
-                      <div class="o-layout_item u-1/2">
-                        <pre class="o-pre c-summary_answer">
-                        {{ appointment.customer.name }}<br>
-                        {{ appointment.customer.email }}<br>
-                        {{ appointment.customer.phone }}<br>
-                      </pre>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="c-summary_row">
-                    <div class="o-layout">
-                      <div class="o-layout_item u-1/2">
-                        <p class="c-summary_question">
-                          Napomena:
-                        </p>
-                      </div>
-                      <div class="o-layout_item u-1/2">
-                        <pre
-                          v-if="appointment.message.length"
-                          class="o-pre c-summary_answer"
-                        >
-                        <em>{{ appointment.message }}</em><br>
-                      </pre>
-                        <pre
-                          v-else
-                          class="o-pre c-summary_answer"
-                        >
-                        <em>Bez napomene</em><br>
-                      </pre>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="c-summary_footer">
-                    <button
-                      class="c-button -secondary -submit"
-                      @click="cancel()"
-                    >
-                      <span class="c-button_label">Poništi</span>
-                    </button>
                   </div>
                 </div>
               </div>

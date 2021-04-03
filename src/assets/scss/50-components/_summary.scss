@@ -1,6 +1,9 @@
 
 .c-summary {
 	margin-top: 3rem;
+	&.-is-missing {
+		margin-bottom: 4rem;
+	}
 }
 
 .c-summary_row {

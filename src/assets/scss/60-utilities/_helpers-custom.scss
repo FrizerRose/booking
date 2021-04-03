@@ -8,12 +8,6 @@
   width: auto;
 }
 
-.u-margin-left\@to-medium {
-  @media (max-width: $to-medium) {
-    margin-left: 1rem;
-  }
-}
-
 // paddings
 
 .u-padding {
@@ -44,6 +38,12 @@
 
 .u-margin-left-1\/2 {
   margin-left: 0.5rem;
+}
+
+.u-margin-left\@to-medium {
+  @media (max-width: $to-medium) {
+    margin-left: 1rem;
+  }
 }
 
 .u-margin-right-1\/2 {
