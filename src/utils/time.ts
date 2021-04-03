@@ -15,6 +15,20 @@ export function getDateStringFromDate(date: Date): string {
   return `${yyyy}-${mm}-${dd}`;
 }
 
+export function getHumanReadableDateTime(dateString: string, timeString: string) {
+  const date = new Date(dateString);
+  const dd = String(date.getDate());
+  const mm = String(date.getMonth() + 1); // January is 0!
+  const yyyy = date.getFullYear();
+
+  let formattedTimeString = timeString;
+  if (timeString.length <= 8) {
+    formattedTimeString = timeString.slice(0, 5);
+  }
+
+  return `${dd}.${mm}.${yyyy} u ${formattedTimeString}`;
+}
+
 export function dateIsToday(date: Date): boolean {
   const today = new Date();
   return date.getDate() === today.getDate()

@@ -67,7 +67,7 @@
                       </div>
                       <div class="o-layout_item u-1/2">
                         <p class="c-summary_answer">
-                          {{ appointment.date }} u {{ appointment.time }}
+                          {{ getHumanReadableDateTime(appointment.date, appointment.time) }}
                         </p>
                       </div>
                     </div>
@@ -183,7 +183,7 @@ import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/store';
 import { useRoute } from 'vue-router';
 import ActionTypes from '@/store/action-types';
-import { dateDiffInHours } from '@/utils/time';
+import { dateDiffInHours, getHumanReadableDateTime } from '@/utils/time';
 
 export default defineComponent({
   components: {
@@ -240,6 +240,7 @@ export default defineComponent({
       isSuccess,
       appointment,
       canCancel,
+      getHumanReadableDateTime,
     };
   },
 });

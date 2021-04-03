@@ -53,7 +53,7 @@
           </div>
           <div class="o-layout_item u-1/2">
             <p class="c-summary_answer">
-              {{ selectedDateTime.date }} u {{ selectedDateTime.time }}
+              {{ getHumanReadableDateTime(selectedDateTime.date, selectedDateTime.time) }}
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@
 
 <script lang='ts'>
 import { defineComponent, computed } from 'vue';
-
+import { getHumanReadableDateTime } from '@/utils/time';
 import { useStore } from '@/store';
 
 export default defineComponent({
@@ -127,6 +127,7 @@ export default defineComponent({
       selectedCustomer,
       selectedDateTime,
       selectedNotice,
+      getHumanReadableDateTime,
     };
   },
 });
