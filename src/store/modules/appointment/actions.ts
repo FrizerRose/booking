@@ -78,6 +78,8 @@ export const actions: ActionTree<State, RootState> & Actions = {
 
       return response;
     } catch {
+      commit(SharedMutationTypes.CHANGE_IS_APPOINTMENT_FETCHED, true);
+
       throw new ApiError('No appointment by this ID.');
     }
   },
