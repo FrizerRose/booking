@@ -4,7 +4,31 @@
       v-if="selectedCompany && isCompanyPublic"
     />
     <div v-else>
-      Poslovni subjekt nije dostupan.
+      <main :class="{'is-loaded': isMounted, 'c-site-main': true}">
+        <section class="c-section">
+          <div class="o-container">
+            <div class="o-orphan">
+              <div class="o-background-wrap">
+                <div class="o-background -has-shadow -overflow" />
+                <div class="o-background -has-bg -overflow" />
+                <div
+                  class="o-background -has-border -overflow"
+                  :class="{'-theme-color': borderColorFromTheme}"
+                />
+                <div class="o-orphan_inner">
+                  <div class="o-row">
+                    <div class="o-row_inner">
+                      <h1 class="c-heading">
+                        Poslovni subjekt nije dostupan.
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   </div>
 
@@ -42,7 +66,7 @@
 
 <script lang="ts">
 import {
-  defineComponent, computed,
+  defineComponent, computed, ref, onMounted,
 } from 'vue';
 import { useStore } from '@/store';
 
@@ -53,7 +77,16 @@ export default defineComponent({
     const isCompanyPublic = computed(() => store.state.shared.isCompanyPublic);
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
+    const isMounted = ref(false);
+
+    onMounted(async () => {
+      setTimeout(() => {
+        isMounted.value = true;
+      }, 50);
+    });
+
     return {
+      isMounted,
       isCompanyFetched,
       isCompanyPublic,
       selectedCompany,

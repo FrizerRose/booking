@@ -20,10 +20,14 @@
                   Greška
                 </h1>
                 <p v-if="(requestSent && !isSuccess) || (!requestSent && !appointment)">
-                  Termin nije moguće poništiti. Vjerojatno ste ga ranije poništili. Vratite se na <a
+                  Termin nije moguće poništiti. Vjerojatno ste ga ranije poništili.
+                  Vratite se na <a
                     href="/"
                     class="o-link"
-                  >naslovnicu</a>.
+                  >
+                    <span class="o-link_background" />
+                    <span class="o-link_label">naslovnicu</span>
+                  </a>.
                 </p>
                 <!-- else if uspješno poništeno -->
                 <h1
@@ -33,10 +37,14 @@
                   Poništeno
                 </h1>
                 <p v-if="requestSent && isSuccess">
-                  Termin je poništen. Vratite se na <a
+                  Termin je poništen.
+                  Vratite se na <a
                     href="/"
                     class="o-link"
-                  >naslovnicu</a>.
+                  >
+                    <span class="o-link_background" />
+                    <span class="o-link_label">naslovnicu</span>
+                  </a>.
                 </p>
                 <!-- else -->
                 <div

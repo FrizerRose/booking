@@ -8,10 +8,22 @@
     <section class="c-section">
       <div class="o-container">
         <div class="o-orphan">
-          <div class="c-heading-wrap is-anim">
-            <h1 class="c-heading">
-              Obrt nije pronađen.
-            </h1>
+          <div class="o-background-wrap">
+            <div class="o-background -has-shadow -overflow" />
+            <div class="o-background -has-bg -overflow" />
+            <div
+              class="o-background -has-border -overflow"
+              :class="{'-theme-color': borderColorFromTheme}"
+            />
+            <div class="o-orphan_inner">
+              <div class="o-row">
+                <div class="o-row_inner">
+                  <h1 class="c-heading">
+                    Obrt nije pronađen.
+                  </h1>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -46,7 +58,7 @@ export default defineComponent({
     onMounted(async () => {
       setTimeout(() => {
         isMounted.value = true;
-      }, 0);
+      }, 50);
     });
 
     return {

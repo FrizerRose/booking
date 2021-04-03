@@ -2,6 +2,10 @@
   <div class="o-background-wrap has-1/2-gutters@to-medium">
     <div class="o-background -has-shadow@to-medium -overflow" />
     <div class="o-background -has-bg@to-medium -overflow" />
+    <div
+      class="o-background -has-border@to-medium -overflow"
+      :class="{'-theme-color': borderColorFromTheme}"
+    />
     <div class="c-progress_inner">
       <div class="c-progress-indicator">
         <div class="c-progress-number">
@@ -71,6 +75,7 @@
       <div class="o-background-wrap has-1/2-gutters@to-medium">
         <div class="o-background -has-shadow@to-medium -overflow" />
         <div class="o-background -has-bg@to-medium -overflow" />
+        <div class="o-background -has-border@to-medium -overflow" />
         <div class="o-layout">
           <div class="o-layout_item">
             <div class="c-steps-list-wrap">

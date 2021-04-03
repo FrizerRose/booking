@@ -83,3 +83,43 @@
   height: 100%;
   object-fit: cover;
 }
+
+.u-theme-text {
+  color: $theme-main;
+
+  html.mode-dark & {
+    color: $mode-dark-main;
+  }
+
+  html.orchid & {
+    color: $orchid-main;
+  }
+
+  html.goldenrod & {
+    color: $goldenrod-main;
+  }
+
+  html.coral & {
+    color: $coral-main;
+  }
+}
+
+.u-theme-bg {
+  background-color: $theme-main;
+
+  html.mode-dark & {
+    background-color: $mode-dark-main;
+  }
+
+  html.orchid & {
+    background-color: $orchid-main;
+  }
+
+  html.goldenrod & {
+    background-color: $goldenrod-main;
+  }
+
+  html.coral & {
+    background-color: $coral-main;
+  }
+}

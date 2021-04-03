@@ -6,9 +6,13 @@
     <div class="o-background-wrap has-1/2-gutters@from-medium">
       <div class="o-background -has-shadow@from-medium -overflow" />
       <div class="o-background -has-bg@from-medium -overflow" />
+      <div
+        class="o-background -has-border@from-medium -overflow"
+        :class="{'-theme-color': borderColorFromTheme}"
+      />
       <div class="o-group u-padding-top u-padding-bottom">
         <div class="o-layout -gutters">
-          <div class="o-layout_item u-2/5@to-medium XXXXXXXX-gutters-px-10 || XXXXXXXXo-flex -flex-column -justify-center -align-center">
+          <div class="o-layout_item u-2/5@to-medium">
             <figure
               v-if="selectedCompany.image && selectedCompany.image.link"
               class="c-card-company-image o-image-wrap -max-width || o-ratio"
@@ -21,6 +25,7 @@
                 >
               </div>
             </figure>
+            <!-- ovdje ne želimo da je ovaj ispod span unutar figure i ne želimo da ima .u-theme-text i .u-theme-bg -->
             <span
               v-else
               class="o-ratio"

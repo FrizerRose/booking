@@ -13,15 +13,19 @@
     <div class="o-layout">
       <div class="o-layout_item">
         <div class="o-background-wrap">
-          <div class="o-background -has-shadow -overflow" />servicesForSex
-          servicesForSex
-          servicesForSex
-          servicesForSex
+          <div class="o-background -has-shadow -overflow" />
           <div class="o-background -has-bg -overflow" />
+          <div
+            class="o-background -has-border -overflow"
+            :class="{'-theme-color': borderColorFromTheme}"
+          />
           <article class="c-card-service has-links-inside">
             <div class="o-layout || o-flex">
               <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
-                <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded">
+                <figure
+                  class="c-card-service_image-wrap || o-ratio u-rounded"
+                  :class="{'u-theme-text': !colorFromTheme, 'u-theme-bg': bgFromTheme}"
+                >
                   <div class="o-ratio_content">
                     <span class="o-icon c-card-service_image u-objfit">
                       <svg

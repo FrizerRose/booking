@@ -4,6 +4,10 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
+        <div
+          class="o-background -has-border -overflow"
+          :class="{'-theme-color': borderColorFromTheme}"
+        />
         <div class="u-padding">
           <div v-if="selectedCompany">
             <div v-if="hasError">

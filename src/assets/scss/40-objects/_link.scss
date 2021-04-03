@@ -30,24 +30,8 @@
   &.-lonely {
     padding: 0.125rem 0.5rem;
     margin: 0;
+    margin-left: -0.5rem;
     border-radius: 0.5em;
-    box-shadow: inset 0 0 0 2px $theme-main;
-  
-    html.mode-dark & {
-      box-shadow: inset 0 0 0 2px $mode-dark-main;
-    }
-  
-    html.orchid & {
-      box-shadow: inset 0 0 0 2px $orchid-main;
-    }
-  
-    html.goldenrod & {
-      box-shadow: inset 0 0 0 2px $goldenrod-main;
-    }
-  
-    html.coral & {
-      box-shadow: inset 0 0 0 2px $coral-main;
-    }
   }
 
   .o-link_background {

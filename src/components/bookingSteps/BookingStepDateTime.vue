@@ -4,6 +4,10 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
+        <div
+          class="o-background -has-border -overflow"
+          :class="{'-theme-color': borderColorFromTheme}"
+        />
         <div class="u-padding">
           <div class="c-form_item">
             <div class="o-background-wrap -is-datepicker">
@@ -34,13 +38,10 @@
             </ul>
           </div>
           <div v-else>
-            <div class="o-background-wrap">
-              <div class="o-background -has-shadow -overflow" />
-              <div class="o-background -has-bg -overflow" />
-              <p>
-                Nema slobodnih termina za odabrani dan.
-              </p>
-            </div>
+            <!-- ne stavljaj bg :) -->
+            <p>
+              Nema slobodnih termina za odabrani dan.
+            </p>
           </div>
         </div>
       </div>

@@ -38,6 +38,24 @@
 	width: 8rem;
     height: 8rem;
 	animation: rotateLoader 2s linear infinite;
+
+    color: $theme-main;
+  
+    html.mode-dark & {
+      color: $mode-dark-main;
+    }
+  
+    html.orchid & {
+      color: $orchid-main;
+    }
+  
+    html.goldenrod & {
+      color: $goldenrod-main;
+    }
+  
+    html.coral & {
+      color: $coral-main;
+    }
 }
 @keyframes rotateLoader {
 	to {

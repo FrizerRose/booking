@@ -5,15 +5,30 @@
 }
 
 .c-card-service_image-wrap {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 
-  @media (max-width: $to-medium) {
-    max-width: 30%;
+  &.-max-width {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: $to-medium) {
+      // max-width: 30%;
+    }
+    @media (min-width: $from-medium) {
+      max-width: 75%;
+    }
   }
-  @media (min-width: $from-medium) {
-    max-width: 75%;
+}
+
+.c-card-service_info {
+
+  &.-max-width {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    @media (min-width: $from-medium) {
+      max-width: 50%;
+    }
   }
 }
 

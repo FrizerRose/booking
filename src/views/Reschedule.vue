@@ -4,31 +4,11 @@
       v-if="appointment && selectedCompany && canCancel"
       :is-rescheduling="true"
     />
-    <main
-      v-else
-      class="c-site-main"
-    >
-      <section class="c-section">
-        <div class="o-container">
-          <div class="o-orphan">
-            <h1
-              v-if="canCancel"
-              class="c-heading"
-            >
-              Rezervacija ne postoji. Ako ste joj već zamjenili termin trebali ste dobiti mail sa novim linkom za promjenu rezervacije.
-            </h1>
-            <h1 v-else>
-              Više nije moguće promjeniti termin rezervacije. Ne primamo promjene ovako blizu početku termina.
-            </h1>
-          </div>
-        </div>
-      </section>
-    </main>
   </div>
   <main
     v-else
-    class="
-      c-site-main"
+    class="c-site-main"
+    :class="{'is-loaded': isMounted, 'c-site-main': true}"
   >
     <section class="c-section">
       <div class="o-container">
@@ -51,6 +31,48 @@
               />
             </svg>
           </span>
+          <div class="o-background-wrap">
+            <div class="o-background -has-shadow -overflow" />
+            <div class="o-background -has-bg -overflow" />
+            <div
+              class="o-background -has-border -overflow"
+              :class="{'-theme-color': borderColorFromTheme}"
+            />
+            <div class="o-orphan_inner">
+              <div v-if="canCancel">
+                <div class="o-row">
+                  <div class="o-row_inner">
+                    <h1 class="c-heading u-margin-bottom">
+                      Rezervacija ne postoji.
+                    </h1>
+                  </div>
+                </div>
+                <div class="o-row -delay-1">
+                  <div class="o-row_inner">
+                    <p>
+                      Ako ste joj već zamjenili termin trebali ste dobiti mail sa novim linkom za promjenu rezervacije.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div v-else>
+                <div class="o-row">
+                  <div class="o-row_inner">
+                    <h1 class="c-heading u-margin-bottom">
+                      Više nije moguće promjeniti termin rezervacije.
+                    </h1>
+                  </div>
+                </div>
+                <div class="o-row -delay-1">
+                  <div class="o-row_inner">
+                    <p>
+                      {{ selectedCompany.name }} ne prima promjene ovako blizu zakazanog termina.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -58,7 +80,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import {
+  defineComponent, computed, ref, onMounted,
+} from 'vue';
 import BookingSteps from '@/components/bookingSteps/BookingSteps.vue';
 import { useStore } from '@/store';
 import ActionTypes from '@/store/action-types';
@@ -96,11 +120,20 @@ export default defineComponent({
       return selectedCompany.value?.preferences.canCancel && !hasCancellationWindowPassed;
     });
 
+    const isMounted = ref(false);
+
+    onMounted(async () => {
+      setTimeout(() => {
+        isMounted.value = true;
+      }, 50);
+    });
+
     return {
       appointment,
       selectedCompany,
       canCancel,
       isAppointmentFetched,
+      isMounted,
     };
   },
 });
