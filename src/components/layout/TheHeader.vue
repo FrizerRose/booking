@@ -5,7 +5,7 @@
   >
     <div class="o-container">
       <div class="o-background-wrap has-no-gutters@to-medium">
-        <div class="o-background -has-shadow" />
+        <div class="o-background |-has-shadow" />
         <div class="c-site-header_inner">
           <div class="c-site-header_main || has-no-gutters@to-small">
             <div class="c-site-header_main_inner">
