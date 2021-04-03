@@ -9,7 +9,7 @@
     transition: box-shadow $speed $easing;
     transition-delay: $speed * 1.5;
     background-color: $element-bg;
-  
+
     html.mode-dark & {
       $site-button-bg: $mode-dark_element-bg;
       background-color: $site-button-bg;
@@ -24,7 +24,7 @@
   &.-is-dialog {
     @extend .c-form_font;
 
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     overflow: hidden;
     color: $white;
 
@@ -35,7 +35,7 @@
     //   padding: 2rem;
     // }
   }
-  
+
   .c-form_item.has-error & {
     border-color: $red;
   }
@@ -49,13 +49,34 @@
   height: 100%;
   z-index: -1;
 
+  &.-theme-color {
+    html.orchid & {
+      color: orchid;
+    }
+    html.goldenrod & {
+      color: goldenrod;
+    }
+    html.coral & {
+      color: coral;
+    }
+  }
+
   &.-has-bg {
     $theme-element-bg: white;
     background-color: $theme-element-bg;
 
+    &.-emphasis {
+      opacity: 0.1;
+      background-color: currentColor;
+    }
+
     html.mode-dark & {
       $theme-element-bg: $black;
       background-color: $theme-element-bg;
+    
+      &.-emphasis {
+        background-color: currentColor;
+      }
     }
   }
 
@@ -63,7 +84,7 @@
     @media (max-width: $to-medium) {
       $theme-element-bg: white;
       background-color: $theme-element-bg;
-  
+
       html.mode-dark & {
         $theme-element-bg: $black;
         background-color: $theme-element-bg;
@@ -75,7 +96,7 @@
     @media (min-width: $from-medium) {
       $theme-element-bg: white;
       background-color: $theme-element-bg;
-  
+
       html.mode-dark & {
         $theme-element-bg: $black;
         background-color: $theme-element-bg;
@@ -130,12 +151,57 @@
     }
   }
 
+  &.-has-border {
+    box-shadow: inset 0 0 0 2px currentColor;
+    opacity: 0.2;
+
+    &.-emphasis {
+      opacity: 1;
+    }
+
+    html.mode-dark & {
+      $currentColor: $mode-dark-main;
+      box-shadow: inset 0 0 0 2px currentColor;
+      opacity: 0.1;
+
+      &.-emphasis {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.-has-border\@to-medium {
+    @media (max-width: $to-medium) {
+      box-shadow: inset 0 0 0 2px currentColor;
+      opacity: 0.2;
+
+      html.mode-dark & {
+        $currentColor: $mode-dark-main;
+        box-shadow: inset 0 0 0 2px currentColor;
+        opacity: 0.1;
+      }
+    }
+  }
+
+  &.-has-border\@from-medium {
+    @media (min-width: $from-medium) {
+      box-shadow: inset 0 0 0 2px currentColor;
+      opacity: 0.2;
+
+      html.mode-dark & {
+        $currentColor: $mode-dark-main;
+        box-shadow: inset 0 0 0 2px currentColor;
+        opacity: 0.1;
+      }
+    }
+  }
+
   &.-zigzag {
     $bg-color: rgba(0, 0, 0, 0.04);
     background-image: linear-gradient(135deg, $bg-color 25%, transparent 25%),
-    linear-gradient(225deg, $bg-color 25%, transparent 25%),
-    linear-gradient(45deg, $bg-color 25%, transparent 25%),
-    linear-gradient(315deg, $bg-color 25%, transparent 25%);
+      linear-gradient(225deg, $bg-color 25%, transparent 25%),
+      linear-gradient(45deg, $bg-color 25%, transparent 25%),
+      linear-gradient(315deg, $bg-color 25%, transparent 25%);
     background-position: 2rem 0, 2rem 0, 0 0, 0 0;
     background-size: 4rem 4rem;
     background-repeat: repeat;
@@ -155,7 +221,7 @@
     opacity: 0.075;
 
     html.mode-dark & {
-        opacity: 0.3;
+      opacity: 0.3;
     }
   }
 
@@ -163,7 +229,7 @@
     opacity: 0.15;
 
     html.mode-dark & {
-        opacity: 0.4;
+      opacity: 0.4;
     }
   }
 

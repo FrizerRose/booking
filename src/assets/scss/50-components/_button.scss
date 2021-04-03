@@ -29,6 +29,7 @@
     opacity: 0.2;
     background-color: transparent !important;
   }
+
   &.-info {
     line-height: 1;
     white-space: nowrap;
@@ -39,7 +40,16 @@
     border: 0.0625em solid currentColor;
     border-radius: 9999px;
     padding: 0.125em 0.5em;
+
+    $site-button-bg: $white;
+    background-color: $site-button-bg;
+
+    html.mode-dark & {
+      $site-button-bg: $black;
+      background-color: $site-button-bg;
+    }
   }
+
   &.-larger {
     font-size: 150%;
   }
@@ -90,17 +100,18 @@
   transition: background-color $speed / 2 $easing;
 
   &.-step {
-    transition: background-color $speed / 2 $easing, box-shadow $speed * 2 $easing;
+    transition: background-color $speed / 2 $easing,
+      box-shadow $speed * 2 $easing;
   }
 
   $site-button-bg: $element-bg;
   background-color: $site-button-bg;
-  
+
   html.mode-dark & {
     $site-button-bg: $mode-dark_element-bg;
     background-color: $site-button-bg;
   }
-  
+
   &:hover,
   &:focus {
     background-color: $theme-main;
@@ -108,25 +119,25 @@
     &:not(:disabled) {
       $site-button-hover-color: $white;
       color: $site-button-hover-color;
-  
+
       html.mode-dark & {
         $site-button-hover-color: $black;
         color: $site-button-hover-color;
       }
     }
-  
+
     html.mode-dark & {
       background-color: $theme-darken;
     }
-  
+
     html.orchid & {
       background-color: $orchid-main;
     }
-  
+
     html.goldenrod & {
       background-color: $goldenrod-main;
     }
-  
+
     html.coral & {
       background-color: $coral-main;
     }
@@ -136,10 +147,11 @@
 .c-button.-secondary {
   $site-button-bg: $theme-main;
   background-color: $site-button-bg;
-  
+
   &.-submit {
     width: 100%;
     font-size: 2rem;
+    border-radius: 0.5rem;
   }
 
   html.mode-dark & {

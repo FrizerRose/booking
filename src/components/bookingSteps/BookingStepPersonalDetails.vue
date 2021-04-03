@@ -4,6 +4,10 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
+        <div
+          class="o-background -has-border -overflow"
+          :class="{'-theme-color': borderColorFromTheme}"
+        />
         <div class="u-padding">
           <form class="c-form">
             <div :class="{'c-form_item': true, 'has-error': formData.name.error}">

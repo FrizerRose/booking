@@ -23,7 +23,7 @@
 	--vdp-bg-color: white;
 	--vdp-text-color: currentColor;
 	--vdp-box-shadow: 0 1.5em 1em -2em currentColor;
-	--vdp-border-radius: 0.25em;
+	--vdp-border-radius: 1em;
 	--vdp-heading-size: 2rem;
 	--vdp-heading-weight: 600;
 	--vdp-heading-hover-color: #f1f1f1;
@@ -66,7 +66,20 @@
 .v3dp__popout {
 	width: 100% !important;
 	margin-top: 1rem;
-	// border: 0.125em solid currentColor;
+	border: 0.125em solid rgba(9, 9, 9, 0.2);
+
+	html.mode-dark & {
+		border: 0.125em solid rgba(255, 255, 255, 0.2);
+	}
+	html.orchid & {
+		border: 0.125em solid rgba(218, 112, 214, 0.2);
+	}
+	html.goldenrod & {
+		border: 0.125em solid rgba(218, 165, 32, 0.2);
+	}
+	html.coral & {
+		border: 0.125em solid rgba(255, 127, 80, 0.2);
+	}
 }
 
 .v3dp__divider {

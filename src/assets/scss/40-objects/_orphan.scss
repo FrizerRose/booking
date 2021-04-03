@@ -5,3 +5,27 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.o-orphan_inner {
+	padding: 2rem;
+}
+
+.o-row {
+    display: block;
+    overflow: hidden;
+}
+
+.o-row_inner {
+	display: inline-block;
+	transition: transform $speed * 4 $easing;
+	transform: translate3d(0,100%,0);
+
+	@for $i from 1 through 3 {
+	  .-delay-#{$i} & {
+		transition-delay: 0.7s + 0.35 * $i;
+	  }
+	}
+	.is-loaded & {
+		transform: none;
+	}
+}

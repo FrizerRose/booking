@@ -1,6 +1,23 @@
 
 .o-tag {
 	font-size: 0.875rem;
+	color: $theme-main;
+
+	html.mode-dark & {
+	  color: $mode-dark-main;
+	}
+  
+	html.orchid & {
+	  color: $orchid-main;
+	}
+  
+	html.goldenrod & {
+	  color: $goldenrod-main;
+	}
+  
+	html.coral & {
+	  color: $coral-main;
+	}
 }
 
 .o-tag_label {

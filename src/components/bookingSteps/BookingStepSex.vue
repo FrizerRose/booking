@@ -1,11 +1,18 @@
 <template>
   <div class="o-layout o-list -gutter-1">
-    <div class="o-layout_item u-1/2@from-medium o-list_item">
+    <div class="o-layout_item u-1/2 o-list_item">
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
+        <div
+          class="o-background -has-border -overflow"
+          :class="{'-theme-color': borderColorFromTheme}"
+        />
         <article class="c-card-service has-links-inside">
-          <figure class="c-card-service_image-wrap || o-ratio u-rounded">
+          <figure
+            class="c-card-service_image-wrap -max-width || o-ratio u-rounded"
+            :class="{'u-theme-text': !colorFromTheme, 'u-theme-bg': bgFromTheme}"
+          >
             <div class="o-ratio_content">
               <span class="o-icon c-card-service_image u-objfit">
                 <svg
@@ -39,12 +46,19 @@
       </div>
     </div>
 
-    <div class="o-layout_item u-1/2@from-medium o-list_item">
+    <div class="o-layout_item u-1/2 o-list_item">
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
+        <div
+          class="o-background -has-border -overflow"
+          :class="{'-theme-color': borderColorFromTheme}"
+        />
         <article class="c-card-service has-links-inside">
-          <figure class="c-card-service_image-wrap || o-ratio u-rounded">
+          <figure
+            class="c-card-service_image-wrap -max-width || o-ratio u-rounded"
+            :class="{'u-theme-text': !colorFromTheme, 'u-theme-bg': bgFromTheme}"
+          >
             <div class="o-ratio_content">
               <span class="o-icon c-card-service_image u-objfit">
                 <svg
@@ -82,23 +96,22 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
+        <div
+          class="o-background -has-border -overflow"
+          :class="{'-theme-color': borderColorFromTheme}"
+        />
         <article class="c-card-service has-links-inside">
-          <div class="o-layout -gutter-1 || o-flex">
-            <div class="o-layout_item u-1/2@to-medium u-1/4@from-medium" />
-            <div class="o-layout_item u-1/2@to-medium u-1/2@from-medium">
-              <div class="c-card-service_info u-height-100">
-                <div class="o-vertical u-height-100">
-                  <div class="o-vertical_item" />
-                  <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
-                    <button
-                      class="c-button -primary -step || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
-                      @click="selectSex('both')"
-                    >
-                      <span class="has-links-inside_background" />
-                      <span class="c-button_label">Svejedno mi je</span>
-                    </button>
-                  </div>
-                </div>
+          <div class="c-card-service_info -max-width u-height-100">
+            <div class="o-vertical u-height-100">
+              <div class="o-vertical_item" />
+              <div class="o-vertical_item XXXXXXXXo-flex -justify-end -align-center">
+                <button
+                  class="c-button -primary -step || has-links-inside_main-link || XXXXXXXXu-margin-top-3"
+                  @click="selectSex('both')"
+                >
+                  <span class="has-links-inside_background" />
+                  <span class="c-button_label">Svejedno mi je</span>
+                </button>
               </div>
             </div>
           </div>

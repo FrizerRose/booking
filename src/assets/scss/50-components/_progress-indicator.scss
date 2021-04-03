@@ -2,6 +2,19 @@
   margin-bottom: 0.5em;
   @media (min-width: $from-medium) {
   }
+  color: currentColor;
+
+  html.orchid & {
+    color: $orchid-main;
+  }
+
+  html.goldenrod & {
+    color: $goldenrod-main;
+  }
+
+  html.coral & {
+    color: $coral-main;
+  }
 }
 .c-progress-indicator {
   padding: 1em 0;
@@ -32,9 +45,6 @@
   @media (max-width: $to-medium) {
   }
   &.-has-theme-color {
-
-    // use only when theme-color is active
-
     html.orchid & {
       background-color: $orchid-main;
     }
@@ -80,7 +90,6 @@
   top: 50%;
   left: 0%;
   &.-has-theme-color {
-
     // use only when theme-color is active
 
     html.orchid & {

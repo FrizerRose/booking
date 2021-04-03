@@ -68,7 +68,12 @@
                     :class="{'is-open': isSiteInfoOpen}"
                   >
                     <div class="o-background-wrap">
-                      <div class="o-background -has-shadow-v2 -has-bg -overflow" />
+                      <div class="o-background -has-shadow-v2 -overflow" />
+                      <div class="o-background -has-bg -overflow" />
+                      <div
+                        class="o-background -has-border -overflow"
+                        :class="{'-theme-color': borderColorFromTheme}"
+                      />
                       <div class="-overflow">
                         <div class="o-layout is-hidden@to-medium">
                           <div class="o-layout_item">
@@ -139,7 +144,12 @@
           :class="{'is-open': isSiteInfoOpen}"
         >
           <div class="o-background-wrap x-has-no-gutters@to-medium">
-            <div class="o-background -has-shadow-v2 -has-bg -overflow" />
+            <div class="o-background -has-shadow-v2 -overflow" />
+            <div class="o-background -has-bg -overflow" />
+            <div
+              class="o-background -has-border -overflow"
+              :class="{'-theme-color': borderColorFromTheme}"
+            />
             <div class=" -overflow">
               <div class="o-layout">
                 <div class="o-layout_item">
@@ -195,6 +205,7 @@
                             >
                           </div>
                         </figure>
+                        <!-- ovdje ne želimo da je ovaj ispod span unutar figure i ne želimo da ima .u-theme-text i .u-theme-bg -->
                         <span
                           v-else
                           class="o-ratio"
