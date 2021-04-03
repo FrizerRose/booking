@@ -1,24 +1,56 @@
 <template>
-  <BookingSteps
-    v-if="appointment && selectedCompany && canCancel"
-    :is-rescheduling="true"
-  />
+  <div v-if="isAppointmentFetched">
+    <BookingSteps
+      v-if="appointment && selectedCompany && canCancel"
+      :is-rescheduling="true"
+    />
+    <main
+      v-else
+      class="c-site-main"
+    >
+      <section class="c-section">
+        <div class="o-container">
+          <div class="o-orphan">
+            <h1
+              v-if="canCancel"
+              class="c-heading"
+            >
+              Rezervacija ne postoji. Ako ste joj već zamjenili termin trebali ste dobiti mail sa novim linkom za promjenu rezervacije.
+            </h1>
+            <h1 v-else>
+              Više nije moguće promjeniti termin rezervacije. Ne primamo promjene ovako blizu početku termina.
+            </h1>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
   <main
     v-else
-    class="c-site-main"
+    class="
+      c-site-main"
   >
     <section class="c-section">
       <div class="o-container">
         <div class="o-orphan">
-          <h1
-            v-if="canCancel"
-            class="c-heading"
-          >
-            Rezervacija ne postoji. Ako ste joj već zamjenili termin trebali ste dobiti mail sa novim linkom za promjenu rezervacije.
-          </h1>
-          <h1 v-else>
-            Više nije moguće promjeniti termin rezervacije. {{ selectedCompany.name }} ne prima promjene ovako blizu početku termina.
-          </h1>
+          <span class="o-icon o-loader">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2a.91.91 0 01.91.91v3.635a.91.91 0 11-1.82 0V2.91A.91.91
+              0 0112 2zM12 16.546a.91.91 0 01.91.909v3.636a.91.91 0 11-1.82 0v-3.636a.91.91 0 01.91-.91zM4.93 4.93a.91.91 0
+              011.286 0l2.572 2.573a.91.91 0 01-1.285 1.285L4.93 6.216a.91.91 0 010-1.286zM15.212 15.212a.91.91 0 011.285
+              0l2.573 2.572a.91.91 0 01-1.286 1.286l-2.572-2.573a.91.91 0 010-1.285zM2 12a.91.91 0 01.91-.91h3.635a.91.91
+              0 110 1.82H2.91A.91.91 0 012 12zM16.545 12a.91.91 0 01.91-.91h3.636a.91.91 0 010 1.82h-3.637a.91.91 0
+              01-.909-.91zM8.788 15.212a.909.909 0 010 1.285L6.216 19.07a.91.91 0 01-1.286-1.286l2.573-2.572a.91.91 0
+              011.285 0zM19.07 4.93a.91.91 0 010 1.286l-2.573 2.572a.909.909 0 11-1.285-1.285l2.572-2.573a.91.91 0 011.286 0z"
+              />
+            </svg>
+          </span>
         </div>
       </div>
     </section>
@@ -53,6 +85,7 @@ export default defineComponent({
 
     const appointment = computed(() => store.state.appointment.appointment);
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
+    const isAppointmentFetched = computed(() => store.state.shared.isAppointmentFetched);
 
     const canCancel = computed(() => {
       const appointmentDate = new Date(`${appointment.value?.date}T${appointment.value?.time}`);
@@ -67,6 +100,7 @@ export default defineComponent({
       appointment,
       selectedCompany,
       canCancel,
+      isAppointmentFetched,
     };
   },
 });

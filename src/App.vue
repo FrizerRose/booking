@@ -1,7 +1,7 @@
 <template>
   <div v-if="isCompanyFetched">
     <router-view
-      v-if="isCompanyPublic"
+      v-if="selectedCompany && isCompanyPublic"
     />
     <div v-else>
       Poslovni subjekt nije dostupan.
@@ -51,10 +51,12 @@ export default defineComponent({
     const store = useStore();
     const isCompanyFetched = computed(() => store.state.shared.isCompanyFetched);
     const isCompanyPublic = computed(() => store.state.shared.isCompanyPublic);
+    const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     return {
       isCompanyFetched,
       isCompanyPublic,
+      selectedCompany,
     };
   },
 });

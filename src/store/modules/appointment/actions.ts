@@ -57,22 +57,29 @@ const appointmentService = new AppointmentService();
 // Action implementation.
 export const actions: ActionTree<State, RootState> & Actions = {
   async [LocalActionTypes.FETCH_APPOINTMENT]({ commit }, id: number): Promise<AxiosResponse> {
-    const response = await appointmentService.get(id);
-    if (response.status === 200 && response.data) {
-      commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
-      commit(SharedMutationTypes.CHANGE_SELECTED_SERVICE, response.data.service);
-      commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data.customer);
-      commit(SharedMutationTypes.CHANGE_SELECTED_NOTICE, response.data.message);
-      if (response.data.service.staff[0] === undefined) {
-        commit(StaffMutationTypes.CHANGE_STAFF, [response.data.service.staff]);
+    try {
+      const response = await appointmentService.get(id);
+
+      commit(SharedMutationTypes.CHANGE_IS_APPOINTMENT_FETCHED, true);
+
+      if (response.status === 200 && response.data) {
+        commit(LocalMutationTypes.CHANGE_APPOINTMENT, response.data);
+        commit(SharedMutationTypes.CHANGE_SELECTED_SERVICE, response.data.service);
+        commit(SharedMutationTypes.CHANGE_SELECTED_CUSTOMER, response.data.customer);
+        commit(SharedMutationTypes.CHANGE_SELECTED_NOTICE, response.data.message);
+        if (response.data.service.staff[0] === undefined) {
+          commit(StaffMutationTypes.CHANGE_STAFF, [response.data.service.staff]);
+        } else {
+          commit(StaffMutationTypes.CHANGE_STAFF, response.data.service.staff);
+        }
       } else {
-        commit(StaffMutationTypes.CHANGE_STAFF, response.data.service.staff);
+        throw new ApiError('No appointment by this ID.');
       }
-    } else {
+
+      return response;
+    } catch {
       throw new ApiError('No appointment by this ID.');
     }
-
-    return response;
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async [LocalActionTypes.CREATE_APPOINTMENT]({ commit }, payload): Promise<unknown> {

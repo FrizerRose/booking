@@ -24,7 +24,7 @@ export function fetchCompanyFromURL() {
     const urlFragments = window.location.hostname.split('.');
     [companyID] = urlFragments;
     if (companyID === 'dolazim') {
-      window.location.href = 'https://landing.dolazim.com';
+      window.location.href = 'https://landing.dolazim.hr';
     }
   } else if (process.env.VUE_APP_COMPANY_ID) {
     companyID = parseInt(process.env.VUE_APP_COMPANY_ID, 10);

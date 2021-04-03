@@ -77,7 +77,7 @@
               <!-- <div class="is-overflow-swipe"> -->
               <ul class="o-list c-steps-list">
                 <li
-                  v-if="selectedCompany?.preferences.hasSexPick"
+                  v-if="selectedCompany?.preferences.hasSexPick && !isRescheduling"
                   class="o-list_item c-steps-list_item"
                   :class="{'is-current': currentStep === 1}"
                 >
@@ -135,6 +135,7 @@
                   </button>
                 </li>
                 <li
+                  v-if="!isRescheduling"
                   class="o-list_item c-steps-list_item"
                   :class="{'is-current': currentStep === 5}"
                 >
@@ -175,6 +176,7 @@
 import {
   defineComponent,
   computed,
+  ref,
 } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
@@ -186,7 +188,7 @@ export default defineComponent({
       default: false,
     },
   },
-  setup() {
+  setup(props) {
     const store = useStore();
     const currentStep = computed(() => store.state.shared.currentStep);
     const isMenuOpen = computed(() => store.state.shared.isMenuOpen);
@@ -212,21 +214,60 @@ export default defineComponent({
 
     // Calculate the % of steps done.
     let percentageDone = computed(() => 0);
-    let realStepValue = computed(() => 0);
+    let realStepValue = computed(() => currentStep.value - 1);
+    const totalSteps = ref(0);
     if (selectedCompany.value?.preferences.hasStaffPick && selectedCompany.value?.preferences.hasSexPick) {
-      percentageDone = computed(() => Math.floor(((currentStep.value - 1) / (6)) * 100));
+      if (props.isRescheduling) {
+        realStepValue = computed(() => {
+          if (currentStep.value <= 4) {
+            return currentStep.value - 3;
+          }
+          return currentStep.value - 4;
+        });
+        totalSteps.value = 3;
+      } else {
+        totalSteps.value = 6;
+      }
     } else if (selectedCompany.value?.preferences.hasStaffPick) {
-      realStepValue = computed(() => currentStep.value - 2);
-      percentageDone = computed(() => Math.floor((realStepValue.value / 5) * 100));
+      if (props.isRescheduling) {
+        realStepValue = computed(() => {
+          if (currentStep.value <= 4) {
+            return currentStep.value - 3;
+          }
+          return currentStep.value - 4;
+        });
+        totalSteps.value = 3;
+      } else {
+        realStepValue = computed(() => currentStep.value - 2);
+        totalSteps.value = 5;
+      }
     } else if (selectedCompany.value?.preferences.hasSexPick) {
+      if (props.isRescheduling) {
+        realStepValue = computed(() => {
+          if (currentStep.value <= 4) {
+            return currentStep.value - 4;
+          }
+          return currentStep.value - 5;
+        });
+        totalSteps.value = 2;
+      } else {
       // 1,2,4,5,6
+        realStepValue = computed(() => {
+          if (currentStep.value <= 2) {
+            return currentStep.value - 1;
+          }
+          return currentStep.value - 2;
+        });
+        totalSteps.value = 5;
+      }
+    } else if (props.isRescheduling) {
       realStepValue = computed(() => {
-        if (currentStep.value <= 2) {
-          return currentStep.value - 1;
+        if (currentStep.value <= 4) {
+          return currentStep.value - 4;
         }
-        return currentStep.value - 2;
+        return currentStep.value - 5;
       });
-      percentageDone = computed(() => Math.floor((realStepValue.value / 5) * 100));
+      totalSteps.value = 2;
     } else {
       realStepValue = computed(() => {
         if (currentStep.value === 2) {
@@ -234,9 +275,11 @@ export default defineComponent({
         }
         return currentStep.value - 3;
       });
-      percentageDone = computed(() => Math.floor((realStepValue.value / 4) * 100));
+
+      totalSteps.value = 4;
     }
 
+    percentageDone = computed(() => Math.floor((realStepValue.value / totalSteps.value) * 100));
     const progressBarTransformScale = computed(() => `transform: scaleX(${percentageDone.value / 100});`);
 
     return {

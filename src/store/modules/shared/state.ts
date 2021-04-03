@@ -16,6 +16,7 @@ export interface State {
   selectedNotice: string;
   selectedSex: string;
   reservedAppointments: Appointment[];
+  isAppointmentFetched: boolean;
   isCompanyFetched: boolean;
   isCompanyPublic: boolean;
 
@@ -33,6 +34,7 @@ const state: State = {
   selectedNotice: '',
   selectedSex: 'both',
   reservedAppointments: [],
+  isAppointmentFetched: false,
   isCompanyFetched: false,
   isCompanyPublic: true,
 };
