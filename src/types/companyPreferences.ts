@@ -8,6 +8,8 @@ type CompanyPreferences = {
   websiteLink: string;
   termsLink: string;
   hasSexPick: boolean;
+  hasBorders: boolean;
+  hasDarkMode: boolean;
   hasStaffPick: boolean;
   colorVariant: string;
   canCancel: boolean;

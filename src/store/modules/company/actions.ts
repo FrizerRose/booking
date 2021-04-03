@@ -61,6 +61,10 @@ export const actions: ActionTree<State, RootState> & Actions = {
         if (response.data.preferences.hasPattern) {
           document.documentElement.className = `${document.documentElement.className} pattern-zigzag`;
         }
+
+        if (response.data.preferences.hasBorders) {
+          document.documentElement.className = `${document.documentElement.className} display-borders`;
+        }
       } else {
         throw new ApiError('No company by this ID.');
       }
