@@ -4,10 +4,7 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
-        <div
-          class="o-background -has-border -overflow"
-          :class="{'-theme-color': borderColorFromTheme}"
-        />
+        <div class="o-background -has-border -overflow -theme-color" />
         <div class="u-padding">
           <h1 class="c-heading -h1 u-margin-bottom-3/2">
             Vaš termin je zabilježen.

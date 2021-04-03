@@ -11,10 +11,7 @@
             <div class="o-background-wrap has-1/2-gutters@from-medium">
               <div class="o-background -has-shadow@from-medium -overflow" />
               <div class="o-background -has-bg@from-medium -overflow" />
-              <div
-                class="o-background -has-border@from-medium -overflow"
-                :class="{'-theme-color': borderColorFromTheme}"
-              />
+              <div class="o-background -has-border@from-medium -overflow -theme-color" />
               <div class="c-progress">
                 <h1 v-if="isRescheduling">
                   Promjena termina

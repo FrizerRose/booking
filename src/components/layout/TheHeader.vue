@@ -70,10 +70,7 @@
                     <div class="o-background-wrap">
                       <div class="o-background -has-shadow-v2 -overflow" />
                       <div class="o-background -has-bg -overflow" />
-                      <div
-                        class="o-background -has-border -overflow"
-                        :class="{'-theme-color': borderColorFromTheme}"
-                      />
+                      <div class="o-background -has-border -overflow -theme-color" />
                       <div class="-overflow">
                         <div class="o-layout is-hidden@to-medium">
                           <div class="o-layout_item">
@@ -146,10 +143,7 @@
           <div class="o-background-wrap x-has-no-gutters@to-medium">
             <div class="o-background -has-shadow-v2 -overflow" />
             <div class="o-background -has-bg -overflow" />
-            <div
-              class="o-background -has-border -overflow"
-              :class="{'-theme-color': borderColorFromTheme}"
-            />
+            <div class="o-background -has-border -overflow -theme-color" />
             <div class=" -overflow">
               <div class="o-layout">
                 <div class="o-layout_item">

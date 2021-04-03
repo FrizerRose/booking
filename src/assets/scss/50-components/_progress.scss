@@ -4,5 +4,7 @@
 }
 
 .c-progress-nav {
-  padding-bottom: 1rem;
+  @media (max-width: $to-medium) {
+    padding-bottom: 1rem;
+  }
 }

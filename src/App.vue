@@ -11,10 +11,7 @@
               <div class="o-background-wrap">
                 <div class="o-background -has-shadow -overflow" />
                 <div class="o-background -has-bg -overflow" />
-                <div
-                  class="o-background -has-border -overflow"
-                  :class="{'-theme-color': borderColorFromTheme}"
-                />
+                <div class="o-background -has-border -overflow -theme-color" />
                 <div class="o-orphan_inner">
                   <div class="o-row">
                     <div class="o-row_inner">

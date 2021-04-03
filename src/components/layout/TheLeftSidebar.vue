@@ -6,10 +6,7 @@
     <div class="o-background-wrap has-1/2-gutters@from-medium">
       <div class="o-background -has-shadow@from-medium -overflow" />
       <div class="o-background -has-bg@from-medium -overflow" />
-      <div
-        class="o-background -has-border@from-medium -overflow"
-        :class="{'-theme-color': borderColorFromTheme}"
-      />
+      <div class="o-background -has-border@from-medium -overflow -theme-color" />
       <div class="o-group u-padding-top u-padding-bottom">
         <div class="o-layout -gutters">
           <div class="o-layout_item u-2/5@to-medium">

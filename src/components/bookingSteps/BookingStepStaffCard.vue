@@ -6,10 +6,7 @@
     >
       <div class="o-background -has-shadow -overflow" />
       <div class="o-background -has-bg -overflow" />
-      <div
-        class="o-background -has-border -overflow"
-        :class="{'-theme-color': borderColorFromTheme}"
-      />
+      <div class="o-background -has-border -overflow -theme-color" />
       <article class="c-card-service has-links-inside">
         <div class="o-layout || o-flex">
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
@@ -67,12 +64,12 @@
       <div class="o-background -has-shadow -overflow" />
       <div class="o-background -has-bg -overflow" />
       <div
-        class="o-background -has-bg -overflow "
-        :class="{'-theme-color': borderColorFromTheme, '-emphasis': isIDontCare}"
+        class="o-background -has-bg -overflow -theme-color"
+        :class="{'-emphasis': isIDontCare}"
       />
       <div
-        class="o-background -has-border -overflow"
-        :class="{'-theme-color': borderColorFromTheme, '-emphasis': isIDontCare}"
+        class="o-background -has-border -overflow -theme-color"
+        :class="{'-emphasis': isIDontCare}"
       />
       <article class="c-card-service has-links-inside">
         <div class="o-layout || o-flex">

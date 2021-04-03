@@ -4,10 +4,7 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
-        <div
-          class="o-background -has-border -overflow"
-          :class="{'-theme-color': borderColorFromTheme}"
-        />
+        <div class="o-background -has-border -overflow -theme-color" />
         <article class="c-card-service has-links-inside">
           <figure
             class="c-card-service_image-wrap -max-width || o-ratio u-rounded"
@@ -50,10 +47,7 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
-        <div
-          class="o-background -has-border -overflow"
-          :class="{'-theme-color': borderColorFromTheme}"
-        />
+        <div class="o-background -has-border -overflow -theme-color" />
         <article class="c-card-service has-links-inside">
           <figure
             class="c-card-service_image-wrap -max-width || o-ratio u-rounded"
@@ -96,10 +90,7 @@
       <div class="o-background-wrap">
         <div class="o-background -has-shadow -overflow" />
         <div class="o-background -has-bg -overflow" />
-        <div
-          class="o-background -has-border -overflow"
-          :class="{'-theme-color': borderColorFromTheme}"
-        />
+        <div class="o-background -has-border -overflow -theme-color" />
         <article class="c-card-service has-links-inside">
           <div class="c-card-service_info -max-width u-height-100">
             <div class="o-vertical u-height-100">
