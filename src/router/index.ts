@@ -12,18 +12,24 @@ const routes: Array<RouteRecordRaw> = [
     path: '/promijeni/:appointmentID',
     name: 'Reschedule',
     // lazy loaded route
-    component: () => import(/* webpackChunkName: "cancel" */ '../views/Reschedule.vue'),
+    component: () => import(/* webpackChunkName: "cancel" */ '@/views/Reschedule.vue'),
   },
   {
     path: '/otkazi/:appointmentID',
     name: 'Cancel',
     // lazy loaded route
-    component: () => import(/* webpackChunkName: "cancel" */ '../views/Cancel.vue'),
+    component: () => import(/* webpackChunkName: "cancel" */ '@/views/Cancel.vue'),
+  },
+  {
+    path: '/uvjeti',
+    name: 'Uvjeti',
+    // lazy loaded route
+    component: () => import(/* webpackChunkName: "cancel" */ '@/views/Terms.vue'),
   },
   {
     path: '/404',
     name: '404',
-    component: () => import(/* webpackChunkName: "404" */ '../views/404.vue'),
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
     // Allows props to be passed to the 404 page through route
     // params, such as `resource` to define what wasn't found.
     props: true,

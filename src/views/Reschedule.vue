@@ -43,7 +43,7 @@
                   <div class="o-row -delay-1">
                     <div class="o-row_inner">
                       <p>
-                        {{ selectedCompany.name }} ne prima promjene ovako blizu zakazanog termina.
+                        Ne primamo promjene ovako blizu zakazanog termina.
                       </p>
                     </div>
                   </div>

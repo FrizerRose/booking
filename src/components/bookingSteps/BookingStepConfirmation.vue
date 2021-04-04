@@ -123,10 +123,10 @@
                           <span class="o-link_background" />
                           <span class="o-link_label">ovdje</span>
                         </a>
-                        <span v-if="selectedCompany.preferences.termsLink">i</span>
+                        <span v-if="selectedCompany.preferences.showTerms">i</span>
                         <a
-                          v-if="selectedCompany.preferences.termsLink"
-                          :href="selectedCompany.preferences.termsLink"
+                          v-if="selectedCompany.preferences.showTerms"
+                          href="/uvjeti"
                           class="o-link"
                           target="_blank"
                           rel="noopener noreferrer"
