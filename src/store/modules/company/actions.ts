@@ -55,18 +55,18 @@ export const actions: ActionTree<State, RootState> & Actions = {
           name: `${response.data.name} rezervacija`,
           short_name: `${response.data.name} rezervacija`,
           description: `Rezerviraj termin - ${response.data.name}`,
-          start_url: '/',
+          start_url: `${response.data.bookingPageSlug}.dolazim.hr`,
           background_color: '#000000',
           display: 'standalone',
           theme_color: '#ffffff',
           icons: [
             {
-              src: './img/icons/android-chrome-192x192.png',
+              src: `${response.data.bookingPageSlug}.dolazim.hr/img/icons/android-chrome-192x192.png`,
               sizes: '192x192',
               type: 'image/png',
             },
             {
-              src: './img/icons/android-chrome-512x512.png',
+              src: `${response.data.bookingPageSlug}.dolazim.hr/img/icons/android-chrome-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
             },
