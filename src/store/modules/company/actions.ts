@@ -57,11 +57,9 @@ export const actions: ActionTree<State, RootState> & Actions = {
         if (response.data.preferences.hasDarkMode) {
           document.documentElement.className = `${document.documentElement.className} mode-dark`;
         }
-
         if (response.data.preferences.hasPattern) {
           document.documentElement.className = `${document.documentElement.className} pattern-zigzag`;
         }
-
         if (response.data.preferences.hasBorders) {
           document.documentElement.className = `${document.documentElement.className} display-borders`;
         }
