@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/camelcase */
 // Cyclical dependency needed to make vuex fully typed.
+import { CompanyService } from '@/api';
 // eslint-disable-next-line import/no-cycle
 import { RootState } from '@/store';
-import { ActionContext, ActionTree } from 'vuex';
-import { CompanyService } from '@/api';
 import { ApiError } from '@/types/customError';
-import LocalActionTypes from './action-types';
+import { ActionContext, ActionTree } from 'vuex';
 import ServiceMutationTypes from '../service/mutation-types';
-import SharedMutationTypes from '../shared/mutation-types';
 import { Mutations as ServiceMutations } from '../service/mutations';
+import SharedMutationTypes from '../shared/mutation-types';
 import { Mutations as SharedMutations } from '../shared/mutations';
+import LocalActionTypes from './action-types';
 import { State } from './state';
 
 // Constraints commit to mutations from the right module
@@ -50,6 +51,35 @@ export const actions: ActionTree<State, RootState> & Actions = {
       commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
 
       if (response.status === 200 && response.data) {
+        const myDynamicManifest = {
+          name: `${response.data.name} termini`,
+          short_name: 'Dolazim.hr',
+          description: `Rezerviraj termin - ${response.data.name}`,
+          start_url: '/',
+          background_color: '#000000',
+          theme_color: '#ffffff',
+          icons: [
+            {
+              src: './android-chrome-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+            },
+            {
+              src: './android-chrome-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+            },
+          ],
+        };
+        const stringManifest = JSON.stringify(myDynamicManifest);
+        const blob = new Blob([stringManifest], { type: 'application/json' });
+        const manifestURL = URL.createObjectURL(blob);
+        const manifestElement = document.querySelector('#manifest');
+        console.log('🚀 ~ file: actions.ts ~ line 78 ~ manifestElement', manifestElement);
+        if (manifestElement) {
+          manifestElement.setAttribute('href', manifestURL);
+        }
+
         commit(SharedMutationTypes.CHANGE_IS_COMPANY_PUBLIC, response.data.isPublic);
         commit(SharedMutationTypes.CHANGE_SELECTED_COMPANY, response.data);
         commit(ServiceMutationTypes.CHANGE_SERVICES, response.data.services);
