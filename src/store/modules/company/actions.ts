@@ -52,20 +52,21 @@ export const actions: ActionTree<State, RootState> & Actions = {
 
       if (response.status === 200 && response.data) {
         const myDynamicManifest = {
-          name: `${response.data.name} termini`,
-          short_name: 'Dolazim.hr',
+          name: `${response.data.name} rezervacija`,
+          short_name: `${response.data.name} rezervacija`,
           description: `Rezerviraj termin - ${response.data.name}`,
           start_url: '/',
           background_color: '#000000',
+          display: 'standalone',
           theme_color: '#ffffff',
           icons: [
             {
-              src: './android-chrome-192x192.png',
+              src: './img/icons/android-chrome-192x192.png',
               sizes: '192x192',
               type: 'image/png',
             },
             {
-              src: './android-chrome-512x512.png',
+              src: './img/icons/android-chrome-512x512.png',
               sizes: '512x512',
               type: 'image/png',
             },
