@@ -1,6 +1,6 @@
 {
-    "name": "Dolazim.hr",
-    "short_name": "Dolazim",
+    "name": "Dolazim.hr - zakaži termin preko weba",
+    "short_name": "Dolazim.hr",
     "icons": [
         {
             "src": "./android-chrome-192x192.png",

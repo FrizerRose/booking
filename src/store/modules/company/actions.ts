@@ -51,26 +51,26 @@ export const actions: ActionTree<State, RootState> & Actions = {
       commit(SharedMutationTypes.CHANGE_IS_COMPANY_FETCHED, true);
 
       if (response.status === 200 && response.data) {
+        console.log(response.data);
+
         const myDynamicManifest = {
-          name: `${response.data.name} rezervacija`,
-          short_name: `${response.data.name} rezervacija`,
-          description: `Rezerviraj termin - ${response.data.name}`,
+          name: `${response.data.name}`, // ovo je ime koje piše samo kod dodavanja shortcuta
+          short_name: `${response.data.name}`, // ovo je tekst koji piše ispod shortcuta nakon što je dodan
+          description: `Zakaži termin preko weba - ${response.data.name}`,
           start_url: `https://${response.data.bookingPageSlug}.dolazim.hr`,
-          background_color: '#000000',
-          display: 'standalone',
-          theme_color: '#ffffff',
           icons: [
             {
-              src: `https://${response.data.bookingPageSlug}.dolazim.hr/img/icons/android-chrome-192x192.png`,
+              src: `${response.data.image.link}`,
               sizes: '192x192',
               type: 'image/png',
             },
             {
-              src: `https://${response.data.bookingPageSlug}.dolazim.hr/img/icons/android-chrome-512x512.png`,
+              src: `${response.data.image.link}`,
               sizes: '512x512',
               type: 'image/png',
             },
           ],
+          background_color: '#ffffff', // ovo radi, a za theme_color treba pwa u vue.config.js
         };
         const stringManifest = JSON.stringify(myDynamicManifest);
         const blob = new Blob([stringManifest], { type: 'application/json' });

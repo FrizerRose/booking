@@ -20,9 +20,15 @@
   
     &.is-open {
       opacity: 1;
-      pointer-events: auto;
+      // pointer-events: auto;
       transform: none;
     }
+  }
+}
+
+.c-card-warning-desktop_inner {
+  @media (min-width: $from-medium) {
+    pointer-events: auto;
   }
 }
 

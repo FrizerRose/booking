@@ -67,61 +67,63 @@
                     class="c-card-warning-desktop"
                     :class="{'is-open': isSiteInfoOpen}"
                   >
-                    <div class="o-background-wrap">
-                      <div class="o-background -has-shadow-v2 -overflow" />
-                      <div class="o-background -has-bg -overflow" />
-                      <div class="o-background -has-border -overflow -theme-color" />
-                      <div class="-overflow">
-                        <div class="o-layout is-hidden@to-medium">
-                          <div class="o-layout_item">
-                            <div class="o-background-wrap -is-warning">
-                              <div class="o-background" />
-                              <div
-                                v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
-                                class="c-card-warning"
-                              >
-                                <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
-                                  <svg
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      clip-rule="evenodd"
-                                      d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
-                                        4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
-                                        4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
-                                        4.44l-.002-.003A.914.914 0 0012 4z"
-                                    />
-                                    <path
-                                      fill-rule="evenodd"
-                                      clip-rule="evenodd"
-                                      d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
-                                        2H12a1 1 0 01-1-1z"
-                                    />
-                                  </svg>
-                                </span>
-                                <div class="c-card-warning_item">
-                                  <strong>COVID-19 upozorenje</strong>
-                                  <pre class="o-pre">
-                                    {{ selectedCompany.preferences.coronaRules }}
-                                  </pre>
+                    <div class="c-card-warning-desktop_inner">
+                      <div class="o-background-wrap">
+                        <div class="o-background -has-shadow-v2 -overflow" />
+                        <div class="o-background -has-bg -overflow" />
+                        <div class="o-background -has-border -overflow -theme-color" />
+                        <div class="-overflow">
+                          <div class="o-layout is-hidden@to-medium">
+                            <div class="o-layout_item">
+                              <div class="o-background-wrap -is-warning">
+                                <div class="o-background" />
+                                <div
+                                  v-if="selectedCompany.preferences.showCoronaRules && selectedCompany.preferences.coronaRules"
+                                  class="c-card-warning"
+                                >
+                                  <span class="c-card-warning_item -shrink-0 o-icon -size-2 u-margin-right-1/2">
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M10.57 2.375a2.914 2.914 0 013.922 1.028l.003.005L22.6 16.94l.009.014a2.914 2.914 0 01-2.492
+                                          4.371H3.882a2.914 2.914 0 01-2.491-4.37l.008-.015 8.11-13.538c.26-.428.625-.782 1.061-1.028zM12
+                                          4a.914.914 0 00-.78.438l-8.1 13.523a.914.914 0 00.78 1.366h16.2a.914.914 0 00.78-1.366L12.783
+                                          4.44l-.002-.003A.914.914 0 0012 4z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M12 7.841a1 1 0 011 1v3.829a1 1 0 01-2 0V8.84a1 1 0 011-1zM11 16.498a1 1 0 011-1h.01a1 1 0 010
+                                          2H12a1 1 0 01-1-1z"
+                                      />
+                                    </svg>
+                                  </span>
+                                  <div class="c-card-warning_item">
+                                    <strong>COVID-19 upozorenje</strong>
+                                    <pre class="o-pre">
+                                      {{ selectedCompany.preferences.coronaRules }}
+                                    </pre>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="o-layout_item">
-                            <div class="c-card-info">
-                              <div
-                                v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
-                                class="c-card-company-contact_rules"
-                              >
-                                <div class="u-margin-bottom-1/4">
-                                  <strong>Pravila ponašanja</strong>
+                            <div class="o-layout_item">
+                              <div class="c-card-info">
+                                <div
+                                  v-if="selectedCompany.preferences.showRules && selectedCompany.preferences.rules"
+                                  class="c-card-company-contact_rules"
+                                >
+                                  <div class="u-margin-bottom-1/4">
+                                    <strong>Pravila ponašanja</strong>
+                                  </div>
+                                  <pre class="o-pre">
+                                    {{ selectedCompany.preferences.rules }}
+                                  </pre>
                                 </div>
-                                <pre class="o-pre">
-                                  {{ selectedCompany.preferences.rules }}
-                                </pre>
                               </div>
                             </div>
                           </div>
