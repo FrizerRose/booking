@@ -1,3 +1,4 @@
+import DaysOff from './breaks';
 import CompanyPreferences from './companyPreferences';
 import Service from './service';
 import Staff from './staff';
@@ -14,6 +15,7 @@ type Company = {
   about: string;
   city: string;
   streetName: string;
+  daysOff: DaysOff[];
 }
 
 export default Company;

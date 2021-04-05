@@ -1,6 +1,6 @@
-type Break = {
+type DaysOff = {
   start: string;
   end: string;
 };
 
-export default Break;
+export default DaysOff;

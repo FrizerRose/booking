@@ -57,7 +57,7 @@ import Appointment from '@/types/appointment';
 import Staff from '@/types/staff';
 import { nextStep } from '@/utils/helpers';
 import {
-  dateIsToday, getDateStringFromDate, getDayName, timeStringToNumber, hasBreakOnDay,
+  dateIsToday, getDateStringFromDate, getDayName, timeStringToNumber, hasBreakOnDay, hasDayOff,
 } from '@/utils/time';
 
 type StaffWithAvailability = Staff & { available: boolean };
@@ -93,6 +93,10 @@ export default defineComponent({
     const availableStaff = computed(() => {
       const staffArray: StaffWithAvailability[] = [];
 
+      if (selectedCompany.value && hasDayOff(selectedCompany.value, selectedDate.value)) {
+        return staffArray;
+      }
+
       if (selectedStaff.value) {
         if (!hasBreakOnDay(selectedStaff.value, selectedDate.value)) {
           // If there was staff selected in the previous step, only add it
@@ -100,7 +104,7 @@ export default defineComponent({
         }
       } else {
         // Otherwise, add all staff that performs this service
-        const allStaff = computed(() => store.state.staff.allStaff);
+        const allStaff = computed(() => store.state.staff.allStaff.filter((worker) => worker.isPublic));
         allStaff.value.forEach((staff) => {
           if (!hasBreakOnDay(staff, selectedDate.value)) {
             staffArray[staff.id] = { ...staff, available: true };
@@ -210,8 +214,6 @@ export default defineComponent({
           const futureSlotsTaken = reservedAppointment.service.duration / 15;
           for (let i = 0; i < futureSlotsTaken; i += 1) {
             if (timeArray[index + i] !== undefined) {
-              console.log('🚀 ~ file: BookingStepDateTime.vue ~ x + i]', timeArray[index + i]);
-              console.log('🚀 ~ file: BookingStepDasOnNewDate.value.forEach ~ reservedAppointment.staff.id', reservedAppointment.staff.id);
               timeArray[index + i].staff[reservedAppointment.staff.id].available = false;
             }
           }

@@ -2,7 +2,7 @@
   <div class="o-layout o-list -gutter">
     <BookingStepStaffCard :is-i-dont-care="true" />
     <BookingStepStaffCard
-      v-for="worker in staff"
+      v-for="worker in publicStaff"
       :key="worker.id"
       :staff="worker"
     />
@@ -20,10 +20,12 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+
     const staff = computed(() => store.state.staff.allStaff);
+    const publicStaff = computed(() => staff.value.filter((worker) => worker.isPublic));
 
     return {
-      staff,
+      publicStaff,
     };
   },
 });

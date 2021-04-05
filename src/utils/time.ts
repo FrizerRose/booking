@@ -1,3 +1,4 @@
+import Company from '@/types/company';
 import Staff from '@/types/staff';
 
 export function getDateStringFromDate(date: Date): string {
@@ -63,6 +64,21 @@ export function hasBreakOnDay(worker: Staff, date: Date): boolean {
     return worker.breaks.some((breakObject) => {
       const dayStart = new Date(breakObject.start);
       const dayEnd = new Date(breakObject.end);
+      dayStart.setHours(0, 0, 0, 0);
+      dayEnd.setHours(0, 0, 0, 0);
+      date.setHours(0, 0, 0, 0);
+
+      return date >= dayStart && date <= dayEnd;
+    });
+  }
+  return false;
+}
+
+export function hasDayOff(company: Company, date: Date): boolean {
+  if (company.daysOff) {
+    return company.daysOff.some((daysOffObject) => {
+      const dayStart = new Date(daysOffObject.start);
+      const dayEnd = new Date(daysOffObject.end);
       dayStart.setHours(0, 0, 0, 0);
       dayEnd.setHours(0, 0, 0, 0);
       date.setHours(0, 0, 0, 0);
