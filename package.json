@@ -13,9 +13,11 @@
   "dependencies": {
     "@sentry/tracing": "^6.1.0",
     "@sentry/vue": "^6.1.0",
+    "@types/punycode": "^2.1.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "normalize.css": "*",
+    "punycode": "^2.1.1",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",

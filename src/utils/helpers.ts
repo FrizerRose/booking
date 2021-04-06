@@ -2,6 +2,7 @@ import { computed } from 'vue';
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import ActionTypes from '@/store/action-types';
+import * as punycode from 'punycode';
 
 // Increments the current step and scrolls to the top of the page.
 export function nextStep(increment = 1) {
@@ -25,6 +26,9 @@ export function fetchCompanyFromURL() {
     [companyID] = urlFragments;
     if (companyID === 'dolazim') {
       window.location.href = 'https://landing.dolazim.hr';
+    }
+    if (companyID.slice(0, 4) === 'xn--') {
+      companyID = punycode.decode(companyID.slice(4));
     }
   } else if (process.env.VUE_APP_COMPANY_ID) {
     companyID = parseInt(process.env.VUE_APP_COMPANY_ID, 10);
