@@ -22,7 +22,7 @@ export default defineComponent({
     const store = useStore();
 
     const staff = computed(() => store.state.staff.allStaff);
-    const publicStaff = computed(() => staff.value.filter((worker) => worker.isPublic));
+    const publicStaff = computed(() => staff.value?.filter((worker) => worker.isPublic));
 
     return {
       publicStaff,
