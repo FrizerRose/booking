@@ -27,7 +27,7 @@ export function getHumanReadableDateTime(dateString: string, timeString: string)
     formattedTimeString = timeString.slice(0, 5);
   }
 
-  return `${dd}.${mm}.${yyyy} u ${formattedTimeString}`;
+  return `${dd}. ${mm}. ${yyyy} u ${formattedTimeString}`;
 }
 
 export function dateIsToday(date: Date): boolean {
