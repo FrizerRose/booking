@@ -18,11 +18,11 @@ if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_SENTRY_DSN !== 
   });
 }
 
-// if (process.env.NODE_ENV === 'production') {
-//   console.log = function noConsole() {
-//     // Do Nothing
-//   };
-// }
+if (process.env.NODE_ENV === 'production') {
+  console.log = function noConsole() {
+    // Do Nothing
+  };
+}
 
 createApp(App).use(store).use(router)
   .mount('#app');

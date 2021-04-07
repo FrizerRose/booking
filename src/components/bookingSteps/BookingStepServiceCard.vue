@@ -163,7 +163,6 @@ export default defineComponent({
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
     function selectService() {
-      console.log('🚀 ~ file: BookingStepServiceCard.vue ~ line 173 ~ selectService ~ props.service', props.service);
       store.commit(MutationTypes.CHANGE_STAFF, props.service.staff);
       store.commit(MutationTypes.CHANGE_SELECTED_SERVICE, props.service as Service);
 
