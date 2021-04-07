@@ -14,6 +14,7 @@
                 :lower-limit="today"
                 :upper-limit="upperLimitDate"
                 input-format="dd.MM.yyyy"
+                :locale="locale"
               />
             </div>
           </div>
@@ -53,6 +54,7 @@ import {
 import { useStore } from '@/store';
 import MutationTypes from '@/store/mutation-types';
 import Datepicker from 'vue3-datepicker';
+import { hr as hrLocale } from 'date-fns/locale';
 import Appointment from '@/types/appointment';
 import Staff from '@/types/staff';
 import { nextStep } from '@/utils/helpers';
@@ -80,6 +82,7 @@ export default defineComponent({
     const today = new Date();
     const selectedDate = ref(new Date());
     const upperLimitDate = ref(new Date());
+    const locale = hrLocale;
 
     const bookingWindow = selectedCompany.value?.preferences.schedulingWindow || 30;
     upperLimitDate.value.setDate(upperLimitDate.value.getDate() + bookingWindow);
@@ -291,6 +294,7 @@ export default defineComponent({
       selectedDate,
       today,
       upperLimitDate,
+      locale,
       appointmentsOnNewDate,
     };
   },

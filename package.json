@@ -14,6 +14,7 @@
     "@types/punycode": "^2.1.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "date-fns": "^2.19.0",
     "normalize.css": "*",
     "punycode": "^2.1.1",
     "register-service-worker": "^1.7.1",
