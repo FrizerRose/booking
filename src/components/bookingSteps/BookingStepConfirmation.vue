@@ -121,9 +121,9 @@
                           rel="noopener noreferrer"
                         >
                           <span class="o-link_background" />
-                          <span class="o-link_label">ovdje </span>
+                          <span class="o-link_label">ovdje</span>
                         </a>
-                        <span v-if="selectedCompany.preferences.showTerms">i</span>
+                        <span v-if="selectedCompany.preferences.showTerms">&nbsp;i&nbsp;</span>
                         <a
                           v-if="selectedCompany.preferences.showTerms"
                           href="/uvjeti"
@@ -132,7 +132,7 @@
                           rel="noopener noreferrer"
                         >
                           <span class="o-link_background" />
-                          <span class="o-link_label"> ovdje.</span>
+                          <span class="o-link_label"> vdje.</span>
                         </a>
                       </p>
                     </div>
