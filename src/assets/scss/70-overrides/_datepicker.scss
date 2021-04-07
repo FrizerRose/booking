@@ -66,18 +66,20 @@
 .v3dp__popout {
 	width: 100% !important;
 	margin-top: 1rem;
-	border: 0.125em solid rgba(9, 9, 9, 0.2);
+	html.display-borders & {
+		border: 0.125em solid rgba(9, 9, 9, 0.2);
+	}
 
-	html.mode-dark & {
+	html.display-borders.mode-dark & {
 		border: 0.125em solid rgba(255, 255, 255, 0.2);
 	}
-	html.orchid & {
+	html.display-borders.orchid & {
 		border: 0.125em solid rgba(218, 112, 214, 0.2);
 	}
-	html.goldenrod & {
+	html.display-borders.goldenrod & {
 		border: 0.125em solid rgba(218, 165, 32, 0.2);
 	}
-	html.coral & {
+	html.display-borders.coral & {
 		border: 0.125em solid rgba(255, 127, 80, 0.2);
 	}
 }

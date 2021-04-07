@@ -13,7 +13,7 @@
                 v-model="selectedDate"
                 :lower-limit="today"
                 :upper-limit="upperLimitDate"
-                input-format="dd.MM.yyyy"
+                input-format="d. M. yyyy."
                 :locale="locale"
               />
             </div>
