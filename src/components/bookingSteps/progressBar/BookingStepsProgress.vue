@@ -31,7 +31,7 @@
           <div class="o-layout_item u-width-auto">
             <div class="o-flex">
               <button
-                v-if="currentStep > 1 && !isMenuOpen"
+                v-if="currentStep > stepTreshhold && !isMenuOpen"
                 class="c-button -secondary || is-hidden@from-medium || u-margin-left@to-medium"
                 @click="goBackOneStep()"
               >
@@ -284,6 +284,8 @@ export default defineComponent({
     percentageDone = computed(() => Math.floor((realStepValue.value / totalSteps.value) * 100));
     const progressBarTransformScale = computed(() => `transform: scaleX(${percentageDone.value / 100});`);
 
+    const stepTreshhold = selectedCompany.value?.preferences.hasSexPick ? 1 : 2;
+
     return {
       selectedCompany,
       currentStep,
@@ -293,6 +295,7 @@ export default defineComponent({
       toggleMenu,
       progressBarTransformScale,
       percentageDone,
+      stepTreshhold,
     };
   },
 });
