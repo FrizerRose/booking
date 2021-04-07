@@ -231,14 +231,6 @@
                             {{ selectedCompany.about }}
                           </pre>
                         </div>
-                        <div v-else>
-                          <div class="u-margin-bottom-1/4">
-                            <strong>O nama</strong>
-                          </div>
-                          <pre class="o-pre">
-                            Nedostaje tekst "O nama". Napišite par riječi o djelatnostima koje obavljate.
-                          </pre>
-                        </div>
                       </div>
                       <div class="o-layout_item">
                         <div class="o-layout -gutter-small c-card-company-contact">
