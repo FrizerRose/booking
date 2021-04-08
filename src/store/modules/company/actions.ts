@@ -87,6 +87,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
           short_name: `${response.data.name}`, // ovo je tekst koji piše ispod shortcuta nakon što je dodan
           description: `Zakaži termin preko weba - ${response.data.name}`,
           start_url: `https://${response.data.bookingPageSlug}.dolazim.hr`,
+          display: 'standalone',
           icons,
           background_color: '#ffffff', // ovo radi, a za theme_color treba pwa u vue.config.js
         };
