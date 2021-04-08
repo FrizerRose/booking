@@ -234,11 +234,17 @@
                       </div>
                       <div class="o-layout_item">
                         <div class="o-layout -gutter-small c-card-company-contact">
-                          <div class="o-layout_item u-2/5@to-medium">
+                          <div
+                            v-if="selectedCompany.streetName && selectedCompany.city"
+                            class="o-layout_item u-2/5@to-medium"
+                          >
                             <div class="u-margin-bottom-1/4">
                               <strong>Adresa</strong>
                             </div>
-                            <address class="c-card-company-address">
+                            <address
+
+                              class="c-card-company-address"
+                            >
                               {{ selectedCompany.name }}<br>
                               <span v-if="selectedCompany.streetName">{{ selectedCompany.streetName }}</span>
                               <br>
@@ -268,17 +274,17 @@
                                 </a>
                               </li>
                               <li
-                                v-if="selectedCompany.phone"
+                                v-if="selectedCompany.phoneNumber"
                                 class="c-card-company-contact_list-item o-list_item"
                               >
                                 <a
                                   class="c-card-company-contact_link o-link -lonely"
                                   type="tel"
-                                  :href="selectedCompany.phone"
+                                  :href="selectedCompany.phoneNumber"
                                   target="_blank"
                                 >
                                   <span class="o-link_background" />
-                                  <span class="o-link_label">{{ selectedCompany.phone }}</span>
+                                  <span class="o-link_label">{{ selectedCompany.phoneNumber }}</span>
                                 </a>
                               </li>
                               <li class="c-card-company-contact_list-item o-list_item">

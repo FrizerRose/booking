@@ -15,6 +15,7 @@ type Company = {
   about: string;
   city: string;
   streetName: string;
+  phoneNumber: string;
   daysOff: DaysOff[];
 }
 

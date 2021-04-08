@@ -7,7 +7,10 @@
       <div class="o-background -has-shadow@from-medium -overflow" />
       <div class="o-background -has-bg@from-medium -overflow" />
       <div class="o-background -has-border@from-medium -overflow -theme-color" />
-      <div class="o-group u-padding-top u-padding-bottom">
+      <div
+        v-if="selectedCompany.streetName && selectedCompany.city"
+        class="o-group u-padding-top u-padding-bottom"
+      >
         <div class="u-margin-bottom-1/4">
           <strong>Adresa</strong>
         </div>
@@ -40,17 +43,17 @@
             </a>
           </li>
           <li
-            v-if="selectedCompany.phone"
+            v-if="selectedCompany.phoneNumber"
             class="c-card-company-contact_list-item o-list_item"
           >
             <a
               class="c-card-company-contact_link o-link -lonely"
               type="tel"
-              :href="selectedCompany.phone"
+              :href="selectedCompany.phoneNumber"
               target="_blank"
             >
               <span class="o-link_background" />
-              <span class="o-link_label">{{ selectedCompany.phone }}</span>
+              <span class="o-link_label">{{ selectedCompany.phoneNumber }}</span>
             </a>
           </li>
           <li class="c-card-company-contact_list-item o-list_item">
