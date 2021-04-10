@@ -216,7 +216,7 @@ export default defineComponent({
         // Remove slots that are during the Service duration
           const futureSlotsTaken = reservedAppointment.service.duration / 15;
           for (let i = 0; i < futureSlotsTaken; i += 1) {
-            if (timeArray[index + i] !== undefined) {
+            if (timeArray[index + i] !== undefined && timeArray[index + i].staff[reservedAppointment.staff.id] !== undefined) {
               timeArray[index + i].staff[reservedAppointment.staff.id].available = false;
             }
           }
@@ -225,7 +225,7 @@ export default defineComponent({
           if (selectedService?.value?.duration) {
             const pastSlotsTaken = selectedService.value?.duration / 15;
             for (let i = 0; i < pastSlotsTaken; i += 1) {
-              if (timeArray[index - i] !== undefined) {
+              if (timeArray[index - i] !== undefined && timeArray[index - i].staff[reservedAppointment.staff.id] !== undefined) {
                 timeArray[index - i].staff[reservedAppointment.staff.id].available = false;
               }
             }
