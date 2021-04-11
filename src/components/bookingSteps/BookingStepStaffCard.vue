@@ -10,7 +10,7 @@
       <article class="c-card-service has-links-inside">
         <div class="o-layout || o-flex">
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
-            <figure class="c-card-service_image-wrap || o-ratio u-rounded">
+            <figure class="c-card-service_image-wrap || o-ratio u-rounded u-theme-text">
               <div class="o-ratio_content">
                 <span class="o-icon c-card-service_image u-objfit">
                   <svg
@@ -71,7 +71,7 @@
       <article class="c-card-service has-links-inside">
         <div class="o-layout || o-flex">
           <div class="o-layout_item u-1/3@to-medium u-1/4@from-medium">
-            <figure class="c-card-service_image-wrap || o-ratio u-rounded">
+            <figure class="c-card-service_image-wrap || o-ratio u-rounded u-theme-text">
               <div class="o-ratio_content">
                 <!-- <img
                   v-if="isIDontCareOld"
