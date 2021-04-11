@@ -6,7 +6,7 @@
         <div class="o-background -has-bg -overflow" />
         <div class="o-background -has-border -overflow -theme-color" />
         <article class="c-card-service has-links-inside">
-          <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded">
+          <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded u-theme-text">
             <div class="o-ratio_content">
               <span class="o-icon c-card-service_image u-objfit">
                 <svg
@@ -46,7 +46,7 @@
         <div class="o-background -has-bg -overflow" />
         <div class="o-background -has-border -overflow -theme-color" />
         <article class="c-card-service has-links-inside">
-          <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded">
+          <figure class="c-card-service_image-wrap -max-width || o-ratio u-rounded u-theme-text">
             <div class="o-ratio_content">
               <span class="o-icon c-card-service_image u-objfit">
                 <svg
