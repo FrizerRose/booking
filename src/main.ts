@@ -11,7 +11,6 @@ if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_SENTRY_DSN !== 
   Sentry.init({
     dsn: process.env.VUE_APP_SENTRY_DSN,
     integrations: [new Integrations.BrowserTracing()],
-
     // We recommend adjusting this value in production, or using tracesSampler
     // for finer control
     tracesSampleRate: 0.5,
