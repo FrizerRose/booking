@@ -132,7 +132,7 @@
                           rel="noopener noreferrer"
                         >
                           <span class="o-link_background" />
-                          <span class="o-link_label"> vdje.</span>
+                          <span class="o-link_label"> ovdje.</span>
                         </a>
                       </p>
                     </div>
