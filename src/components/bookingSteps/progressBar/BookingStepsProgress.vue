@@ -201,7 +201,15 @@ export default defineComponent({
     }
 
     function goBackOneStep() {
-      store.commit(MutationTypes.CHANGE_CURRENT_STEP, currentStep.value - 1);
+      let newStepValue;
+      if (!selectedCompany.value?.preferences.hasStaffPick && currentStep.value === 4) {
+        newStepValue = currentStep.value - 2;
+      } else {
+        newStepValue = currentStep.value - 1;
+      }
+
+      store.commit(MutationTypes.CHANGE_CURRENT_STEP, newStepValue);
+
       if (isMenuOpen.value) {
         toggleMenu();
       }
