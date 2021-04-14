@@ -49,6 +49,7 @@
                 >nazad</span>
               </button>
               <button
+                v-if="currentStep > stepTreshhold"
                 class="c-button -secondary || c-steps-header_menu-toggle is-hidden@from-medium || u-margin-left@to-medium"
                 @click="toggleMenu()"
               >
