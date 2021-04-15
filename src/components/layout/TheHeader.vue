@@ -1,7 +1,7 @@
 <template>
   <header
     v-if="selectedCompany"
-    class="c-site-header c-site-main"
+    class="c-site-header c-site-main u-margin-bottom-0"
   >
     <div class="o-container">
       <div class="o-background-wrap has-no-gutters@to-medium">

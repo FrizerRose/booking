@@ -65,17 +65,31 @@
     $theme-element-bg: white;
     background-color: $theme-element-bg;
 
-    &.-emphasis {
-      opacity: 0.1;
-      background-color: currentColor;
-    }
-
     html.mode-dark & {
       $theme-element-bg: $black;
       background-color: $theme-element-bg;
     
       &.-emphasis {
-        background-color: currentColor;
+        $theme-element-bg: $mode-dark-main;
+        background-color: $theme-element-bg;
+      }
+    }
+
+    &.-emphasis {
+      opacity: 0.1;
+      $theme-element-bg: $theme-main;
+      background-color: $theme-element-bg;
+
+      html.orchid & {
+        background-color: $orchid-main;
+      }
+  
+      html.goldenrod & {
+        background-color: $goldenrod-main;
+      }
+  
+      html.coral & {
+        background-color: $coral-main;
       }
     }
   }

@@ -56,12 +56,12 @@
               <span class="o-link_label">{{ selectedCompany.phoneNumber }}</span>
             </a>
           </li>
-          <input
-            id="hiddenEmailInput"
-            :value="selectedCompany.contactEmail"
-            type="hidden"
-          >
           <li class="c-card-company-contact_list-item o-list_item">
+            <input
+              id="hiddenEmailInput"
+              :value="selectedCompany.contactEmail"
+              type="hidden"
+            >
             <a
               class="c-card-company-contact_link o-link -lonely"
               :href="'mailto:' + selectedCompany.contactEmail"
