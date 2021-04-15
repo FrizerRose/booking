@@ -7,6 +7,7 @@ type Company = {
   id: number;
   isPublic: boolean;
   name: string;
+  contactEmail: string;
   bookingPageSlug: string;
   services: Service[];
   staff: Staff[];

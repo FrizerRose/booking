@@ -56,14 +56,20 @@
               <span class="o-link_label">{{ selectedCompany.phoneNumber }}</span>
             </a>
           </li>
+          <input
+            id="hiddenEmailInput"
+            :value="selectedCompany.contactEmail"
+            type="hidden"
+          >
           <li class="c-card-company-contact_list-item o-list_item">
             <a
               class="c-card-company-contact_link o-link -lonely"
               :href="'mailto:' + selectedCompany.contactEmail"
               target="_blank"
+              @click.prevent="copyEmail()"
             >
               <span class="o-link_background" />
-              <span class="o-link_label">E-mail</span>
+              <span class="o-link_label">{{ hasTextBeenCopied ? 'Kopirano' : 'Kopiraj email' }}</span>
             </a>
           </li>
           <li
@@ -115,7 +121,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useStore } from '@/store';
 
 export default defineComponent({
@@ -123,8 +129,31 @@ export default defineComponent({
     const store = useStore();
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
+    const hasTextBeenCopied = ref(false);
+
+    function copyEmail() {
+      const textToCopy = document.getElementById('hiddenEmailInput') as HTMLInputElement;
+      if (textToCopy) {
+        textToCopy.setAttribute('type', 'text');
+        textToCopy.select();
+        textToCopy.setSelectionRange(0, 99999); /* For mobile devices */
+
+        document.execCommand('copy');
+        textToCopy.setAttribute('type', 'hidden');
+        hasTextBeenCopied.value = true;
+
+        setTimeout(() => {
+          if (hasTextBeenCopied.value) {
+            hasTextBeenCopied.value = false;
+          }
+        }, 1500);
+      }
+    }
+
     return {
       selectedCompany,
+      hasTextBeenCopied,
+      copyEmail,
     };
   },
 });
