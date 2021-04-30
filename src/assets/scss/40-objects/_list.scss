@@ -2,13 +2,13 @@
 .o-list {
   margin-bottom: -1rem;
   &.-margin-1\/2 {
-    margin-bottom: 0.5rem;
+    margin-bottom: -0.5rem;
   }
 }
 
 .o-list_item {
   margin-bottom: 1rem;
   .o-list.-margin-1\/2 & {
-    margin-bottom: -0.5rem;
+    margin-bottom: 0.5rem;
   }
 }

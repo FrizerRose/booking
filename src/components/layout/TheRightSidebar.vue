@@ -57,11 +57,6 @@
             </a>
           </li>
           <li class="c-card-company-contact_list-item o-list_item">
-            <input
-              id="hiddenEmailInput"
-              :value="selectedCompany.contactEmail"
-              type="hidden"
-            >
             <a
               class="c-card-company-contact_link o-link -lonely"
               :href="'mailto:' + selectedCompany.contactEmail"
@@ -115,6 +110,12 @@
             </a>
           </li>
         </ul>
+        <input
+          id="hiddenEmailInputSidebar"
+          class="u-screen-reader-text"
+          :value="selectedCompany.contactEmail"
+          type="hidden"
+        >
       </div>
     </div>
   </div>
@@ -132,7 +133,9 @@ export default defineComponent({
     const hasTextBeenCopied = ref(false);
 
     function copyEmail() {
-      const textToCopy = document.getElementById('hiddenEmailInput') as HTMLInputElement;
+      // ne radi ako je unutar <li> ¯\_(ツ)_/¯
+
+      const textToCopy = document.getElementById('hiddenEmailInputSidebar') as HTMLInputElement;
       if (textToCopy) {
         textToCopy.setAttribute('type', 'text');
         textToCopy.select();

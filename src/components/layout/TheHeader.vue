@@ -292,9 +292,10 @@
                                   class="c-card-company-contact_link o-link -lonely"
                                   :href="'mailto:' + selectedCompany.contactEmail"
                                   target="_blank"
+                                  @click.prevent="copyEmail()"
                                 >
                                   <span class="o-link_background" />
-                                  <span class="o-link_label">E-mail</span>
+                                  <span class="o-link_label">{{ hasTextBeenCopied ? 'Kopirano' : 'Kopiraj email' }}</span>
                                 </a>
                               </li>
                               <li
@@ -340,6 +341,12 @@
                                 </a>
                               </li>
                             </ul>
+                            <input
+                              id="hiddenEmailInput"
+                              class="u-screen-reader-text"
+                              :value="selectedCompany.contactEmail"
+                              type="hidden"
+                            >
                           </div>
                         </div>
                       </div>
@@ -378,6 +385,29 @@ export default defineComponent({
     const isSiteInfoOpen = ref(false);
     const selectedCompany = computed(() => store.state.shared.selectedCompany);
 
+    const hasTextBeenCopied = ref(false);
+
+    function copyEmail() {
+      // ne radi ako je unutar <li> ¯\_(ツ)_/¯
+
+      const textToCopy = document.getElementById('hiddenEmailInput') as HTMLInputElement;
+      if (textToCopy) {
+        textToCopy.setAttribute('type', 'text');
+        textToCopy.select();
+        textToCopy.setSelectionRange(0, 99999); /* For mobile devices */
+
+        document.execCommand('copy');
+        textToCopy.setAttribute('type', 'hidden');
+        hasTextBeenCopied.value = true;
+
+        setTimeout(() => {
+          if (hasTextBeenCopied.value) {
+            hasTextBeenCopied.value = false;
+          }
+        }, 1500);
+      }
+    }
+
     function toggleSiteInfo() {
       isSiteInfoOpen.value = !isSiteInfoOpen.value;
     }
@@ -386,6 +416,8 @@ export default defineComponent({
       toggleSiteInfo,
       isSiteInfoOpen,
       selectedCompany,
+      hasTextBeenCopied,
+      copyEmail,
     };
   },
 });
