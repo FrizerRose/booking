@@ -4,10 +4,23 @@
       v-if="selectedCompany && selectedCompany.preferences.showTerms && selectedCompany.preferences.termsText"
       :class="{'is-loaded': isMounted, 'c-site-main': true}"
     >
-      <h1>Uvjeti poslovanja</h1>
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <pre v-html="selectedCompany.preferences.termsText" />
+      <section class="c-section -first">
+        <div class="o-container">
+          <div class="o-layout -gutter-2 || o-flex -flex-column@to-medium">
+            <div class="o-layout_item u-1/5@from-medium" />
+            <div class="o-layout_item u-3/5@from-medium">
+              <h1 class="c-heading u-margin-bottom">
+                Uvjeti poslovanja
+              </h1>
+              <pre class="o-pre c-summary_answer u-margin-top-3">
+                {{ selectedCompany.preferences.termsText }}<br>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
     <main
       v-else
       :class="{'is-loaded': isMounted, 'c-site-main': true}"
