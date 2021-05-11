@@ -1,5 +1,6 @@
 // Vue.config.js configuration options
 module.exports = {
+  outputDir: 'dist2',
   // restart dev server to apply changes
   pwa: {
     themeColor: '#ffffff',
