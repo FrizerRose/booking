@@ -24,8 +24,8 @@ export function fetchCompanyFromURL() {
   if (process.env.NODE_ENV === 'production') {
     const urlFragments = window.location.hostname.split('.');
     [companyID] = urlFragments;
-    if (companyID === 'dolazim') {
-      window.location.href = 'https://landing.dolazim.hr';
+    if (companyID === 'www') {
+      window.location.href = 'https://dolazim.hr';
     }
     if (companyID.slice(0, 4) === 'xn--') {
       companyID = punycode.decode(companyID.slice(4));
