@@ -115,7 +115,7 @@
                     <div class="c-form_legal">
                       <p>
                         Pročitajte uvjete poslovanja <a
-                          href="https://dolazim.hr/uvjeti-poslovanja"
+                          href="https://dolazim.info/uvjeti-poslovanja"
                           class="o-link"
                           target="_blank"
                           rel="noopener noreferrer"

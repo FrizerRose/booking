@@ -1,4 +1,4 @@
-# Dolazim.hr
+# Dolazim.info
 
 ## Project setup
 ```

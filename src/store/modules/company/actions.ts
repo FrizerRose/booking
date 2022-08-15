@@ -70,12 +70,12 @@ export const actions: ActionTree<State, RootState> & Actions = {
         } else {
           icons = [
             {
-              src: `https://${response.data.bookingPageSlug}.dolazim.hr/img/icons/android-chrome-192x192.png`,
+              src: `https://${response.data.bookingPageSlug}.dolazim.info/img/icons/android-chrome-192x192.png`,
               sizes: '192x192',
               type: 'image/png',
             },
             {
-              src: `https://${response.data.bookingPageSlug}.dolazim.hr/img/icons/android-chrome-512x512.png`,
+              src: `https://${response.data.bookingPageSlug}.dolazim.info/img/icons/android-chrome-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
             },
@@ -86,7 +86,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
           name: `${response.data.name}`, // ovo je ime koje piše samo kod dodavanja shortcuta
           short_name: `${response.data.name}`, // ovo je tekst koji piše ispod shortcuta nakon što je dodan
           description: `Zakaži termin preko weba - ${response.data.name}`,
-          start_url: `https://${response.data.bookingPageSlug}.dolazim.hr`,
+          start_url: `https://${response.data.bookingPageSlug}.dolazim.info`,
           display: 'standalone',
           icons,
           background_color: '#ffffff', // ovo radi, a za theme_color treba pwa u vue.config.js
